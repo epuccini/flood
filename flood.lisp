@@ -12,17 +12,32 @@
 
 (deftype log-level () :dbg :rls :prd)
 
+(defparameter *day-names*
+    '("Monday" "Tuesday" "Wednesday"
+      "Thursday" "Friday" "Saturday"
+      "Sunday"))
+
 (defparameter *global-log-level* :dbg)
 (defparameter *global-format-string* "$TIME--$LEVEL--$MESSAGE")
-
-(defun create-time-string ()
-  "As it says: creates a time string from current date and time."
+(defparameter *global-log-file* "FLOOD")
+ 
+(defun create-datetime-string ()
+  "As it says: creates a datetime string from current date and time."
   (multiple-value-bind 
 		(second minute hour day month year day-of-week dst-p tz)
 	  (get-decoded-time)
 	(declare (ignore day-of-week dst-p tz))
 	(let ((fmt (format nil "~2,'0d.~2,'0d.~2,'0d--~2,'0d:~2,'0d:~4,'0d"
 					   hour minute second day month year)))
+	  fmt)))
+
+(defun create-day-string ()
+  "As it says: creates a day string from current date."
+  (multiple-value-bind 
+		(second minute hour day month year day-of-week dst-p tz)
+	  (get-decoded-time)
+	(declare (ignore hour minute second day month year dst-p tz))
+	(let ((fmt (format nil "~A" (nth day-of-week *day-names*))))
 	  fmt)))
 
 (defun print-logger (fmt &rest args) 
@@ -38,8 +53,17 @@
   (format t fmt args))
 
 (defun file-logger (fmt &rest args)
-  "Simple file logger."
-  (format t fmt args))
+  "Simple rotating file logger."
+  (let ((filename (concatenate 'string 
+							   *global-log-file* "_"
+							   (create-day-string) ".log")))
+	(handler-case 
+		(with-open-file (stream filename :direction :output)
+		  (write-line (format nil fmt args) stream))
+	  (error ()
+		(with-open-file (stream filename :direction :output
+								:if-exists :append)
+		  (write-line (format nil fmt args) stream))))))
 
 (defun create-combined-logger (&rest args)
   "Create a list of loggers which are beeing used
@@ -55,7 +79,7 @@ $TIME $LEVEL $MESSAGE"
   (let ((format-string ""))
 	(setf format-string 
 		  (cl-ppcre:regex-replace-all 
-						 "\\$TIME" template (create-time-string)))
+						 "\\$TIME" template (create-datetime-string)))
 	(setf format-string 
 		  (cl-ppcre:regex-replace-all 
 		   "\\$LEVEL" format-string (format nil "~A" level)))
@@ -67,21 +91,19 @@ $TIME $LEVEL $MESSAGE"
   "This macro creates a format-string from a template
 '*global-format-string*. This template gets exapanden with
 supplied arguments. Output is this string."
-  `(format nil (concatenate 'string 
-						   (create-format-template ,*global-format-string*
-												   ,level
-												   ,msg-fmt) "~%") ,@args))
-
+  `(format nil (create-format-template 
+				,*global-format-string*
+				,level
+				,msg-fmt) ,@args))
 
 (defmacro out (comb-logger level msg-fmt &rest args)
   "Calls all combinded loggers and creates a log-entry 
-with a global-format-string-template from the macro
-'create-log-string'."
+with a global-format-string, created from the macro
+'create-format-template'."
   `(mapcar (lambda (f) 
 			 (funcall f
-					  (format nil (concatenate 
-								   'string 
-								   (create-format-template ,*global-format-string*
-														   ,level
-														   ,msg-fmt) "~%") ,@args)))
+					  (format nil (create-format-template 
+								   ,*global-format-string*
+								   ,level
+								   ,msg-fmt) ,@args)))
 		   ,comb-logger))

@@ -15,6 +15,7 @@
   (:export
    :*global-format-string*
    :*global-log-level*
+   :*global-log-file*
    #:create-date-time-string
    #:create-combined-logger
    #:print-logger
