@@ -18,6 +18,7 @@
    #:create-date-time-string
    #:create-combined-logger
    #:print-logger
+   #:error-logger
+   #:file-logger
    #:email-logger
-   #:out
-   ))
+   #:out))
