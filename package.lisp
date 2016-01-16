@@ -8,11 +8,13 @@
 
 (in-package :common-lisp)
 
-(require 'cffi)
+(require 'cl-ppcre)
 
 (defpackage :flood
-  (:use #:cl) 
+  (:use #:cl #:cl-ppcre) 
   (:export
+   :*global-format-string*
+   :*global-log-level*
    #:create-date-time-string
    #:create-combined-logger
    #:print-logger
