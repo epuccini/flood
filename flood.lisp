@@ -54,6 +54,4 @@
 											(create-format-string *global-format-string*
 																  level
 																  msg-fmt) "~%")
-							   (create-time-string) 
-							   level 
 							   args))) comb-logger))

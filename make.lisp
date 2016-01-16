@@ -41,6 +41,6 @@ all necessary files including packages"
   (let ((lg (flood:create-combined-logger 
 			 #'flood:print-logger
 			 #'flood:email-logger)))
-	(flood:out lg :dbg "Error in ~D function." 666)))
+	(flood:out lg :dbg "Error in function ~D." 666)))
 
 (main)
