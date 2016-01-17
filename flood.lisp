@@ -17,10 +17,20 @@
       "Thursday" "Friday" "Saturday"
       "Sunday"))
 
-(defparameter *global-log-level* :dbg)
-(defparameter *global-format-string* "$TIME--$LEVEL--$MESSAGE")
-(defparameter *global-log-file* "FLOOD")
- 
+(defun load-config (file)
+  (handler-case 
+	  (let (store)
+		(with-open-file (stream file :direction :input 
+								:if-does-not-exist :error)
+		  (with-standard-io-syntax
+			(setf store (read stream))))
+		store)
+	(error (condition) 
+	  (format t "Problem in function 'load-config': ~A~%" condition))))
+
+(defparameter *global-config-file* "conf/init.conf")
+(defparameter *global-config* (load-config *global-config-file*));
+
 (defun create-datetime-string ()
   "As it says: creates a datetime string from current date and time."
   (multiple-value-bind 
@@ -58,7 +68,7 @@
 (defun file-logger (fmt &rest args)
   "Simple rotating file logger."
   (let ((filename (concatenate 'string 
-							   *global-log-file* "_"
+							   (getf *global-config* :LOG_FILE_NAME) "_"
 							   (create-day-string) ".log")))
 	(handler-case 
 		(with-open-file (stream filename :direction :output)
@@ -69,8 +79,8 @@
 		  (write-line (format nil fmt args) stream))))))
 
 (defun create-combined-logger (&rest args)
-  "Create a list of loggers which are beeing used
-in 'out'-function."
+  "Loads configfile. Create a list of loggers which 
+are beeing used in 'out'-function."
   (let ((comb '()))
 	(mapcar (lambda (f) (push f comb)) args)
 	comb))
@@ -90,15 +100,6 @@ $TIME $LEVEL $MESSAGE"
 		  (cl-ppcre:regex-replace-all 
 		   "\\$MESSAGE" format-string message-fmt))))
 
-(defmacro create-log-string (msg-fmt level args)
-  "This macro creates a format-string from a template
-'*global-format-string*. This template gets exapanden with
-supplied arguments. Output is this string."
-  `(format nil (create-format-template 
-				,*global-format-string*
-				,level
-				,msg-fmt) ,@args))
-
 (defmacro out (comb-logger level msg-fmt &rest args)
   "Calls all combinded loggers and creates a log-entry 
 with a global-format-string, created from the macro
@@ -107,7 +108,7 @@ with a global-format-string, created from the macro
 			 (funcall f
 					  (format nil 
 							  (create-format-template 
-							   ,*global-format-string*
+							   ,(getf *global-config* :MESSAGE_FORMAT_STRING)
 							   ,level
 							   ,msg-fmt) ,@args)))
 		   ,comb-logger))

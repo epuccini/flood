@@ -13,9 +13,7 @@
 (defpackage :flood
   (:use #:cl #:cl-ppcre) 
   (:export
-   :*global-format-string*
-   :*global-log-level*
-   :*global-log-file*
+   :*global-config-file*
    #:create-date-time-string
    #:create-combined-logger
    #:print-logger

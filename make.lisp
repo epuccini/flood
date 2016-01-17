@@ -42,7 +42,7 @@ all necessary files including packages"
 			 #'flood:file-logger
 			 #'flood:error-logger)))
 	(flood:out lg :dbg "Error in function ~D / ~D" 666 555)
-	(flood:out lg :dbg "Error in function ~D / ~D" 666 555))
-  0)
+	(flood:out lg :dbg "Error in function ~D / ~D" 666 555)
+	0))
 
 (main)
