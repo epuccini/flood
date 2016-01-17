@@ -42,15 +42,18 @@
 
 (defun print-logger (fmt &rest args) 
   "Simple console logger."
-  (format t fmt args))
+  (format t fmt args)
+  (terpri))
 
 (defun error-logger (fmt &rest args) 
   "Simple error logger."
-  (format *error-output* fmt args))
+  (format *error-output* fmt args)
+  (terpri))
 
 (defun email-logger (fmt &rest args)
   "Simple email logger."
-  (format t fmt args))
+  (format t fmt args)
+  (terpri))
 
 (defun file-logger (fmt &rest args)
   "Simple rotating file logger."
@@ -102,8 +105,9 @@ with a global-format-string, created from the macro
 'create-format-template'."
   `(mapcar (lambda (f) 
 			 (funcall f
-					  (format nil (create-format-template 
-								   ,*global-format-string*
-								   ,level
-								   ,msg-fmt) ,@args)))
+					  (format nil 
+							  (create-format-template 
+							   ,*global-format-string*
+							   ,level
+							   ,msg-fmt) ,@args)))
 		   ,comb-logger))
