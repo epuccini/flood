@@ -8,14 +8,14 @@
 
 (in-package :flood)
 
-(require 'cl-ppcre)
-
-(deftype log-level () :dbg :rls :prd)
+(deftype log-level () :dbg :tst :prd)
 
 (defparameter *day-names*
     '("Monday" "Tuesday" "Wednesday"
       "Thursday" "Friday" "Saturday"
       "Sunday"))
+
+(defparameter *global-log-level* :dbg)
 
 (defun load-config (file)
   (handler-case 
@@ -30,6 +30,22 @@
 
 (defparameter *global-config-file* "conf/init.conf")
 (defparameter *global-config* (load-config *global-config-file*));
+
+(defun log-level-p (level)
+  "Evaluate loglevel and return true or false."
+  (declare (keyword level))
+  (cond ((equal level *global-log-level*) t)
+		((and (equal level :dbg) (equal *global-log-level* :dbg)) t)
+		((and (equal level :dbg) (equal *global-log-level* :tst)) nil)
+		((and (equal level :dbg) (equal *global-log-level* :prd)) nil)
+
+		((and (equal level :tst) (equal *global-log-level* :dbg)) t)
+		((and (equal level :tst) (equal *global-log-level* :tst)) t)
+		((and (equal level :tst) (equal *global-log-level* :prd)) nil)
+
+		((and (equal level :prd) (equal *global-log-level* :dbg)) t)
+		((and (equal level :prd) (equal *global-log-level* :tst)) t)
+		((and (equal level :prd) (equal *global-log-level* :prd)) t)))
 
 (defun create-datetime-string ()
   "As it says: creates a datetime string from current date and time."
@@ -104,11 +120,21 @@ $TIME $LEVEL $MESSAGE"
   "Calls all combinded loggers and creates a log-entry 
 with a global-format-string, created from the macro
 'create-format-template'."
-  `(mapcar (lambda (f) 
-			 (funcall f
-					  (format nil 
-							  (create-format-template 
-							   ,(getf *global-config* :MESSAGE_FORMAT_STRING)
-							   ,level
-							   ,msg-fmt) ,@args)))
-		   ,comb-logger))
+  (declare (keyword level))
+  `(cond ((equal (log-level-p ,level) t)
+		  (mapcar (lambda (f) 
+					(funcall f
+							 (format nil 
+									 (create-format-template 
+									  ,(getf *global-config* :MESSAGE_FORMAT_STRING)
+									  ,level
+									  ,msg-fmt) ,@args)))
+				 ,comb-logger))))
+
+
+(defmacro with-trace-log (comb-logger level &rest body)
+  "Log function trace and show result."
+  (declare (keyword level))
+	`(out ,comb-logger
+		  ,level "Trace function: ~A = ~{~A ~}" ',@body ,@body))
+

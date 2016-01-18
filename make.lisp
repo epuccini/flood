@@ -11,10 +11,7 @@
 ; -------------------------------------------------------------
 ; Requirements: cffi
 ; -------------------------------------------------------------
-
-;; -----------------
-;; External packages
-;; -----------------
+(use-package :flood)
 
 ;
 ; load and compile helper
@@ -30,7 +27,8 @@
 (eval-when (:load-toplevel :compile-toplevel :execute)
   "Executed at compile time. Does load and compile
 all necessary files including packages"
-  
+  (use-package :flood)
+
   (load-and-compile-set *default-pathname-defaults*
 	"package.lisp"
 	"flood.lisp"))                
@@ -38,11 +36,14 @@ all necessary files including packages"
 ;; Example application
 
 (defun main ()
-  (let ((lg (flood:create-combined-logger 
-			 #'flood:file-logger
-			 #'flood:error-logger)))
-	(flood:out lg :dbg "Error in function ~D / ~D" 666 555)
-	(flood:out lg :dbg "Error in function ~D / ~D" 666 555)
-	0))
+  (let ((lg (create-combined-logger 
+			 #'file-logger
+			 #'error-logger)))
+	(setf *global-log-level* :tst)
+	(out lg :dbg "Error in divisian ~D / ~D" 666 555)
+	(out lg :tst "Error in multiply ~D * ~D" 666 555)
+	(with-trace-log lg :tst 
+	  (mapcar (lambda (x) (* x x)) 
+			  (append '(1 2 3 4 5) '(4 3 2 1))))))
 
 (main)
