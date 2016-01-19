@@ -29,11 +29,6 @@
    (progn
 	 (mapc (lambda (file)
 			 (format t "Compiling file ~A.~%" file)
-			 ;(cond ((equal file "package.lisp")   
-					;; (progn
-					;;   (format t "Loading packages...")
-					;;   (mapc #'print (getf *make-config* :use-packages))
-					;;   (mapc #'use-package (getf *make-config* :use-packages)))))
 			 (load (compile-file file)))
 		   (getf *categories* category)) t)
    (error (condition)
