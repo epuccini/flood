@@ -1,7 +1,7 @@
 ; -------------------------------------------------------------
-; Edward Alan Puccini 16.01.2016
+; Edward Alan Puccini 19.01.2016
 ; -------------------------------------------------------------
-; Flood logging library make and loader
+; Kind of make for common lisp
 ; -------------------------------------------------------------
 ; file: make.lisp 
 ; -------------------------------------------------------------
@@ -9,41 +9,91 @@
 ; Compile this file and every other needed file gets compiled.
 ; On error check path in compile-files
 ; -------------------------------------------------------------
-; Requirements: cffi
+(defparameter *make-config* "")
+(defparameter *main-function* nil)
+(defparameter *categories* nil)
+(defparameter *sources* '())
+(defparameter *make-filename* "make.conf")
+
 ; -------------------------------------------------------------
-(use-package :flood)
 
-;
-; load and compile helper
-;
-(defmacro load-and-compile-set (directory &body forms)
-"Macro for doing the same things in seuquence"
+(defun load-config ()
+  (let ((content 
+		 (with-open-file (stream *make-filename* :direction :input)
+						 (read stream))))
+	content))
+
+(defun build-category (category)
+  (declare (keyword category))
+  (handler-case 
+   (progn
+	 (mapc (lambda (file)
+			 (format t "Compiling file ~A.~%" file)
+			 ;(cond ((equal file "package.lisp")   
+					;; (progn
+					;;   (format t "Loading packages...")
+					;;   (mapc #'print (getf *make-config* :use-packages))
+					;;   (mapc #'use-package (getf *make-config* :use-packages)))))
+			 (load (compile-file file)))
+		   (getf *categories* category)) t)
+   (error (condition)
+		  (format t "Error! ~A." condition))))
+
+(defun build ()
+  (loop for category in *categories* do
+		(cond ((getf *categories* category) 
+			   (format t "Building category ~A.~%" category)
+			   (build-category category)))))
+
+#+sbcl 
+(defun save-bin (&optional (cmp-flag t))
+  (save-lisp-and-die (getf *make-config* :application) 
+					 :executable t 
+					 :compression cmp-flag 
+					 :toplevel *main-function*))
+
+#+clozure
+(defun save-bin (&optional (cmp-flag t))
+  (declare (ignore cmp-flag))
+  (ccl:save-application *application* :toplevel-function *main-function*))
+
+#+ecl 
+(defun save-bin (&optional (cmp-flag t))
+  (declare (ignore cmp-flag))
+  (c:build-program *application*))
+
+(defun build-bin ()
+  (build)
+  (save-bin))
+
+(defmacro build-files (directory &rest forms)
+"Macro for load and compile. Just list some files and they
+get compiled and loaded."
   `(progn
-    ,@(loop for f in forms collect `(load (compile-file (merge-pathnames ,directory ,f))))))
+    ,@(loop for f in forms collect 
+			`(load (compile-file (merge-pathnames ,directory ,f))))))
 
-;
-; Compile all files on C-c C-c
-;
 (eval-when (:load-toplevel :compile-toplevel :execute)
   "Executed at compile time. Does load and compile
-all necessary files including packages"
-  (use-package :flood)
+all necessary files including packages.
+Compile all files on C-c C-k in emacs/slime."
 
-  (load-and-compile-set *default-pathname-defaults*
-	"package.lisp"
-	"flood.lisp"))                
+  ;(mapc #'use-package (getf *make-config* :use-packages))
 
-;; Example application
+  (print "Make startup...")
+  (setq *make-filename* (merge-pathnames 
+						 *default-pathname-defaults* "make.conf"))
+  (format t "filename '~A' set...~%" *make-filename*)
+  (setq *make-config* (load-config))
+  (format t "Config read...~%")
+  (format t "Building ~A...~%" (getf *make-config* :application))
+  (setq *main-function* (getf *make-config* :main))
+  (print "Main function found...")
+  (setq *categories* (getf *make-config* :categories))
+  (mapc #'pprint *categories*)
+  (terpri)
+  (build)
+  (format t "Building  complete. Starting ~A:" (getf *make-config* :application))
+  (cond (*main-function*
+		 (funcall (symbol-function (find-symbol (string-upcase *main-function*)))))))
 
-(defun main ()
-  (let ((lg (create-combined-logger 
-			 #'file-logger
-			 #'error-logger)))
-	(setf *global-log-level* :tst)
-	(out lg :dbg "Error in divisian ~D / ~D" 666 555)
-	(out lg :tst "Error in multiply ~D * ~D" 666 555)
-	(with-trace-log lg :tst 
-	  (mapcar (lambda (x) (* x x)) 
-			  (append '(1 2 3 4 5) '(4 3 2 1))))))
-
-(main)

@@ -1,0 +1,38 @@
+18.11.22--19:01:2016-[TST]-Error in multiply 666 * 555
+18.11.22--19:01:2016-[TST]-Trace function: (MAPCAR (LAMBDA (X) (* X X))
+                                                   (APPEND '(1 2 3 4 5)
+                                                           '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+18.11.39--19:01:2016-[TST]-Error in multiply 666 * 555
+18.11.39--19:01:2016-[TST]-Trace function: (MAPCAR (LAMBDA (X) (* X X))
+                                                   (APPEND '(1 2 3 4 5)
+                                                           '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+18.16.27--19:01:2016-[TST]-Error in multiply 666 * 555
+18.16.27--19:01:2016-[TST]-Trace function: (MAPCAR (LAMBDA (X) (* X X))
+                                                   (APPEND '(1 2 3 4 5)
+                                                           '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+18.21.40--19:01:2016-[TST]-Error in multiply 666 * 555
+18.21.40--19:01:2016-[TST]-Trace function: (MAPCAR (LAMBDA (X) (* X X))
+                                                   (APPEND '(1 2 3 4 5)
+                                                           '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+18.34.10--19:01:2016-[TST]-Error in multiply 666 * 555
+18.34.10--19:01:2016-[TST]-Trace function: (MAPCAR (LAMBDA (X) (* X X))
+                                                   (APPEND '(1 2 3 4 5)
+                                                           '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+18.35.05--19:01:2016-[TST]-Error in multiply 666 * 555
+18.35.05--19:01:2016-[TST]-Trace function: (MAPCAR (LAMBDA (X) (* X X))
+                                                   (APPEND '(1 2 3 4 5)
+                                                           '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+18.43.13--19:01:2016-[TST]-Error in multiply 666 * 555
+18.44.00--19:01:2016-[TST]-Error in multiply 666 * 555
+18.44.19--19:01:2016-[TST]-Error in multiply 666 * 555
+18.45.02--19:01:2016-[TST]-Error in multiply 666 * 555
+18.45.45--19:01:2016-[TST]-Error in multiply 666 * 555
+18.46.14--19:01:2016-[TST]-Error in multiply 666 * 555
+18.46.30--19:01:2016-[TST]-Error in multiply 666 * 555
+18.46.36--19:01:2016-[TST]-Error in multiply 666 * 555
+18.47.28--19:01:2016-[TST]-Error in multiply 666 * 555
+18.47.55--19:01:2016-[TST]-Error in multiply 666 * 555
+18.48.36--19:01:2016-[TST]-Error in multiply 666 * 555
+18.48.36--19:01:2016-[TST]-Trace function: (MAPCAR (LAMBDA (X) (* X X))
+                                                   (APPEND '(1 2 3 4 5)
+                                                           '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 

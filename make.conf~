@@ -1,0 +1,8 @@
+;; Flood library make-config 
+
+(:application "Flood"
+ :main main
+ :categories
+   (:package ("package.lisp")			  
+    :library ("flood.lisp")
+    :main ("main.lisp")))
