@@ -54,8 +54,8 @@
 
 #+ecl 
 (defun save-bin (&optional (cmp-flag t))
-  (declare (ignore cmp-flag))
-  (c:build-program *application*))
+  (declare (ignore cmp-flag)))
+  ;;(c:build-program *application*))
 
 (defun build-bin ()
   (build)
@@ -71,16 +71,16 @@ get compiled and loaded."
 (eval-when (:load-toplevel :compile-toplevel :execute)
   "Executed at compile time. Does load and compile
 all necessary files including packages.
-Compile all files on C-c C-k in emacs/slime."
-
-  ;(mapc #'use-package (getf *make-config* :use-packages))
-
+Compile all files on C-c C-k in emacs/slime"
   (print "Make startup...")
   (setq *make-filename* (merge-pathnames 
 						 *default-pathname-defaults* "make.conf"))
   (format t "filename '~A' set...~%" *make-filename*)
   (setq *make-config* (load-config))
   (format t "Config read...~%")
+  (mapc #'ql:quickload (getf *make-config* :systems))
+  (print "Systems loaded...")
+
   (format t "Building ~A...~%" (getf *make-config* :application))
   (setq *main-function* (getf *make-config* :main))
   (print "Main function found...")

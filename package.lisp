@@ -6,8 +6,6 @@
 ; file: package.lisp
 ; -------------------------------------------------------------
 
-(in-package :common-lisp)
-
 (require 'cl-ppcre)
 
 (defpackage :flood

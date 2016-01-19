@@ -12,8 +12,6 @@
 ; Requirements: cffi
 ; -------------------------------------------------------------
 
-(use-package :flood)
-
 (defun main ()
   (let ((lg (flood:create-combined-logger 
 			 #'flood:file-logger
