@@ -1,7 +1,8 @@
-;; Flood library make-config 
+;; Flood library make-configuration 
 
 (:application "Flood"
- :main main
+ :systems ( :cl-ppcre )
+  :main main
  :categories
    (:package ("package.lisp")			  
     :library ("flood.lisp")
