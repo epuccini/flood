@@ -102,7 +102,15 @@ category."
 (defun save-bin ()
   "Save binary-file with clozure-lisp."
   (handler-case
-	  (ccl:save-application *application* :toplevel-function *main-function*)
+	  (progn
+		;(require 'ccl)
+		;(require :build-application)
+		;;(require 'cocoa)
+		 (ccl:save-application *application*
+							   :purify t
+							   :prepend-kernel t
+							   :application-class 'ccl::application
+							   :toplevel-function *main-function*))
 	(error (condition)
 	  (format t "Error in save-bin! ~A." condition))))
 
@@ -118,11 +126,9 @@ category."
 #+clisp 
 (defun save-bin ()
   "Save binary-image with clisp."
-  (declare (ignore cmp-flag))
   (handler-case
 	  (ext:saveinitmem *application* 
 					   :executable t 
-					   :documentation t 
 					   :verbose t 
 					   :init-function *main-function*)
 	(error (condition)
