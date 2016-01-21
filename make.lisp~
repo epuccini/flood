@@ -9,7 +9,7 @@
 ; Compile this file and every other needed file gets compiled.
 ; On error check path in compile-files
 ; -------------------------------------------------------------
-(defparameter *make-config* "")
+(defparameter *make-conf* "")
 (defparameter *main-function* nil)
 (defparameter *categories* nil)
 (defparameter *sources* '())
@@ -17,13 +17,53 @@
 
 ; -------------------------------------------------------------
 
+(defmacro build-files (directory &rest forms)
+"Macro for load and compile. Just list some files and they
+get compiled and loaded."
+  `(progn
+    ,@(loop for f in forms collect 
+			`(load (compile-file (merge-pathnames ,directory ,f))))))
+;; Example:
+;; (build-files *default-pathname-defaults*
+;;              "example/test1.lisp"
+;;              "example/main.lisp")
+
+(defun quickload-list (systems)
+"Macro to quickload a system."
+  (mapc #'ql:quickload systems)
+  (print "Systems loaded..."))
+
+
+(defun require-list (packages)
+  "Function require a list of packages."
+  (mapc #'require packages)
+  (print "Packages required..."))
+
+
 (defun load-config ()
   (let ((content 
 		 (with-open-file (stream *make-filename* :direction :input)
 						 (read stream))))
 	content))
 
-(defun build-category (category)
+(defun setup ()
+  "This function has side effects and sets the
+globals with valid configuration properties."
+  (setq *make-filename* (merge-pathnames 
+						 *default-pathname-defaults* "make.conf"))
+  (format t "filename '~A' set...~%" *make-filename*)
+  (setq *make-conf* (load-config))
+  (format t "Config read...~%")
+  (setq *categories* (getf *make-conf* :categories))
+  (mapc #'pprint *categories*)
+  (setq *main-function* (getf *make-conf* :main))
+  (setq *application* (getf *make-conf* :application))
+  (terpri))
+  
+
+(defun cbuild (category)
+  "Load and compile all files in given
+category."
   (declare (keyword category))
   (handler-case 
    (progn
@@ -34,60 +74,70 @@
    (error (condition)
 		  (format t "Error! ~A." condition))))
 
+
 (defun build ()
-  (loop for category in *categories* do
-		(cond ((getf *categories* category) 
-			   (format t "Building category ~A.~%" category)
-			   (build-category category)))))
+  "Load and compile all files in all categories."
+  (handler-case 
+	  (progn
+		(format t "Building ~A...~%" *application*)
+		(loop for category in *categories* do
+			 (cond ((getf *categories* category) 
+					(format t "Building category ~A.~%" category)
+					(cbuild category)))))
+	(error (condition)
+	  (format t "Error! ~A." condition))))
+
 
 #+sbcl 
-(defun save-bin (&optional (cmp-flag t))
-  (save-lisp-and-die (getf *make-config* :application) 
+(defun save-bin ()
+  "Save binary-file with sbcl."
+  (save-lisp-and-die  *application*
 					 :executable t 
-					 :compression cmp-flag 
+					 :compression t 
 					 :toplevel *main-function*))
 
 #+clozure
-(defun save-bin (&optional (cmp-flag t))
-  (declare (ignore cmp-flag))
+(defun save-bin ()
+  "Save binary-file with clozure-lisp."
   (ccl:save-application *application* :toplevel-function *main-function*))
 
 #+ecl 
-(defun save-bin (&optional (cmp-flag t))
-  (declare (ignore cmp-flag))
+(defun save-bin ()
+  "Save binary-file with ecl."
   (c:build-program *application*))
 
-(defun build-bin ()
-  (build)
-  (save-bin))
+#+clisp 
+(defun save-bin ()
+  "Save binary-image with clisp."
+  (declare (ignore cmp-flag))
+  (ext:saveinitmem *application* 
+				   :executable t 
+				   :documentation t 
+				   :verbose t 
+				   :init-function *main-function*))
 
-(defmacro build-files (directory &rest forms)
-"Macro for load and compile. Just list some files and they
-get compiled and loaded."
-  `(progn
-    ,@(loop for f in forms collect 
-			`(load (compile-file (merge-pathnames ,directory ,f))))))
+(defun run ()
+  (handler-case
+	  (cond (*main-function*
+		 (funcall (symbol-function 
+				   (find-symbol (string-upcase *main-function*))))))
+	(error (condition)
+	  (format t "Error! ~A~%" condition))))
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
   "Executed at compile time. Does load and compile
 all necessary files including packages.
-Compile all files on C-c C-k in emacs/slime."
-(use-package :flood)
+Compile all files on C-c C-k in emacs/slime"
+
   (print "Make startup...")
-  (setq *make-filename* (merge-pathnames 
-						 *default-pathname-defaults* "make.conf"))
-  (format t "filename '~A' set...~%" *make-filename*)
-  (setq *make-config* (load-config))
-  (format t "Config read...~%")
-  (format t "Building ~A...~%" (getf *make-config* :application))
-  (setq *main-function* (getf *make-config* :main))
-  (print "Main function found...")
-  (setq *categories* (getf *make-config* :categories))
-  (mapc #'pprint *categories*)
-  (terpri)
+  ;; Load configuration
+  (setup)
+  ;; Quickload systems
+  (quickload-list (getf *make-conf* :systems))
+  ;; Require packages
+  (require-list (getf *make-conf* :packages))
+  ;; compile everything
   (build)
-  (mapc #'use-package (getf *make-config* :use-packages)) 
-  (format t "Building  complete. Starting ~A:" (getf *make-config* :application))
-  (cond (*main-function*
-		 (funcall (symbol-function (find-symbol (string-upcase *main-function*)))))))
+  (format t "Building  complete. Starting ~A:" *application*)
+  (run))
 

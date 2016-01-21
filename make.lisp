@@ -17,14 +17,16 @@
 
 ; -------------------------------------------------------------
 
-
 (defmacro build-files (directory &rest forms)
 "Macro for load and compile. Just list some files and they
 get compiled and loaded."
   `(progn
     ,@(loop for f in forms collect 
 			`(load (compile-file (merge-pathnames ,directory ,f))))))
-
+;; Example:
+;; (build-files *default-pathname-defaults*
+;;              "example/test1.lisp"
+;;              "example/main.lisp")
 
 (defun quickload-list (systems)
 "Macro to quickload a system."
@@ -55,10 +57,13 @@ globals with valid configuration properties."
   (setq *categories* (getf *make-conf* :categories))
   (mapc #'pprint *categories*)
   (setq *main-function* (getf *make-conf* :main))
+  (setq *application* (getf *make-conf* :application))
   (terpri))
   
 
-(defun build-category (category)
+(defun cbuild (category)
+  "Load and compile all files in given
+category."
   (declare (keyword category))
   (handler-case 
    (progn
@@ -71,35 +76,53 @@ globals with valid configuration properties."
 
 
 (defun build ()
-  (format t "Building ~A...~%" (getf *make-conf* :application))
-  (loop for category in *categories* do
-		(cond ((getf *categories* category) 
-			   (format t "Building category ~A.~%" category)
-			   (build-category category)))))
+  "Load and compile all files in all categories."
+  (handler-case 
+	  (progn
+		(format t "Building ~A...~%" *application*)
+		(loop for category in *categories* do
+			 (cond ((getf *categories* category) 
+					(format t "Building category ~A.~%" category)
+					(cbuild category)))))
+	(error (condition)
+	  (format t "Error! ~A." condition))))
 
-
+	   
 #+sbcl 
-(defun save-bin (&optional (cmp-flag t))
-  (save-lisp-and-die (getf *make-conf* :application) 
+(defun save-bin ()
+  "Save binary-file with sbcl."
+  (save-lisp-and-die  *application*
 					 :executable t 
-					 :compression cmp-flag 
+					 :compression t 
 					 :toplevel *main-function*))
 
 #+clozure
-(defun save-bin (&optional (cmp-flag t))
-  (declare (ignore cmp-flag))
+(defun save-bin ()
+  "Save binary-file with clozure-lisp."
   (ccl:save-application *application* :toplevel-function *main-function*))
 
 #+ecl 
-(defun save-bin (&optional (cmp-flag t))
-  (declare (ignore cmp-flag)))
-  ;;(c:build-program *application*))
+(defun save-bin ()
+  "Save binary-file with ecl."
+  (c:build-program *application*))
 
+#+clisp 
+(defun save-bin ()
+  "Save binary-image with clisp."
+  (declare (ignore cmp-flag))
+  (ext:saveinitmem *application* 
+				   :executable t 
+				   :documentation t 
+				   :verbose t 
+				   :init-function *main-function*))
 
-(defun build-bin ()
-  (build)
-  (save-bin))
-
+(defun run ()
+  (handler-case
+	  (cond (*main-function*
+		 (funcall (symbol-function 
+				   (find-symbol (string-upcase *main-function*))))))
+	(error (condition)
+	  (format t "Error! ~A~%" condition))))
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
   "Executed at compile time. Does load and compile
@@ -115,7 +138,6 @@ Compile all files on C-c C-k in emacs/slime"
   (require-list (getf *make-conf* :packages))
   ;; compile everything
   (build)
-  (format t "Building  complete. Starting ~A:" (getf *make-conf* :application))
-  (cond (*main-function*
-		 (funcall (symbol-function (find-symbol (string-upcase *main-function*)))))))
+  (format t "Building  complete. Starting ~A:" *application*)
+  (run))
 
