@@ -2,7 +2,8 @@
 
 (:application "Flood"
  :systems ( :cl-ppcre )
-  :main main
+ :packages ( :cl-ppcre )
+ :main main
  :categories
    (:package ("package.lisp")			  
     :library ("flood.lisp")

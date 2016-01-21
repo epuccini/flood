@@ -6,7 +6,7 @@
 ; file: package.lisp
 ; -------------------------------------------------------------
 
-(require 'cl-ppcre)
+(in-package :cl-user)
 
 (defpackage :flood
   (:use #:cl #:cl-ppcre) 

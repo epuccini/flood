@@ -36,8 +36,8 @@ get compiled and loaded."
 
 (defun require-list (packages)
   "Function require a list of packages."
-  (mapc #'require packages)
-  (print "Packages required..."))
+  (print "Start require packages")
+  (mapc #'require packages))
 
 
 (defun load-config ()
@@ -72,8 +72,7 @@ category."
 			 (load (compile-file file)))
 		   (getf *categories* category)) t)
    (error (condition)
-		  (format t "Error! ~A." condition))))
-
+		  (format t "Error in cbuild! ~A." condition))))
 
 (defun build ()
   "Load and compile all files in all categories."
@@ -85,36 +84,49 @@ category."
 					(format t "Building category ~A.~%" category)
 					(cbuild category)))))
 	(error (condition)
-	  (format t "Error! ~A." condition))))
+	  (format t "Error in build! ~A." condition))))
 
 	   
 #+sbcl 
 (defun save-bin ()
   "Save binary-file with sbcl."
-  (save-lisp-and-die  *application*
-					 :executable t 
-					 :compression t 
-					 :toplevel *main-function*))
+  (handler-case
+	  (save-lisp-and-die  *application*
+						  :executable t 
+						  :compression t 
+						  :toplevel *main-function*)
+	(error (condition)
+	  (format t "Error in save-bin! ~A." condition))))
 
 #+clozure
 (defun save-bin ()
   "Save binary-file with clozure-lisp."
-  (ccl:save-application *application* :toplevel-function *main-function*))
+  (handler-case
+	  (ccl:save-application *application* :toplevel-function *main-function*)
+	(error (condition)
+	  (format t "Error in save-bin! ~A." condition))))
 
 #+ecl 
 (defun save-bin ()
   "Save binary-file with ecl."
-  (c:build-program *application*))
+  (handler-case
+	  (c:build-program *application*)
+	(error (condition)
+	  (format t "Error in save-bin! ~A." condition))))
+
 
 #+clisp 
 (defun save-bin ()
   "Save binary-image with clisp."
   (declare (ignore cmp-flag))
-  (ext:saveinitmem *application* 
-				   :executable t 
-				   :documentation t 
-				   :verbose t 
-				   :init-function *main-function*))
+  (handler-case
+	  (ext:saveinitmem *application* 
+					   :executable t 
+					   :documentation t 
+					   :verbose t 
+					   :init-function *main-function*)
+	(error (condition)
+	  (format t "Error in save-bin! ~A." condition))))
 
 (defun run ()
   (handler-case

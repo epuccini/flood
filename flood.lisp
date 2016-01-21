@@ -84,8 +84,7 @@
 (defun file-logger (fmt &rest args)
   "Simple rotating file logger."
   (let ((filename (concatenate 'string 
-							   (getf *global-config* :LOG_FILE_NAME) "_"
-							   (create-day-string) ".log")))
+							   (getf *global-config* :LOG_FILE_NAME) ".log")))
 	(handler-case 
 		(with-open-file (stream filename :direction :output)
 		  (write-line (format nil fmt args) stream))
