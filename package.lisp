@@ -24,5 +24,6 @@
    #:with-function-log
    #:trace-out
    #:untrace-out
+   #:flatten-out
    #:out
    #:out-new))

@@ -22,7 +22,7 @@
 	(terpri)
 	(flood:out lg :dbg "Error in divisian ~D / ~D" 666 555)
 	(flood:out lg :tst "Error in multiply ~D * ~D" 666 555)
-	(flood:trace-out 'test lg :tst)
+	(flood:trace-out 'test lg :tst "Test of trace-facility.")
 	(test 20)
 	(test 40)
 	(test 80)

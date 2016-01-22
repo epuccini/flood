@@ -30,7 +30,7 @@
 	  (format t "Problem in function 'load-config': ~A~%" condition))))
 
 (defparameter *global-config-file* "conf/init.conf")
-(defparameter *global-config* (load-config *global-config-file*));
+(defparameter *global-config* (load-config *global-config-file*))
 
 (defun log-level-p (level)
   "Evaluate loglevel and return true or false."
@@ -97,8 +97,9 @@
 (defmacro init-with-logger (&body args)
   "Creates trace-store and creates a list of loggers which 
 are beeing used in 'out'-function."
- 	(setf *trace-store* (make-hash-table :test #'equal))
-	`(list ,@args))
+  (setf *global-config* (load-config *global-config-file*))
+  (setf *trace-store* (make-hash-table :test #'equal))
+  `(list ,@args))
 
 (defun create-format-template (template level message-fmt)
   "The '*global-format-template*' gets expanded into
@@ -115,7 +116,7 @@ $TIME $LEVEL $MESSAGE"
 		  (cl-ppcre:regex-replace-all 
 		   "\\$MESSAGE" format-string message-fmt))))
 
-(defmacro out (comb-logger level msg-fmt &rest args)
+(defmacro out (comb-logger level msg-fmt &rest fmt-args)
   "Calls all combinded loggers and creates a log-entry 
 with a global-format-string, created from the macro
 'create-format-template'."
@@ -127,7 +128,7 @@ with a global-format-string, created from the macro
 									 (create-format-template 
 									  ,(getf *global-config* :MESSAGE_FORMAT_STRING)
 									  ,level
-									  ,msg-fmt) ,@args)))
+									  ,msg-fmt) ,@fmt-args)))
 				 ,comb-logger))))
 
 (defmacro with-function-log (comb-logger level &rest body)
@@ -136,20 +137,22 @@ with a global-format-string, created from the macro
 	`(out ,comb-logger
 		  ,level "Trace function: ~A = ~{~A ~}" ',@body ,@body))
 
-(defun trace-out (fn-name comb-logger level)
-  (declare (ignore level))
+
+(defun trace-out (fn-name comb-logger level msg)
   (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
-		 (new-fn (lambda (&rest args) 
-				   (let ((text (format nil 
-									   "Trace of ~A result: ~A" 
-									   fn-name
-									   (apply old-fn args))))
-				   (out comb-logger :tst text nil)))))
+		 (new-fn (lambda (&rest fn-args) 
+				   (let* ((fmt-msg (format nil 
+										   "Trace of function \"~A\" result: ~A." 
+										   fn-name
+										   (apply old-fn fn-args)))
+						  (new-msg (concatenate 'string msg fmt-msg)))
+					 (out comb-logger :tst new-msg)))))
 	;; store old function via hashes
 	(setf (gethash fn-name *trace-store*) old-fn)
 	;; set new function
     (setf (symbol-function (find-symbol (string-upcase fn-name))) new-fn)))
+
 
 (defun untrace-out (fn-name)
   (setf (symbol-function (find-symbol (string-upcase fn-name))) 
