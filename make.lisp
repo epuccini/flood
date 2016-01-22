@@ -46,7 +46,6 @@ Compile all files on C-c C-k in emacs/slime"
 	  (print "Start require packages")
 	  (mapc #'require packages))
 
-
 	(defun load-config ()
 	  (let ((content 
 			 (with-open-file (stream *make-filename* :direction :input)

@@ -11,8 +11,6 @@
 (defpackage :flood
   (:use #:cl #:cl-ppcre) 
   (:export
-   :*global-config-file*
-   :*global-config*
    :*global-log-level*
    #:create-date-time-string
    #:init-with-logger
@@ -24,6 +22,5 @@
    #:with-function-log
    #:trace-out
    #:untrace-out
-   #:flatten-out
    #:out
-   #:out-new))
+   #:out-fmt))

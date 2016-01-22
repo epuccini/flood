@@ -18,6 +18,7 @@
 (defparameter *global-log-level* :dbg)
 (defparameter *trace-store* (make-hash-table :test 'equal))
 
+
 (defun load-config (file)
   (handler-case 
 	  (let (store)
@@ -29,12 +30,12 @@
 	(error (condition) 
 	  (format t "Problem in function 'load-config': ~A~%" condition))))
 
+
 (defparameter *global-config-file* "conf/init.conf")
 (defparameter *global-config* (load-config *global-config-file*))
 
 (defun log-level-p (level)
   "Evaluate loglevel and return true or false."
-  (declare (keyword level))
   (cond ((equal level *global-log-level*) t)
 		((and (equal level :dbg) (equal *global-log-level* :dbg)) t)
 		((and (equal level :dbg) (equal *global-log-level* :tst)) nil)
@@ -48,6 +49,7 @@
 		((and (equal level :prd) (equal *global-log-level* :tst)) t)
 		((and (equal level :prd) (equal *global-log-level* :prd)) t)))
 
+
 (defun create-datetime-string ()
   "As it says: creates a datetime string from current date and time."
   (multiple-value-bind 
@@ -58,6 +60,7 @@
 					   hour minute second day month year)))
 	  fmt)))
 
+
 (defun create-day-string ()
   "As it says: creates a day string from current date."
   (multiple-value-bind 
@@ -67,10 +70,12 @@
 	(let ((fmt (format nil "~A" (nth day-of-week *day-names*))))
 	  fmt)))
 
+
 (defun print-logger (fmt &rest args) 
   "Simple console logger."
   (format t fmt args)
   (terpri))
+
 
 (defun error-logger (fmt &rest args) 
   "Simple error logger."
@@ -94,12 +99,13 @@
 								:if-exists :append)
 		  (write-line (format nil fmt args) stream))))))
 
+
 (defmacro init-with-logger (&body args)
   "Creates trace-store and creates a list of loggers which 
 are beeing used in 'out'-function."
   (setf *global-config* (load-config *global-config-file*))
-  (setf *trace-store* (make-hash-table :test #'equal))
   `(list ,@args))
+
 
 (defun create-format-template (template level message-fmt)
   "The '*global-format-template*' gets expanded into
@@ -116,11 +122,25 @@ $TIME $LEVEL $MESSAGE"
 		  (cl-ppcre:regex-replace-all 
 		   "\\$MESSAGE" format-string message-fmt))))
 
-(defmacro out (comb-logger level msg-fmt &rest fmt-args)
-  "Calls all combinded loggers and creates a log-entry 
+
+(defun out (comb-logger level msg)
+  "Simple logging output function'. Calls all 
+combinded loggers to create log-entries."
+  (cond ((equal (log-level-p level) t)
+		 (mapcar (lambda (f) 
+				   (funcall f
+							(create-format-template 
+							 (getf *global-config* :MESSAGE_FORMAT_STRING)
+							 level
+							 msg)))
+				  comb-logger))))
+
+
+(defmacro out-fmt (comb-logger level msg-fmt &rest fmt-args)
+  "Calls all combinded loggers and creates a log-entries
 with a global-format-string, created from the macro
-'create-format-template'."
-  (declare (keyword level))
+'create-format-template'. Supports format strings with 
+given arguments."
   `(cond ((equal (log-level-p ,level) t)
 		  (mapcar (lambda (f) 
 					(funcall f
@@ -129,13 +149,13 @@ with a global-format-string, created from the macro
 									  ,(getf *global-config* :MESSAGE_FORMAT_STRING)
 									  ,level
 									  ,msg-fmt) ,@fmt-args)))
-				 ,comb-logger))))
+				  ,comb-logger))))
+
 
 (defmacro with-function-log (comb-logger level &rest body)
   "Log function trace and show result."
-  (declare (keyword level))
-	`(out ,comb-logger
-		  ,level "Trace function: ~A = ~{~A ~}" ',@body ,@body))
+	`(out-fmt ,comb-logger
+		  ,level "Log function: ~A = ~{~A ~}" ',@body ,@body))
 
 
 (defun trace-out (fn-name comb-logger level msg)
@@ -147,11 +167,10 @@ with a global-format-string, created from the macro
 										   fn-name
 										   (apply old-fn fn-args)))
 						  (new-msg (concatenate 'string msg fmt-msg)))
-					 (out comb-logger :tst new-msg)))))
-	;; store old function via hashes
-	(setf (gethash fn-name *trace-store*) old-fn)
-	;; set new function
-    (setf (symbol-function (find-symbol (string-upcase fn-name))) new-fn)))
+					 (out comb-logger level new-msg)))))
+	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
+    (setf (symbol-function 
+		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
 
 
 (defun untrace-out (fn-name)
