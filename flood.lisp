@@ -16,6 +16,7 @@
       "Sunday"))
 
 (defparameter *global-log-level* :dbg)
+(defparameter *trace-store* (make-hash-table :test 'equal))
 
 (defun load-config (file)
   (handler-case 
@@ -93,12 +94,11 @@
 								:if-exists :append)
 		  (write-line (format nil fmt args) stream))))))
 
-(defun create-combined-logger (&rest args)
-  "Loads configfile. Create a list of loggers which 
+(defmacro init-with-logger (&body args)
+  "Creates trace-store and creates a list of loggers which 
 are beeing used in 'out'-function."
-  (let ((comb '()))
-	(mapcar (lambda (f) (push f comb)) args)
-	comb))
+ 	(setf *trace-store* (make-hash-table :test #'equal))
+	`(list ,@args))
 
 (defun create-format-template (template level message-fmt)
   "The '*global-format-template*' gets expanded into
@@ -130,10 +130,32 @@ with a global-format-string, created from the macro
 									  ,msg-fmt) ,@args)))
 				 ,comb-logger))))
 
-
-(defmacro with-trace-log (comb-logger level &rest body)
+(defmacro with-function-log (comb-logger level &rest body)
   "Log function trace and show result."
   (declare (keyword level))
 	`(out ,comb-logger
 		  ,level "Trace function: ~A = ~{~A ~}" ',@body ,@body))
 
+(defun trace-out (fn-name comb-logger level)
+  (declare (ignore level))
+  (let* ((old-fn (symbol-function 
+				  (find-symbol (string-upcase fn-name))))
+		 (new-fn (lambda (&rest args) 
+				   (let ((text (format nil 
+									   "Trace of ~A result: ~A" 
+									   fn-name
+									   (apply old-fn args))))
+				   (out comb-logger :tst text nil)))))
+	;; store old function via hashes
+	(setf (gethash fn-name *trace-store*) old-fn)
+	;; set new function
+    (setf (symbol-function (find-symbol (string-upcase fn-name))) new-fn)))
+
+(defun untrace-out (fn-name)
+  (setf (symbol-function (find-symbol (string-upcase fn-name))) 
+		(gethash fn-name *trace-store*)))
+
+
+
+
+  

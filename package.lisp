@@ -12,13 +12,17 @@
   (:use #:cl #:cl-ppcre) 
   (:export
    :*global-config-file*
+   :*global-config*
    :*global-log-level*
    #:create-date-time-string
-   #:create-combined-logger
+   #:init-with-logger
    #:print-logger
    #:error-logger
    #:file-logger
    #:email-logger
    #:log-level-p
-   #:with-trace-log
-   #:out))
+   #:with-function-log
+   #:trace-out
+   #:untrace-out
+   #:out
+   #:out-new))

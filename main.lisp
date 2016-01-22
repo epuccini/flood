@@ -11,14 +11,22 @@
 ; -------------------------------------------------------------
 ; Requirements: cffi
 ; -------------------------------------------------------------
+(defun test (x)
+  (* x x))
 
 (defun main ()
-  (let ((lg (flood:create-combined-logger 
-			 #'flood:file-logger
-			 #'flood:error-logger)))
+  (let ((lg (flood:init-with-logger
+			  #'flood:file-logger
+			  #'flood:error-logger)))
 	(setf flood:*global-log-level* :tst)
+	(terpri)
 	(flood:out lg :dbg "Error in divisian ~D / ~D" 666 555)
 	(flood:out lg :tst "Error in multiply ~D * ~D" 666 555)
-	(flood:with-trace-log lg :tst 
+	(flood:trace-out 'test lg :tst)
+	(test 20)
+	(test 40)
+	(test 80)
+	(flood:untrace-out 'test)
+	(flood:with-function-log lg :tst 
 	  (mapcar (lambda (x) (* x x)) 
 			  (append '(1 2 3 4 5) '(4 3 2 1))))))
