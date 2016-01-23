@@ -10,6 +10,11 @@
 ; On error check path in compile-files
 ; -------------------------------------------------------------
 
+#+sbcl	  (require 'asdf)
+#+clozure (require 'trivial-shell)
+#+clisp (ql:quickload 'trivial-shell)
+#+ecl	  (require 'asdf)
+
 (eval-when (:load-toplevel :compile-toplevel :execute)
   "Executed at compile time. Does load and compile
 all necessary files including packages.
@@ -20,7 +25,13 @@ Compile all files on C-c C-k in emacs/slime"
 	(defparameter *categories* nil)
 	(defparameter *sources* '())
 	(defparameter *make-filename* "make.conf")
-	(defparameter *app* "")
+	(defparameter *application* "")
+
+	;; the only dependency
+	#+sbcl (require 'asdf)
+	#+clozure (ql:quickload 'trivial-shell)
+	#+clisp (ql:quickload 'trivial-shell)
+	#+ecl (require 'asdf)
 
 	; -------------------------------------------------------------
 
@@ -38,11 +49,12 @@ Compile all files on C-c C-k in emacs/slime"
 	(defun quickload-list (systems)
 	  "Macro to quickload a system."
 	  (handler-case
-		  (progn
-			(print "Quickload found...")
-			(mapc (lambda (s)
-					(ql:quickload s)
-					(format t "~A..." s)) systems))
+		  (cond ((find-symbol "quickload" 'ql)
+				 (progn
+				   (print "Quickload found...")
+				   (mapc (lambda (s)
+						   (ql:quickload s)
+						   (format t "~A..." s)) systems))))
 		(error (condition)
 		  (format t "Error in quickload-list! ~A." condition))))
 
@@ -79,7 +91,7 @@ Compile all files on C-c C-k in emacs/slime"
 	  (setq *categories* (getf *make-conf* :categories))
 	  (mapc #'pprint *categories*)
 	  (setq *main-function* (getf *make-conf* :main))
-	  (setq *app* (getf *make-conf* :app)))
+	  (setq *application* (getf *make-conf* :application)))
 
 
 	(defun cbuild (category)
@@ -99,7 +111,7 @@ Compile all files on C-c C-k in emacs/slime"
 	  "Load and compile all files in all categories."
 	  (handler-case 
 		  (progn
-			(format t "~%Building ~A...~%" *app*)
+			(format t "~%Building ~A...~%" *application*)
 			(loop for category in *categories* do
 				 (cond ((getf *categories* category) 
 						(format t "Building category ~A.~%" category)
@@ -112,24 +124,14 @@ Compile all files on C-c C-k in emacs/slime"
 	(defun save-bin ()
 	  "Save binary-file with sbcl."
 	  (handler-case
-		  (save-lisp-and-die  *app*
+		  (save-lisp-and-die  *application*
 							  :executable t 
 							  :compression t 
 							  :toplevel *main-function*)
 		(error (condition)
 		  (format t "Error in save-bin! ~A." condition))))
 
-	#+cmu 
-	(defun save-bin ()
-	  "Save binary-image with cmucl."
-	  (handler-case
-		  (extensions:save-lisp  *app*
-								 :executable t 
-								 :init-function *main-function*)
-		(error (condition)
-		  (format t "Error in save-bin! ~A." condition))))
-
-	#+(or openmcl ccl) 
+	#+clozure
 	(defun save-bin ()
 	  "Save binary-file with clozure-lisp."
 	  (handler-case
@@ -137,7 +139,7 @@ Compile all files on C-c C-k in emacs/slime"
 			;(require 'ccl)
 			;(require :build-application)
 			;;(require 'cocoa)
-			 (ccl:save-application *app*
+			 (ccl:save-application *application*
 								   :purify t
 								   :prepend-kernel t
 								   :application-class 'ccl::application
@@ -149,7 +151,7 @@ Compile all files on C-c C-k in emacs/slime"
 	(defun save-bin ()
 	  "Save binary-file with ecl."
 	  (handler-case
-		  (c:build-program *app*)
+		  (c:build-program *application*)
 		(error (condition)
 		  (format t "Error in save-bin! ~A." condition))))
 
@@ -158,7 +160,7 @@ Compile all files on C-c C-k in emacs/slime"
 	(defun save-bin ()
 	  "Save binary-image with clisp."
 	  (handler-case
-		  (ext:saveinitmem *app* 
+		  (ext:saveinitmem *application* 
 						   :executable t 
 						   :verbose t 
 						   :init-function *main-function*)
@@ -166,53 +168,56 @@ Compile all files on C-c C-k in emacs/slime"
 		  (format t "Error in save-bin! ~A." condition))))
 
 
-	(defun execute-with (shell-call command)
-	  "Executes a shell command in 'command'
-with the function in 'shell-call'."
+	(defun execute (commands)
+	  "Execute a shell command in 'commands'."
 	  (handler-case
 		  (progn
-			(format t "~%Execute...~A~%" command)
+			(format t "~%Execute...~A~%" commands)
 			(format t "Command returned with ~A~%"
-					(funcall shell-call command)))
+					(asdf:run-shell-command commands)))
 		(error (condition)
 		  (format t "Error in execute: ~A~%" condition))))
 
 
-	(defun execute-when (at)
-	  (let ((commands (getf *make-conf* at)))
-		(mapc (lambda (c)
-				(format t "~%Try to execute ~A with ~A~%" at c)
-				(cond (c
-					   (execute c)))) commands)))
 
+	(defun execute-with (shell-call commands)
+	  "Executes a shell command in 'commands'
+with the function in 'shell-call'."
+	  (handler-case
+		  (progn
+			(format t "~%Execute...~A~%" commands)
+			(format t "Command returned with ~A~%"
+					(funcall shell-call commands)))
+		(error (condition)
+		  (format t "Error in execute: ~A~%" condition))))
 
 	#+sbcl
-	(defun execute (command)
-	  "Platform specific shell-call with 'command'."
-	  (execute-with #'asdf:run-shell-command command))
-
-	#+cmu
-	(defun execute (command)
-	  "Platform specific shell-call with 'command'."
-		(execute-with #'asdf:run-shell-command command))
+	(defun execute (commands)
+	  "Platform specific shell-call with 'commands'".
+	  (execute-with 'asdf:run-shell-command commands))
 
 	#+ecl
-	(defun execute (command)
-	  "Platform specific shell-call with 'command'."
-	  (execute-with #'asdf:run-shell-command command))
+	(defun execute (commands)
+	  "Platform specific shell-call with 'commands'".
+	  (execute-with 'asdf:run-shell-command commands))
 
 	#+clisp
 	(EXT:WITHOUT-PACKAGE-LOCK ("EXT")
-	  (defun execute (command)
-		"Platform specific shell-call with 'command'."
-		(execute-with #'trivial-shell:shell-command command)))
+	  (defun execute (commands)
+		"Platform specific shell-call with 'commands'".
+		(execute-with 'trivial-shell:shell-command commands)))
 
-	#+(or openmcl ccl)
-	(defun execute (command)
-	  "Platform specific shell-call with 'command'."
-	  (execute-with #'trivial-shell:shell-command command))
+	#+clozure
+	(defun execute (commands)
+	  "Platform specific shell-call with 'commands'".
+	  (execute-with 'trivial-shell:shell-command commands))
 
 
+	(defun execute-when (at)
+	  (let ((commands (car (getf *make-conf* at))))
+		(format t "~%Try to execute ~A with ~A~%" at commands)
+		(cond (commands
+			   (execute commands)))))
 
 	(defun run ()
 	  (handler-case
@@ -236,7 +241,6 @@ with the function in 'shell-call'."
   ;; Execute command if 'after'
   (execute-when :after)
   ;; End: run program if main-key set
-  (format t "Building  complete. Starting ~A:" *app*)
-  (cond ((and (getf *make-conf* :run) (equal (getf *make-conf* :run) t))
-		 (run))))
+  (format t "Building  complete. Starting ~A:" *application*)
+  (run))
 

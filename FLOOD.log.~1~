@@ -1,3 +1,3 @@
-21.21.07--23:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
+20.03.46--23:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
                                                  (APPEND '(1 2 3 4 5)
                                                          '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
