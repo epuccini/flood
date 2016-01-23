@@ -1,7 +1,7 @@
 ;; Flood library make-configuration 
 
-(:application "Flood"
- :systems ( :cl-ppcre )
+(:app "Flood"
+ ;:systems ( :cl-ppcre )
  ;:packages ( :cl-ppcre )
  :main main
  :categories
