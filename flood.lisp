@@ -79,8 +79,7 @@
 
 (defun error-logger (fmt &rest args) 
   "Simple error logger."
-  (format *error-output* fmt args)
-  (terpri))
+  (write-line (format nil fmt args) *error-output*))
 
 (defun email-logger (fmt &rest args)
   "Simple email logger."
@@ -159,6 +158,8 @@ given arguments."
 
 
 (defun trace-out (fn-name comb-logger level msg)
+  "Traces a function, but instead of only printing results of
+a traced function, all loggers could be used for ouput."
   (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 

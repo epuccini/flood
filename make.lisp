@@ -10,6 +10,11 @@
 ; On error check path in compile-files
 ; -------------------------------------------------------------
 
+#+sbcl	  (require 'asdf)
+#+clozure (require 'trivial-shell)
+#+clisp (ql:quickload 'trivial-shell)
+#+ecl	  (require 'asdf)
+
 (eval-when (:load-toplevel :compile-toplevel :execute)
   "Executed at compile time. Does load and compile
 all necessary files including packages.
@@ -21,6 +26,12 @@ Compile all files on C-c C-k in emacs/slime"
 	(defparameter *sources* '())
 	(defparameter *make-filename* "make.conf")
 	(defparameter *application* "")
+
+	;; the only dependency
+	#+sbcl (require 'asdf)
+	#+clozure (ql:quickload 'trivial-shell)
+	#+clisp (ql:quickload 'trivial-shell)
+	#+ecl (require 'asdf)
 
 	; -------------------------------------------------------------
 
@@ -36,15 +47,32 @@ Compile all files on C-c C-k in emacs/slime"
 	;;              "example/main.lisp")
 
 	(defun quickload-list (systems)
-	"Macro to quickload a system."
-	  (mapc #'ql:quickload systems)
-	  (print "Systems loaded..."))
-
+	  "Macro to quickload a system."
+	  (handler-case
+		  (cond ((find-symbol "quickload" 'ql)
+				 (progn
+				   (print "Quickload found...")
+				   (mapc (lambda (s)
+						   (ql:quickload s)
+						   (format t "~A..." s)) systems))))
+		(error (condition)
+		  (format t "Error in quickload-list! ~A." condition))))
 
 	(defun require-list (packages)
 	  "Function require a list of packages."
-	  (print "Start require packages")
-	  (mapc #'require packages))
+	  (handler-case
+		  (progn
+			(format t "~%Require packages...")
+			(mapc #'(lambda (p) 
+					  (require p)
+					  (format t "~A..." p)) packages))
+		(error (condition)
+		  (format t "Error in require-list! ~A." condition))))
+	
+	#+clisp
+	(defun require-list (packages)
+	  (print "No need to require in CLisp"))
+
 
 	(defun load-config ()
 	  (let ((content 
@@ -63,8 +91,7 @@ Compile all files on C-c C-k in emacs/slime"
 	  (setq *categories* (getf *make-conf* :categories))
 	  (mapc #'pprint *categories*)
 	  (setq *main-function* (getf *make-conf* :main))
-	  (setq *application* (getf *make-conf* :application))
-	  (terpri))
+	  (setq *application* (getf *make-conf* :application)))
 
 
 	(defun cbuild (category)
@@ -84,7 +111,7 @@ Compile all files on C-c C-k in emacs/slime"
 	  "Load and compile all files in all categories."
 	  (handler-case 
 		  (progn
-			(format t "Building ~A...~%" *application*)
+			(format t "~%Building ~A...~%" *application*)
 			(loop for category in *categories* do
 				 (cond ((getf *categories* category) 
 						(format t "Building category ~A.~%" category)
@@ -140,6 +167,49 @@ Compile all files on C-c C-k in emacs/slime"
 		(error (condition)
 		  (format t "Error in save-bin! ~A." condition))))
 
+
+	(defun execute-with (shell-call commands)
+	  "Executes a shell command in 'commands'
+with the function in 'shell-call'."
+	  (handler-case
+		  (progn
+			(format t "~%Execute...~A~%" commands)
+			(format t "Command returned with ~A~%"
+					(funcall shell-call commands)))
+		(error (condition)
+		  (format t "Error in execute: ~A~%" condition))))
+
+
+	(defun execute-when (at)
+	  (let ((commands (car (getf *make-conf* at))))
+		(format t "~%Try to execute ~A with ~A~%" at commands)
+		(cond (commands
+			   (execute commands)))))
+
+
+	#+sbcl
+	(defun execute (commands)
+	  "Platform specific shell-call with 'commands'".
+	  (execute-with 'asdf:run-shell-command commands))
+
+	#+ecl
+	(defun execute (commands)
+	  "Platform specific shell-call with 'commands'".
+	  (execute-with 'asdf:run-shell-command commands))
+
+	#+clisp
+	(EXT:WITHOUT-PACKAGE-LOCK ("EXT")
+	  (defun execute (commands)
+		"Platform specific shell-call with 'commands'".
+		(execute-with 'trivial-shell:shell-command commands)))
+
+	#+clozure
+	(defun execute (commands)
+	  "Platform specific shell-call with 'commands'".
+	  (execute-with 'trivial-shell:shell-command commands))
+
+
+
 	(defun run ()
 	  (handler-case
 		  (cond (*main-function*
@@ -155,8 +225,13 @@ Compile all files on C-c C-k in emacs/slime"
   (quickload-list (getf *make-conf* :systems))
   ;; Require packages
   (require-list (getf *make-conf* :packages))
+  ;; Execute command if 'before'
+  (execute-when :before)
   ;; compile everything
   (build)
+  ;; Execute command if 'after'
+  (execute-when :after)
+  ;; End: run program if main-key set
   (format t "Building  complete. Starting ~A:" *application*)
   (run))
 
