@@ -122,10 +122,6 @@ $TIME $LEVEL $MESSAGE"
 		   "\\$MESSAGE" format-string message-fmt))))
 
 
-(defun format-args (fmt-msg args)
-  `(format nil ,fmt-msg ,@args))
-
-
 (defun out (comb-logger level msg)
   "Simple logging output function'. Calls all 
 combinded loggers to create log-entries."
@@ -160,21 +156,18 @@ given arguments."
 	`(out-fmt ,comb-logger
 		  ,level "Log function: ~A = ~{~A ~}" ',@body ,@body))
 
-(defun trace-out (fn-name comb-logger level fmt-msg &rest args)
+
+(defun trace-out (fn-name comb-logger level msg)
   "Traces a function, but instead of only printing results of
 a traced function, all loggers could be used for ouput."
   (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
-				   (let* ((result-msg (format nil
-											  "#'~A result: ~A." 
-											  fn-name
-											  (apply old-fn fn-args)))
-						  (user-msg (eval (format-args fmt-msg  args)))
-						  ;; (user-msg (format nil
-						  ;; 					fmt-msg
-						  ;; 					(split-arguments  args)))
-						  (new-msg (concatenate 'string user-msg result-msg)))
+				   (let* ((fmt-msg (format nil 
+										   " #'~A result: ~A." 
+										   fn-name
+										   (apply old-fn fn-args)))
+						  (new-msg (concatenate 'string msg fmt-msg)))
 					 (out comb-logger level new-msg)))))
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 

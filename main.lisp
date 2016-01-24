@@ -3,13 +3,11 @@
 ; -------------------------------------------------------------
 ; Flood logging library make and loader
 ; -------------------------------------------------------------
-; file: make.lisp 
+; file: main.lisp 
 ; -------------------------------------------------------------
-; make - compile, load and run
-; Compile this file and every other needed file gets compiled.
-; On error check path in compile-files
+; main - example application
 ; -------------------------------------------------------------
-; Requirements: cffi
+; Requirements: 
 ; -------------------------------------------------------------
 (defun test (x)
   (* x x))
@@ -27,7 +25,7 @@
 	;; format enabled logging
 	(flood:out-fmt lg :dbg "Error in divisian ~D / ~D" 666 555)
 	;; trace a function with logging as output
-	(flood:trace-out 'test lg :tst "Trace of function")
+	(flood:trace-out 'test lg :tst "Trace (~D/~D) of function " 1 2)
 	(test 20)
 	(test 40)
 	(test 80)
