@@ -12,6 +12,8 @@
   (:use #:cl #:cl-ppcre) 
   (:export
    :*global-log-level*
+   #:set-message-format-template
+   #:set-configuration-filepath
    #:create-date-time-string
    #:init-with-logger
    #:print-logger

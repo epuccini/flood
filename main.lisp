@@ -34,5 +34,8 @@
 	;; log a function body
 	(flood:with-function-log lg :tst "Log function:"
 							 (mapcar (lambda (x) (* x x)) 
-									 (append '(1 2 3 4 5) '(4 3 2 1)))))
+									 (append '(1 2 3 4 5) '(4 3 2 1))))
+	;; setup new format string
+	(flood:set-message-format-template "[$MACHINE-TYPE-$SOFTWARE-TYPE]-$TIME-[$LEVEL]-$MESSAGE")
+	(flood:out lg :tst "Testing new format template."))
   0)
