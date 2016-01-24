@@ -27,10 +27,11 @@
 	;; format enabled logging
 	(flood:out-fmt lg :dbg "Error in divisian ~D / ~D" 666 555)
 	;; trace a function with logging as output
-	(flood:trace-out 'test lg :tst "Testing...")
+	(flood:trace-out 'test lg :tst "Trace of function")
 	(test 20)
 	(test 40)
 	(test 80)
+	;; cleanup and reset to old fn
 	(flood:untrace-out 'test)
 	;; log a function body
 	(flood:with-function-log lg :tst 

@@ -164,7 +164,7 @@ a traced function, all loggers could be used for ouput."
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
 				   (let* ((fmt-msg (format nil 
-										   "Trace of function \"~A\" result: ~A." 
+										   " #'~A result: ~A." 
 										   fn-name
 										   (apply old-fn fn-args)))
 						  (new-msg (concatenate 'string msg fmt-msg)))
