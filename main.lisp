@@ -23,7 +23,7 @@
 	;; simple logging
 	(flood:out lg :tst "Error in multiply")
 	;; format enabled logging
-	(flood:out-fmt lg :dbg "Error in divisian ~D / ~D" 666 555)
+	(flood:out lg :dbg "Error in divisian ~D / ~D" 666 555)
 	;; trace a function with logging as output
 	(flood:trace-out 'test lg :tst "Trace (~D/~D) of function " 1 2)
 	(test 20)
@@ -32,7 +32,7 @@
 	;; cleanup and reset to old fn
 	(flood:untrace-out 'test)
 	;; log a function body
-	(flood:with-function-log lg :tst 
-	  (mapcar (lambda (x) (* x x)) 
-			  (append '(1 2 3 4 5) '(4 3 2 1)))))
+	(flood:with-function-log lg :tst "Log function:"
+							 (mapcar (lambda (x) (* x x)) 
+									 (append '(1 2 3 4 5) '(4 3 2 1)))))
   0)

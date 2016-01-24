@@ -184,3 +184,77 @@
 11.31.03--24:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
                                                  (APPEND '(1 2 3 4 5)
                                                          '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+11.33.41--24:01:2016-[TST]-Error in multiply
+11.33.41--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.33.41--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.33.41--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.33.41--24:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
+                                                 (APPEND '(1 2 3 4 5)
+                                                         '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+11.33.41--24:01:2016-[TST]-Error in multiply
+11.33.41--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.33.41--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.33.41--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.33.41--24:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
+                                                 (APPEND '(1 2 3 4 5)
+                                                         '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+11.35.42--24:01:2016-[TST]-Error in multiply
+11.35.42--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.35.42--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.35.42--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.35.42--24:01:2016-[TST]-Error in multiply
+11.35.42--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.35.42--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.35.42--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.37.58--24:01:2016-[TST]-Error in multiply
+11.37.58--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.37.58--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.37.58--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.39.26--24:01:2016-[TST]-Error in multiply
+11.39.26--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.39.26--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.39.26--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.39.27--24:01:2016-[TST]-Error in multiply
+11.39.27--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.39.27--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.39.27--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.40.25--24:01:2016-[TST]-Error in multiply
+11.40.25--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.40.25--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.40.25--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.40.53--24:01:2016-[TST]-Error in multiply
+11.40.53--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.40.53--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.40.53--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.41.13--24:01:2016-[TST]-Error in multiply
+11.41.13--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.41.13--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.41.13--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.41.53--24:01:2016-[TST]-Error in multiply
+11.41.53--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.41.53--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.41.53--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.41.53--24:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
+                                                 (APPEND '(1 2 3 4 5)
+                                                         '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+11.41.54--24:01:2016-[TST]-Error in multiply
+11.41.54--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.41.54--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.41.54--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.41.54--24:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
+                                                 (APPEND '(1 2 3 4 5)
+                                                         '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+11.42.16--24:01:2016-[TST]-Error in multiply
+11.42.16--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.42.16--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.42.16--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.42.16--24:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
+                                                 (APPEND '(1 2 3 4 5)
+                                                         '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+11.42.16--24:01:2016-[TST]-Error in multiply
+11.42.16--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+11.42.16--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+11.42.16--24:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+11.42.16--24:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X))
+                                                 (APPEND '(1 2 3 4 5)
+                                                         '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 

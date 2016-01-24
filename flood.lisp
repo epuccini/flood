@@ -123,12 +123,15 @@ $TIME $LEVEL $MESSAGE"
 
 
 (defun format-args (fmt-msg args)
+  "Utility-function to create a formatted
+string with list as parameter."
   `(format nil ,fmt-msg ,@args))
 
 
-(defun out (comb-logger level msg)
+(defun out-flat (comb-logger level msg)
   "Simple logging output function'. Calls all 
-combinded loggers to create log-entries."
+combinded loggers to create log-entries. No format
+strings allowed. Just for use in trace-out."
   (cond ((equal (log-level-p level) t)
 		 (mapcar (lambda (f) 
 				   (funcall f
@@ -139,7 +142,7 @@ combinded loggers to create log-entries."
 				  comb-logger))))
 
 
-(defmacro out-fmt (comb-logger level msg-fmt &rest fmt-args)
+(defmacro out (comb-logger level msg-fmt &rest fmt-args)
   "Calls all combinded loggers and creates a log-entries
 with a global-format-string, created from the macro
 'create-format-template'. Supports format strings with 
@@ -155,14 +158,18 @@ given arguments."
 				  ,comb-logger))))
 
 
-(defmacro with-function-log (comb-logger level &rest body)
-  "Log function trace and show result."
-	`(out-fmt ,comb-logger
-		  ,level "Log function: ~A = ~{~A ~}" ',@body ,@body))
+(defmacro with-function-log (comb-logger level msg &rest body)
+  "Log function trace and show result. No formatting."
+  `(out ,comb-logger
+		,level 
+		(concatenate 'string ,msg " ~A = ~{~A ~}") 
+		',@body 
+		,@body))
 
 (defun trace-out (fn-name comb-logger level fmt-msg &rest args)
   "Traces a function, but instead of only printing results of
-a traced function, all loggers could be used for ouput."
+a traced function, all loggers could be used for ouput.
+Format strings allowed."
   (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
@@ -171,11 +178,8 @@ a traced function, all loggers could be used for ouput."
 											  fn-name
 											  (apply old-fn fn-args)))
 						  (user-msg (eval (format-args fmt-msg  args)))
-						  ;; (user-msg (format nil
-						  ;; 					fmt-msg
-						  ;; 					(split-arguments  args)))
 						  (new-msg (concatenate 'string user-msg result-msg)))
-					 (out comb-logger level new-msg)))))
+					 (out-flat comb-logger level new-msg)))))
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function

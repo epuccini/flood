@@ -22,5 +22,4 @@
    #:with-function-log
    #:trace-out
    #:untrace-out
-   #:out
-   #:out-fmt))
+   #:out))
