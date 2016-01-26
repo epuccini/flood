@@ -72,15 +72,15 @@ or relative paths."
 		((and (equal level :prd) (equal *global-log-level* :prd)) t)))
 
 
-(defun make-datetime-string ()
-  "As it says: makes a datetime string from current date and time."
+(defun make-datetime-strings ()
+  "As it says: makes one date and a time string from current date and time."
   (multiple-value-bind 
 		(second minute hour day month year day-of-week dst-p tz)
 	  (get-decoded-time)
 	(declare (ignore day-of-week dst-p tz))
-	(let ((fmt (format nil "~2,'0d.~2,'0d.~2,'0d--~2,'0d:~2,'0d:~4,'0d"
-					   hour minute second day month year)))
-	  fmt)))
+	(let ((date-fmt (format nil "~2,'0d.~2,'0d.~2,'0d" day month year))
+		  (time-fmt (format nil "~2,'0d:~2,'0d:~4,'0d" hour minute second)))
+	  (values date-fmt time-fmt))))
 
 
 (defun make-day-string ()
@@ -149,34 +149,38 @@ logger which are beeing used in in logging-functions."
 (defun make-format-template (template level message-fmt)
   "The '*global-format-template*' gets expanded into
 a message-format-string. Template-parameters are:
-$TIME $LEVEL $MESSAGE $MACHINE-INSTANCE $MACHINE-TYPE
+$DATE $TIME $LEVEL $MESSAGE $MACHINE-INSTANCE $MACHINE-TYPE
 $SOFTWARE-VERSION $SOFTWARE-TYPE and can be used seperatly
 or mixed. They will be replaced by corresponding values."
-  (let ((format-string ""))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-						 "\\$TIME" template (make-datetime-string)))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-		   "\\$LEVEL" format-string (format nil "~A" level)))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-		   "\\$MACHINE-INSTANCE" format-string (machine-instance)))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-		   "\\$MACHINE-TYPE" format-string (machine-type)))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-		   "\\$MACHINE-VERSION" format-string (machine-version)))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-		   "\\$SOFTWARE-TYPE" format-string (software-type)))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-		   "\\$SOFTWARE-VERSION" format-string (software-version)))
-	(setf format-string 
-		  (cl-ppcre:regex-replace-all 
-		   "\\$MESSAGE" format-string message-fmt))))
+  (let ((format-string  template))
+	(multiple-value-bind (date-fmt time-fmt) (make-datetime-strings)
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$DATE" format-string date-fmt))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$TIME" format-string time-fmt))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$LEVEL" format-string (format nil "~A" level)))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$MACHINE-INSTANCE" format-string (machine-instance)))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$MACHINE-TYPE" format-string (machine-type)))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$MACHINE-VERSION" format-string (machine-version)))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$SOFTWARE-TYPE" format-string (software-type)))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$SOFTWARE-VERSION" format-string (software-version)))
+	  (setf format-string 
+			(cl-ppcre:regex-replace-all 
+			 "\\$MESSAGE" format-string message-fmt)))))
 
 
 

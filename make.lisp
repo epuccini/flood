@@ -247,8 +247,8 @@ with the function in 'shell-call'."
   (setup)
   ;; Quickload systems
   (quickload-list (getf *make-conf* :systems))  ;; Require packages
-  (require-list (getf *make-conf* :packages))
   (use-list (getf *make-conf* :use))
+  (require-list (getf *make-conf* :packages))
   ;; Execute command if 'before'
   (execute-when :before)
   ;; compile everything
