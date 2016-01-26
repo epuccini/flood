@@ -10,10 +10,11 @@
 
 (deftype log-level () :dbg :tst :prd)
 
-(defparameter *day-names*
+(defvar *day-names*
     '("Monday" "Tuesday" "Wednesday"
       "Thursday" "Friday" "Saturday"
       "Sunday"))
+
 
 (defvar *global-log-level* :dbg)
 (defvar *global-config-file* #P"conf/init.conf")
@@ -90,6 +91,15 @@ or relative paths."
 	(declare (ignore hour minute second day month year dst-p tz))
 	(let ((fmt (format nil "~A" (nth day-of-week *day-names*))))
 	  fmt)))
+
+
+(defun time-fn (real-base run-base)
+  "Returns an array of two time values
+calculated with given start-times."
+  (values (float (/ (- (get-internal-real-time) real-base)
+			  internal-time-units-per-second))
+		  (float (/ (- (get-internal-run-time) run-base)
+			 internal-time-units-per-second))))
 
 
 (defun make-arg-string (fmt-msg args)
@@ -169,22 +179,6 @@ or mixed. They will be replaced by corresponding values."
 		   "\\$MESSAGE" format-string message-fmt))))
 
 
-(defun out-fn (comb-logger level msg)
-  "Simple logging output function'. Calls all 
-combinded loggers to create log-entries. No format
-strings allowed. Just for use in trace-out and function
-where an embedded macro produces a *global-config*
-error."
-  (cond ((equal (log-level-p level) t)
-		 (mapcar (lambda (f) 
-				   (funcall f
-							(make-format-template 
-							 (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
-							 level
-							 msg)))
-				  comb-logger))))
-
-
 
 (defun out (comb-logger level msg-fmt &rest fmt-args)
   "Calls all combinded loggers and creates a log-entries
@@ -216,19 +210,12 @@ the message-format-template. Reset/Reload with load-config."
 
 (defmacro with-function-log (comb-logger level msg &rest body)
   "Log function trace and show result. No formatting."
-  `(out-fn ,comb-logger
+  `(out ,comb-logger
 		,level 
 		(format nil (concatenate 'string ,msg " ~A = ~{~A ~}") 
 				',@body 
 				,@body)))
 
-
-(defun time-fn (real-base run-base)
-  "Returns an array of two time values."
-  (values (float (/ (- (get-internal-real-time) real-base)
-			  internal-time-units-per-second))
-		  (float (/ (- (get-internal-run-time) run-base)
-			 internal-time-units-per-second))))
 
 
 (defun trace-out (fn-name comb-logger level fmt-msg &rest args)
@@ -250,7 +237,7 @@ ouput. Format strings allowed."
 												time-real-time time-run-time))
 							  (log-msg (concatenate 'string 
 													user-msg result-msg time-msg)))
-					 (out-fn comb-logger level log-msg))))))) ;; log function msg
+					 (out comb-logger level log-msg))))))) ;; log function msg
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
