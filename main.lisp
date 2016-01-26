@@ -9,8 +9,9 @@
 ; -------------------------------------------------------------
 ; Requirements: 
 ; -------------------------------------------------------------
-(defun test (x)
-  (* x x))
+(defun squares (rng)
+  (loop for x from 0 to rng collect
+	   (sqrt x)))
 
 (defun main ()
   ;; setup logger
@@ -18,6 +19,7 @@
 			  #'flood:file-logger
 			  #'flood:error-logger))
 		(stack-depth 0))
+	(terpri)
     ;; set logging level
 	(setq flood:*global-log-level* :tst)
 	(terpri)
@@ -26,12 +28,12 @@
 	;; format enabled logging
 	(flood:out lg :dbg "Error in divisian ~D / ~D" 666 555)
 	;; trace a function with logging as output
-	(flood:trace-out 'test lg :tst "Trace (~D/~D) of function " 1 2)
-	(test 20)
-	(test 40)
-	(test 80)
+	(flood:trace-out 'squares lg :tst "Trace fn ")
+	(squares 2)
+	(squares 4)
+	(squares 8)
 	;; cleanup and reset to old fn
-	(flood:untrace-out 'test)
+	(flood:untrace-out 'squares)
 	;; log a function body
 	(flood:with-function-log lg :tst "Log function:"
 							 (mapcar (lambda (x) (* x x)) 

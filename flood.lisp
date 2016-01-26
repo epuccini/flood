@@ -210,20 +210,34 @@ the message-format-template. Reset/Reload with load-config."
 				,@body)))
 
 
+(defun time-fn (real-base run-base)
+  "Returns an array of two time values."
+  (values (float (/ (- (get-internal-real-time) real-base)
+			  internal-time-units-per-second))
+		  (float (/ (- (get-internal-run-time) run-base)
+			 internal-time-units-per-second))))
+
+
 (defun trace-out (fn-name comb-logger level fmt-msg &rest args)
-  "Traces a function, but instead of only printing results of
-a traced function, all loggers could be used for ouput.
-Format strings allowed."
-  (let* ((old-fn (symbol-function 
+  "Traces a function and its execution-time, instead of printing 
+the results of a traced function, all loggers could be used for 
+ouput. Format strings allowed."
+  (let* ((real-base (get-internal-real-time)) ; store current times
+		 (run-base (get-internal-run-time)) 
+		 (old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
-				   (let* ((result-msg (format nil
-											  "#'~A result: ~A." 
-											  fn-name
+				   (let* ((result-msg (format nil "#'~A result: ~A~%" fn-name
 											  (apply old-fn fn-args)))
-						  (user-msg (make-arg-string fmt-msg  args))
-						  (new-msg (concatenate 'string user-msg result-msg)))
-					 (out-fn comb-logger level new-msg)))))
+						  (user-msg (make-arg-string fmt-msg args)))
+					 (multiple-value-bind 
+						   (time-real-time time-run-time) (time-fn real-base run-base)
+					   (let* ((time-msg (format nil 
+												"...real-time ~A s run-time ~A s" 
+												time-real-time time-run-time))
+							  (log-msg (concatenate 'string 
+													user-msg result-msg time-msg)))
+					 (out-fn comb-logger level log-msg))))))) ;; log function msg
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
@@ -232,7 +246,8 @@ Format strings allowed."
 (defun untrace-out (fn-name)
   "Set function in fn-name to their old version in *trace-store*"
   (setf (symbol-function (find-symbol (string-upcase fn-name))) 
-		(gethash fn-name *trace-store*)))
+		(gethash fn-name *trace-store*))
+  (remhash fn-name *trace-store*))
 
 
 (defun stack-out (comb-logger level stack-depth fmt-msg &rest args)
@@ -241,8 +256,8 @@ Format strings allowed."
 							(swank-backend:call-with-debugging-environment
 							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
 		 (user-msg (make-arg-string fmt-msg args))
-		 (new-msg (concatenate 'string user-msg stack-msg)))
-  (out comb-logger level new-msg)))
+		 (log-msg (concatenate 'string user-msg stack-msg)))
+  (out comb-logger level log-msg)))
 
 
 
