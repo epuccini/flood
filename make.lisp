@@ -15,12 +15,12 @@
 all necessary files including packages.
 Compile all files on C-c C-k in emacs/slime"
 
-	(defparameter *make-conf* "")
-	(defparameter *main-function* nil)
-	(defparameter *categories* nil)
-	(defparameter *sources* '())
-	(defparameter *make-filename* "make.conf")
-	(defparameter *app* "")
+	(defvar *make-conf* "")
+	(defvar *main-function* nil)
+	(defvar *categories* nil)
+	(defvar *sources* '())
+	(defvar *make-filename* "make.conf")
+	(defvar *app* "")
 
 	; -------------------------------------------------------------
 
@@ -42,7 +42,7 @@ Compile all files on C-c C-k in emacs/slime"
 					(format t "~A..." s)) systems))
 		(error (condition)
 		  (write-line (format nil "Error in quickload-list! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 
 	(defun use-list (packages)
@@ -55,7 +55,7 @@ Compile all files on C-c C-k in emacs/slime"
 					  (format t "~A..." p)) packages))
 		(error (condition)
 		  (write-line (format nil "Error in use-list! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 	(defun require-list (packages)
 	  "Function require a list of packages."
@@ -67,11 +67,11 @@ Compile all files on C-c C-k in emacs/slime"
 					  (format t "~A..." p)) packages))
 		(error (condition)
 		  (write-line (format nil "Error in require-list! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 	
 	#+clisp
 	(defun require-list (packages)n
-	  (write-line "No need to require in CLisp" *error-output*))
+	  (write-line "No need to require in CLisp" common-lisp:*error-output*))
 
 
 	(defun load-config ()
@@ -106,7 +106,7 @@ Compile all files on C-c C-k in emacs/slime"
 			   (getf *categories* category)) t)
 		(error (condition)
 		  (write-line (format nil "Error in cbuild! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 	(defun build ()
 	  "Load and compile all files in all categories."
@@ -119,7 +119,7 @@ Compile all files on C-c C-k in emacs/slime"
 						(cbuild category)))))
 		(error (condition)
 		  (write-line (format nil "Error in build! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 
 	#+sbcl 
@@ -132,7 +132,7 @@ Compile all files on C-c C-k in emacs/slime"
 							  :toplevel *main-function*)
 		(error (condition)
 		  (write-line (format nil "Error in save-bin! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 	#+cmu 
 	(defun save-bin ()
@@ -143,7 +143,7 @@ Compile all files on C-c C-k in emacs/slime"
 								 :init-function *main-function*)
 		(error (condition)
 		  (write-line (format nil "Error in save-bin! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 	#+(or openmcl ccl) 
 	(defun save-bin ()
@@ -160,7 +160,7 @@ Compile all files on C-c C-k in emacs/slime"
 								   :toplevel-function *main-function*))
 		(error (condition)
 		  (write-line (format nil "Error in save-bin! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 	#+ecl 
 	(defun save-bin ()
@@ -169,7 +169,7 @@ Compile all files on C-c C-k in emacs/slime"
 		  (c:build-program *app*)
 		(error (condition)
 		  (write-line (format nil "Error in save-bin! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 
 	#+clisp 
@@ -182,7 +182,7 @@ Compile all files on C-c C-k in emacs/slime"
 						   :init-function *main-function*)
 		(error (condition)
 		  (write-line (format nil "Error in save-bin! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 
 	(defun execute-with (shell-call command)
@@ -195,7 +195,7 @@ with the function in 'shell-call'."
 					(funcall shell-call command)))
 		(error (condition)
 		  (write-line (format nil "Error in execute-with! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
 
 	(defun execute-when (at)
@@ -240,7 +240,7 @@ with the function in 'shell-call'."
 					   (find-symbol (string-upcase *main-function*))))))
 		(error (condition)
 		  (write-line (format nil "Error in run! ~A." condition) 
-					  *error-output*))))
+					  common-lisp:*error-output*))))
 
   (print "Make startup...")
   ;; Load configuration
