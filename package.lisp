@@ -11,8 +11,6 @@
 (defpackage :flood
   (:use #:cl #:cl-ppcre) 
   (:export
-   #:main
-   #:test
    #:set-log-level
    #:set-logger
    #:set-message-format-template

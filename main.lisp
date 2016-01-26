@@ -73,7 +73,7 @@
 	(let ((new-lg (list  #'flood:standard-logger 
 						 #'flood:file-logger)))
 		  ;; log stack trace with depth 3
-		  (setq stack-depth 3)
+		  (setq stack-depth 4)
 		  (flood:stack-out new-lg :dbg stack-depth 
 						   "Stack-trace depth ~D:~%" stack-depth)
 	(terpri))))
