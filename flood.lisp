@@ -230,14 +230,17 @@ Format strings allowed."
 
 
 (defun untrace-out (fn-name)
+  "Set function in fn-name to their old version in *trace-store*"
   (setf (symbol-function (find-symbol (string-upcase fn-name))) 
 		(gethash fn-name *trace-store*)))
 
+
 (defun stack-out (comb-logger level stack-depth fmt-msg &rest args)
+  "Use swank to log a stack-trace."
   (let* ((stack-msg (format nil "~A~%"
 							(swank-backend:call-with-debugging-environment
 							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
-		 (user-msg (format nil fmt-msg (make-arg-string fmt-msg args)))
+		 (user-msg (make-arg-string fmt-msg args))
 		 (new-msg (concatenate 'string user-msg stack-msg)))
   (out comb-logger level new-msg)))
 

@@ -16,7 +16,8 @@
   ;; setup logger
   (let ((lg (flood:init-with-logger
 			  #'flood:file-logger
-			  #'flood:error-logger)))
+			  #'flood:error-logger))
+		(stack-depth 0))
     ;; set logging level
 	(setq flood:*global-log-level* :tst)
 	(terpri)
@@ -42,5 +43,6 @@
 	 "[$MACHINE-TYPE-$SOFTWARE-TYPE]-$TIME-[$LEVEL]-$MESSAGE")
 	(flood:out lg :tst "Testing new format template.")
 	;; log stack trace with depth 4
-	(flood:stack-out lg :tst 4 "Stack-trace out:~%"))
+	(setq stack-depth 4)
+	(flood:stack-out lg :tst stack-depth "Stack-trace depth ~D:~%" stack-depth))
   0)
