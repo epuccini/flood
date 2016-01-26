@@ -44,6 +44,19 @@ Compile all files on C-c C-k in emacs/slime"
 		  (write-line (format nil "Error in quickload-list! ~A." condition) 
 					  *error-output*))))
 
+
+	(defun use-list (packages)
+	  "Function use a list of packages."
+	  (handler-case
+		  (progn
+			(format t "~%Use packages...")
+			(mapc #'(lambda (p) 
+					  (use-package p)
+					  (format t "~A..." p)) packages))
+		(error (condition)
+		  (write-line (format nil "Error in use-list! ~A." condition) 
+					  *error-output*))))
+
 	(defun require-list (packages)
 	  "Function require a list of packages."
 	  (handler-case
@@ -57,7 +70,7 @@ Compile all files on C-c C-k in emacs/slime"
 					  *error-output*))))
 	
 	#+clisp
-	(defun require-list (packages)
+	(defun require-list (packages)n
 	  (write-line "No need to require in CLisp" *error-output*))
 
 
@@ -235,6 +248,7 @@ with the function in 'shell-call'."
   ;; Quickload systems
   (quickload-list (getf *make-conf* :systems))  ;; Require packages
   (require-list (getf *make-conf* :packages))
+  (use-list (getf *make-conf* :use))
   ;; Execute command if 'before'
   (execute-when :before)
   ;; compile everything

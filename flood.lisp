@@ -17,7 +17,6 @@
 
 
 (defvar *global-log-level* :dbg)
-(defvar *global-combined-logger* nil)
 (defvar *global-config-file* #P"conf/init.conf")
 (defvar *trace-store* (make-hash-table :test 'equal)) ; All trace-functions go in 
 									                  ; this hash-table
@@ -84,7 +83,7 @@ or relative paths."
 	  fmt)))
 
 
-(defun create-day-string ()
+(defun make-day-string ()
   "As it says: creates a day string from current date."
   (multiple-value-bind 
 		(second minute hour day month year day-of-week dst-p tz)
@@ -144,13 +143,7 @@ string with list as parameter."
   "Initialisation creating a trace-store and sets a list of 
 logger which are beeing used in in logging-functions."
   (setf *global-config* (load-config *global-config-file*))
-  `(setq *global-combined-logger* 
-		 (list ,@args)))
-
-
-(defun set-logger (logger-list)
-  "Set current active logger."
-   (setq *global-combined-logger* logger-list))
+  `(list ,@args))
 
 
 (defun make-format-template (template level message-fmt)
@@ -187,7 +180,7 @@ or mixed. They will be replaced by corresponding values."
 
 
 
-(defun out (level msg-fmt &rest fmt-args)
+(defun out (logger level msg-fmt &rest fmt-args)
   "Calls all combinded loggers and creates a log-entries
 with a global-format-string, created from the macro
 'create-format-template'. Supports format strings with 
@@ -201,7 +194,7 @@ given arguments."
 								  (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
 								  level
 								  msg-fmt) fmt-args)))
-					 *global-combined-logger*)))
+					 logger)))
 	(error (condition) 
 	  (write-line (format nil "Error in 'load-config': ~A~%" 
 						  condition) *error-output*))))
@@ -215,15 +208,16 @@ the message-format-template. Reset/Reload with load-config."
   fmt-str)
 
 
-(defmacro with-function-log (level msg &rest body)
+(defmacro with-function-log (logger level msg &rest body)
   "Log function trace and show result. No formatting."
-  `(out ,level 
+  `(out ,logger
+	    ,level 
 		(format nil (concatenate 'string ,msg " ~A = ~{~A ~}") 
 				',@body 
 				,@body)))
 
 
-(defun trace-out (fn-name level fmt-msg &rest args)
+(defun trace-out (fn-name logger level fmt-msg &rest args)
   "Traces a function and outputs its results and execution-time.
 into configured logger, if any."
   (let* ((real-base (get-internal-real-time)) ; store current times
@@ -241,7 +235,7 @@ into configured logger, if any."
 												time-real-time time-run-time))
 							  (log-msg (concatenate 'string 
 													user-msg result-msg time-msg)))
-					 (out level log-msg))))))) ;; log function msg
+					 (out logger level log-msg))))))) ;; log function msg
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
@@ -254,14 +248,14 @@ into configured logger, if any."
   (remhash fn-name *trace-store*))
 
 
-(defun stack-out (level stack-depth fmt-msg &rest args)
+(defun stack-out (logger level stack-depth fmt-msg &rest args)
   "Use swank to log a stack-trace."
   (let* ((stack-msg (format nil "~A~%"
 							(swank-backend:call-with-debugging-environment
 							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
 		 (user-msg (make-arg-string fmt-msg args))
 		 (log-msg (concatenate 'string user-msg stack-msg)))
-  (out level log-msg)))
+  (out logger level log-msg)))
 
 
 
