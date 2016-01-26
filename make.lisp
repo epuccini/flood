@@ -45,18 +45,6 @@ Compile all files on C-c C-k in emacs/slime"
 					  common-lisp:*error-output*))))
 
 
-	(defun use-list (packages)
-	  "Function use a list of packages."
-	  (handler-case
-		  (progn
-			(format t "~%Use packages...")
-			(mapc #'(lambda (p) 
-					  (use-package p)
-					  (format t "~A..." p)) packages))
-	  (error (condition)
-			 (write-line (format nil "Error in use-list! ~A." condition) 
-						 common-lisp:*error-output*))))
-
 	(defun require-list (packages)
 	  "Function require a list of packages."
 	  (handler-case
@@ -241,13 +229,12 @@ with the function in 'shell-call'."
 		(error (condition)
 		  (write-line (format nil "Error in run! ~A." condition) 
 					  common-lisp:*error-output*))))
-  
+
   (print "Make startup...")
   ;; Load configuration
   (setup)
   ;; Quickload systems
   (quickload-list (getf *make-conf* :systems))  ;; Require packages
-  (use-list (getf *make-conf* :use))
   (require-list (getf *make-conf* :packages))
   ;; Execute command if 'before'
   (execute-when :before)
