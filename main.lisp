@@ -37,5 +37,7 @@
 									 (append '(1 2 3 4 5) '(4 3 2 1))))
 	;; setup new format string
 	(flood:set-message-format-template "[$MACHINE-TYPE-$SOFTWARE-TYPE]-$TIME-[$LEVEL]-$MESSAGE")
-	(flood:out lg :tst "Testing new format template."))
+	(flood:out lg :tst "Testing new format template.")
+	;; log stack trace
+	(flood:stack-out lg :tst 3 "Stack-trace out..."))
   0)

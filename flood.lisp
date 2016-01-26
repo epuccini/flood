@@ -28,7 +28,8 @@
 			(setf store (read stream))))
 		store)
 	(error (condition) 
-	  (format t "Problem in function 'load-config': ~A~%" condition))))
+	  (write-line (format nil "Error in 'load-config': ~A~%" 
+						  condition) *error-output*))))
 
 
 (defparameter *global-config-file* #P"conf/init.conf")
@@ -80,9 +81,7 @@ or relative paths."
 
 (defun print-logger (fmt &rest args) 
   "Simple console logger."
-  (format t fmt args)
-  (terpri))
-
+   (write-line (format nil fmt args) *standard-output*))
 
 (defun error-logger (fmt &rest args) 
   "Simple error logger."
@@ -144,11 +143,12 @@ $TIME $LEVEL $MESSAGE"
 		   "\\$MESSAGE" format-string message-fmt))))
 
 
-(defun format-args (fmt-msg args)
+(defun make-arg-string (fmt-msg args)
   "Utility-function to create a formatted
 string with list as parameter."
-  `(format nil ,fmt-msg ,@args))
-
+  (eval
+   `(format nil ,fmt-msg ,@args)))
+  
 
 (defun out-fn (comb-logger level msg)
   "Simple logging output function'. Calls all 
@@ -172,15 +172,20 @@ error."
 with a global-format-string, created from the macro
 'create-format-template'. Supports format strings with 
 given arguments."
-  (cond ((equal (log-level-p level) t)
-		  (mapcar (lambda (f) 
-					(funcall f
-							 (eval (format-args 
-									(create-format-template 
-									 (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
-									 level
-									 msg-fmt) fmt-args))))
-				  comb-logger))))
+  (handler-case
+	  (cond ((equal (log-level-p level) t)
+			 (mapcar (lambda (f) 
+					   (funcall f
+								(make-arg-string 
+								 (create-format-template 
+								  (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
+								  level
+								  msg-fmt) fmt-args)))
+					 comb-logger)))
+	(error (condition) 
+	  (write-line (format nil "Error in 'load-config': ~A~%" 
+						  condition) *error-output*))))
+
 
 
 (defun set-message-format-template (fmt-str)
@@ -210,7 +215,7 @@ Format strings allowed."
 											  "#'~A result: ~A." 
 											  fn-name
 											  (apply old-fn fn-args)))
-						  (user-msg (eval (format-args fmt-msg  args)))
+						  (user-msg (make-arg-string fmt-msg  args))
 						  (new-msg (concatenate 'string user-msg result-msg)))
 					 (out-fn comb-logger level new-msg)))))
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
@@ -222,6 +227,13 @@ Format strings allowed."
   (setf (symbol-function (find-symbol (string-upcase fn-name))) 
 		(gethash fn-name *trace-store*)))
 
+(defun stack-out (comb-logger level stack-depth fmt-msg &rest args)
+  (let* ((stack-msg (format nil "~A~%"
+							(swank-backend:call-with-debugging-environment
+							 (lambda () (swank:backtrace 1 (1+ stack-depth))))))
+		 (user-msg (format nil fmt-msg (make-arg-string fmt-msg args)))
+		 (new-msg (concatenate 'string user-msg stack-msg)))
+  (out comb-logger level new-msg)))
 
 
 

@@ -24,6 +24,8 @@
 (|SYSTEM|::|C-PROCLAIM|
  '(|COMMON-LISP|::|SPECIAL| |FLOOD|::|*GLOBAL-CONFIG-FILE*|))
 (|SYSTEM|::|C-PROCLAIM| '(|COMMON-LISP|::|SPECIAL| |FLOOD|::|*GLOBAL-CONFIG*|))
+(|SYSTEM|::|C-DEFUN| '|FLOOD|::|SET-CONFIGURATION-FILEPATH|
+ (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE| '(|FLOOD|::|FILEPATH|)))
 (|SYSTEM|::|C-DEFUN| '|FLOOD|::|LOG-LEVEL-P|
  (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE| '(|FLOOD|::|LEVEL|)))
 (|SYSTEM|::|C-DEFUN| '|FLOOD|::|CREATE-DATETIME-STRING|
@@ -61,20 +63,25 @@ are beeing used in 'out'-function."
 (|SYSTEM|::|C-DEFUN| '|FLOOD|::|CREATE-FORMAT-TEMPLATE|
  (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE|
   '(|FLOOD|::|TEMPLATE| |FLOOD|::|LEVEL| |FLOOD|::|MESSAGE-FMT|)))
-(|SYSTEM|::|C-DEFUN| '|FLOOD|::|OUT|
+(|SYSTEM|::|C-DEFUN| '|FLOOD|::|MAKE-ARG-STRING|
+ (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE| '(|FLOOD|::|FMT-MSG| |FLOOD|::|ARGS|)))
+(|SYSTEM|::|C-DEFUN| '|FLOOD|::|OUT-FN|
  (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE|
   '(|FLOOD|::|COMB-LOGGER| |FLOOD|::|LEVEL| |FLOOD|::|MSG|)))
-(|SYSTEM|::|REMOVE-OLD-DEFINITIONS| '|FLOOD|::|OUT-FMT|)
-(|SYSTEM|::|%PUTD| '|FLOOD|::|OUT-FMT|
+(|SYSTEM|::|C-DEFUN| '|FLOOD|::|OUT|
+ (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE|
+  '(|FLOOD|::|COMB-LOGGER| |FLOOD|::|LEVEL| |FLOOD|::|MSG-FMT|
+    |COMMON-LISP|::|&REST| |FLOOD|::|FMT-ARGS|)))
+(|SYSTEM|::|C-DEFUN| '|FLOOD|::|SET-MESSAGE-FORMAT-TEMPLATE|
+ (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE| '(|FLOOD|::|FMT-STR|)))
+(|SYSTEM|::|REMOVE-OLD-DEFINITIONS| '|FLOOD|::|WITH-FUNCTION-LOG|)
+(|SYSTEM|::|%PUTD| '|FLOOD|::|WITH-FUNCTION-LOG|
  (|SYSTEM|::|MAKE-MACRO|
-  (|COMMON-LISP|::|FUNCTION| |FLOOD|::|OUT-FMT|
+  (|COMMON-LISP|::|FUNCTION| |FLOOD|::|WITH-FUNCTION-LOG|
    (|COMMON-LISP|::|LAMBDA| (|SYSTEM|::|<MACRO-FORM>| |SYSTEM|::|<ENV-ARG>|)
     (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|CONS| |SYSTEM|::|<MACRO-FORM>|))
     (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|IGNORE| |SYSTEM|::|<ENV-ARG>|))
-    "Calls all combinded loggers and creates a log-entries\n
-with a global-format-string, created from the macro\n
-'create-format-template'. Supports format strings with \n
-given arguments."
+    "Log function trace and show result. No formatting."
     (|COMMON-LISP|::|IF|
      (|COMMON-LISP|::|NOT|
       (|SYSTEM|::|LIST-LENGTH-IN-BOUNDS-P| |SYSTEM|::|<MACRO-FORM>| 4. 4.
@@ -84,51 +91,23 @@ given arguments."
       ((|FLOOD|::|COMB-LOGGER|
         (|COMMON-LISP|::|CADR| . #1=(|SYSTEM|::|<MACRO-FORM>|)))
        (|FLOOD|::|LEVEL| (|COMMON-LISP|::|CADDR| . #1#))
-       (|FLOOD|::|MSG-FMT| (|COMMON-LISP|::|CADDDR| . #1#))
-       (|FLOOD|::|FMT-ARGS| (|COMMON-LISP|::|CDDDDR| . #1#)))
-      (|COMMON-LISP|::|BLOCK| |FLOOD|::|OUT-FMT|
-       `(|COMMON-LISP|::|COND|
-         ((|COMMON-LISP|::|EQUAL| (|FLOOD|::|LOG-LEVEL-P| ,|FLOOD|::|LEVEL|)
-           |COMMON-LISP|::|T|)
-          (|COMMON-LISP|::|MAPCAR|
-           (|COMMON-LISP|::|LAMBDA| (|FLOOD|::|F|)
-            (|COMMON-LISP|::|FUNCALL| |FLOOD|::|F|
-             (|COMMON-LISP|::|FORMAT| |COMMON-LISP|::|NIL|
-              (|FLOOD|::|CREATE-FORMAT-TEMPLATE|
-               ,(|COMMON-LISP|::|GETF| |FLOOD|::|*GLOBAL-CONFIG*|
-                 :|MESSAGE_FORMAT_STRING|)
-               ,|FLOOD|::|LEVEL| ,|FLOOD|::|MSG-FMT|)
-              ,@|FLOOD|::|FMT-ARGS|)))
-           ,|FLOOD|::|COMB-LOGGER|))))))))
-  '(|FLOOD|::|COMB-LOGGER| |FLOOD|::|LEVEL| |FLOOD|::|MSG-FMT|
-    |COMMON-LISP|::|&REST| |FLOOD|::|FMT-ARGS|)))
-(|SYSTEM|::|REMOVE-OLD-DEFINITIONS| '|FLOOD|::|WITH-FUNCTION-LOG|)
-(|SYSTEM|::|%PUTD| '|FLOOD|::|WITH-FUNCTION-LOG|
- (|SYSTEM|::|MAKE-MACRO|
-  (|COMMON-LISP|::|FUNCTION| |FLOOD|::|WITH-FUNCTION-LOG|
-   (|COMMON-LISP|::|LAMBDA| (|SYSTEM|::|<MACRO-FORM>| |SYSTEM|::|<ENV-ARG>|)
-    (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|CONS| |SYSTEM|::|<MACRO-FORM>|))
-    (|COMMON-LISP|::|DECLARE| (|COMMON-LISP|::|IGNORE| |SYSTEM|::|<ENV-ARG>|))
-    "Log function trace and show result."
-    (|COMMON-LISP|::|IF|
-     (|COMMON-LISP|::|NOT|
-      (|SYSTEM|::|LIST-LENGTH-IN-BOUNDS-P| |SYSTEM|::|<MACRO-FORM>| 3. 3.
-       |COMMON-LISP|::|T|))
-     (|SYSTEM|::|MACRO-CALL-ERROR| |SYSTEM|::|<MACRO-FORM>|)
-     (|COMMON-LISP|::|LET*|
-      ((|FLOOD|::|COMB-LOGGER|
-        (|COMMON-LISP|::|CADR| . #1=(|SYSTEM|::|<MACRO-FORM>|)))
-       (|FLOOD|::|LEVEL| (|COMMON-LISP|::|CADDR| . #1#))
-       (|FLOOD|::|BODY| (|COMMON-LISP|::|CDDDR| . #1#)))
+       (|FLOOD|::|MSG| (|COMMON-LISP|::|CADDDR| . #1#))
+       (|FLOOD|::|BODY| (|COMMON-LISP|::|CDDDDR| . #1#)))
       (|COMMON-LISP|::|BLOCK| |FLOOD|::|WITH-FUNCTION-LOG|
-       `(|FLOOD|::|OUT-FMT| ,|FLOOD|::|COMB-LOGGER| ,|FLOOD|::|LEVEL|
-         "Log function: ~A = ~{~A ~}" ',@|FLOOD|::|BODY|
-         ,@|FLOOD|::|BODY|))))))
-  '(|FLOOD|::|COMB-LOGGER| |FLOOD|::|LEVEL| |COMMON-LISP|::|&REST|
-    |FLOOD|::|BODY|)))
+       `(|FLOOD|::|OUT-FN| ,|FLOOD|::|COMB-LOGGER| ,|FLOOD|::|LEVEL|
+         (|COMMON-LISP|::|FORMAT| |COMMON-LISP|::|NIL|
+          (|COMMON-LISP|::|CONCATENATE| '|COMMON-LISP|::|STRING|
+           ,|FLOOD|::|MSG| " ~A = ~{~A ~}")
+          ',@|FLOOD|::|BODY| ,@|FLOOD|::|BODY|)))))))
+  '(|FLOOD|::|COMB-LOGGER| |FLOOD|::|LEVEL| |FLOOD|::|MSG|
+    |COMMON-LISP|::|&REST| |FLOOD|::|BODY|)))
 (|SYSTEM|::|C-DEFUN| '|FLOOD|::|TRACE-OUT|
  (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE|
   '(|FLOOD|::|FN-NAME| |FLOOD|::|COMB-LOGGER| |FLOOD|::|LEVEL|
-    |FLOOD|::|MSG|)))
+    |FLOOD|::|FMT-MSG| |COMMON-LISP|::|&REST| |FLOOD|::|ARGS|)))
 (|SYSTEM|::|C-DEFUN| '|FLOOD|::|UNTRACE-OUT|
  (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE| '(|FLOOD|::|FN-NAME|)))
+(|SYSTEM|::|C-DEFUN| '|FLOOD|::|STACK-OUT|
+ (|SYSTEM|::|LAMBDA-LIST-TO-SIGNATURE|
+  '(|FLOOD|::|COMB-LOGGER| |FLOOD|::|LEVEL| |FLOOD|::|STACK-DEPTH|
+    |FLOOD|::|FMT-MSG| |COMMON-LISP|::|&REST| |FLOOD|::|ARGS|)))

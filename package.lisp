@@ -24,4 +24,5 @@
    #:with-function-log
    #:trace-out
    #:untrace-out
+   #:stack-out
    #:out))
