@@ -15,8 +15,22 @@
       "Thursday" "Friday" "Saturday"
       "Sunday"))
 
-(defparameter *global-log-level* :dbg)
-(defparameter *trace-store* (make-hash-table :test 'equal))
+(defvar *global-log-level* :dbg)
+(defvar *global-config-file* #P"conf/init.conf")
+(defvar *trace-store* (make-hash-table :test 'equal)) ; All trace-functions go in 
+									                  ; this hash-table
+
+(defun get-log-level ()
+  "Return log level from dynamic var."
+  *global-log-level*)
+
+(defun set-log-level (level)
+  "Sets the *global-log-level*-symbol with value in 'level'."
+  (cond ((or (equal level :dbg) 
+			 (equal level :tst) 
+			 (equal level :prd))
+		 (setq *global-log-level* level)))
+  level)
 
 
 (defun load-config (file)
@@ -32,8 +46,7 @@
 						  condition) *error-output*))))
 
 
-(defparameter *global-config-file* #P"conf/init.conf")
-(defparameter *global-config* (load-config *global-config-file*))
+(defvar *global-config* (load-config *global-config-file*))
 
 
 (defun set-configuration-filepath (filepath)

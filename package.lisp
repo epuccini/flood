@@ -11,7 +11,7 @@
 (defpackage :flood
   (:use #:cl #:cl-ppcre) 
   (:export
-   :*global-log-level*
+   #:set-log-level
    #:set-message-format-template
    #:set-configuration-filepath
    #:create-date-time-string
