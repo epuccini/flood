@@ -1,4 +1,42 @@
-[X86-Darwin]-09.16.05--26:01:2016-[TST]-Stack-trace out...((1
-  (FLOOD:STACK-OUT (#<Function FLOOD:FILE-LOGGER {492300A1}> #<Function FLOOD:ERROR-LOGGER {4922E7B9}>) :TST 3 "Stack-trace out..."))
- (2 (MAIN)) (3 (RUN)))
+[X86_64-clang -m64 -g -O2 -W -Wswitch -Wcomment -Wpointer-arith -Wimplicit -Wreturn-type -Wmissing-declarations -O -DUNIX_BINARY_DISTRIB -DENABLE_UNICODE -DDYNAMIC_MODULES -DNO_GETTEXT -I.   -lreadline -lncurses  -liconv -lsigsegv libgnu_cl.a -L/usr/X11/lib
+SAFETY=0 HEAPCODES STANDARD_HEAPCODES WIDE_HARD GENERATIONAL_GC SPVW_BLOCKS SPVW_MIXED TRIVIALMAP_MEMORY
+libsigsegv 2.10
+libiconv 1.11
+libreadline 6.3]-09.39.48--26:01:2016-[TST]-Stack-trace out:
+((2
+  <1/160> #<SPECIAL-OPERATOR LET>
+[158] EVAL frame for form (LET (#:CONDITION-27642) (TAGBODY (RETURN-FROM #:HANDLER-CASE-27641 (LET # #)) #:HANDLER-27640 (RETURN-FROM #:HANDLER-CASE-27641 (LET # #)))))
+ (3
+  [152] nested block frame #<ADDRESS #x0000000105B1C4C0> for #:HANDLER-CASE-27641
+  Next environment: 
+  | #:HANDLER-CASE-27641 --> #<ADDRESS #x0000000105B1C4C0>)
+ (4
+  <1/150> #<SPECIAL-OPERATOR BLOCK>
+[148] EVAL frame for form (BLOCK #:HANDLER-CASE-27641 (LET (#:CONDITION-27642) (TAGBODY (RETURN-FROM #:HANDLER-CASE-27641 #) #:HANDLER-27640 (RETURN-FROM #:HANDLER-CA..)
+ (5 [135] APPLY frame for call (RUN)))
+
+09.42.50--26:01:2016-[TST]-Error in multiply
+09.42.50--26:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+09.42.50--26:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+09.42.50--26:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+09.42.50--26:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+[X86-64-Darwin]-09.42.50--26:01:2016-[TST]-Testing new format template.
+[X86-64-Darwin]-09.42.50--26:01:2016-[TST]-Stack-trace out:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+09.42.50--26:01:2016-[TST]-Error in multiply
+09.42.50--26:01:2016-[TST]-Trace (1/2) of function #'TEST result: 400.
+09.42.50--26:01:2016-[TST]-Trace (1/2) of function #'TEST result: 1600.
+09.42.50--26:01:2016-[TST]-Trace (1/2) of function #'TEST result: 6400.
+09.42.50--26:01:2016-[TST]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1 
+[X86-64-Darwin]-09.42.50--26:01:2016-[TST]-Testing new format template.
+[X86-64-Darwin]-09.42.50--26:01:2016-[TST]-Stack-trace out:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4
+  ((SB-C::TOP-LEVEL-FORM (IF (AND #1=(GETF *MAKE-CONF* :RUN) (EQUAL #1# T)) (PROGN (RUN)) NIL)) #<unavailable lambda list>) [toplevel]
+  (RESTARTABLE T))
+ (5
+  (SB-FASL::LOAD-FASL-GROUP #S(SB-FASL::FASL-INPUT :STREAM #<SB-SYS:FD-STREAM for "file /Users/edward/Documents/Code/common-lisp/projects/Flood/make.fasl" {100ADEE953}> :TABLE #(616 #<PACKAGE "SB-IMPL">..))
 

@@ -58,8 +58,8 @@ or relative paths."
 		((and (equal level :prd) (equal *global-log-level* :prd)) t)))
 
 
-(defun create-datetime-string ()
-  "As it says: creates a datetime string from current date and time."
+(defun make-datetime-string ()
+  "As it says: makes a datetime string from current date and time."
   (multiple-value-bind 
 		(second minute hour day month year day-of-week dst-p tz)
 	  (get-decoded-time)
@@ -78,6 +78,13 @@ or relative paths."
 	(let ((fmt (format nil "~A" (nth day-of-week *day-names*))))
 	  fmt)))
 
+
+(defun make-arg-string (fmt-msg args)
+  "Utility-function to create a formatted
+string with list as parameter."
+  (eval
+   `(format nil ,fmt-msg ,@args)))
+  
 
 (defun print-logger (fmt &rest args) 
   "Simple console logger."
@@ -100,9 +107,13 @@ or relative paths."
 		(with-open-file (stream filename :direction :output)
 		  (write-line (format nil fmt args) stream))
 	  (error ()
-		(with-open-file (stream filename :direction :output
-								:if-exists :append)
-		  (write-line (format nil fmt args) stream))))))
+		(handler-case
+			(with-open-file (stream filename :direction :output
+									:if-exists :append)
+			  (write-line (format nil fmt args) stream))
+		  (error (condition)
+			(write-line (format nil "Error in 'file-logger' ~A" condition) 
+						*error-output*)))))))
 
 
 (defmacro init-with-logger (&body args)
@@ -112,14 +123,16 @@ are beeing used in 'out'-function."
   `(list ,@args))
 
 
-(defun create-format-template (template level message-fmt)
+(defun make-format-template (template level message-fmt)
   "The '*global-format-template*' gets expanded into
-a message-format-string. Template-parameter are:
-$TIME $LEVEL $MESSAGE"
+a message-format-string. Template-parameters are:
+$TIME $LEVEL $MESSAGE $MACHINE-INSTANCE $MACHINE-TYPE
+$SOFTWARE-VERSION $SOFTWARE-TYPE and can be used seperatly
+or mixed. They will be replaced by corresponding values."
   (let ((format-string ""))
 	(setf format-string 
 		  (cl-ppcre:regex-replace-all 
-						 "\\$TIME" template (create-datetime-string)))
+						 "\\$TIME" template (make-datetime-string)))
 	(setf format-string 
 		  (cl-ppcre:regex-replace-all 
 		   "\\$LEVEL" format-string (format nil "~A" level)))
@@ -143,13 +156,6 @@ $TIME $LEVEL $MESSAGE"
 		   "\\$MESSAGE" format-string message-fmt))))
 
 
-(defun make-arg-string (fmt-msg args)
-  "Utility-function to create a formatted
-string with list as parameter."
-  (eval
-   `(format nil ,fmt-msg ,@args)))
-  
-
 (defun out-fn (comb-logger level msg)
   "Simple logging output function'. Calls all 
 combinded loggers to create log-entries. No format
@@ -159,7 +165,7 @@ error."
   (cond ((equal (log-level-p level) t)
 		 (mapcar (lambda (f) 
 				   (funcall f
-							(create-format-template 
+							(make-format-template 
 							 (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
 							 level
 							 msg)))
@@ -177,7 +183,7 @@ given arguments."
 			 (mapcar (lambda (f) 
 					   (funcall f
 								(make-arg-string 
-								 (create-format-template 
+								 (make-format-template 
 								  (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
 								  level
 								  msg-fmt) fmt-args)))
@@ -230,7 +236,7 @@ Format strings allowed."
 (defun stack-out (comb-logger level stack-depth fmt-msg &rest args)
   (let* ((stack-msg (format nil "~A~%"
 							(swank-backend:call-with-debugging-environment
-							 (lambda () (swank:backtrace 1 (1+ stack-depth))))))
+							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
 		 (user-msg (format nil fmt-msg (make-arg-string fmt-msg args)))
 		 (new-msg (concatenate 'string user-msg stack-msg)))
   (out comb-logger level new-msg)))

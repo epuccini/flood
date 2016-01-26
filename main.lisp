@@ -35,9 +35,12 @@
 	(flood:with-function-log lg :tst "Log function:"
 							 (mapcar (lambda (x) (* x x)) 
 									 (append '(1 2 3 4 5) '(4 3 2 1))))
-	;; setup new format string
-	(flood:set-message-format-template "[$MACHINE-TYPE-$SOFTWARE-TYPE]-$TIME-[$LEVEL]-$MESSAGE")
+	;; setup new format string (in clisp there is a problem with
+	;; software-type and -version. They return values, but they are
+	;; mixed with data from a different source)"
+	(flood:set-message-format-template 
+	 "[$MACHINE-TYPE-$SOFTWARE-TYPE]-$TIME-[$LEVEL]-$MESSAGE")
 	(flood:out lg :tst "Testing new format template.")
-	;; log stack trace
-	(flood:stack-out lg :tst 3 "Stack-trace out..."))
+	;; log stack trace with depth 4
+	(flood:stack-out lg :tst 4 "Stack-trace out:~%"))
   0)
