@@ -12,11 +12,13 @@
   (:use #:cl #:cl-ppcre) 
   (:export
    #:set-log-level
+   #:set-logger
    #:set-message-format-template
    #:set-configuration-filepath
    #:create-date-time-string
+   #:set-logger
    #:init-with-logger
-   #:print-logger
+   #:standard-logger
    #:error-logger
    #:file-logger
    #:email-logger

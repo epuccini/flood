@@ -17,6 +17,7 @@
 
 
 (defvar *global-log-level* :dbg)
+(defvar *global-combined-logger* nil)
 (defvar *global-config-file* #P"conf/init.conf")
 (defvar *trace-store* (make-hash-table :test 'equal)) ; All trace-functions go in 
 									                  ; this hash-table
@@ -109,12 +110,12 @@ string with list as parameter."
    `(format nil ,fmt-msg ,@args)))
   
 
-(defun print-logger (fmt &rest args) 
-  "Simple console logger."
+(defun standard-logger (fmt &rest args) 
+  "Simple standard logger with output to *standard-output*."
    (write-line (format nil fmt args) *standard-output*))
 
 (defun error-logger (fmt &rest args) 
-  "Simple error logger."
+  "Simple error logger with output to *error-output*."
   (write-line (format nil fmt args) *error-output*))
 
 (defun email-logger (fmt &rest args)
@@ -140,10 +141,16 @@ string with list as parameter."
 
 
 (defmacro init-with-logger (&body args)
-  "Creates trace-store and creates a list of loggers which 
-are beeing used in 'out'-function."
+  "Initialisation creating a trace-store and sets a list of 
+logger which are beeing used in in logging-functions."
   (setf *global-config* (load-config *global-config-file*))
-  `(list ,@args))
+  `(setq *global-combined-logger* 
+		 (list ,@args)))
+
+
+(defun set-logger (logger-list)
+  "Set current active logger."
+   (setq *global-combined-logger* logger-list))
 
 
 (defun make-format-template (template level message-fmt)
@@ -180,7 +187,7 @@ or mixed. They will be replaced by corresponding values."
 
 
 
-(defun out (comb-logger level msg-fmt &rest fmt-args)
+(defun out (level msg-fmt &rest fmt-args)
   "Calls all combinded loggers and creates a log-entries
 with a global-format-string, created from the macro
 'create-format-template'. Supports format strings with 
@@ -194,7 +201,7 @@ given arguments."
 								  (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
 								  level
 								  msg-fmt) fmt-args)))
-					 comb-logger)))
+					 *global-combined-logger*)))
 	(error (condition) 
 	  (write-line (format nil "Error in 'load-config': ~A~%" 
 						  condition) *error-output*))))
@@ -208,36 +215,33 @@ the message-format-template. Reset/Reload with load-config."
   fmt-str)
 
 
-(defmacro with-function-log (comb-logger level msg &rest body)
+(defmacro with-function-log (level msg &rest body)
   "Log function trace and show result. No formatting."
-  `(out ,comb-logger
-		,level 
+  `(out ,level 
 		(format nil (concatenate 'string ,msg " ~A = ~{~A ~}") 
 				',@body 
 				,@body)))
 
 
-
-(defun trace-out (fn-name comb-logger level fmt-msg &rest args)
-  "Traces a function and its execution-time, instead of printing 
-the results of a traced function, all loggers could be used for 
-ouput. Format strings allowed."
+(defun trace-out (fn-name level fmt-msg &rest args)
+  "Traces a function and outputs its results and execution-time.
+into configured logger, if any."
   (let* ((real-base (get-internal-real-time)) ; store current times
 		 (run-base (get-internal-run-time)) 
 		 (old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
-				   (let* ((result-msg (format nil "#'~A result: ~A~%" fn-name
+				   (let* ((result-msg (format nil "#'~A ~%Result: ~A~%" fn-name
 											  (apply old-fn fn-args)))
 						  (user-msg (make-arg-string fmt-msg args)))
 					 (multiple-value-bind 
 						   (time-real-time time-run-time) (time-fn real-base run-base)
 					   (let* ((time-msg (format nil 
-												"...real-time ~A s run-time ~A s" 
+												"Execution in real-time ~A s and run-time ~A s" 
 												time-real-time time-run-time))
 							  (log-msg (concatenate 'string 
 													user-msg result-msg time-msg)))
-					 (out comb-logger level log-msg))))))) ;; log function msg
+					 (out level log-msg))))))) ;; log function msg
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
@@ -250,14 +254,14 @@ ouput. Format strings allowed."
   (remhash fn-name *trace-store*))
 
 
-(defun stack-out (comb-logger level stack-depth fmt-msg &rest args)
+(defun stack-out (level stack-depth fmt-msg &rest args)
   "Use swank to log a stack-trace."
   (let* ((stack-msg (format nil "~A~%"
 							(swank-backend:call-with-debugging-environment
 							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
 		 (user-msg (make-arg-string fmt-msg args))
 		 (log-msg (concatenate 'string user-msg stack-msg)))
-  (out comb-logger level log-msg)))
+  (out level log-msg)))
 
 
 

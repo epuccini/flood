@@ -233,8 +233,7 @@ with the function in 'shell-call'."
   ;; Load configuration
   (setup)
   ;; Quickload systems
-  (quickload-list (getf *make-conf* :systems))
-  ;; Require packages
+  (quickload-list (getf *make-conf* :systems))  ;; Require packages
   (require-list (getf *make-conf* :packages))
   ;; Execute command if 'before'
   (execute-when :before)
