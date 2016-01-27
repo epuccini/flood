@@ -102,9 +102,9 @@ calculated with given start-times."
 			 internal-time-units-per-second))))
 
 
-(defun make-arg-string (fmt-msg args)
-  "Utility-function to create a formatted
-string with list as parameter."
+(defun format-with-list (fmt-msg args)
+  "Dynamic creation of a format-call which
+takes a list as parameter."
   (eval
    `(format nil ,fmt-msg ,@args)))
   
@@ -146,7 +146,7 @@ logger which are beeing used in in logging-functions."
   `(list ,@args))
 
 
-(defun make-format-template (template level message-fmt)
+(defun expand-log-template (template level message-fmt)
   "The '*global-format-template*' gets expanded into
 a message-format-string. Template-parameters are:
 $DATE $TIME $LEVEL $MESSAGE $MACHINE-INSTANCE $MACHINE-TYPE
@@ -193,8 +193,8 @@ given arguments."
 	  (cond ((equal (log-level-p level) t)
 			 (mapcar (lambda (f) 
 					   (funcall f
-								(make-arg-string 
-								 (make-format-template 
+								(format-with-list 
+								 (expand-log-template 
 								  (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
 								  level
 								  msg-fmt) fmt-args)))
@@ -241,7 +241,7 @@ into configured logger, if any."
 		 (new-fn (lambda (&rest fn-args) 
 				   (let* ((result-msg (format nil "#'~A ~%Result: ~A~%" fn-name
 											  (apply old-fn fn-args)))
-						  (user-msg (make-arg-string fmt-msg args)))
+						  (user-msg (format-with-list fmt-msg args)))
 					 (multiple-value-bind 
 						   (time-real-time time-run-time) (time-fn real-base run-base)
 					   (let* ((time-msg 
@@ -268,7 +268,7 @@ into configured logger, if any."
   (let* ((stack-msg (format nil "~A~%"
 							(swank-backend:call-with-debugging-environment
 							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
-		 (user-msg (make-arg-string fmt-msg args))
+		 (user-msg (format-with-list fmt-msg args))
 		 (log-msg (concatenate 'string user-msg stack-msg)))
   (out logger level log-msg)))
 
