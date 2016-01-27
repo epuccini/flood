@@ -234,7 +234,7 @@ the message-format-template. Reset/Reload with load-config."
 			  ,level 
 			  (format nil 
 					  (concatenate 'string ,msg " ~A = ~{~A ~} ~%"
-								   "xecution in real-time ~,4f s "
+								   "Execution in real-time ~,4f s "
 								   "and run-time ~,4f s.") 
 					  ',@body 
 					  ,@body
