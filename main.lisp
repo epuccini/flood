@@ -93,6 +93,10 @@
 		  (setq stack-depth 4)
 		  (stack-out new-lg :dbg stack-depth 
 						   "Stack-trace depth ~D:~%" stack-depth)
+		  
+	;; Output memory usage
+	(mem lg :dbg "Memory output:~%")
+
 	;; reset to previous template
 	(set-message-format-template 
 	 "[$LEVEL]-[$TIME / $DATE]-$MESSAGE")

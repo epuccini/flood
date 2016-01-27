@@ -27,4 +27,5 @@
    #:trace-out
    #:untrace-out
    #:stack-out
+   #:mem
    #:out))

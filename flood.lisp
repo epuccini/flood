@@ -183,8 +183,20 @@ or mixed. They will be replaced by corresponding values."
 			 "\\$MESSAGE" format-string message-fmt)))))
 
 
+(defun make-memory-usage-string ()
+  "Creates a string containing the output of
+the 'room' function."
+  (with-output-to-string (*standard-output*) (room)))
 
-(defun out (logger level msg-fmt &rest fmt-args)
+
+(defun mem (logger level fmt-msg &rest fmt-args)
+  "Log memory usage by executing the 'room' function."
+  (let* ((mem-string (make-memory-usage-string))
+		 (log-fmt-msg (concatenate 'string fmt-msg mem-string)))
+	(out logger level (format-with-list log-fmt-msg fmt-args))))
+
+
+(defun out (logger level fmt-msg &rest fmt-args)
   "Calls all combinded loggers and creates a log-entries
 with a global-format-string, created from the macro
 'create-format-template'. Supports format strings with 
@@ -197,7 +209,7 @@ given arguments."
 								 (expand-log-template 
 								  (getf *global-config* :MESSAGE_FORMAT_TEMPLATE)
 								  level
-								  msg-fmt) fmt-args)))
+								  fmt-msg) fmt-args)))
 					 logger)))
 	(error (condition) 
 	  (write-line (format nil "Error in 'load-config': ~A~%" 
@@ -213,18 +225,17 @@ the message-format-template. Reset/Reload with load-config."
 
 
 (defmacro with-function-log (logger level msg &rest body)
-  "Log function trace and show result. No formatting."
+  "Log function trace and show result and timing. No formatting."
   (let ((real-base (get-internal-real-time)) ; store current times
 		(run-base (get-internal-run-time)))
 	(multiple-value-bind 
 		  (time-real-time time-run-time) (time-fn real-base run-base)
 		`(out ,logger
 			  ,level 
-			  (format nil (concatenate 'string 
-									   ,msg 
-									   " ~A = ~{~A ~} ~%"
-									   "xecution in real-time ~,4f s "
-									   "and run-time ~,4f s.") 
+			  (format nil 
+					  (concatenate 'string ,msg " ~A = ~{~A ~} ~%"
+								   "xecution in real-time ~,4f s "
+								   "and run-time ~,4f s.") 
 					  ',@body 
 					  ,@body
 					  ,time-real-time
