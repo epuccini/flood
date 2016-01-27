@@ -214,11 +214,21 @@ the message-format-template. Reset/Reload with load-config."
 
 (defmacro with-function-log (logger level msg &rest body)
   "Log function trace and show result. No formatting."
-  `(out ,logger
-	    ,level 
-		(format nil (concatenate 'string ,msg " ~A = ~{~A ~}") 
-				',@body 
-				,@body)))
+  (let ((real-base (get-internal-real-time)) ; store current times
+		(run-base (get-internal-run-time)))
+	(multiple-value-bind 
+		  (time-real-time time-run-time) (time-fn real-base run-base)
+		`(out ,logger
+			  ,level 
+			  (format nil (concatenate 'string 
+									   ,msg 
+									   " ~A = ~{~A ~} ~%"
+									   "xecution in real-time ~,4f s "
+									   "and run-time ~,4f s.") 
+					  ',@body 
+					  ,@body
+					  ,time-real-time
+					  ,time-run-time)))))
 
 
 (defun trace-out (fn-name logger level fmt-msg &rest args)
@@ -234,9 +244,10 @@ into configured logger, if any."
 						  (user-msg (make-arg-string fmt-msg args)))
 					 (multiple-value-bind 
 						   (time-real-time time-run-time) (time-fn real-base run-base)
-					   (let* ((time-msg (format nil 
-												"Execution in real-time ~A s and run-time ~A s" 
-												time-real-time time-run-time))
+					   (let* ((time-msg 
+							   (format nil 
+									   "Execution in real-time ~,4f s and run-time ~,4f s" 
+									   time-real-time time-run-time))
 							  (log-msg (concatenate 'string 
 													user-msg result-msg time-msg)))
 					 (out logger level log-msg))))))) ;; log function msg

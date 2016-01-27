@@ -82,7 +82,7 @@
 	(out lg :tst "TEST log-output.")
 	(out lg :prd "PRODUCTION log-output.")
 
-	;; set global log-level
+	;; set log-level
 	(out lg :prd "Swithing to log-level: ~A" 
 			   (set-log-level :dbg))
 
@@ -93,4 +93,7 @@
 		  (setq stack-depth 4)
 		  (stack-out new-lg :dbg stack-depth 
 						   "Stack-trace depth ~D:~%" stack-depth)
+	;; reset to previous template
+	(set-message-format-template 
+	 "[$LEVEL]-[$TIME / $DATE]-$MESSAGE")
 	(terpri))))
