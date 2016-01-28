@@ -11,21 +11,23 @@
 (defpackage :flood
   (:use #:cl #:cl-ppcre) 
   (:export
+   #:init-logger
+   #:make-logger
+   #:file-writer
+   #:standard-writer
+   #:socket-writer 
+   #:rotating-log-writer
+   #:error-writer
+   #:ascii-formatter
    #:set-log-level
    #:set-logger
-   #:set-message-format-template
    #:set-configuration-filepath
    #:make-date-time-string
-   #:set-logger
-   #:init-with-logger
-   #:standard-logger
-   #:error-logger
-   #:file-logger
-   #:email-logger
    #:log-level-p
+   #:out
+   #:get-log-level
    #:with-function-log
    #:trace-out
    #:untrace-out
    #:stack-out
-   #:mem
-   #:out))
+   #:mem))

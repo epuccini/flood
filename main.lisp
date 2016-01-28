@@ -17,22 +17,21 @@
   (* x x))
 
 (defun main ()
-"Small test program"
-  (let ((stack-depth 0)
-		(lg (init-with-logger ; intitialize logger 
-			  #'file-logger
-			  #'error-logger)))
+  ;; init with writer and formatter 
+  (let ((lg (init-logger :writers (list #'standard-writer #'file-writer)
+						 :formatter #'ascii-formatter)))
 	(terpri)
+	;; simple log output
+	(out lg :dbg "First log output")
 
-	;; set global log-level
-	(out lg :prd "Swithing to log-level: ~A" 
-			   (set-log-level :dbg))
 
-	;; simple logging
-	(out lg :dbg "Error in multiply")
+	;; simple log output formatted
+	(out lg :dbg "Second log output ~A." 666)
 
-	;; format messages logging 
-	(out lg :dbg "Error in division ~D / ~D" 666 555)
+
+	;; reset log-level
+	(set-log-level :dbg)
+
 
 	;; trace a function and ouput to combined-loggers.
 	(trace-out 'squares lg :dbg "Trace fn ")
@@ -53,51 +52,43 @@
 	;; setup new format string (in clisp there is a problem with
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
-	(set-message-format-template 
-	 "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE")
+;; create a new logger
+	(setq lg (make-logger :writers (list #'error-writer  #'file-writer)
+						  :formatter #'ascii-formatter
+						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 	(out lg :dbg "Testing new format template.")
 
 	;; We are testing log-levels now:
-	;; set logging level to DEBUG
-	;; set global log-level
+	;; set logging level to 
 	(out lg :prd "Switching to log-level: ~A" 
-			   (set-log-level :dbg))
+		 (set-log-level :dbg))
 	(out lg :dbg "DEBUG log-output.")
 	(out lg :tst "TEST log-output.")
 	(out lg :prd "PRODUCTION log-output.")
 
 	;; set logging level to TEST
-	;; set global log-level
 	(out lg :prd "Switching to log-level: ~A" 
-			   (set-log-level :tst))
+		 (set-log-level :tst))
 	(out lg :dbg "DEBUG log-output.")
 	(out lg :tst "TEST log-output.")
 	(out lg :prd "PRODUCTION log-output.")
 
 	;; set logging level to PRODUCTION
-	;; set global log-level
 	(out lg :prd "Switching to log-level: ~A" 
-			   (set-log-level :prd))
+		 (set-log-level :prd))
 	(out lg :dbg "DEBUG log-output.")
 	(out lg :tst "TEST log-output.")
 	(out lg :prd "PRODUCTION log-output.")
 
 	;; set log-level
 	(out lg :prd "Swithing to log-level: ~A" 
-			   (set-log-level :dbg))
+		 (set-log-level :dbg))
 
 	;; set new loggers
-	(let ((new-lg (list  #'standard-logger 
-						 #'file-logger)))
-		  ;; log stack trace with depth 3
-		  (setq stack-depth 4)
-		  (stack-out new-lg :dbg stack-depth 
-						   "Stack-trace depth ~D:~%" stack-depth)
+	(let ((stack-depth 4))
+		  ;; log stack trace with depth 4
+		  (stack-out lg :dbg stack-depth 
+					 "Stack-trace depth ~D:~%" stack-depth))
 		  
 	;; Output memory usage
-	(mem lg :dbg "Memory output:~%")
-
-	;; reset to previous template
-	(set-message-format-template 
-	 "[$LEVEL]-[$TIME / $DATE]-$MESSAGE")
-	(terpri))))
+	(mem lg :dbg "Memory output:~%")))
