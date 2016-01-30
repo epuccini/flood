@@ -22,8 +22,9 @@
   (dbg  "Hello log! Debug...")
 
   ;; init custom logger with writer and formatter 
-  (let ((lg (init-logger :writers (list #'standard-writer #'file-writer)
-						 :formatter #'ascii-formatter)))
+  (let ((lg (make-bare-logger 
+			 :writers (list #'standard-writer #'file-writer)
+			 :formatter #'ascii-formatter)))
 	(terpri)
 	;; simple log output
 	(out lg :dbg "First log output")

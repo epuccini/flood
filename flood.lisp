@@ -268,11 +268,23 @@ templates for log-message and -entry."
 					:template template
 					:formatter formatter))
 
-
-(defun init-logger (&key writers formatter)
-  "Create and init logger."
+(defun reset-logger ()
+  "Create and init logger from config-file."
   (progn
 	(setf *global-config* (load-config *global-config-file*))
+	(make-logger :writers (mapcar (lambda (f) (symbol-function 
+												(find-symbol
+												(string-upcase f))))
+								  (getf *global-config* :WRITERS))
+				 :formatter (symbol-function 
+							 (find-symbol
+							 (string-upcase 
+							  (getf *global-config* :FORMATTER))))
+				 :template (getf *global-config* :ENTRY_TEMPLATE))))
+  
+(defun make-bare-logger (&key writers formatter)
+  "Create and init logger."
+  (progn
 	(make-logger :writers writers
 				 :formatter formatter
 				 :template (getf *global-config* :ENTRY_TEMPLATE))))
@@ -335,10 +347,9 @@ templates for log-message and -entry."
 
 (defvar *global-config* (load-config *global-config-file*))
 
-
 (defun set-configuration-filepath (filepath)
   "Set configuration filepath with absolute
-or relative paths."
+or relative paths. Side effects."
   (setq *global-config-file* filepath))
 
 
@@ -428,8 +439,7 @@ into configured logger, if any."
 ;;
 ;; Default logging functions
 ;;
-(setf *default-logger* (init-logger :writers (list #'standard-writer)
-									:formatter #'ascii-formatter))
+(setf *default-logger* (reset-logger))
 
 (defun wrn (fmt-msg &rest args)
   (out *default-logger* :prd (format-with-list fmt-msg args)))
@@ -443,8 +453,6 @@ into configured logger, if any."
 ;;
 ;; Async operations
 ;;
-
- 
 (defmacro enable-async-syntax ()
   "Enable special-character '°' syntax."
   `(eval-when (:load-toplevel :compile-toplevel :execute)

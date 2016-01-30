@@ -1,5 +1,5 @@
-[X86-64]-10:34:0046-[DBG]-Memory output:
-Dynamic space usage is:   244,387,392 bytes.
+[X86-64]-11:35:0020-[DBG]-Memory output:
+Dynamic space usage is:   189,581,296 bytes.
 Read-only space usage is:      4,976 bytes.
 Static space usage is:         4,064 bytes.
 Control stack usage is:        8,336 bytes.
@@ -8,11 +8,11 @@ Control and binding stack usage is for the current thread only.
 Garbage collection is currently enabled.
 
 Breakdown for dynamic space:
-  57,361,712 bytes for   654,216 instance objects.
-  48,958,400 bytes for 3,059,900 cons objects.
-  32,277,728 bytes for   290,969 simple-vector objects.
-  31,979,120 bytes for   204,005 simple-character-string objects.
-  21,692,768 bytes for    30,625 code objects.
-  52,176,880 bytes for 1,112,132 other objects.
-  244,446,608 bytes for 5,351,847 dynamic objects (space total.)
+  43,784,288 bytes for   506,111 instance objects.
+  35,887,152 bytes for 2,242,947 cons objects.
+  26,362,512 bytes for   262,094 simple-vector objects.
+  22,019,440 bytes for   149,968 simple-character-string objects.
+  21,543,936 bytes for    30,126 code objects.
+  39,991,520 bytes for   841,982 other objects.
+  189,588,848 bytes for 4,033,228 dynamic objects (space total.)
 

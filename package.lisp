@@ -12,6 +12,7 @@
   (:use #:cl #:cl-ppcre) 
   (:export
    #:*history*
+   #:*default-logger*
    #:copy-file
    #:move-file
    #:file-size
@@ -19,7 +20,7 @@
    #:set-history
    #:append-to-history
    #:async-prefix
-   #:init-logger
+   #:make-bare-logger
    #:make-logger
    #:file-writer
    #:standard-writer
