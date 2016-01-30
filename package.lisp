@@ -11,6 +11,14 @@
 (defpackage :flood
   (:use #:cl #:cl-ppcre) 
   (:export
+   #:*history*
+   #:copy-file
+   #:move-file
+   #:file-size
+   #:get-history
+   #:set-history
+   #:append-to-history
+   #:async-prefix
    #:init-logger
    #:make-logger
    #:file-writer
@@ -30,4 +38,12 @@
    #:trace-out
    #:untrace-out
    #:stack-out
+   #:wrn
+   #:inf
+   #:dbg
+   #:tst
+   #:enable-async-syntax
+   #:disable-async-syntax
+   #:async-prefix
+   #:async-out
    #:mem))

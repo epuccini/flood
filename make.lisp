@@ -243,7 +243,7 @@ with the function in 'shell-call'."
   ;; Execute command if 'after'
   (execute-when :after)
   ;; End: run program if main-key set
-  (format t "Building  complete. Starting ~A:" *app*)
+  (format t "Building  complete. Starting ~A:~%~%" *app*)
   (cond ((and (getf *make-conf* :run) (equal (getf *make-conf* :run) t))
 		 (run))))
 

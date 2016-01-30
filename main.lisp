@@ -17,21 +17,19 @@
   (* x x))
 
 (defun main ()
-  ;; init with writer and formatter 
+  ;; Start with default loggers. Configured with conf/init.conf
+  (wrn  "Hello log! Warning...")
+  (dbg  "Hello log! Debug...")
+
+  ;; init custom logger with writer and formatter 
   (let ((lg (init-logger :writers (list #'standard-writer #'file-writer)
 						 :formatter #'ascii-formatter)))
 	(terpri)
 	;; simple log output
 	(out lg :dbg "First log output")
 
-
 	;; simple log output formatted
 	(out lg :dbg "Second log output ~A." 666)
-
-
-	;; reset log-level
-	(set-log-level :dbg)
-
 
 	;; trace a function and ouput to combined-loggers.
 	(trace-out 'squares lg :dbg "Trace fn ")
@@ -52,7 +50,8 @@
 	;; setup new format string (in clisp there is a problem with
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
-;; create a new logger
+	
+	;; create a new logger
 	(setq lg (make-logger :writers (list #'error-writer  #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
@@ -80,9 +79,8 @@
 	(out lg :tst "TEST log-output.")
 	(out lg :prd "PRODUCTION log-output.")
 
-	;; set log-level
-	(out lg :prd "Swithing to log-level: ~A" 
-		 (set-log-level :dbg))
+	;; set log-level debug
+	(set-log-level :dbg)
 
 	;; set new loggers
 	(let ((stack-depth 4))

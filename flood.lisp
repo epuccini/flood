@@ -8,11 +8,15 @@
 
 (in-package :flood)
 
+(defvar *previous-readtables* nil)
 (defvar *global-log-level* :dbg)
 (defvar *global-config-file* #P"conf/init.conf")
 (defvar *global-config* nil)
 (defvar *trace-store* (make-hash-table :test 'equal)) ; All trace-functions go in 
-									                  ; this hash-table
+										              ; this hash-table
+(defvar *history* '())
+(defvar *default-logger* nil)
+
 (defvar *day-names*
     '("Monday" "Tuesday" "Wednesday"
       "Thursday" "Friday" "Saturday"
@@ -20,7 +24,9 @@
 
 (defstruct logger-type  writers formatter template)
  
-
+;;
+;; Time and strings
+;;
 (defun make-day-string ()
   "As it says: creates a day string from current date."
   (multiple-value-bind 
@@ -29,7 +35,6 @@
 	(declare (ignore hour minute second day month year dst-p tz))
 	(let ((fmt (format nil "~A" (nth day-of-week *day-names*))))
 	  fmt)))
-
 
 (defun make-datetime-strings ()
   "As it says: makes one date and a time string from current date and time."
@@ -41,27 +46,101 @@
 		  (time-fmt (format nil "~2,'0d:~2,'0d:~4,'0d" hour minute second)))
 	  (values date-fmt time-fmt))))
 
+;;
+;; File access
+;;
+(defun copy-file (from to)
+  "From is a filepath and to is a filepath.
+Binary copy of file is made."
+  (with-open-file (in from :direction :input)
+    (with-open-file (out to
+                        :direction :output
+                        :if-exists :overwrite
+                        :if-does-not-exist :create)
+      (loop for line = (read-line in nil)
+         while line do
+           (write-line line out)))))
+ 
+(defun move-file (from to)
+  "Copy file from to and delete from."
+  (copy-file from to)
+  (delete-file from))
+ 
+(defun backup-file (from)
+  "Create backup-filename and move file to 
+backup-location."
+  (handler-case
+	  (let ((to (concatenate 'string 
+							 (getf *global-config* :LOG_FILE_NAME) 
+							 "_"
+							 (make-day-string)
+							 ".log.bak")))
+		(move-file from to))
+	(error (condition)
+	  (write-line (format nil "Error in 'backup-file' ~A" condition)
+				  common-lisp:*error-output*))))
+ 
+(defun file-size (filepath)
+  "Open file to get file length."
+  (with-open-file (stream filepath)
+    (file-length stream)))
 
+;;
+;; history
+;; 
+(defun get-history ()
+  "Get history. If in async-thread,
+then use atomic operation."
+  (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
+        (progn *history*)))
+  *history*)
+ 
+
+(defun set-history (value)
+  "Set history with value. If in async thread,
+then use atomic operation"
+  (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
+		 (progn (setf *history* value))))
+  (setf *history* value))
+ 
+ 
+(defun append-to-history (entry)
+  "Append an entry to history."
+  (let ((size (list-length *history*))) ; get size of history
+    (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
+		   (pop *history*))) ; pop the first entry
+    (set-history (append *history* (list entry)))))
+ 
+ 
+;;
+;; Writers
+;;
 (defun standard-writer (message)
 "Write to standard-stream."
-  (write-line message common-lisp:*standard-output*))
- 
+  (write-line message common-lisp:*standard-output*)) 
 
 (defun error-writer (message)
 "Write to error-stream."
   (write-line message common-lisp:*error-output*))
 
- 
 (defun file-writer (message)
   "Write to file. Apppend or create file."
-  (let ((filename (concatenate 'string 
-							   (getf *global-config* :LOG_FILE_NAME) ".log")))
+  (let* ((filename (concatenate 'string 
+								(getf *global-config* :LOG_FILE_NAME) ".log"))
+		 (filesize (file-size filename)))
 	(handler-case 
-		(with-open-file (stream filename :direction :output)
-		  (write-line message stream))
+		(progn
+		  ;; check if log exceeds maximum size
+		  (cond ((> filesize (getf *global-config* :LOG_MAX_SIZE))
+				 (backup-file filename)))
+		  ;; create file for writing
+		  (with-open-file (stream filename :direction :output)
+			(write-line message stream)))
+	  ;; if file exists already then append to file
 	  (error ()
 		(handler-case
-			(with-open-file (stream filename :direction :output
+			(with-open-file (stream filename 
+									:direction :output
 									:if-exists :append)
 			  (write-line message stream))
 		  (error (condition)
@@ -100,6 +179,9 @@ path and delete files from a week before."
   (print message))
 
 
+;;
+;; Utility
+;;
 (defun format-with-list (fmt-msg args)
   "Dynamic creation of a format-call which
 takes a list as parameter."
@@ -107,6 +189,9 @@ takes a list as parameter."
    `(format nil ,fmt-msg ,@args)))
 
 
+;;
+;;  Template
+;;
 (defun expand-entry-template (template level message-fmt)
   "Expand entry-template with its parameters.
 Template-parameters are:
@@ -143,7 +228,9 @@ or mixed. They will be replaced by corresponding values."
 			(cl-ppcre:regex-replace-all 
 			 "\\$MESSAGE" format-string message-fmt)))))
 
-
+;;
+;; Formatter
+;;
 (defun ascii-formatter (writers template level fmt-msg args)
 "Just output simple ascii strings within templates."
   (dolist (writer writers)
@@ -169,8 +256,11 @@ or mixed. They will be replaced by corresponding values."
   (print level)
   (print fmt-msg)
   (print args))
- 
 
+
+;;
+;; Logger init and creation
+;;
 (defun make-logger (&key writers formatter template)
   "A logger consists of writers and formatter and
 templates for log-message and -entry."
@@ -181,10 +271,11 @@ templates for log-message and -entry."
 
 (defun init-logger (&key writers formatter)
   "Create and init logger."
-  (setf *global-config* (load-config *global-config-file*))
-  (make-logger :writers writers
-			   :formatter formatter
-			   :template (getf *global-config* :ENTRY_TEMPLATE)))
+  (progn
+	(setf *global-config* (load-config *global-config-file*))
+	(make-logger :writers writers
+				 :formatter formatter
+				 :template (getf *global-config* :ENTRY_TEMPLATE))))
   
 
 (defun log-level-p (level)
@@ -205,7 +296,8 @@ templates for log-message and -entry."
 
 (defun out (logger level fmt-msg &rest args)
   "Call formatter with writer and message-template."
-  (cond ((log-level-p level)
+  (append-to-history (format-with-list fmt-msg args)) ;; history
+  (cond ((log-level-p level) ;; log-level fine
 		 (funcall (logger-type-formatter logger)
 				  (logger-type-writers logger)
 				  (logger-type-template logger)
@@ -333,5 +425,53 @@ into configured logger, if any."
   (out logger level log-msg)))
 
 
+;;
+;; Default logging functions
+;;
+(setf *default-logger* (init-logger :writers (list #'standard-writer)
+									:formatter #'ascii-formatter))
 
+(defun wrn (fmt-msg &rest args)
+  (out *default-logger* :prd (format-with-list fmt-msg args)))
+
+(defun inf (fmt-msg &rest args)
+  (out *default-logger* :tst (format-with-list fmt-msg args)))
+
+(defun dbg (fmt-msg &rest args)
+  (out *default-logger* :dbg (format-with-list fmt-msg args)))
+
+;;
+;; Async operations
+;;
+
+ 
+(defmacro enable-async-syntax ()
+  "Enable special-character '°' syntax."
+  `(eval-when (:load-toplevel :compile-toplevel :execute)
+      (push *readtable* *previous-readtables*)
+      (setq *readtable* (copy-readtable))
+      (set-macro-character #\° 'async-prefix)))
+ 
+ 
+(defmacro disable-async-syntax ()
+  "Disable special-character '°' syntax."
+  `(eval-when (:load-toplevel :compile-toplevel :execute)
+     (setq *readtable* (pop *previous-readtables*))))
+
+
+(defun async-prefix (stream char)
+  "Reader-macro function for 'async-' substitution."
+  (declare (ignore char))
+  (find-symbol (string-upcase
+                (concatenate 'string "async-" (symbol-name (read stream t nil t))))))
+ 
+ 
+(defun async-out (logger level fmt-msg &rest args)
+  "Threaded version of 'out'. Name thread 'async-thread'."
+  (bordeaux-threads:make-thread
+   (lambda ()
+     (out logger level (format-with-list fmt-msg args))
+     (bordeaux-threads:current-thread)) :name "async-thread"))
+
+ 
   
