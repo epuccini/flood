@@ -13,11 +13,16 @@
 (eval-when (:load-toplevel :compile-toplevel :execute)
   (use-package :flood))
 
+
+;; Non-blocking
+(enable-async-syntax)
+
+
 (defun squares (x)
   (* x x))
 
 (defun main ()
-  ;; Start with default loggers. Configured with conf/init.conf
+  ;; Start with default logger. Configured with conf/init.conf
   (wrn  "Hello log! Warning...")
   (dbg  "Hello log! Debug...")
 
@@ -31,6 +36,15 @@
 
 	;; simple log output formatted
 	(out lg :dbg "Second log output ~A." 666)
+
+	;; just append '°' for marking as async
+	°(wrn  "Async-out! Warning...")
+	°(dbg  "Async-out! Debug...")
+
+	;; also for use with expressions
+	°(progn (wrn "I'm going to sleep...") 
+			(sleep 5)
+			(inf "I've slept for ~D seconds." 5))
 
 	;; trace a function and ouput to combined-loggers.
 	(trace-out 'squares lg :dbg "Trace fn ")

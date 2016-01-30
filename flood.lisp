@@ -8,7 +8,7 @@
 
 (in-package :flood)
 
-(defvar *previous-readtables* nil)
+(defvar *previous-readtables* '())
 (defvar *global-log-level* :dbg)
 (defvar *global-config-file* #P"conf/init.conf")
 (defvar *global-config* nil)
@@ -345,7 +345,7 @@ templates for log-message and -entry."
 						  condition) *error-output*))))
 
 
-(defvar *global-config* (load-config *global-config-file*))
+(setf *global-config* (load-config *global-config-file*))
 
 (defun set-configuration-filepath (filepath)
   "Set configuration filepath with absolute
@@ -375,7 +375,6 @@ the 'room' function."
 	(out logger level (format-with-list log-fmt-msg fmt-args))))
 
 
-
 (defmacro with-function-log (logger level msg &rest body)
   "Log function trace and show result and timing. No formatting."
   (let ((real-base (get-internal-real-time)) ; store current times
@@ -392,7 +391,6 @@ the 'room' function."
 					  ,@body
 					  ,time-real-time
 					  ,time-run-time)))))
-
 
 (defun trace-out (fn-name logger level fmt-msg &rest args)
   "Traces a function and outputs its results and execution-time.
@@ -453,33 +451,24 @@ into configured logger, if any."
 ;;
 ;; Async operations
 ;;
+(defun async-prefix (stream char)
+  "Reader-macro function for 'async-' substitution."
+  (declare (ignore char))
+  `(bordeaux-threads:make-thread (lambda () ,(read stream t nil t))))
+
 (defmacro enable-async-syntax ()
   "Enable special-character '°' syntax."
   `(eval-when (:load-toplevel :compile-toplevel :execute)
       (push *readtable* *previous-readtables*)
       (setq *readtable* (copy-readtable))
       (set-macro-character #\° 'async-prefix)))
- 
- 
+  
 (defmacro disable-async-syntax ()
   "Disable special-character '°' syntax."
   `(eval-when (:load-toplevel :compile-toplevel :execute)
      (setq *readtable* (pop *previous-readtables*))))
 
 
-(defun async-prefix (stream char)
-  "Reader-macro function for 'async-' substitution."
-  (declare (ignore char))
-  (find-symbol (string-upcase
-                (concatenate 'string "async-" (symbol-name (read stream t nil t))))))
- 
- 
-(defun async-out (logger level fmt-msg &rest args)
-  "Threaded version of 'out'. Name thread 'async-thread'."
-  (bordeaux-threads:make-thread
-   (lambda ()
-     (out logger level (format-with-list fmt-msg args))
-     (bordeaux-threads:current-thread)) :name "async-thread"))
 
  
   
