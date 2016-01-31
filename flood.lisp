@@ -447,17 +447,18 @@ into configured logger, if any."
 (defun stack-out (logger stack-depth fmt-msg &rest args)
   "Use swank to log a stack-trace."
   (let ((trace ""))
-	(let* ((msg-lst (swank-backend:call-with-debugging-environment
-					 (lambda () (swank:backtrace 0 (+ stack-depth 2)))))
-		   (stack-msg (progn 
-						(mapc (lambda (msg)
-								(setf trace (concatenate 'string 
-														 trace 
-														 (format nil "~A~%" msg))))
+	(let* ((msg-lst (remove-if #'null
+							   (swank-backend:call-with-debugging-environment
+								(lambda () (swank:backtrace 0 (+ stack-depth 2))))))
+		   (stack-msg (progn
+						(mapcar (lambda (msg)
+								  (setf trace (concatenate 'string 
+														   trace 
+														   (format nil "~{~A ~}~%" msg))))
 							  msg-lst) trace))
 		   (user-msg (format-with-list fmt-msg args))
-		   (log-msg (concatenate 'string user-msg stack-msg)))
-	  (out logger :dbg log-msg))))
+		   (log-msg (concatenate 'string user-msg stack-msg))) 
+	  (out logger :dbg log-msg nil))))
 
 
 ;; 
