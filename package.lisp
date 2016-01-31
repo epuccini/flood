@@ -14,6 +14,7 @@
    #:*history*
    #:*default-logger*
    #:get-history
+   #:history
    #:set-history
    #:append-to-history
    #:async-prefix

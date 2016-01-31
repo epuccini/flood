@@ -113,6 +113,11 @@ then use atomic operation."
 		((not (equal (bordeaux-threads:current-thread) "async-thread")) ; not async thread?
 		 *history*)))
 
+(defun history ()
+  "Print list of logging entries."
+  (mapc #'print (get-history))
+  nil)
+
 (defun ta-set-history (value)
   (let ((mutex (bordeaux-threads:make-lock)))
 	(bordeaux-threads:acquire-lock mutex)
