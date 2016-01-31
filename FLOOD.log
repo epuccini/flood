@@ -2136,3 +2136,1217 @@ Breakdown for dynamic space:
   13,636,144 bytes for   221,306 other objects.
   87,235,344 bytes for 1,658,192 dynamic objects (space total.)
 
+[12:26:0029 / 31.01.2016]-[DBG]-First custom-log output
+[12:26:0029 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:26:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[12:26:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[12:26:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[12:26:0029 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-12:26:0029-[DBG]-Testing new format template.
+[X86-64]-12:26:0029-[PRD]-Switching to log-level: DBG
+[X86-64]-12:26:0029-[DBG]-DEBUG log-output.
+[X86-64]-12:26:0029-[TST]-INFORMATION log-output.
+[X86-64]-12:26:0029-[PRD]-WARNING log-output.
+[X86-64]-12:26:0029-[PRD]-Switching to log-level: TST
+[X86-64]-12:26:0029-[TST]-INFORMATION log-output.
+[X86-64]-12:26:0029-[PRD]-WARNING log-output.
+[X86-64]-12:26:0029-[PRD]-Switching to log-level: PRD
+[X86-64]-12:26:0029-[PRD]-WARNING log-output.
+[X86-64]-12:26:0029-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-12:26:0029-[DBG]-Memory output:
+Dynamic space usage is:   184,197,808 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        5,704 bytes.
+Binding stack usage is:        1,232 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  40,626,656 bytes for 2,539,166 cons objects.
+  39,056,784 bytes for   449,678 instance objects.
+  27,713,520 bytes for   252,326 simple-vector objects.
+  20,879,040 bytes for    29,299 code objects.
+  17,655,504 bytes for   134,562 simple-character-string objects.
+  38,266,304 bytes for   805,081 other objects.
+  184,197,808 bytes for 4,210,112 dynamic objects (space total.)
+
+[12:31:0047 / 31.01.2016]-[DBG]-First custom-log output
+[12:31:0047 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:31:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[12:31:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[12:31:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[12:31:0047 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-12:31:0047-[DBG]-Testing new format template.
+[X86-64]-12:31:0047-[PRD]-Switching to log-level: DBG
+[X86-64]-12:31:0047-[DBG]-DEBUG log-output.
+[X86-64]-12:31:0047-[TST]-INFORMATION log-output.
+[X86-64]-12:31:0047-[PRD]-WARNING log-output.
+[X86-64]-12:31:0047-[PRD]-Switching to log-level: TST
+[X86-64]-12:31:0047-[TST]-INFORMATION log-output.
+[X86-64]-12:31:0047-[PRD]-WARNING log-output.
+[X86-64]-12:31:0047-[PRD]-Switching to log-level: PRD
+[X86-64]-12:31:0047-[PRD]-WARNING log-output.
+[X86-64]-12:31:0047-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-12:31:0047-[DBG]-Memory output:
+Dynamic space usage is:   107,500,160 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  23,157,104 bytes for 1,447,319 cons objects.
+  22,137,648 bytes for    30,728 code objects.
+  20,107,536 bytes for   222,412 simple-vector objects.
+  16,874,272 bytes for   209,036 instance objects.
+   9,467,680 bytes for    70,270 simple-character-string objects.
+  15,755,920 bytes for   260,242 other objects.
+  107,500,160 bytes for 2,240,007 dynamic objects (space total.)
+
+[12:49:0011 / 31.01.2016]-[DBG]-First custom-log output
+[12:49:0011 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:49:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[12:49:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[12:49:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[12:49:0011 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-12:49:0011-[DBG]-Testing new format template.
+[X86-64]-12:49:0011-[PRD]-Switching to log-level: DBG
+[X86-64]-12:49:0011-[DBG]-DEBUG log-output.
+[X86-64]-12:49:0011-[TST]-INFORMATION log-output.
+[X86-64]-12:49:0011-[PRD]-WARNING log-output.
+[X86-64]-12:49:0011-[PRD]-Switching to log-level: TST
+[X86-64]-12:49:0011-[TST]-INFORMATION log-output.
+[X86-64]-12:49:0011-[PRD]-WARNING log-output.
+[X86-64]-12:49:0011-[PRD]-Switching to log-level: PRD
+[X86-64]-12:49:0011-[PRD]-WARNING log-output.
+[X86-64]-12:49:0011-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-12:49:0011-[DBG]-Memory output:
+Dynamic space usage is:   199,654,128 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  41,321,600 bytes for 2,582,600 cons objects.
+  40,914,016 bytes for   502,730 instance objects.
+  29,031,168 bytes for   202,414 simple-character-string objects.
+  25,216,736 bytes for   260,106 simple-vector objects.
+  22,204,608 bytes for    30,843 code objects.
+  41,030,384 bytes for   812,205 other objects.
+  199,718,512 bytes for 4,390,898 dynamic objects (space total.)
+
+[12:49:0026 / 31.01.2016]-[DBG]-First custom-log output
+[12:49:0026 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:49:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:49:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0023 s and run-time 0.0019 s
+[12:49:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0037 s and run-time 0.0033 s
+[12:49:0026 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:49:0026-[DBG]-Testing new format template.
+[x86_64]-12:49:0026-[PRD]-Switching to log-level: DBG
+[x86_64]-12:49:0026-[DBG]-DEBUG log-output.
+[x86_64]-12:49:0026-[TST]-INFORMATION log-output.
+[x86_64]-12:49:0026-[PRD]-WARNING log-output.
+[x86_64]-12:49:0026-[PRD]-Switching to log-level: TST
+[x86_64]-12:49:0026-[TST]-INFORMATION log-output.
+[x86_64]-12:49:0026-[PRD]-WARNING log-output.
+[x86_64]-12:49:0026-[PRD]-Switching to log-level: PRD
+[x86_64]-12:49:0026-[PRD]-WARNING log-output.
+[12:50:0039 / 31.01.2016]-[DBG]-First custom-log output
+[12:50:0039 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:50:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0003 s and run-time 0.0002 s
+[12:50:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[12:50:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0035 s and run-time 0.0034 s
+[12:50:0039 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:50:0039-[DBG]-Testing new format template.
+[x86_64]-12:50:0039-[PRD]-Switching to log-level: DBG
+[x86_64]-12:50:0039-[DBG]-DEBUG log-output.
+[x86_64]-12:50:0039-[TST]-INFORMATION log-output.
+[x86_64]-12:50:0039-[PRD]-WARNING log-output.
+[x86_64]-12:50:0039-[PRD]-Switching to log-level: TST
+[x86_64]-12:50:0039-[TST]-INFORMATION log-output.
+[x86_64]-12:50:0039-[PRD]-WARNING log-output.
+[x86_64]-12:50:0039-[PRD]-Switching to log-level: PRD
+[x86_64]-12:50:0039-[PRD]-WARNING log-output.
+[12:50:0047 / 31.01.2016]-[DBG]-First custom-log output
+[12:50:0047 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[12:50:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[12:50:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0020 s and run-time 0.0010 s
+[12:50:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[12:50:0047 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-12:50:0047-[DBG]-Testing new format template.
+[X86-64]-12:50:0047-[PRD]-Switching to log-level: DBG
+[X86-64]-12:50:0047-[DBG]-DEBUG log-output.
+[X86-64]-12:50:0047-[TST]-INFORMATION log-output.
+[X86-64]-12:50:0047-[PRD]-WARNING log-output.
+[X86-64]-12:50:0047-[PRD]-Switching to log-level: TST
+[X86-64]-12:50:0047-[TST]-INFORMATION log-output.
+[X86-64]-12:50:0047-[PRD]-WARNING log-output.
+[X86-64]-12:50:0047-[PRD]-Switching to log-level: PRD
+[X86-64]-12:50:0047-[PRD]-WARNING log-output.
+[X86-64]-12:50:0047-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T))
+ (3 ((FLET #:WITHOUT-INTERRUPTS-BODY-82 :IN SAVE-LISP-AND-DIE)))
+ (4 ((LABELS SB-IMPL::RESTART-LISP :IN SAVE-LISP-AND-DIE))))
+
+[X86-64]-12:50:0047-[DBG]-Memory output:
+Dynamic space usage is:   87,233,792 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        1,128 bytes.
+Binding stack usage is:          224 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  20,499,056 bytes for    28,343 code objects.
+  16,509,248 bytes for   186,091 simple-vector objects.
+  15,969,936 bytes for   998,121 cons objects.
+  13,512,768 bytes for   167,577 instance objects.
+   7,108,432 bytes for    56,761 simple-character-string objects.
+  13,634,352 bytes for   221,221 other objects.
+  87,233,792 bytes for 1,658,114 dynamic objects (space total.)
+
+[12:50:0051 / 31.01.2016]-[DBG]-First custom-log output
+[12:50:0051 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:50:0051 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0003 s and run-time 0.0002 s
+[12:50:0051 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0017 s and run-time 0.0017 s
+[12:50:0051 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0032 s and run-time 0.0032 s
+[12:50:0051 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:50:0051-[DBG]-Testing new format template.
+[x86_64]-12:50:0051-[PRD]-Switching to log-level: DBG
+[x86_64]-12:50:0051-[DBG]-DEBUG log-output.
+[x86_64]-12:50:0051-[TST]-INFORMATION log-output.
+[x86_64]-12:50:0051-[PRD]-WARNING log-output.
+[x86_64]-12:50:0051-[PRD]-Switching to log-level: TST
+[x86_64]-12:50:0051-[TST]-INFORMATION log-output.
+[x86_64]-12:50:0051-[PRD]-WARNING log-output.
+[x86_64]-12:50:0051-[PRD]-Switching to log-level: PRD
+[x86_64]-12:50:0051-[PRD]-WARNING log-output.
+[12:51:0000 / 31.01.2016]-[DBG]-First custom-log output
+[12:51:0000 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:51:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:51:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0015 s and run-time 0.0015 s
+[12:51:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0030 s and run-time 0.0030 s
+[12:51:0000 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:51:0000-[DBG]-Testing new format template.
+[x86_64]-12:51:0000-[PRD]-Switching to log-level: DBG
+[x86_64]-12:51:0000-[DBG]-DEBUG log-output.
+[x86_64]-12:51:0000-[TST]-INFORMATION log-output.
+[x86_64]-12:51:0000-[PRD]-WARNING log-output.
+[x86_64]-12:51:0000-[PRD]-Switching to log-level: TST
+[x86_64]-12:51:0000-[TST]-INFORMATION log-output.
+[x86_64]-12:51:0000-[PRD]-WARNING log-output.
+[x86_64]-12:51:0000-[PRD]-Switching to log-level: PRD
+[x86_64]-12:51:0000-[PRD]-WARNING log-output.
+[12:51:0052 / 31.01.2016]-[DBG]-First custom-log output
+[12:51:0052 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:51:0052 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:51:0052 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0018 s and run-time 0.0018 s
+[12:51:0052 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0031 s and run-time 0.0030 s
+[12:51:0052 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:51:0052-[DBG]-Testing new format template.
+[x86_64]-12:51:0052-[PRD]-Switching to log-level: DBG
+[x86_64]-12:51:0052-[DBG]-DEBUG log-output.
+[x86_64]-12:51:0052-[TST]-INFORMATION log-output.
+[x86_64]-12:51:0052-[PRD]-WARNING log-output.
+[x86_64]-12:51:0052-[PRD]-Switching to log-level: TST
+[x86_64]-12:51:0052-[TST]-INFORMATION log-output.
+[x86_64]-12:51:0052-[PRD]-WARNING log-output.
+[x86_64]-12:51:0052-[PRD]-Switching to log-level: PRD
+[x86_64]-12:51:0052-[PRD]-WARNING log-output.
+[12:53:0028 / 31.01.2016]-[DBG]-First custom-log output
+[12:53:0028 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:53:0028 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:53:0028 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0017 s and run-time 0.0016 s
+[12:53:0028 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0037 s and run-time 0.0033 s
+[12:53:0028 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:53:0028-[DBG]-Testing new format template.
+[x86_64]-12:53:0028-[PRD]-Switching to log-level: DBG
+[x86_64]-12:53:0028-[DBG]-DEBUG log-output.
+[x86_64]-12:53:0028-[TST]-INFORMATION log-output.
+[x86_64]-12:53:0028-[PRD]-WARNING log-output.
+[x86_64]-12:53:0028-[PRD]-Switching to log-level: TST
+[x86_64]-12:53:0028-[TST]-INFORMATION log-output.
+[x86_64]-12:53:0028-[PRD]-WARNING log-output.
+[x86_64]-12:53:0028-[PRD]-Switching to log-level: PRD
+[x86_64]-12:53:0028-[PRD]-WARNING log-output.
+[x86_64]-12:53:0028-[DBG]-Memory output:
+Approximately 16,252,928 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   16252928 (15872K)   21889024 (21376K)
+Stacks:          17105848 (16705K)   17095136 (16694K)      10712 (10K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[12:54:0018 / 31.01.2016]-[DBG]-First custom-log output
+[12:54:0018 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:54:0018 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:54:0018 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0016 s and run-time 0.0016 s
+[12:54:0018 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0030 s and run-time 0.0030 s
+[12:54:0018 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:54:0018-[DBG]-Testing new format template.
+[x86_64]-12:54:0018-[PRD]-Switching to log-level: DBG
+[x86_64]-12:54:0018-[DBG]-DEBUG log-output.
+[x86_64]-12:54:0018-[TST]-INFORMATION log-output.
+[x86_64]-12:54:0018-[PRD]-WARNING log-output.
+[x86_64]-12:54:0018-[PRD]-Switching to log-level: TST
+[x86_64]-12:54:0018-[TST]-INFORMATION log-output.
+[x86_64]-12:54:0018-[PRD]-WARNING log-output.
+[x86_64]-12:54:0018-[PRD]-Switching to log-level: PRD
+[x86_64]-12:54:0018-[PRD]-WARNING log-output.
+[12:54:0039 / 31.01.2016]-[DBG]-First custom-log output
+[12:54:0039 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:54:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:54:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0029 s and run-time 0.0027 s
+[12:54:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0046 s and run-time 0.0043 s
+[12:54:0039 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:54:0039-[DBG]-Testing new format template.
+[x86_64]-12:54:0039-[PRD]-Switching to log-level: DBG
+[x86_64]-12:54:0039-[DBG]-DEBUG log-output.
+[x86_64]-12:54:0039-[TST]-INFORMATION log-output.
+[x86_64]-12:54:0039-[PRD]-WARNING log-output.
+[x86_64]-12:54:0039-[PRD]-Switching to log-level: TST
+[x86_64]-12:54:0039-[TST]-INFORMATION log-output.
+[x86_64]-12:54:0039-[PRD]-WARNING log-output.
+[x86_64]-12:54:0039-[PRD]-Switching to log-level: PRD
+[x86_64]-12:54:0039-[PRD]-WARNING log-output.
+[12:55:0029 / 31.01.2016]-[DBG]-First custom-log output
+[12:55:0029 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:55:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:55:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0013 s and run-time 0.0013 s
+[12:55:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0025 s and run-time 0.0025 s
+[12:55:0029 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:55:0029-[DBG]-Testing new format template.
+[x86_64]-12:55:0029-[PRD]-Switching to log-level: DBG
+[x86_64]-12:55:0029-[DBG]-DEBUG log-output.
+[x86_64]-12:55:0029-[TST]-INFORMATION log-output.
+[x86_64]-12:55:0029-[PRD]-WARNING log-output.
+[x86_64]-12:55:0029-[PRD]-Switching to log-level: TST
+[x86_64]-12:55:0029-[TST]-INFORMATION log-output.
+[x86_64]-12:55:0029-[PRD]-WARNING log-output.
+[x86_64]-12:55:0029-[PRD]-Switching to log-level: PRD
+[x86_64]-12:55:0029-[PRD]-WARNING log-output.
+[12:56:0003 / 31.01.2016]-[DBG]-First custom-log output
+[12:56:0003 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:56:0003 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:56:0003 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0012 s and run-time 0.0012 s
+[12:56:0003 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0023 s and run-time 0.0024 s
+[12:56:0003 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:56:0003-[DBG]-Testing new format template.
+[x86_64]-12:56:0003-[PRD]-Switching to log-level: DBG
+[x86_64]-12:56:0003-[DBG]-DEBUG log-output.
+[x86_64]-12:56:0003-[TST]-INFORMATION log-output.
+[x86_64]-12:56:0003-[PRD]-WARNING log-output.
+[x86_64]-12:56:0003-[PRD]-Switching to log-level: TST
+[x86_64]-12:56:0003-[TST]-INFORMATION log-output.
+[x86_64]-12:56:0003-[PRD]-WARNING log-output.
+[x86_64]-12:56:0003-[PRD]-Switching to log-level: PRD
+[x86_64]-12:56:0003-[PRD]-WARNING log-output.
+[x86_64]-12:56:0003-[DBG]-Memory output:
+Approximately 17,301,504 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   17301504 (16896K)   20840448 (20352K)
+Stacks:          17105848 (16705K)   17091776 (16691K)      14072 (14K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[12:56:0037 / 31.01.2016]-[DBG]-First custom-log output
+[12:56:0037 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:56:0037 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0000 s
+[12:56:0037 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0013 s and run-time 0.0013 s
+[12:56:0037 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0030 s and run-time 0.0029 s
+[12:56:0037 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:56:0037-[DBG]-Testing new format template.
+[x86_64]-12:56:0037-[PRD]-Switching to log-level: DBG
+[x86_64]-12:56:0037-[DBG]-DEBUG log-output.
+[x86_64]-12:56:0037-[TST]-INFORMATION log-output.
+[x86_64]-12:56:0037-[PRD]-WARNING log-output.
+[x86_64]-12:56:0037-[PRD]-Switching to log-level: TST
+[x86_64]-12:56:0037-[TST]-INFORMATION log-output.
+[x86_64]-12:56:0037-[PRD]-WARNING log-output.
+[x86_64]-12:56:0037-[PRD]-Switching to log-level: PRD
+[x86_64]-12:56:0037-[PRD]-WARNING log-output.
+[x86_64]-12:56:0037-[DBG]-Memory output:
+Approximately 14,942,208 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   14942208 (14592K)   23199744 (22656K)
+Stacks:          17105848 (16705K)   17095096 (16694K)      10752 (10K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[12:57:0002 / 31.01.2016]-[DBG]-First custom-log output
+[12:57:0002 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:57:0002 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[12:57:0002 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0015 s and run-time 0.0015 s
+[12:57:0002 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0028 s and run-time 0.0028 s
+[12:57:0002 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:57:0002-[DBG]-Testing new format template.
+[x86_64]-12:57:0002-[PRD]-Switching to log-level: DBG
+[x86_64]-12:57:0002-[DBG]-DEBUG log-output.
+[x86_64]-12:57:0002-[TST]-INFORMATION log-output.
+[x86_64]-12:57:0002-[PRD]-WARNING log-output.
+[x86_64]-12:57:0002-[PRD]-Switching to log-level: TST
+[x86_64]-12:57:0002-[TST]-INFORMATION log-output.
+[x86_64]-12:57:0002-[PRD]-WARNING log-output.
+[x86_64]-12:57:0002-[PRD]-Switching to log-level: PRD
+[x86_64]-12:57:0002-[PRD]-WARNING log-output.
+[x86_64]-12:57:0002-[DBG]-Memory output:
+Approximately 16,646,144 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   16646144 (16256K)   21495808 (20992K)
+Stacks:          17105848 (16705K)   17091736 (16691K)      14112 (14K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[12:58:0009 / 31.01.2016]-[DBG]-First custom-log output
+[12:58:0009 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:58:0009 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[12:58:0009 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0015 s and run-time 0.0015 s
+[12:58:0009 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0035 s and run-time 0.0033 s
+[12:58:0009 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:58:0009-[DBG]-Testing new format template.
+[x86_64]-12:58:0009-[PRD]-Switching to log-level: DBG
+[x86_64]-12:58:0009-[DBG]-DEBUG log-output.
+[x86_64]-12:58:0009-[TST]-INFORMATION log-output.
+[x86_64]-12:58:0009-[PRD]-WARNING log-output.
+[x86_64]-12:58:0009-[PRD]-Switching to log-level: TST
+[x86_64]-12:58:0009-[TST]-INFORMATION log-output.
+[x86_64]-12:58:0009-[PRD]-WARNING log-output.
+[x86_64]-12:58:0009-[PRD]-Switching to log-level: PRD
+[x86_64]-12:58:0009-[PRD]-WARNING log-output.
+[x86_64]-12:58:0009-[DBG]-Stack-trace depth 4:
+
+[x86_64]-12:58:0009-[DBG]-Memory output:
+Approximately 14,155,776 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   14155776 (13824K)   23986176 (23424K)
+Stacks:          17105848 (16705K)   17095136 (16694K)      10712 (10K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[12:58:0035 / 31.01.2016]-[DBG]-First custom-log output
+[12:58:0035 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:58:0035 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[12:58:0035 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0021 s and run-time 0.0021 s
+[12:58:0035 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0040 s and run-time 0.0039 s
+[12:58:0035 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:58:0035-[DBG]-Testing new format template.
+[x86_64]-12:58:0035-[PRD]-Switching to log-level: DBG
+[x86_64]-12:58:0035-[DBG]-DEBUG log-output.
+[x86_64]-12:58:0035-[TST]-INFORMATION log-output.
+[x86_64]-12:58:0035-[PRD]-WARNING log-output.
+[x86_64]-12:58:0035-[PRD]-Switching to log-level: TST
+[x86_64]-12:58:0035-[TST]-INFORMATION log-output.
+[x86_64]-12:58:0035-[PRD]-WARNING log-output.
+[x86_64]-12:58:0035-[PRD]-Switching to log-level: PRD
+[x86_64]-12:58:0035-[PRD]-WARNING log-output.
+[x86_64]-12:58:0035-[DBG]-Stack-trace depth 4:
+
+[x86_64]-12:58:0035-[DBG]-Memory output:
+Approximately 15,335,424 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   15335424 (14976K)   22806528 (22272K)
+Stacks:          17105848 (16705K)   17091776 (16691K)      14072 (14K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[12:58:0054 / 31.01.2016]-[DBG]-First custom-log output
+[12:58:0054 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[12:58:0054 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0001 s
+[12:58:0054 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0016 s and run-time 0.0016 s
+[12:58:0054 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0029 s and run-time 0.0029 s
+[12:58:0054 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:58:0054-[DBG]-Testing new format template.
+[x86_64]-12:58:0054-[PRD]-Switching to log-level: DBG
+[x86_64]-12:58:0054-[DBG]-DEBUG log-output.
+[x86_64]-12:58:0054-[TST]-INFORMATION log-output.
+[x86_64]-12:58:0054-[PRD]-WARNING log-output.
+[x86_64]-12:58:0054-[PRD]-Switching to log-level: TST
+[x86_64]-12:58:0054-[TST]-INFORMATION log-output.
+[x86_64]-12:58:0054-[PRD]-WARNING log-output.
+[x86_64]-12:58:0054-[PRD]-Switching to log-level: PRD
+[x86_64]-12:58:0054-[PRD]-WARNING log-output.
+[13:01:0025 / 31.01.2016]-[DBG]-First custom-log output
+[13:01:0025 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:01:0025 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0001 s
+[13:01:0025 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0017 s and run-time 0.0016 s
+[13:01:0025 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0036 s and run-time 0.0034 s
+[13:01:0025 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:01:0025-[DBG]-Testing new format template.
+[x86_64]-13:01:0025-[PRD]-Switching to log-level: DBG
+[x86_64]-13:01:0025-[DBG]-DEBUG log-output.
+[x86_64]-13:01:0025-[TST]-INFORMATION log-output.
+[x86_64]-13:01:0025-[PRD]-WARNING log-output.
+[x86_64]-13:01:0025-[PRD]-Switching to log-level: TST
+[x86_64]-13:01:0025-[TST]-INFORMATION log-output.
+[x86_64]-13:01:0025-[PRD]-WARNING log-output.
+[x86_64]-13:01:0025-[PRD]-Switching to log-level: PRD
+[x86_64]-13:01:0025-[PRD]-WARNING log-output.
+[13:02:0006 / 31.01.2016]-[DBG]-First custom-log output
+[13:02:0006 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:02:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0001 s
+[13:02:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0021 s and run-time 0.0021 s
+[13:02:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0043 s and run-time 0.0041 s
+[13:02:0006 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:02:0006-[DBG]-Testing new format template.
+[x86_64]-13:02:0006-[PRD]-Switching to log-level: DBG
+[x86_64]-13:02:0006-[DBG]-DEBUG log-output.
+[x86_64]-13:02:0006-[TST]-INFORMATION log-output.
+[x86_64]-13:02:0006-[PRD]-WARNING log-output.
+[x86_64]-13:02:0006-[PRD]-Switching to log-level: TST
+[x86_64]-13:02:0006-[TST]-INFORMATION log-output.
+[x86_64]-13:02:0006-[PRD]-WARNING log-output.
+[x86_64]-13:02:0006-[PRD]-Switching to log-level: PRD
+[x86_64]-13:02:0006-[PRD]-WARNING log-output.
+[13:02:0017 / 31.01.2016]-[DBG]-First custom-log output
+[13:02:0017 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:02:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:02:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0016 s and run-time 0.0016 s
+[13:02:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0031 s and run-time 0.0030 s
+[13:02:0017 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:02:0017-[DBG]-Testing new format template.
+[x86_64]-13:02:0017-[PRD]-Switching to log-level: DBG
+[x86_64]-13:02:0017-[DBG]-DEBUG log-output.
+[x86_64]-13:02:0017-[TST]-INFORMATION log-output.
+[x86_64]-13:02:0017-[PRD]-WARNING log-output.
+[x86_64]-13:02:0017-[PRD]-Switching to log-level: TST
+[x86_64]-13:02:0017-[TST]-INFORMATION log-output.
+[x86_64]-13:02:0017-[PRD]-WARNING log-output.
+[x86_64]-13:02:0017-[PRD]-Switching to log-level: PRD
+[x86_64]-13:02:0017-[PRD]-WARNING log-output.
+[13:02:0056 / 31.01.2016]-[DBG]-First custom-log output
+[13:02:0056 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:02:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:02:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0019 s and run-time 0.0018 s
+[13:02:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0037 s and run-time 0.0034 s
+[13:02:0056 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:02:0056-[DBG]-Testing new format template.
+[x86_64]-13:02:0056-[PRD]-Switching to log-level: DBG
+[x86_64]-13:02:0056-[DBG]-DEBUG log-output.
+[x86_64]-13:02:0056-[TST]-INFORMATION log-output.
+[x86_64]-13:02:0056-[PRD]-WARNING log-output.
+[x86_64]-13:02:0056-[PRD]-Switching to log-level: TST
+[x86_64]-13:02:0056-[TST]-INFORMATION log-output.
+[x86_64]-13:02:0056-[PRD]-WARNING log-output.
+[x86_64]-13:02:0056-[PRD]-Switching to log-level: PRD
+[x86_64]-13:02:0056-[PRD]-WARNING log-output.
+[x86_64]-13:02:0056-[DBG]-Stack-trace depth 4:(2 (SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT #<COMPILED-LEXICAL-CLOSURE (:INTERNAL STACK-OUT) #x3020014CBAAF>))
+
+[x86_64]-13:02:0056-[DBG]-Memory output:
+Approximately 15,990,784 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   15990784 (15616K)   22151168 (21632K)
+Stacks:          17105848 (16705K)   17095136 (16694K)      10712 (10K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[13:03:0042 / 31.01.2016]-[DBG]-First custom-log output
+[13:03:0042 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:03:0042 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:03:0042 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0018 s and run-time 0.0018 s
+[13:03:0042 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0047 s and run-time 0.0045 s
+[13:03:0042 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:03:0042-[DBG]-Testing new format template.
+[x86_64]-13:03:0042-[PRD]-Switching to log-level: DBG
+[x86_64]-13:03:0042-[DBG]-DEBUG log-output.
+[x86_64]-13:03:0042-[TST]-INFORMATION log-output.
+[x86_64]-13:03:0042-[PRD]-WARNING log-output.
+[x86_64]-13:03:0042-[PRD]-Switching to log-level: TST
+[x86_64]-13:03:0042-[TST]-INFORMATION log-output.
+[x86_64]-13:03:0042-[PRD]-WARNING log-output.
+[x86_64]-13:03:0042-[PRD]-Switching to log-level: PRD
+[x86_64]-13:03:0042-[PRD]-WARNING log-output.
+[13:06:0049 / 31.01.2016]-[DBG]-First custom-log output
+[13:06:0049 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:06:0049 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:06:0049 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0018 s and run-time 0.0017 s
+[13:06:0049 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0032 s and run-time 0.0031 s
+[13:06:0049 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:06:0049-[DBG]-Testing new format template.
+[x86_64]-13:06:0049-[PRD]-Switching to log-level: DBG
+[x86_64]-13:06:0049-[DBG]-DEBUG log-output.
+[x86_64]-13:06:0049-[TST]-INFORMATION log-output.
+[x86_64]-13:06:0049-[PRD]-WARNING log-output.
+[x86_64]-13:06:0049-[PRD]-Switching to log-level: TST
+[x86_64]-13:06:0049-[TST]-INFORMATION log-output.
+[x86_64]-13:06:0049-[PRD]-WARNING log-output.
+[x86_64]-13:06:0049-[PRD]-Switching to log-level: PRD
+[x86_64]-13:06:0049-[PRD]-WARNING log-output.
+[13:06:0058 / 31.01.2016]-[DBG]-First custom-log output
+[13:06:0058 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:06:0058 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:06:0058 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0026 s and run-time 0.0016 s
+[13:06:0058 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0037 s and run-time 0.0028 s
+[13:06:0058 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:06:0058-[DBG]-Testing new format template.
+[x86_64]-13:06:0058-[PRD]-Switching to log-level: DBG
+[x86_64]-13:06:0058-[DBG]-DEBUG log-output.
+[x86_64]-13:06:0058-[TST]-INFORMATION log-output.
+[x86_64]-13:06:0058-[PRD]-WARNING log-output.
+[x86_64]-13:06:0058-[PRD]-Switching to log-level: TST
+[x86_64]-13:06:0058-[TST]-INFORMATION log-output.
+[x86_64]-13:06:0058-[PRD]-WARNING log-output.
+[x86_64]-13:06:0058-[PRD]-Switching to log-level: PRD
+[x86_64]-13:06:0058-[PRD]-WARNING log-output.
+[x86_64]-13:06:0058-[DBG]-Stack-trace depth 4:(2 (SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT #<COMPILED-LEXICAL-CLOSURE (:INTERNAL STACK-OUT) #x3020014E0D5F>))
+
+[x86_64]-13:06:0058-[DBG]-Memory output:
+Approximately 15,859,712 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   15859712 (15488K)   22282240 (21760K)
+Stacks:          17105848 (16705K)   17095136 (16694K)      10712 (10K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[13:07:0006 / 31.01.2016]-[DBG]-First custom-log output
+[13:07:0006 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:07:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[13:07:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[13:07:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[13:07:0006 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-13:07:0006-[DBG]-Testing new format template.
+[X86-64]-13:07:0006-[PRD]-Switching to log-level: DBG
+[X86-64]-13:07:0006-[DBG]-DEBUG log-output.
+[X86-64]-13:07:0006-[TST]-INFORMATION log-output.
+[X86-64]-13:07:0006-[PRD]-WARNING log-output.
+[X86-64]-13:07:0006-[PRD]-Switching to log-level: TST
+[X86-64]-13:07:0006-[TST]-INFORMATION log-output.
+[X86-64]-13:07:0006-[PRD]-WARNING log-output.
+[X86-64]-13:07:0006-[PRD]-Switching to log-level: PRD
+[X86-64]-13:07:0006-[PRD]-WARNING log-output.
+[X86-64]-13:07:0006-[DBG]-Stack-trace depth 4:(2 (MAIN) (RESTARTABLE T))
+
+[X86-64]-13:07:0006-[DBG]-Memory output:
+Dynamic space usage is:   293,530,800 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  64,877,520 bytes for   796,897 instance objects.
+  59,439,952 bytes for 3,714,997 cons objects.
+  50,213,296 bytes for   342,313 simple-character-string objects.
+  30,226,704 bytes for   297,549 simple-vector objects.
+  22,271,680 bytes for    30,955 code objects.
+  14,855,664 bytes for    31,206 simple-array-unsigned-fixnum objects.
+  51,715,168 bytes for 1,336,128 other objects.
+  293,599,984 bytes for 6,550,045 dynamic objects (space total.)
+
+[13:08:0021 / 31.01.2016]-[DBG]-First custom-log output
+[13:08:0021 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:08:0021 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:08:0021 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0014 s and run-time 0.0014 s
+[13:08:0021 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0027 s and run-time 0.0027 s
+[13:08:0021 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:08:0021-[DBG]-Testing new format template.
+[x86_64]-13:08:0021-[PRD]-Switching to log-level: DBG
+[x86_64]-13:08:0021-[DBG]-DEBUG log-output.
+[x86_64]-13:08:0021-[TST]-INFORMATION log-output.
+[x86_64]-13:08:0021-[PRD]-WARNING log-output.
+[x86_64]-13:08:0021-[PRD]-Switching to log-level: TST
+[x86_64]-13:08:0021-[TST]-INFORMATION log-output.
+[x86_64]-13:08:0021-[PRD]-WARNING log-output.
+[x86_64]-13:08:0021-[PRD]-Switching to log-level: PRD
+[x86_64]-13:08:0021-[PRD]-WARNING log-output.
+[13:13:0000 / 31.01.2016]-[DBG]-First custom-log output
+[13:13:0000 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:13:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:13:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0016 s and run-time 0.0015 s
+[13:13:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0034 s and run-time 0.0032 s
+[13:13:0000 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:13:0000-[DBG]-Testing new format template.
+[x86_64]-13:13:0000-[PRD]-Switching to log-level: DBG
+[x86_64]-13:13:0000-[DBG]-DEBUG log-output.
+[x86_64]-13:13:0000-[TST]-INFORMATION log-output.
+[x86_64]-13:13:0000-[PRD]-WARNING log-output.
+[x86_64]-13:13:0000-[PRD]-Switching to log-level: TST
+[x86_64]-13:13:0000-[TST]-INFORMATION log-output.
+[x86_64]-13:13:0000-[PRD]-WARNING log-output.
+[x86_64]-13:13:0000-[PRD]-Switching to log-level: PRD
+[x86_64]-13:13:0000-[PRD]-WARNING log-output.
+[13:14:0017 / 31.01.2016]-[DBG]-First custom-log output
+[13:14:0017 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:14:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[13:14:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[13:14:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[13:14:0017 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-13:14:0017-[DBG]-Testing new format template.
+[X86-64]-13:14:0017-[PRD]-Switching to log-level: DBG
+[X86-64]-13:14:0017-[DBG]-DEBUG log-output.
+[X86-64]-13:14:0017-[TST]-INFORMATION log-output.
+[X86-64]-13:14:0017-[PRD]-WARNING log-output.
+[X86-64]-13:14:0017-[PRD]-Switching to log-level: TST
+[X86-64]-13:14:0017-[TST]-INFORMATION log-output.
+[X86-64]-13:14:0017-[PRD]-WARNING log-output.
+[X86-64]-13:14:0017-[PRD]-Switching to log-level: PRD
+[X86-64]-13:14:0017-[PRD]-WARNING log-output.
+[13:15:0011 / 31.01.2016]-[DBG]-First custom-log output
+[13:15:0011 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:15:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:15:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0013 s and run-time 0.0013 s
+[13:15:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0024 s and run-time 0.0025 s
+[13:15:0011 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:15:0011-[DBG]-Testing new format template.
+[x86_64]-13:15:0011-[PRD]-Switching to log-level: DBG
+[x86_64]-13:15:0011-[DBG]-DEBUG log-output.
+[x86_64]-13:15:0011-[TST]-INFORMATION log-output.
+[x86_64]-13:15:0011-[PRD]-WARNING log-output.
+[x86_64]-13:15:0011-[PRD]-Switching to log-level: TST
+[x86_64]-13:15:0011-[TST]-INFORMATION log-output.
+[x86_64]-13:15:0011-[PRD]-WARNING log-output.
+[x86_64]-13:15:0011-[PRD]-Switching to log-level: PRD
+[x86_64]-13:15:0011-[PRD]-WARNING log-output.
+[13:15:0046 / 31.01.2016]-[DBG]-First custom-log output
+[13:15:0046 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:15:0046 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0001 s
+[13:15:0046 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0015 s and run-time 0.0015 s
+[13:15:0046 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0028 s and run-time 0.0028 s
+[13:15:0046 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:15:0046-[DBG]-Testing new format template.
+[x86_64]-13:15:0046-[PRD]-Switching to log-level: DBG
+[x86_64]-13:15:0046-[DBG]-DEBUG log-output.
+[x86_64]-13:15:0046-[TST]-INFORMATION log-output.
+[x86_64]-13:15:0046-[PRD]-WARNING log-output.
+[x86_64]-13:15:0046-[PRD]-Switching to log-level: TST
+[x86_64]-13:15:0046-[TST]-INFORMATION log-output.
+[x86_64]-13:15:0046-[PRD]-WARNING log-output.
+[x86_64]-13:15:0046-[PRD]-Switching to log-level: PRD
+[x86_64]-13:15:0046-[PRD]-WARNING log-output.
+[13:16:0016 / 31.01.2016]-[DBG]-First custom-log output
+[13:16:0016 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:16:0016 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[13:16:0016 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[13:16:0016 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[13:16:0016 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-13:16:0016-[DBG]-Testing new format template.
+[X86-64]-13:16:0016-[PRD]-Switching to log-level: DBG
+[X86-64]-13:16:0016-[DBG]-DEBUG log-output.
+[X86-64]-13:16:0016-[TST]-INFORMATION log-output.
+[X86-64]-13:16:0016-[PRD]-WARNING log-output.
+[X86-64]-13:16:0016-[PRD]-Switching to log-level: TST
+[X86-64]-13:16:0016-[TST]-INFORMATION log-output.
+[X86-64]-13:16:0016-[PRD]-WARNING log-output.
+[X86-64]-13:16:0016-[PRD]-Switching to log-level: PRD
+[X86-64]-13:16:0016-[PRD]-WARNING log-output.
+[13:16:0053 / 31.01.2016]-[DBG]-First custom-log output
+[13:16:0053 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:16:0053 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[13:16:0053 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0022 s and run-time 0.0020 s
+[13:16:0053 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0035 s and run-time 0.0034 s
+[13:16:0053 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:16:0053-[DBG]-Testing new format template.
+[x86_64]-13:16:0053-[PRD]-Switching to log-level: DBG
+[x86_64]-13:16:0053-[DBG]-DEBUG log-output.
+[x86_64]-13:16:0053-[TST]-INFORMATION log-output.
+[x86_64]-13:16:0053-[PRD]-WARNING log-output.
+[x86_64]-13:16:0053-[PRD]-Switching to log-level: TST
+[x86_64]-13:16:0053-[TST]-INFORMATION log-output.
+[x86_64]-13:16:0053-[PRD]-WARNING log-output.
+[x86_64]-13:16:0053-[PRD]-Switching to log-level: PRD
+[x86_64]-13:16:0053-[PRD]-WARNING log-output.
+[13:17:0027 / 31.01.2016]-[DBG]-First custom-log output
+[13:17:0027 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:17:0027 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:17:0027 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0023 s and run-time 0.0023 s
+[13:17:0027 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0041 s and run-time 0.0039 s
+[13:17:0027 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:17:0027-[DBG]-Testing new format template.
+[x86_64]-13:17:0027-[PRD]-Switching to log-level: DBG
+[x86_64]-13:17:0027-[DBG]-DEBUG log-output.
+[x86_64]-13:17:0027-[TST]-INFORMATION log-output.
+[x86_64]-13:17:0027-[PRD]-WARNING log-output.
+[x86_64]-13:17:0027-[PRD]-Switching to log-level: TST
+[x86_64]-13:17:0027-[TST]-INFORMATION log-output.
+[x86_64]-13:17:0027-[PRD]-WARNING log-output.
+[x86_64]-13:17:0027-[PRD]-Switching to log-level: PRD
+[x86_64]-13:17:0027-[PRD]-WARNING log-output.
+[13:17:0049 / 31.01.2016]-[DBG]-First custom-log output
+[13:17:0049 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:17:0049 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[13:17:0049 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0015 s and run-time 0.0015 s
+[13:17:0049 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0032 s and run-time 0.0030 s
+[13:17:0049 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:17:0049-[DBG]-Testing new format template.
+[x86_64]-13:17:0049-[PRD]-Switching to log-level: DBG
+[x86_64]-13:17:0049-[DBG]-DEBUG log-output.
+[x86_64]-13:17:0049-[TST]-INFORMATION log-output.
+[x86_64]-13:17:0049-[PRD]-WARNING log-output.
+[x86_64]-13:17:0049-[PRD]-Switching to log-level: TST
+[x86_64]-13:17:0049-[TST]-INFORMATION log-output.
+[x86_64]-13:17:0049-[PRD]-WARNING log-output.
+[x86_64]-13:17:0049-[PRD]-Switching to log-level: PRD
+[x86_64]-13:17:0049-[PRD]-WARNING log-output.
+[13:18:0017 / 31.01.2016]-[DBG]-First custom-log output
+[13:18:0017 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:18:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:18:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0017 s and run-time 0.0017 s
+[13:18:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0038 s and run-time 0.0037 s
+[13:18:0017 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:18:0017-[DBG]-Testing new format template.
+[x86_64]-13:18:0017-[PRD]-Switching to log-level: DBG
+[x86_64]-13:18:0017-[DBG]-DEBUG log-output.
+[x86_64]-13:18:0017-[TST]-INFORMATION log-output.
+[x86_64]-13:18:0017-[PRD]-WARNING log-output.
+[x86_64]-13:18:0017-[PRD]-Switching to log-level: TST
+[x86_64]-13:18:0017-[TST]-INFORMATION log-output.
+[x86_64]-13:18:0017-[PRD]-WARNING log-output.
+[x86_64]-13:18:0017-[PRD]-Switching to log-level: PRD
+[x86_64]-13:18:0017-[PRD]-WARNING log-output.
+[13:18:0057 / 31.01.2016]-[DBG]-First custom-log output
+[13:18:0057 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:18:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:18:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0017 s and run-time 0.0017 s
+[13:18:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0037 s and run-time 0.0036 s
+[13:18:0057 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:18:0057-[DBG]-Testing new format template.
+[x86_64]-13:18:0057-[PRD]-Switching to log-level: DBG
+[x86_64]-13:18:0057-[DBG]-DEBUG log-output.
+[x86_64]-13:18:0057-[TST]-INFORMATION log-output.
+[x86_64]-13:18:0057-[PRD]-WARNING log-output.
+[x86_64]-13:18:0057-[PRD]-Switching to log-level: TST
+[x86_64]-13:18:0057-[TST]-INFORMATION log-output.
+[x86_64]-13:18:0057-[PRD]-WARNING log-output.
+[x86_64]-13:18:0057-[PRD]-Switching to log-level: PRD
+[x86_64]-13:18:0057-[PRD]-WARNING log-output.
+[13:19:0012 / 31.01.2016]-[DBG]-First custom-log output
+[13:19:0012 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:19:0012 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:19:0012 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0016 s and run-time 0.0016 s
+[13:19:0012 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0030 s and run-time 0.0030 s
+[13:19:0012 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:19:0012-[DBG]-Testing new format template.
+[x86_64]-13:19:0012-[PRD]-Switching to log-level: DBG
+[x86_64]-13:19:0012-[DBG]-DEBUG log-output.
+[x86_64]-13:19:0012-[TST]-INFORMATION log-output.
+[x86_64]-13:19:0012-[PRD]-WARNING log-output.
+[x86_64]-13:19:0012-[PRD]-Switching to log-level: TST
+[x86_64]-13:19:0012-[TST]-INFORMATION log-output.
+[x86_64]-13:19:0012-[PRD]-WARNING log-output.
+[x86_64]-13:19:0012-[PRD]-Switching to log-level: PRD
+[x86_64]-13:19:0012-[PRD]-WARNING log-output.
+[13:19:0029 / 31.01.2016]-[DBG]-First custom-log output
+[13:19:0029 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:19:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:19:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0016 s and run-time 0.0016 s
+[13:19:0029 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0034 s and run-time 0.0034 s
+[13:19:0029 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:19:0029-[DBG]-Testing new format template.
+[x86_64]-13:19:0029-[PRD]-Switching to log-level: DBG
+[x86_64]-13:19:0029-[DBG]-DEBUG log-output.
+[x86_64]-13:19:0029-[TST]-INFORMATION log-output.
+[x86_64]-13:19:0029-[PRD]-WARNING log-output.
+[x86_64]-13:19:0029-[PRD]-Switching to log-level: TST
+[x86_64]-13:19:0029-[TST]-INFORMATION log-output.
+[x86_64]-13:19:0029-[PRD]-WARNING log-output.
+[x86_64]-13:19:0029-[PRD]-Switching to log-level: PRD
+[x86_64]-13:19:0029-[PRD]-WARNING log-output.
+[13:22:0030 / 31.01.2016]-[DBG]-First custom-log output
+[13:22:0030 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:22:0030 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0001 s and run-time 0.0001 s
+[13:22:0030 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0025 s and run-time 0.0025 s
+[13:22:0030 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0043 s and run-time 0.0042 s
+[13:22:0030 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:22:0030-[DBG]-Testing new format template.
+[x86_64]-13:22:0030-[PRD]-Switching to log-level: DBG
+[x86_64]-13:22:0030-[DBG]-DEBUG log-output.
+[x86_64]-13:22:0030-[TST]-INFORMATION log-output.
+[x86_64]-13:22:0030-[PRD]-WARNING log-output.
+[x86_64]-13:22:0030-[PRD]-Switching to log-level: TST
+[x86_64]-13:22:0030-[TST]-INFORMATION log-output.
+[x86_64]-13:22:0030-[PRD]-WARNING log-output.
+[x86_64]-13:22:0030-[PRD]-Switching to log-level: PRD
+[x86_64]-13:22:0030-[PRD]-WARNING log-output.
+[x86_64]-13:22:0030-[DBG]-Stack-trace depth 4:
+(2 (CCL::%READ-LIST-EXPRESSION #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> (NIL) #\)))
+(3 (CCL::READ-LIST #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> NIL #\)))
+(4 (CCL::%PARSE-EXPRESSION #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> #\( NIL))
+(5 (CCL::%READ-FORM #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> NIL (NIL)))
+
+[x86_64]-13:22:0030-[DBG]-Memory output:
+Approximately 16,646,144 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   16646144 (16256K)   21495808 (20992K)
+Stacks:          17105848 (16705K)   17067048 (16667K)      38800 (38K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[13:22:0047 / 31.01.2016]-[DBG]-First custom-log output
+[13:22:0047 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:22:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[13:22:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0018 s and run-time 0.0017 s
+[13:22:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0032 s and run-time 0.0031 s
+[13:22:0047 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:22:0047-[DBG]-Testing new format template.
+[x86_64]-13:22:0047-[PRD]-Switching to log-level: DBG
+[x86_64]-13:22:0047-[DBG]-DEBUG log-output.
+[x86_64]-13:22:0047-[TST]-INFORMATION log-output.
+[x86_64]-13:22:0047-[PRD]-WARNING log-output.
+[x86_64]-13:22:0047-[PRD]-Switching to log-level: TST
+[x86_64]-13:22:0047-[TST]-INFORMATION log-output.
+[x86_64]-13:22:0047-[PRD]-WARNING log-output.
+[x86_64]-13:22:0048-[PRD]-Switching to log-level: PRD
+[x86_64]-13:22:0048-[PRD]-WARNING log-output.
+[x86_64]-13:22:0048-[DBG]-Stack-trace depth 4:
+(0 (CCL::%PARSE-TOKEN #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> #\s (NIL)))
+(1 (CCL::%PARSE-EXPRESSION #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> #\s (NIL)))
+(2 (CCL::%READ-LIST-EXPRESSION #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> (NIL) #\)))
+(3 (CCL::READ-LIST #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> NIL #\)))
+(4 (CCL::%PARSE-EXPRESSION #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> #\( NIL))
+(5 (CCL::%READ-FORM #<CCL::RECORDING-CHARACTER-INPUT-STREAM #x302000D6B05D> NIL (NIL)))
+
+[x86_64]-13:22:0048-[DBG]-Memory output:
+Approximately 18,481,152 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   18481152 (18048K)   19660800 (19200K)
+Stacks:          17105848 (16705K)   17064056 (16664K)      41792 (41K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[13:23:0000 / 31.01.2016]-[DBG]-First custom-log output
+[13:23:0000 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[13:23:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0002 s and run-time 0.0002 s
+[13:23:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0025 s and run-time 0.0024 s
+[13:23:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0042 s and run-time 0.0042 s
+[13:23:0000 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-13:23:0000-[DBG]-Testing new format template.
+[x86_64]-13:23:0000-[PRD]-Switching to log-level: DBG
+[x86_64]-13:23:0000-[DBG]-DEBUG log-output.
+[x86_64]-13:23:0000-[TST]-INFORMATION log-output.
+[x86_64]-13:23:0000-[PRD]-WARNING log-output.
+[x86_64]-13:23:0000-[PRD]-Switching to log-level: TST
+[x86_64]-13:23:0000-[TST]-INFORMATION log-output.
+[x86_64]-13:23:0000-[PRD]-WARNING log-output.
+[x86_64]-13:23:0000-[PRD]-Switching to log-level: PRD
+[x86_64]-13:23:0000-[PRD]-WARNING log-output.

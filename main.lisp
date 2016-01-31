@@ -50,7 +50,7 @@
 	(dbg lg "First custom-log output")
 
 	;; simple log output formatted
-	(dbg lg "Second custom log output with format values:~A." 666)
+	(dbg lg "Second custom log output with format values: ~A" 666)
 
 	;; trace a function and ouput to combined-loggers.
 	(trace-fn 'squares lg "Trace fn ")

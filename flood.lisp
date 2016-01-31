@@ -8,8 +8,15 @@
 
 (in-package :flood)
 
-(require 'cl-stm)
+;;
+;; Requires
+;;
+(require 'bordeaux-threads)
+(require 'cl-ppcre)
 
+;;
+;; Constants and vars
+;;
 (defvar *previous-readtables* '())
 (defvar *global-log-level* :dbg)
 (defvar *global-config-file* #P"conf/init.conf")
@@ -92,8 +99,11 @@ backup-location."
 ;;
 ;; history
 ;; 
-(cl-stm:deftransaction ta-get-history ()
-  *history*)
+(defun ta-get-history ()
+  (let ((mutex (bordeaux-threads:make-lock)))
+	(bordeaux-threads:acquire-lock mutex)
+	(prog1 *history*
+	  (bordeaux-threads:release-lock mutex))))
 
 (defun get-history ()
   "Get history. If in async-thread,
@@ -103,8 +113,11 @@ then use atomic operation."
 		((not (equal (bordeaux-threads:current-thread) "async-thread")) ; not async thread?
 		 *history*)))
 
-(cl-stm:deftransaction ta-set-history (value)
-  (setq *history* value))
+(defun ta-set-history (value)
+  (let ((mutex (bordeaux-threads:make-lock)))
+	(bordeaux-threads:acquire-lock mutex)
+	(setq *history* value)
+	(bordeaux-threads:release-lock mutex)))
 
 (defun set-history (value)
   "Set history with value. If in async thread,
@@ -113,11 +126,15 @@ then use atomic operation"
 		 (ta-set-history value)))
   (setf *history* value))
 
-(cl-stm:deftransaction ta-append-to-history (value)
-  (let ((size (list-length *history*))) ; get size of history
-    (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
-		   (pop *history*))) ; pop the first entry
-    (setq *history* (append *history* (list value)))))
+(defun ta-append-to-history (value)
+  (let ((mutex (bordeaux-threads:make-lock))
+		(size (list-length *history*))) ; get size of history
+	(progn
+	  (bordeaux-threads:acquire-lock mutex)
+	  (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
+			 (pop *history*))) ; pop the first entry
+	  (setq *history* (append *history* (list value)))
+	  (bordeaux-threads:release-lock mutex))))
  
 (defun append-to-history (entry)
   "Append an entry to history."
@@ -429,12 +446,18 @@ into configured logger, if any."
 
 (defun stack-out (logger stack-depth fmt-msg &rest args)
   "Use swank to log a stack-trace."
-  (let* ((stack-msg (format nil "~A~%"
-							(swank-backend:call-with-debugging-environment
-							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
-		 (user-msg (format-with-list fmt-msg args))
-		 (log-msg (concatenate 'string user-msg stack-msg)))
-  (out logger :dbg log-msg)))
+  (let ((trace ""))
+	(let* ((msg-lst (swank-backend:call-with-debugging-environment
+					 (lambda () (swank:backtrace 0 (+ stack-depth 2)))))
+		   (stack-msg (progn 
+						(mapc (lambda (msg)
+								(setf trace (concatenate 'string 
+														 trace 
+														 (format nil "~A~%" msg))))
+							  msg-lst) trace))
+		   (user-msg (format-with-list fmt-msg args))
+		   (log-msg (concatenate 'string user-msg stack-msg)))
+	  (out logger :dbg log-msg))))
 
 
 ;; 

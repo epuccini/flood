@@ -9,13 +9,10 @@
 (in-package :cl-user)
 
 (defpackage :flood
-  (:use #:cl #:cl-ppcre #:cl-stm) 
+  (:use #:cl)
   (:export
    #:*history*
    #:*default-logger*
-   #:copy-file
-   #:move-file
-   #:file-size
    #:get-history
    #:set-history
    #:append-to-history
