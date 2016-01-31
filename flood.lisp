@@ -24,6 +24,7 @@
 
 (defstruct logger-type  writers formatter template)
  
+
 ;;
 ;; Time and strings
 ;;
@@ -334,8 +335,6 @@ templates for log-message and -entry."
 						  condition) *error-output*))))
 
 
-(setf *global-config* (load-config *global-config-file*))
-
 (defun set-configuration-filepath (filepath)
   "Set configuration filepath with absolute
 or relative paths. Side effects."
@@ -357,11 +356,11 @@ the 'room' function."
   (with-output-to-string (*standard-output*) (room)))
 
 
-(defun mem (logger level fmt-msg &rest fmt-args)
+(defun mem (logger fmt-msg &rest fmt-args)
   "Log memory usage by executing the 'room' function."
   (let* ((mem-string (make-memory-usage-string))
 		 (log-fmt-msg (concatenate 'string fmt-msg mem-string)))
-	(out logger level (format-with-list log-fmt-msg fmt-args))))
+	(out logger :dbg (format-with-list log-fmt-msg fmt-args))))
 
 
 (defmacro with-function-log (logger level msg &rest body)
@@ -413,20 +412,27 @@ into configured logger, if any."
   (remhash fn-name *trace-store*))
 
 
-(defun stack-out (logger level stack-depth fmt-msg &rest args)
+(defun stack-out (logger stack-depth fmt-msg &rest args)
   "Use swank to log a stack-trace."
   (let* ((stack-msg (format nil "~A~%"
 							(swank-backend:call-with-debugging-environment
 							 (lambda () (swank:backtrace 2 (+ stack-depth 2))))))
 		 (user-msg (format-with-list fmt-msg args))
 		 (log-msg (concatenate 'string user-msg stack-msg)))
-  (out logger level log-msg)))
+  (out logger :dbg log-msg)))
+
+
+;; 
+;; Load config and setup default logger
+;;
+(setf *global-config* (load-config *global-config-file*))
+(setf *default-logger* (reset-logger))
 
 
 ;;
 ;; Default logging functions
 ;;
-(setf *default-logger* (reset-logger))
+;(setf *default-logger* (reset-logger))
 
 (defun wrn (fmt-msg &rest args)
   (out *default-logger* :prd (format-with-list fmt-msg args)))
@@ -436,6 +442,18 @@ into configured logger, if any."
 
 (defun dbg (fmt-msg &rest args)
   (out *default-logger* :dbg (format-with-list fmt-msg args)))
+
+;;
+;; Default custom logging functions
+;;
+(defun cwrn (logger fmt-msg &rest args)
+  (out logger :prd (format-with-list fmt-msg args)))
+
+(defun cinf (logger fmt-msg &rest args)
+  (out logger :tst (format-with-list fmt-msg args)))
+
+(defun cdbg (logger fmt-msg &rest args)
+  (out logger :dbg (format-with-list fmt-msg args)))
 
 ;;
 ;; Async operations

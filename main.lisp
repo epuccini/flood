@@ -32,10 +32,10 @@
 			 :formatter #'ascii-formatter)))
 	(terpri)
 	;; simple log output
-	(out lg :dbg "First custom-log output")
+	(cdbg lg "First custom-log output")
 
 	;; simple log output formatted
-	(out lg :dbg "Second custom log output with format values:~A." 666)
+	(cdbg lg "Second custom log output with format values:~A." 666)
 
 	;; just append '°' for marking as async
 	°(wrn  "Async-out! Warning...")
@@ -70,25 +70,26 @@
 	(setq lg (make-logger :writers (list #'error-writer  #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
-	(out lg :dbg "Testing new format template.")
+	;; First output with custom template
+	(cdbg lg "Testing new format template.")
 
 	;; We are testing log-levels now:
 	;; set logging level to 
-	(out lg :prd "Switching to log-level: ~A" 
+	(cwrn lg "Switching to log-level: ~A" 
 		 (set-log-level :dbg))
 	(out lg :dbg "DEBUG log-output.")
 	(out lg :tst "TEST log-output.")
 	(out lg :prd "PRODUCTION log-output.")
 
 	;; set logging level to TEST
-	(out lg :prd "Switching to log-level: ~A" 
+	(cwrn lg "Switching to log-level: ~A" 
 		 (set-log-level :tst))
 	(out lg :dbg "DEBUG log-output.")
 	(out lg :tst "TEST log-output.")
 	(out lg :prd "PRODUCTION log-output.")
 
 	;; set logging level to PRODUCTION
-	(out lg :prd "Switching to log-level: ~A" 
+	(cwrn lg "Switching to log-level: ~A" 
 		 (set-log-level :prd))
 	(out lg :dbg "DEBUG log-output.")
 	(out lg :tst "TEST log-output.")
@@ -100,8 +101,8 @@
 	;; set new loggers
 	(let ((stack-depth 4))
 		  ;; log stack trace with depth 4
-		  (stack-out lg :dbg stack-depth 
+		  (stack-out lg stack-depth 
 					 "Stack-trace depth ~D:~%" stack-depth))
 		  
 	;; Output memory usage
-	(mem lg :dbg "Memory output:~%")))
+	(mem lg "Memory output:~%")))

@@ -62,3 +62,601 @@ Breakdown for dynamic space:
   55,971,504 bytes for 1,196,633 other objects.
   249,310,688 bytes for 5,366,720 dynamic objects (space total.)
 
+[09:43:0023 / 31.01.2016]-[DBG]-First custom-log output
+[09:43:0023 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:43:0023 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:43:0023 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:43:0023 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[09:43:0023 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:43:0023-[DBG]-Testing new format template.
+[X86-64]-09:43:0023-[PRD]-Switching to log-level: DBG
+[X86-64]-09:43:0023-[DBG]-DEBUG log-output.
+[X86-64]-09:43:0023-[TST]-TEST log-output.
+[X86-64]-09:43:0023-[PRD]-PRODUCTION log-output.
+[X86-64]-09:43:0023-[PRD]-Switching to log-level: TST
+[X86-64]-09:43:0023-[TST]-TEST log-output.
+[X86-64]-09:43:0023-[PRD]-PRODUCTION log-output.
+[X86-64]-09:43:0023-[PRD]-Switching to log-level: PRD
+[X86-64]-09:43:0023-[PRD]-PRODUCTION log-output.
+[X86-64]-09:43:0023-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:43:0024-[DBG]-Memory output:
+Dynamic space usage is:   244,128,272 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  57,311,904 bytes for   655,269 instance objects.
+  49,666,016 bytes for 3,104,126 cons objects.
+  32,390,512 bytes for   293,416 simple-vector objects.
+  31,156,000 bytes for   209,257 simple-character-string objects.
+  21,695,520 bytes for    30,640 code objects.
+  51,936,256 bytes for 1,099,594 other objects.
+  244,156,208 bytes for 5,392,302 dynamic objects (space total.)
+
+[09:44:0012 / 31.01.2016]-[DBG]-First custom-log output
+[09:44:0012 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:44:0012 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:44:0012 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:44:0012 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[09:44:0012 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:44:0012-[DBG]-Testing new format template.
+[X86-64]-09:44:0012-[PRD]-Switching to log-level: DBG
+[X86-64]-09:44:0012-[DBG]-DEBUG log-output.
+[X86-64]-09:44:0012-[TST]-TEST log-output.
+[X86-64]-09:44:0012-[PRD]-PRODUCTION log-output.
+[X86-64]-09:44:0012-[PRD]-Switching to log-level: TST
+[X86-64]-09:44:0012-[TST]-TEST log-output.
+[X86-64]-09:44:0012-[PRD]-PRODUCTION log-output.
+[X86-64]-09:44:0012-[PRD]-Switching to log-level: PRD
+[X86-64]-09:44:0012-[PRD]-PRODUCTION log-output.
+[X86-64]-09:44:0012-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:44:0013-[DBG]-Memory output:
+Dynamic space usage is:   294,173,984 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  73,012,256 bytes for   829,574 instance objects.
+  57,909,712 bytes for 3,619,357 cons objects.
+  38,683,184 bytes for   261,201 simple-character-string objects.
+  36,650,288 bytes for   325,337 simple-vector objects.
+  21,753,904 bytes for    30,737 code objects.
+  66,191,760 bytes for 1,431,802 other objects.
+  294,201,104 bytes for 6,498,008 dynamic objects (space total.)
+
+[09:46:0027 / 31.01.2016]-[DBG]-First custom-log output
+[09:46:0027 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:46:0027 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:46:0027 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[09:46:0027 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:46:0027 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:46:0027-[DBG]-Testing new format template.
+[X86-64]-09:46:0027-[PRD]-Switching to log-level: DBG
+[X86-64]-09:46:0027-[DBG]-DEBUG log-output.
+[X86-64]-09:46:0027-[TST]-TEST log-output.
+[X86-64]-09:46:0027-[PRD]-PRODUCTION log-output.
+[X86-64]-09:46:0027-[PRD]-Switching to log-level: TST
+[X86-64]-09:46:0027-[TST]-TEST log-output.
+[X86-64]-09:46:0027-[PRD]-PRODUCTION log-output.
+[X86-64]-09:46:0027-[PRD]-Switching to log-level: PRD
+[X86-64]-09:46:0027-[PRD]-PRODUCTION log-output.
+[X86-64]-09:46:0027-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:46:0027-[DBG]-Memory output:
+Dynamic space usage is:   286,828,080 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  71,993,968 bytes for   813,761 instance objects.
+  56,320,880 bytes for 3,520,055 cons objects.
+  36,587,936 bytes for   324,453 simple-vector objects.
+  34,974,112 bytes for   245,469 simple-character-string objects.
+  21,753,808 bytes for    30,737 code objects.
+  65,229,808 bytes for 1,408,868 other objects.
+  286,860,512 bytes for 6,343,343 dynamic objects (space total.)
+
+[09:48:0039 / 31.01.2016]-[DBG]-First custom-log output
+[09:48:0039 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:48:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:48:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[09:48:0039 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[09:48:0039 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:48:0039-[DBG]-Testing new format template.
+[X86-64]-09:48:0039-[PRD]-Switching to log-level: DBG
+[X86-64]-09:48:0039-[DBG]-DEBUG log-output.
+[X86-64]-09:48:0039-[TST]-TEST log-output.
+[X86-64]-09:48:0039-[PRD]-PRODUCTION log-output.
+[X86-64]-09:48:0039-[PRD]-Switching to log-level: TST
+[X86-64]-09:48:0039-[TST]-TEST log-output.
+[X86-64]-09:48:0039-[PRD]-PRODUCTION log-output.
+[X86-64]-09:48:0039-[PRD]-Switching to log-level: PRD
+[X86-64]-09:48:0039-[PRD]-PRODUCTION log-output.
+[X86-64]-09:48:0039-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:48:0040-[DBG]-Memory output:
+Dynamic space usage is:   236,925,360 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  54,306,480 bytes for   619,163 instance objects.
+  49,018,048 bytes for 3,063,628 cons objects.
+  31,865,920 bytes for   289,234 simple-vector objects.
+  29,754,176 bytes for   198,806 simple-character-string objects.
+  21,684,816 bytes for    30,623 code objects.
+  50,324,624 bytes for 1,056,200 other objects.
+  236,954,064 bytes for 5,257,654 dynamic objects (space total.)
+
+[09:50:0059 / 31.01.2016]-[DBG]-First custom-log output
+[09:50:0059 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:50:0059 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:50:0059 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:50:0059 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[09:50:0059 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:50:0059-[DBG]-Testing new format template.
+[X86-64]-09:50:0059-[PRD]-Switching to log-level: DBG
+[X86-64]-09:50:0059-[DBG]-DEBUG log-output.
+[X86-64]-09:50:0059-[TST]-TEST log-output.
+[X86-64]-09:50:0059-[PRD]-PRODUCTION log-output.
+[X86-64]-09:50:0059-[PRD]-Switching to log-level: TST
+[X86-64]-09:50:0059-[TST]-TEST log-output.
+[X86-64]-09:50:0059-[PRD]-PRODUCTION log-output.
+[X86-64]-09:50:0059-[PRD]-Switching to log-level: PRD
+[X86-64]-09:50:0059-[PRD]-PRODUCTION log-output.
+[X86-64]-09:50:0059-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:50:0059-[DBG]-Memory output:
+Dynamic space usage is:   119,355,968 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  24,505,184 bytes for 1,531,574 cons objects.
+  23,713,040 bytes for   278,881 instance objects.
+  21,478,336 bytes for    30,030 code objects.
+  20,991,312 bytes for   222,345 simple-vector objects.
+   9,114,704 bytes for    66,015 simple-character-string objects.
+  19,553,392 bytes for   380,061 other objects.
+  119,355,968 bytes for 2,508,906 dynamic objects (space total.)
+
+[09:51:0057 / 31.01.2016]-[DBG]-First custom-log output
+[09:51:0057 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:51:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:51:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:51:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[09:51:0057 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:51:0057-[DBG]-Testing new format template.
+[X86-64]-09:51:0057-[PRD]-Switching to log-level: DBG
+[X86-64]-09:51:0057-[DBG]-DEBUG log-output.
+[X86-64]-09:51:0057-[TST]-TEST log-output.
+[X86-64]-09:51:0057-[PRD]-PRODUCTION log-output.
+[X86-64]-09:51:0057-[PRD]-Switching to log-level: TST
+[X86-64]-09:51:0057-[TST]-TEST log-output.
+[X86-64]-09:51:0057-[PRD]-PRODUCTION log-output.
+[X86-64]-09:51:0057-[PRD]-Switching to log-level: PRD
+[X86-64]-09:51:0057-[PRD]-PRODUCTION log-output.
+[X86-64]-09:51:0057-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:51:0058-[DBG]-Memory output:
+Dynamic space usage is:   240,271,856 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  55,945,552 bytes for   634,348 instance objects.
+  49,869,520 bytes for 3,116,845 cons objects.
+  32,135,008 bytes for   290,692 simple-vector objects.
+  29,767,680 bytes for   198,650 simple-character-string objects.
+  21,687,680 bytes for    30,625 code objects.
+  50,911,232 bytes for 1,070,432 other objects.
+  240,316,672 bytes for 5,341,592 dynamic objects (space total.)
+
+[09:53:0015 / 31.01.2016]-[DBG]-First custom-log output
+[09:53:0015 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:53:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:53:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:53:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[09:53:0015 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:53:0015-[DBG]-Testing new format template.
+[X86-64]-09:53:0015-[PRD]-Switching to log-level: DBG
+[X86-64]-09:53:0015-[DBG]-DEBUG log-output.
+[X86-64]-09:53:0015-[TST]-TEST log-output.
+[X86-64]-09:53:0015-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0015-[PRD]-Switching to log-level: TST
+[X86-64]-09:53:0015-[TST]-TEST log-output.
+[X86-64]-09:53:0015-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0015-[PRD]-Switching to log-level: PRD
+[X86-64]-09:53:0015-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0015-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:53:0015-[DBG]-Memory output:
+Dynamic space usage is:   121,519,264 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  25,028,864 bytes for 1,564,304 cons objects.
+  24,233,632 bytes for   284,806 instance objects.
+  21,475,840 bytes for    30,030 code objects.
+  21,376,160 bytes for   224,664 simple-vector objects.
+   9,342,112 bytes for    66,755 simple-character-string objects.
+  20,099,104 bytes for   395,743 other objects.
+  121,555,712 bytes for 2,566,302 dynamic objects (space total.)
+
+[09:53:0026 / 31.01.2016]-[DBG]-First custom-log output
+[09:53:0026 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:53:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:53:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[09:53:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[09:53:0026 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:53:0026-[DBG]-Testing new format template.
+[X86-64]-09:53:0026-[PRD]-Switching to log-level: DBG
+[X86-64]-09:53:0026-[DBG]-DEBUG log-output.
+[X86-64]-09:53:0026-[TST]-TEST log-output.
+[X86-64]-09:53:0026-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0026-[PRD]-Switching to log-level: TST
+[X86-64]-09:53:0026-[TST]-TEST log-output.
+[X86-64]-09:53:0026-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0026-[PRD]-Switching to log-level: PRD
+[X86-64]-09:53:0026-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0026-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:53:0026-[DBG]-Memory output:
+Dynamic space usage is:   180,315,776 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  37,863,040 bytes for   438,594 instance objects.
+  36,478,512 bytes for 2,279,907 cons objects.
+  27,455,552 bytes for   256,005 simple-vector objects.
+  21,632,128 bytes for    30,539 code objects.
+  21,034,720 bytes for   150,005 simple-character-string objects.
+  35,851,824 bytes for   719,044 other objects.
+  180,315,776 bytes for 3,874,094 dynamic objects (space total.)
+
+[09:53:0050 / 31.01.2016]-[DBG]-First custom-log output
+[09:53:0050 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:53:0050 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:53:0050 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:53:0050 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[09:53:0050 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:53:0050-[DBG]-Testing new format template.
+[X86-64]-09:53:0050-[PRD]-Switching to log-level: DBG
+[X86-64]-09:53:0050-[DBG]-DEBUG log-output.
+[X86-64]-09:53:0050-[TST]-TEST log-output.
+[X86-64]-09:53:0050-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0050-[PRD]-Switching to log-level: TST
+[X86-64]-09:53:0050-[TST]-TEST log-output.
+[X86-64]-09:53:0050-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0050-[PRD]-Switching to log-level: PRD
+[X86-64]-09:53:0050-[PRD]-PRODUCTION log-output.
+[X86-64]-09:53:0050-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:53:0050-[DBG]-Memory output:
+Dynamic space usage is:   235,856,480 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  54,787,440 bytes for   624,910 instance objects.
+  47,232,752 bytes for 2,952,047 cons objects.
+  32,032,464 bytes for   290,359 simple-vector objects.
+  29,430,912 bytes for   201,504 simple-character-string objects.
+  21,688,720 bytes for    30,629 code objects.
+  50,711,296 bytes for 1,066,089 other objects.
+  235,883,584 bytes for 5,165,538 dynamic objects (space total.)
+
+[09:54:0028 / 31.01.2016]-[DBG]-First custom-log output
+[09:54:0028 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:54:0028 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:54:0028 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[09:54:0028 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0040 s
+[09:54:0028 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:54:0028-[DBG]-Testing new format template.
+[X86-64]-09:54:0028-[PRD]-Switching to log-level: DBG
+[X86-64]-09:54:0028-[DBG]-DEBUG log-output.
+[X86-64]-09:54:0028-[TST]-TEST log-output.
+[X86-64]-09:54:0028-[PRD]-PRODUCTION log-output.
+[X86-64]-09:54:0028-[PRD]-Switching to log-level: TST
+[X86-64]-09:54:0028-[TST]-TEST log-output.
+[X86-64]-09:54:0028-[PRD]-PRODUCTION log-output.
+[X86-64]-09:54:0028-[PRD]-Switching to log-level: PRD
+[X86-64]-09:54:0028-[PRD]-PRODUCTION log-output.
+[X86-64]-09:54:0028-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:54:0028-[DBG]-Memory output:
+Dynamic space usage is:   237,558,800 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  55,988,688 bytes for   635,280 instance objects.
+  48,082,400 bytes for 3,005,150 cons objects.
+  32,227,888 bytes for   292,017 simple-vector objects.
+  28,761,744 bytes for   197,988 simple-character-string objects.
+  21,687,680 bytes for    30,625 code objects.
+  50,884,656 bytes for 1,071,839 other objects.
+  237,633,056 bytes for 5,232,899 dynamic objects (space total.)
+
+[09:54:0047 / 31.01.2016]-[DBG]-First custom-log output
+[09:54:0047 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:54:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[09:54:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:54:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[09:54:0047 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:54:0047-[DBG]-Testing new format template.
+[X86-64]-09:54:0047-[PRD]-Switching to log-level: DBG
+[X86-64]-09:54:0047-[DBG]-DEBUG log-output.
+[X86-64]-09:54:0047-[TST]-TEST log-output.
+[X86-64]-09:54:0047-[PRD]-PRODUCTION log-output.
+[X86-64]-09:54:0047-[PRD]-Switching to log-level: TST
+[X86-64]-09:54:0047-[TST]-TEST log-output.
+[X86-64]-09:54:0048-[PRD]-PRODUCTION log-output.
+[X86-64]-09:54:0048-[PRD]-Switching to log-level: PRD
+[X86-64]-09:54:0048-[PRD]-PRODUCTION log-output.
+[X86-64]-09:54:0048-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:54:0048-[DBG]-Memory output:
+Dynamic space usage is:   180,106,128 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  37,863,360 bytes for   438,605 instance objects.
+  36,414,160 bytes for 2,275,885 cons objects.
+  27,346,000 bytes for   255,515 simple-vector objects.
+  21,632,128 bytes for    30,539 code objects.
+  21,041,920 bytes for   149,998 simple-character-string objects.
+  35,841,216 bytes for   718,568 other objects.
+  180,138,784 bytes for 3,869,110 dynamic objects (space total.)
+
+[09:56:0007 / 31.01.2016]-[DBG]-First custom-log output
+[09:56:0007 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:56:0007 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:56:0007 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[09:56:0007 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:56:0007 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:56:0007-[DBG]-Testing new format template.
+[X86-64]-09:56:0007-[PRD]-Switching to log-level: DBG
+[X86-64]-09:56:0007-[DBG]-DEBUG log-output.
+[X86-64]-09:56:0007-[TST]-TEST log-output.
+[X86-64]-09:56:0007-[PRD]-PRODUCTION log-output.
+[X86-64]-09:56:0007-[PRD]-Switching to log-level: TST
+[X86-64]-09:56:0007-[TST]-TEST log-output.
+[X86-64]-09:56:0007-[PRD]-PRODUCTION log-output.
+[X86-64]-09:56:0007-[PRD]-Switching to log-level: PRD
+[X86-64]-09:56:0007-[PRD]-PRODUCTION log-output.
+[X86-64]-09:56:0007-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:56:0008-[DBG]-Memory output:
+Dynamic space usage is:   240,155,936 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  56,816,800 bytes for   644,980 instance objects.
+  48,505,248 bytes for 3,031,578 cons objects.
+  32,393,264 bytes for   293,163 simple-vector objects.
+  29,308,560 bytes for   201,514 simple-character-string objects.
+  21,695,424 bytes for    30,640 code objects.
+  51,456,496 bytes for 1,085,959 other objects.
+  240,175,792 bytes for 5,287,834 dynamic objects (space total.)
+
+[09:56:0015 / 31.01.2016]-[DBG]-First custom-log output
+[09:56:0015 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[09:56:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:56:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[09:56:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[09:56:0015 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-09:56:0015-[DBG]-Testing new format template.
+[X86-64]-09:56:0015-[PRD]-Switching to log-level: DBG
+[X86-64]-09:56:0015-[DBG]-DEBUG log-output.
+[X86-64]-09:56:0015-[TST]-TEST log-output.
+[X86-64]-09:56:0015-[PRD]-PRODUCTION log-output.
+[X86-64]-09:56:0015-[PRD]-Switching to log-level: TST
+[X86-64]-09:56:0015-[TST]-TEST log-output.
+[X86-64]-09:56:0015-[PRD]-PRODUCTION log-output.
+[X86-64]-09:56:0015-[PRD]-Switching to log-level: PRD
+[X86-64]-09:56:0015-[PRD]-PRODUCTION log-output.
+[X86-64]-09:56:0015-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-09:56:0015-[DBG]-Memory output:
+Dynamic space usage is:   289,260,720 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  72,343,840 bytes for   816,332 instance objects.
+  56,496,640 bytes for 3,531,040 cons objects.
+  36,624,080 bytes for   324,623 simple-vector objects.
+  36,517,648 bytes for   252,319 simple-character-string objects.
+  21,753,808 bytes for    30,737 code objects.
+  65,556,480 bytes for 1,413,144 other objects.
+  289,292,496 bytes for 6,368,195 dynamic objects (space total.)
+
