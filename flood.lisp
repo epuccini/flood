@@ -53,7 +53,7 @@
 	  (get-decoded-time)
 	(declare (ignore day-of-week dst-p tz))
 	(let ((date-fmt (format nil "~2,'0d.~2,'0d.~2,'0d" day month year))
-		  (time-fmt (format nil "~2,'0d:~2,'0d:~4,'0d" hour minute second)))
+		  (time-fmt (format nil "~2,'0d:~2,'0d:~2,'0d" hour minute second)))
 	  (values date-fmt time-fmt))))
 
 ;;

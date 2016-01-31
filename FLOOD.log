@@ -1007,3 +1007,103 @@ Lisp Heap:       38141952 (37248K)   11403264 (11136K)   26738688 (26112K)
 Stacks:          17105848 (16705K)   17095136 (16694K)      10712 (10K)
 Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
 376763.620 MB reserved for heap expansion.
+[14:35:0006 / 31.01.2016]-[DBG]-First custom-log output
+[14:35:0006 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[14:35:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[14:35:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[14:35:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[14:35:0006 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-14:35:0006-[DBG]-Testing new format template.
+[X86-64]-14:35:0006-[PRD]-Switching to log-level: DBG
+[X86-64]-14:35:0006-[DBG]-DEBUG log-output.
+[X86-64]-14:35:0006-[TST]-INFORMATION log-output.
+[X86-64]-14:35:0006-[PRD]-WARNING log-output.
+[X86-64]-14:35:0006-[PRD]-Switching to log-level: TST
+[X86-64]-14:35:0006-[TST]-INFORMATION log-output.
+[X86-64]-14:35:0006-[PRD]-WARNING log-output.
+[X86-64]-14:35:0006-[PRD]-Switching to log-level: PRD
+[X86-64]-14:35:0006-[PRD]-WARNING log-output.
+[X86-64]-14:35:0006-[DBG]-Stack-trace depth 4:
+0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN STACK-OUT) {1007F3D62B}>) 
+1 (STACK-OUT #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION ERROR-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE") 4 "Stack-trace .. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[X86-64]-14:35:0006-[DBG]-Memory output:
+Dynamic space usage is:   136,315,840 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  26,762,848 bytes for 1,672,678 cons objects.
+  26,298,992 bytes for   314,885 instance objects.
+  22,074,384 bytes for    30,589 code objects.
+  21,628,016 bytes for   233,918 simple-vector objects.
+  14,680,352 bytes for   108,307 simple-character-string objects.
+  24,871,248 bytes for   469,452 other objects.
+  136,315,840 bytes for 2,829,829 dynamic objects (space total.)
+
+[14:37:47 / 31.01.2016]-[DBG]-First custom-log output
+[14:37:47 / 31.01.2016]-[DBG]-Second custom log output with format values: 666
+[14:37:47 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[14:37:47 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[14:37:47 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[14:37:47 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-14:37:47-[DBG]-Testing new format template.
+[X86-64]-14:37:47-[PRD]-Switching to log-level: DBG
+[X86-64]-14:37:47-[DBG]-DEBUG log-output.
+[X86-64]-14:37:47-[TST]-INFORMATION log-output.
+[X86-64]-14:37:47-[PRD]-WARNING log-output.
+[X86-64]-14:37:47-[PRD]-Switching to log-level: TST
+[X86-64]-14:37:47-[TST]-INFORMATION log-output.
+[X86-64]-14:37:47-[PRD]-WARNING log-output.
+[X86-64]-14:37:47-[PRD]-Switching to log-level: PRD
+[X86-64]-14:37:47-[PRD]-WARNING log-output.
+[X86-64]-14:37:47-[DBG]-Stack-trace depth 4:
+0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN STACK-OUT) {100CAFEF1B}>) 
+1 (STACK-OUT #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION ERROR-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE") 4 "Stack-trace .. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[X86-64]-14:37:47-[DBG]-Memory output:
+Dynamic space usage is:   215,283,296 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  46,992,464 bytes for   550,498 instance objects.
+  40,369,232 bytes for 2,523,077 cons objects.
+  31,245,344 bytes for   226,327 simple-character-string objects.
+  26,603,488 bytes for   271,644 simple-vector objects.
+  22,141,920 bytes for    30,701 code objects.
+  48,028,368 bytes for   952,933 other objects.
+  215,380,816 bytes for 4,555,180 dynamic objects (space total.)
+
