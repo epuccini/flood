@@ -32,19 +32,19 @@
 			 :formatter #'ascii-formatter)))
 	(terpri)
 	;; simple log output
-	(cdbg lg "First custom-log output")
+	(dbg lg "First custom-log output")
 
 	;; simple log output formatted
-	(cdbg lg "Second custom log output with format values:~A." 666)
+	(dbg lg "Second custom log output with format values:~A." 666)
 
 	;; just append '°' for marking as async
-	°(cwrn lg "Async-out! Warning...")
-	°(cdbg lg "Async-out! Debug...")
+	°(wrn lg "Async-out! Warning...")
+	°(dbg lg "Async-out! Debug...")
 
 	;; also for use with expressions
-	°(progn (cinf lg "I'm going to sleep...") 
+	°(progn (inf lg "I'm going to sleep...") 
 			(sleep 5)
-			(cinf lg "I've slept for ~D seconds." 5))
+			(inf lg "I've slept for ~D seconds." 5))
 
 	;; trace a function and ouput to combined-loggers.
 	(trace-fn 'squares lg "Trace fn ")
@@ -71,29 +71,29 @@
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 	;; First output with 
-	(cdbg lg "Testing new format template.")
+	(dbg lg "Testing new format template.")
 
 	;; We are testing log-levels now:
 	;; set logging level to 
-	(cwrn lg "Switching to log-level: ~A" 
+	(wrn lg "Switching to log-level: ~A" 
 		 (set-log-level :dbg))
-	(cdbg lg "DEBUG log-output.")
-	(cinf lg "INFORMATION log-output.")
-	(cwrn lg "WARNING log-output.")
+	(dbg lg "DEBUG log-output.")
+	(inf lg "INFORMATION log-output.")
+	(wrn lg "WARNING log-output.")
 
 	;; set logging level to TEST
-	(cwrn lg "Switching to log-level: ~A" 
+	(wrn lg "Switching to log-level: ~A" 
 		 (set-log-level :tst))
-	(cdbg lg "DEBUG log-output.")
-	(cinf lg "INFORMATION log-output.")
-	(cwrn lg "WARNING log-output.")
+	(dbg lg "DEBUG log-output.")
+	(inf lg "INFORMATION log-output.")
+	(wrn lg "WARNING log-output.")
 
 	;; set logging level to PRODUCTION
-	(cwrn lg "Switching to log-level: ~A" 
+	(wrn lg "Switching to log-level: ~A" 
 		 (set-log-level :prd))
-	(cdbg lg "DEBUG log-output.")
-	(cinf lg "INFORMATION log-output.")
-	(cwrn lg "WARNING log-output.")
+	(dbg lg "DEBUG log-output.")
+	(inf lg "INFORMATION log-output.")
+	(wrn lg "WARNING log-output.")
 
 	;; set log-level debug
 	(set-log-level :dbg)))

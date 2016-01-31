@@ -42,9 +42,6 @@
    #:wrn
    #:inf
    #:dbg
-   #:cwrn
-   #:cinf
-   #:cdbg
    #:enable-async-syntax
    #:disable-async-syntax
    #:async-prefix

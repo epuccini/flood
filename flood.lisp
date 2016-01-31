@@ -94,8 +94,9 @@ backup-location."
   "Get history. If in async-thread,
 then use atomic operation."
   (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
-        (progn *history*)))
-  *history*)
+		 (progn (mapc #'print *history*)))
+		((not (equal (bordeaux-threads:current-thread) "async-thread")) ; not async thread?
+		 (mapc #'print *history*))))
  
 
 (defun set-history (value)
@@ -432,26 +433,38 @@ into configured logger, if any."
 ;;
 ;; Default logging functions
 ;;
-(defun wrn (fmt-msg &rest args)
+(defgeneric wrn (first-arg &rest args)) ;; First arg is a logger or fmt-msg
+(defgeneric inf (first-arg &rest args))
+(defgeneric dbg (first-arg &rest args))
+
+(defmethod wrn ((fmt-msg string) &rest args)
+  "Write a warning-type log to default-logger because 
+no logger is given - the first argument a format-string."
   (out *default-logger* :prd (format-with-list fmt-msg args)))
 
-(defun inf (fmt-msg &rest args)
+(defmethod wrn ((logger logger-type) &rest args)
+  "Writes a warning-type log with given logger 'logger'."
+  (out logger :prd (format-with-list (car args) (cdr args))))
+
+
+(defmethod inf ((fmt-msg string) &rest args)
+  "Write an information-type log to default-logger because 
+no logger is given - the first argument a format-string."
   (out *default-logger* :tst (format-with-list fmt-msg args)))
 
-(defun dbg (fmt-msg &rest args)
+(defmethod inf ((logger logger-type) &rest args)
+  "Writes an information-type log with given logger 'logger'."
+  (out logger :tst (format-with-list (car args) (cdr args))))
+
+
+(defmethod dbg ((fmt-msg string) &rest args)
+  "Write a debug-type log to default-logger because 
+no logger is given - the first argument a format-string."
   (out *default-logger* :dbg (format-with-list fmt-msg args)))
 
-;;
-;; Default custom logging functions
-;;
-(defun cwrn (logger fmt-msg &rest args)
-  (out logger :prd (format-with-list fmt-msg args)))
-
-(defun cinf (logger fmt-msg &rest args)
-  (out logger :tst (format-with-list fmt-msg args)))
-
-(defun cdbg (logger fmt-msg &rest args)
-  (out logger :dbg (format-with-list fmt-msg args)))
+(defmethod dbg ((logger logger-type) &rest args)
+  "Writes a dfebug-type log with given logger 'logger'."
+  (out logger :dbg (format-with-list (car args) (cdr args))))
 
 ;;
 ;; Async operations
@@ -459,7 +472,8 @@ into configured logger, if any."
 (defun async-prefix (stream char)
   "Reader-macro function for 'async-' substitution."
   (declare (ignore char))
-  `(bordeaux-threads:make-thread (lambda () ,(read stream t nil t))))
+  `(bordeaux-threads:make-thread (lambda () ,(read stream t nil t)) 
+								 :name "async-thread"))
 
 (defmacro enable-async-syntax ()
   "Enable special-character '°' syntax."
