@@ -102,13 +102,13 @@
 	(wrn lg "WARNING log-output.")
 
 	;; set log-level debug
-	(set-log-level :dbg)))
+	(set-log-level :dbg)
 
 	;; set new loggers
-;	(let ((stack-depth 4))
+	(let ((stack-depth 4))
 		  ;; log stack trace with depth 4
-;		  (stack-out lg stack-depth 
-;					 "Stack-trace depth ~D:~%" stack-depth))
+		  (stack-out lg stack-depth 
+					 "Stack-trace depth ~D:~%" stack-depth))
 		  
 	;; Output memory usage
-;	(mem lg "Memory output:~%")))
+	(mem lg "Memory output:~%")))

@@ -445,7 +445,7 @@ into configured logger, if any."
 
 
 ;;
-;; Default logging functions
+;; Default logging methods / generics
 ;;
 (defgeneric wrn (first-arg &rest args)) ;; First arg is a logger or fmt-msg
 (defgeneric inf (first-arg &rest args))
