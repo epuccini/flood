@@ -26,6 +26,21 @@
   (wrn  "Hello log! Warning...")
   (dbg  "Hello log! Debug...")
 
+  ;; just append '°' for marking as async
+  °(wrn "Async-out! Warning...")
+  °(dbg "Async-out! Debug...")
+
+  ;; also for use with expressions
+  °(progn (inf "I'm going to sleep...") 
+		  (sleep 1)
+		  (inf "Zzzzzzz...")
+		  (sleep 1)
+		  (inf "Zzzzzzz...")
+		  (sleep 1)
+		  (inf "Zzzzzzz...")
+		  (sleep 1)
+		  (inf "I've slept for ~D seconds." 5))
+
   ;; init custom logger with writer and formatter 
   (let ((lg (make-bare-logger 
 			 :writers (list #'standard-writer #'file-writer)
@@ -36,15 +51,6 @@
 
 	;; simple log output formatted
 	(dbg lg "Second custom log output with format values:~A." 666)
-
-	;; just append '°' for marking as async
-	°(wrn lg "Async-out! Warning...")
-	°(dbg lg "Async-out! Debug...")
-
-	;; also for use with expressions
-	°(progn (inf lg "I'm going to sleep...") 
-			(sleep 5)
-			(inf lg "I've slept for ~D seconds." 5))
 
 	;; trace a function and ouput to combined-loggers.
 	(trace-fn 'squares lg "Trace fn ")

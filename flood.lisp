@@ -8,6 +8,8 @@
 
 (in-package :flood)
 
+(require 'cl-stm)
+
 (defvar *previous-readtables* '())
 (defvar *global-log-level* :dbg)
 (defvar *global-config-file* #P"conf/init.conf")
@@ -90,25 +92,37 @@ backup-location."
 ;;
 ;; history
 ;; 
+(cl-stm:deftransaction ta-get-history ()
+  *history*)
+
 (defun get-history ()
   "Get history. If in async-thread,
 then use atomic operation."
   (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
-		 (progn (mapc #'print *history*)))
+		 (ta-get-history))
 		((not (equal (bordeaux-threads:current-thread) "async-thread")) ; not async thread?
-		 (mapc #'print *history*))))
- 
+		 *history*)))
+
+(cl-stm:deftransaction ta-set-history (value)
+  (setq *history* value))
 
 (defun set-history (value)
   "Set history with value. If in async thread,
 then use atomic operation"
   (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
-		 (progn (setf *history* value))))
+		 (ta-set-history value)))
   (setf *history* value))
- 
+
+(cl-stm:deftransaction ta-append-to-history (value)
+  (let ((size (list-length *history*))) ; get size of history
+    (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
+		   (pop *history*))) ; pop the first entry
+    (setq *history* (append *history* (list value)))))
  
 (defun append-to-history (entry)
   "Append an entry to history."
+  (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
+		 (ta-append-to-history entry)))
   (let ((size (list-length *history*))) ; get size of history
     (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
 		   (pop *history*))) ; pop the first entry

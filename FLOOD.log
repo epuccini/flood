@@ -1729,3 +1729,226 @@ Execution in real-time 0.0000 s and run-time 0.0000 s.
 [X86-64]-10:59:0014-[PRD]-Switching to log-level: PRD
 [X86-64]-10:59:0014-[PRD]-WARNING log-output.
 [X86-64]-10:59:0019-[TST]-I've slept for 5 seconds.
+[11:00:0043 / 31.01.2016]-[DBG]-First custom-log output
+[11:00:0043 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:00:0043 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:00:0043 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:00:0043 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[11:00:0043 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[11:00:0043 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:00:0043-[DBG]-Testing new format template.
+[X86-64]-11:00:0043-[PRD]-Switching to log-level: DBG
+[X86-64]-11:00:0043-[DBG]-DEBUG log-output.
+[X86-64]-11:00:0043-[TST]-INFORMATION log-output.
+[X86-64]-11:00:0043-[PRD]-WARNING log-output.
+[X86-64]-11:00:0043-[PRD]-Switching to log-level: TST
+[X86-64]-11:00:0043-[TST]-INFORMATION log-output.
+[X86-64]-11:00:0043-[PRD]-WARNING log-output.
+[X86-64]-11:00:0043-[PRD]-Switching to log-level: PRD
+[X86-64]-11:00:0043-[PRD]-WARNING log-output.
+[X86-64]-11:00:0048-[TST]-I've slept for 5 seconds.
+[11:00:0055 / 31.01.2016]-[DBG]-First custom-log output
+[11:00:0055 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:00:0055 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:00:0055 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:00:0055 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0020 s
+[11:00:0055 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0030 s
+[11:00:0055 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:00:0055-[DBG]-Testing new format template.
+[X86-64]-11:00:0055-[PRD]-Switching to log-level: DBG
+[X86-64]-11:00:0055-[DBG]-DEBUG log-output.
+[X86-64]-11:00:0055-[TST]-INFORMATION log-output.
+[X86-64]-11:00:0055-[PRD]-WARNING log-output.
+[X86-64]-11:00:0055-[PRD]-Switching to log-level: TST
+[X86-64]-11:00:0055-[TST]-INFORMATION log-output.
+[X86-64]-11:00:0055-[PRD]-WARNING log-output.
+[X86-64]-11:00:0055-[PRD]-Switching to log-level: PRD
+[X86-64]-11:00:0055-[PRD]-WARNING log-output.
+[X86-64]-11:01:0000-[TST]-I've slept for 5 seconds.
+[11:07:0041 / 31.01.2016]-[DBG]-First custom-log output
+[11:07:0041 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:07:0041 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:07:0041 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:07:0041 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[11:07:0041 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[11:07:0041 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:07:0041-[DBG]-Testing new format template.
+[X86-64]-11:07:0041-[PRD]-Switching to log-level: DBG
+[X86-64]-11:07:0041-[DBG]-DEBUG log-output.
+[X86-64]-11:07:0041-[TST]-INFORMATION log-output.
+[X86-64]-11:07:0041-[PRD]-WARNING log-output.
+[X86-64]-11:07:0041-[PRD]-Switching to log-level: TST
+[X86-64]-11:07:0041-[TST]-INFORMATION log-output.
+[X86-64]-11:07:0041-[PRD]-WARNING log-output.
+[X86-64]-11:07:0041-[PRD]-Switching to log-level: PRD
+[X86-64]-11:07:0041-[PRD]-WARNING log-output.
+[X86-64]-11:07:0046-[TST]-I've slept for 5 seconds.
+[11:09:0004 / 31.01.2016]-[DBG]-First custom-log output
+[11:09:0004 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:09:0004 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:09:0004 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:09:0004 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[11:09:0004 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0030 s
+[11:09:0004 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:09:0004-[DBG]-Testing new format template.
+[X86-64]-11:09:0004-[PRD]-Switching to log-level: DBG
+[X86-64]-11:09:0004-[DBG]-DEBUG log-output.
+[X86-64]-11:09:0004-[TST]-INFORMATION log-output.
+[X86-64]-11:09:0004-[PRD]-WARNING log-output.
+[X86-64]-11:09:0004-[PRD]-Switching to log-level: TST
+[X86-64]-11:09:0004-[TST]-INFORMATION log-output.
+[X86-64]-11:09:0004-[PRD]-WARNING log-output.
+[X86-64]-11:09:0004-[PRD]-Switching to log-level: PRD
+[X86-64]-11:09:0004-[PRD]-WARNING log-output.
+[X86-64]-11:09:0009-[TST]-I've slept for 5 seconds.
+[11:09:0045 / 31.01.2016]-[DBG]-First custom-log output
+[11:09:0045 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:09:0045 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:09:0045 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:09:0045 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[11:09:0045 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[11:09:0045 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:09:0045-[DBG]-Testing new format template.
+[X86-64]-11:09:0045-[PRD]-Switching to log-level: DBG
+[X86-64]-11:09:0045-[DBG]-DEBUG log-output.
+[X86-64]-11:09:0045-[TST]-INFORMATION log-output.
+[X86-64]-11:09:0045-[PRD]-WARNING log-output.
+[X86-64]-11:09:0045-[PRD]-Switching to log-level: TST
+[X86-64]-11:09:0045-[TST]-INFORMATION log-output.
+[X86-64]-11:09:0045-[PRD]-WARNING log-output.
+[X86-64]-11:09:0045-[PRD]-Switching to log-level: PRD
+[X86-64]-11:09:0045-[PRD]-WARNING log-output.
+[X86-64]-11:09:0050-[TST]-I've slept for 5 seconds.
+[11:14:0056 / 31.01.2016]-[DBG]-First custom-log output
+[11:14:0056 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:14:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:14:0056 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:14:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[11:14:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[11:14:0056 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:14:0056-[DBG]-Testing new format template.
+[X86-64]-11:14:0056-[PRD]-Switching to log-level: DBG
+[X86-64]-11:14:0056-[DBG]-DEBUG log-output.
+[X86-64]-11:14:0056-[TST]-INFORMATION log-output.
+[X86-64]-11:14:0056-[PRD]-WARNING log-output.
+[X86-64]-11:14:0056-[PRD]-Switching to log-level: TST
+[X86-64]-11:14:0056-[TST]-INFORMATION log-output.
+[X86-64]-11:14:0056-[PRD]-WARNING log-output.
+[X86-64]-11:14:0056-[PRD]-Switching to log-level: PRD
+[X86-64]-11:14:0056-[PRD]-WARNING log-output.
+[X86-64]-11:15:0001-[TST]-I've slept for 5 seconds.
+[11:15:0010 / 31.01.2016]-[DBG]-First custom-log output
+[11:15:0010 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:15:0010 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:15:0010 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:15:0010 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[11:15:0010 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[11:15:0010 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:15:0010-[DBG]-Testing new format template.
+[X86-64]-11:15:0010-[PRD]-Switching to log-level: DBG
+[X86-64]-11:15:0010-[DBG]-DEBUG log-output.
+[X86-64]-11:15:0010-[TST]-INFORMATION log-output.
+[X86-64]-11:15:0010-[PRD]-WARNING log-output.
+[X86-64]-11:15:0010-[PRD]-Switching to log-level: TST
+[X86-64]-11:15:0010-[TST]-INFORMATION log-output.
+[X86-64]-11:15:0010-[PRD]-WARNING log-output.
+[X86-64]-11:15:0010-[PRD]-Switching to log-level: PRD
+[X86-64]-11:15:0010-[PRD]-WARNING log-output.
+[X86-64]-11:15:0015-[TST]-I've slept for 5 seconds.
+[11:16:0056 / 31.01.2016]-[DBG]-First custom-log output
+[11:16:0056 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:16:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:16:0056 / 31.01.2016]-[TST]-I'm going to sleep...
+[11:16:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[11:16:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0030 s
+[11:16:0056 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:16:0056-[DBG]-Testing new format template.
+[X86-64]-11:16:0056-[PRD]-Switching to log-level: DBG
+[X86-64]-11:16:0056-[DBG]-DEBUG log-output.
+[X86-64]-11:16:0056-[TST]-INFORMATION log-output.
+[X86-64]-11:16:0056-[PRD]-WARNING log-output.
+[X86-64]-11:16:0056-[PRD]-Switching to log-level: TST
+[X86-64]-11:16:0056-[TST]-INFORMATION log-output.
+[X86-64]-11:16:0056-[PRD]-WARNING log-output.
+[X86-64]-11:16:0056-[PRD]-Switching to log-level: PRD
+[X86-64]-11:16:0056-[PRD]-WARNING log-output.
+[X86-64]-11:17:0001-[TST]-I've slept for 5 seconds.
+[11:19:0015 / 31.01.2016]-[DBG]-First custom-log output
+[11:19:0015 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[11:19:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:19:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[11:19:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[11:19:0015 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-11:19:0015-[DBG]-Testing new format template.
+[X86-64]-11:19:0015-[PRD]-Switching to log-level: DBG
+[X86-64]-11:19:0015-[DBG]-DEBUG log-output.
+[X86-64]-11:19:0015-[TST]-INFORMATION log-output.
+[X86-64]-11:19:0015-[PRD]-WARNING log-output.
+[X86-64]-11:19:0015-[PRD]-Switching to log-level: TST
+[X86-64]-11:19:0015-[TST]-INFORMATION log-output.
+[X86-64]-11:19:0015-[PRD]-WARNING log-output.
+[X86-64]-11:19:0015-[PRD]-Switching to log-level: PRD
+[X86-64]-11:19:0015-[PRD]-WARNING log-output.

@@ -9,7 +9,7 @@
 (in-package :cl-user)
 
 (defpackage :flood
-  (:use #:cl #:cl-ppcre) 
+  (:use #:cl #:cl-ppcre #:cl-stm) 
   (:export
    #:*history*
    #:*default-logger*
