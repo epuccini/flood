@@ -71,6 +71,7 @@ Binary copy of file is made."
 backup-location."
   (handler-case
 	  (let ((to (concatenate 'string 
+							 (getf *global-config* :BACKUP_LOCATION)
 							 (getf *global-config* :LOG_FILE_NAME) 
 							 "_"
 							 (make-day-string)
@@ -123,45 +124,33 @@ then use atomic operation"
 "Write to error-stream."
   (write-line message common-lisp:*error-output*))
 
+(defun check-file-size (filename)
+  "Checks the size of a given file and backup
+the file if it exceeds LOG_MAX_SIZE in KB."
+  (handler-case
+	  (let ((filesize (file-size filename)))
+		;; check if log exceeds maximum size
+		(cond ((> filesize (* 1024 (getf *global-config* :LOG_MAX_SIZE)))
+			   (backup-file filename))))
+	(error (condition)
+	  (write-line (format nil "Error in 'check-file-size' ~A" condition) 
+				  *error-output*))))
+
+
 (defun file-writer (message)
   "Write to file. Apppend or create file."
   (let* ((filename (concatenate 'string 
-								(getf *global-config* :LOG_FILE_NAME) ".log"))
-		 (filesize (file-size filename)))
+								(getf *global-config* :LOG_FILE_NAME) ".log")))
+
+	(check-file-size filename)
 	(handler-case 
-		(progn
-		  ;; check if log exceeds maximum size
-		  (cond ((> filesize (getf *global-config* :LOG_MAX_SIZE))
-				 (backup-file filename)))
-		  ;; create file for writing
-		  (with-open-file (stream filename :direction :output)
-			(write-line message stream)))
+	    (with-open-file (stream filename :direction :output)
+		  (write-line message stream))
 	  ;; if file exists already then append to file
 	  (error ()
 		(handler-case
 			(with-open-file (stream filename 
 									:direction :output
-									:if-exists :append)
-			  (write-line message stream))
-		  (error (condition)
-			(write-line (format nil "Error in 'file-writer' ~A" condition) 
-						*error-output*)))))))
-
-
-(defun rotating-file-writer (message)
-"Write to file. When day-change change file-
-path and delete files from a week before."
-  (let ((filename (concatenate 'string 
-							   (getf *global-config* :LOG_FILE_NAME) 
-							   "_"
-							   (make-day-string)
-							   ".log")))
-	(handler-case 
-		(with-open-file (stream filename :direction :output)
-		  (write-line message stream))
-	  (error ()
-		(handler-case
-			(with-open-file (stream filename :direction :output
 									:if-exists :append)
 			  (write-line message stream))
 		  (error (condition)
@@ -392,7 +381,7 @@ the 'room' function."
 					  ,time-real-time
 					  ,time-run-time)))))
 
-(defun trace-out (fn-name logger level fmt-msg &rest args)
+(defun trace-fn (fn-name logger fmt-msg &rest args)
   "Traces a function and outputs its results and execution-time.
 into configured logger, if any."
   (let* ((real-base (get-internal-real-time)) ; store current times
@@ -411,13 +400,13 @@ into configured logger, if any."
 									   time-real-time time-run-time))
 							  (log-msg (concatenate 'string 
 													user-msg result-msg time-msg)))
-					 (out logger level log-msg))))))) ;; log function msg
+					 (out logger :dbg log-msg))))))) ;; log function msg
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
 
 
-(defun untrace-out (fn-name)
+(defun untrace-fn (fn-name)
   "Set function in fn-name to their old version in *trace-store*"
   (setf (symbol-function (find-symbol (string-upcase fn-name))) 
 		(gethash fn-name *trace-store*))

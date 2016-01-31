@@ -1,9 +1,14 @@
-(:ERROR_FORMAT_STRING "$TIME--$LEVEL--$MESSAGE"
+(:ENTRY_TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE"
+ :WRITERS ( flood:standard-writer )
+ :FORMATTER flood:ascii-formatter
  :LOG_FILE_NAME "FLOOD"
+ :LOG_MAX_SIZE 2 ;; KB
+ :HISTORY_MAX_LINES 1000
+ :BACKUP_LOCATION "/Users/edward/Desktop/"
  :EMAIL_FROM "application@gmx.de"
  :EMAIL_TO "epuccini@gmx.de"
  :EMAIL_SERVER "mail.gmx.de"
- :EMAIL_TEMPLATE "Hello Dir sirs,
+ :EMAIL_TEMPLATE "Dear sirs,
 
 a serious application-error has occured:
   

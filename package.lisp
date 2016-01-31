@@ -36,8 +36,8 @@
    #:out
    #:get-log-level
    #:with-function-log
-   #:trace-out
-   #:untrace-out
+   #:trace-fn
+   #:untrace-fn
    #:stack-out
    #:wrn
    #:inf

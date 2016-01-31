@@ -32,10 +32,10 @@
 			 :formatter #'ascii-formatter)))
 	(terpri)
 	;; simple log output
-	(out lg :dbg "First log output")
+	(out lg :dbg "First custom-log output")
 
 	;; simple log output formatted
-	(out lg :dbg "Second log output ~A." 666)
+	(out lg :dbg "Second custom log output with format values:~A." 666)
 
 	;; just append '°' for marking as async
 	°(wrn  "Async-out! Warning...")
@@ -47,7 +47,7 @@
 			(inf "I've slept for ~D seconds." 5))
 
 	;; trace a function and ouput to combined-loggers.
-	(trace-out 'squares lg :dbg "Trace fn ")
+	(trace-fn 'squares lg "Trace fn ")
 
 	;; trigger tracing
 	(squares 2)
@@ -55,7 +55,7 @@
 	(squares 8)
 
 	;; cleanup and reset to old fn
-	(untrace-out 'squares)
+	(untrace-fn 'squares)
 
 	;; log a function body
 	(with-function-log lg :dbg "Log function:"
