@@ -660,3 +660,606 @@ Breakdown for dynamic space:
   65,556,480 bytes for 1,413,144 other objects.
   289,292,496 bytes for 6,368,195 dynamic objects (space total.)
 
+[10:08:0048 / 31.01.2016]-[DBG]-First custom-log output
+[10:08:0048 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:08:0048 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:08:0048 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:08:0048 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:08:0048 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:08:0048-[DBG]-Testing new format template.
+[X86-64]-10:08:0048-[PRD]-Switching to log-level: DBG
+[X86-64]-10:08:0048-[DBG]-DEBUG log-output.
+[X86-64]-10:08:0048-[TST]-TEST log-output.
+[X86-64]-10:08:0048-[PRD]-PRODUCTION log-output.
+[X86-64]-10:08:0048-[PRD]-Switching to log-level: TST
+[X86-64]-10:08:0048-[TST]-TEST log-output.
+[X86-64]-10:08:0048-[PRD]-PRODUCTION log-output.
+[X86-64]-10:08:0048-[PRD]-Switching to log-level: PRD
+[X86-64]-10:08:0048-[PRD]-PRODUCTION log-output.
+[X86-64]-10:08:0048-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-10:08:0049-[DBG]-Memory output:
+Dynamic space usage is:   286,679,856 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  70,309,184 bytes for   801,652 instance objects.
+  58,260,208 bytes for 3,641,263 cons objects.
+  36,860,192 bytes for   247,667 simple-character-string objects.
+  35,634,016 bytes for   317,381 simple-vector objects.
+  21,669,648 bytes for    30,575 code objects.
+  64,038,016 bytes for 1,377,461 other objects.
+  286,771,264 bytes for 6,415,999 dynamic objects (space total.)
+
+[10:09:0005 / 31.01.2016]-[DBG]-First custom-log output
+[10:09:0005 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:09:0005 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:09:0005 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:09:0005 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:09:0005 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:09:0006-[DBG]-Testing new format template.
+[X86-64]-10:09:0006-[PRD]-Switching to log-level: DBG
+[X86-64]-10:09:0006-[DBG]-DEBUG log-output.
+[X86-64]-10:09:0006-[TST]-TEST log-output.
+[X86-64]-10:09:0006-[PRD]-PRODUCTION log-output.
+[X86-64]-10:09:0006-[PRD]-Switching to log-level: TST
+[X86-64]-10:09:0006-[TST]-TEST log-output.
+[X86-64]-10:09:0006-[PRD]-PRODUCTION log-output.
+[X86-64]-10:09:0006-[PRD]-Switching to log-level: PRD
+[X86-64]-10:09:0006-[PRD]-PRODUCTION log-output.
+[X86-64]-10:09:0006-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-10:09:0006-[DBG]-Memory output:
+Dynamic space usage is:   183,110,240 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  38,345,776 bytes for 2,396,611 cons objects.
+  37,873,376 bytes for   438,734 instance objects.
+  27,349,088 bytes for   255,584 simple-vector objects.
+  22,007,216 bytes for   150,478 simple-character-string objects.
+  21,632,128 bytes for    30,539 code objects.
+  35,929,232 bytes for   720,049 other objects.
+  183,136,816 bytes for 3,991,995 dynamic objects (space total.)
+
+[10:20:0009 / 31.01.2016]-[DBG]-First custom-log output
+[10:20:0009 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:20:0009 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:20:0009 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:20:0009 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:20:0009 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:20:0009-[DBG]-Testing new format template.
+[X86-64]-10:20:0009-[PRD]-Switching to log-level: DBG
+[X86-64]-10:20:0009-[DBG]-DEBUG log-output.
+[X86-64]-10:20:0009-[TST]-TEST log-output.
+[X86-64]-10:20:0009-[PRD]-PRODUCTION log-output.
+[X86-64]-10:20:0009-[PRD]-Switching to log-level: TST
+[X86-64]-10:20:0009-[TST]-TEST log-output.
+[X86-64]-10:20:0009-[PRD]-PRODUCTION log-output.
+[X86-64]-10:20:0009-[PRD]-Switching to log-level: PRD
+[X86-64]-10:20:0009-[PRD]-PRODUCTION log-output.
+[X86-64]-10:20:0009-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-10:20:0010-[DBG]-Memory output:
+Dynamic space usage is:   247,666,112 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  58,658,432 bytes for   679,484 instance objects.
+  52,075,680 bytes for 3,254,730 cons objects.
+  32,388,576 bytes for   293,386 simple-vector objects.
+  30,324,192 bytes for   202,287 simple-character-string objects.
+  21,695,424 bytes for    30,640 code objects.
+  52,546,784 bytes for 1,124,445 other objects.
+  247,689,088 bytes for 5,584,972 dynamic objects (space total.)
+
+[10:20:0024 / 31.01.2016]-[DBG]-First custom-log output
+[10:20:0024 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:20:0024 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:20:0024 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:20:0024 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:20:0024 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:20:0024-[DBG]-Testing new format template.
+[X86-64]-10:20:0024-[PRD]-Switching to log-level: DBG
+[X86-64]-10:20:0024-[DBG]-DEBUG log-output.
+[X86-64]-10:20:0024-[TST]-TEST log-output.
+[X86-64]-10:20:0024-[PRD]-PRODUCTION log-output.
+[X86-64]-10:20:0024-[PRD]-Switching to log-level: TST
+[X86-64]-10:20:0024-[TST]-TEST log-output.
+[X86-64]-10:20:0024-[PRD]-PRODUCTION log-output.
+[X86-64]-10:20:0024-[PRD]-Switching to log-level: PRD
+[X86-64]-10:20:0024-[PRD]-PRODUCTION log-output.
+[X86-64]-10:20:0024-[DBG]-Stack-trace depth 4:
+((2 (MAIN) (RESTARTABLE T)) (3 (RUN) (RESTARTABLE T))
+ (4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>))
+ (5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>)))
+
+[X86-64]-10:20:0025-[DBG]-Memory output:
+Dynamic space usage is:   296,990,688 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         4,064 bytes.
+Control stack usage is:        8,328 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  74,241,056 bytes for   851,750 instance objects.
+  60,147,488 bytes for 3,759,218 cons objects.
+  37,516,656 bytes for   252,938 simple-character-string objects.
+  36,655,776 bytes for   325,533 simple-vector objects.
+  21,753,808 bytes for    30,737 code objects.
+  66,707,632 bytes for 1,454,061 other objects.
+  297,022,416 bytes for 6,674,237 dynamic objects (space total.)
+
+[10:20:0038 / 31.01.2016]-[DBG]-First custom-log output
+[10:20:0038 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:20:0038 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:20:0038 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:20:0038 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:21:0024 / 31.01.2016]-[DBG]-First custom-log output
+[10:21:0024 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:21:0024 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:21:0024 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:21:0024 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:23:0007 / 31.01.2016]-[DBG]-First custom-log output
+[10:23:0007 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:23:0007 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:23:0007 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:23:0007 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:23:0056 / 31.01.2016]-[DBG]-First custom-log output
+[10:23:0056 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:23:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:23:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:23:0056 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:24:0011 / 31.01.2016]-[DBG]-First custom-log output
+[10:24:0011 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:24:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:24:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:24:0011 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:24:0023 / 31.01.2016]-[DBG]-First custom-log output
+[10:24:0023 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:24:0023 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:24:0023 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:24:0023 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:25:0003 / 31.01.2016]-[DBG]-First custom-log output
+[10:25:0003 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:25:0003 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:25:0003 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:25:0003 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:25:0026 / 31.01.2016]-[DBG]-First custom-log output
+[10:25:0026 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:25:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:25:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:25:0026 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[X86-64]-10:25:0026-[DBG]-Testing new format template.
+[X86-64]-10:25:0026-[PRD]-Switching to log-level: DBG
+[X86-64]-10:25:0026-[DBG]-DEBUG log-output.
+[X86-64]-10:25:0026-[TST]-TEST log-output.
+[X86-64]-10:25:0026-[PRD]-PRODUCTION log-output.
+[X86-64]-10:25:0026-[PRD]-Switching to log-level: TST
+[X86-64]-10:25:0026-[TST]-TEST log-output.
+[X86-64]-10:25:0026-[PRD]-PRODUCTION log-output.
+[X86-64]-10:25:0026-[PRD]-Switching to log-level: PRD
+[X86-64]-10:25:0026-[PRD]-PRODUCTION log-output.
+[10:26:0014 / 31.01.2016]-[DBG]-First custom-log output
+[10:26:0014 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:26:0014 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:26:0014 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:26:0014 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:26:0014 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:26:0014 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:26:0014 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:26:0019 / 31.01.2016]-[TST]-I've slept for 5 seconds.
+[10:26:0047 / 31.01.2016]-[DBG]-First custom-log output
+[10:26:0047 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:26:0047 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:26:0047 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:26:0047 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:26:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:26:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:26:0047 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[10:26:0047 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:26:0047-[DBG]-Testing new format template.
+[X86-64]-10:26:0047-[PRD]-Switching to log-level: DBG
+[X86-64]-10:26:0047-[DBG]-DEBUG log-output.
+[X86-64]-10:26:0047-[TST]-TEST log-output.
+[X86-64]-10:26:0047-[PRD]-PRODUCTION log-output.
+[X86-64]-10:26:0047-[PRD]-Switching to log-level: TST
+[X86-64]-10:26:0047-[TST]-TEST log-output.
+[X86-64]-10:26:0047-[PRD]-PRODUCTION log-output.
+[X86-64]-10:26:0047-[PRD]-Switching to log-level: PRD
+[X86-64]-10:26:0047-[PRD]-PRODUCTION log-output.
+[X86-64]-10:26:0052-[TST]-I've slept for 5 seconds.
+[10:27:0015 / 31.01.2016]-[DBG]-First custom-log output
+[10:27:0015 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:27:0015 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:27:0015 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:27:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:27:0015 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:27:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:27:0015 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:27:0020 / 31.01.2016]-[TST]-I've slept for 5 seconds.
+[10:27:0031 / 31.01.2016]-[DBG]-First custom-log output
+[10:27:0031 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:27:0031 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:27:0031 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:27:0031 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:27:0031 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:27:0031 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:27:0031 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:27:0036 / 31.01.2016]-[TST]-I've slept for 5 seconds.
+[10:28:0004 / 31.01.2016]-[DBG]-First custom-log output
+[10:28:0004 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:28:0004 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:28:0004 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:28:0004 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:28:0004 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:28:0004 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:28:0004 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:28:0009 / 31.01.2016]-[TST]-I've slept for 5 seconds.
+[10:28:0018 / 31.01.2016]-[DBG]-First custom-log output
+[10:28:0018 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:28:0018 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:28:0018 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:28:0018 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:28:0018 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:28:0018 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:28:0018 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:28:0023 / 31.01.2016]-[TST]-I've slept for 5 seconds.
+[10:28:0041 / 31.01.2016]-[DBG]-First custom-log output
+[10:28:0041 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:28:0041 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:28:0041 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:28:0041 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:28:0041 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:28:0041 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:28:0041 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[10:28:0044 / 31.01.2016]-[DBG]-First custom-log output
+[10:28:0044 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:28:0044 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:28:0044 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:28:0044 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:28:0044 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:28:0044 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0020 s
+[10:28:0044 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:28:0046 / 31.01.2016]-[TST]-I've slept for 5 seconds.
+[10:28:0049 / 31.01.2016]-[TST]-I've slept for 5 seconds.
+[10:29:0017 / 31.01.2016]-[DBG]-First custom-log output
+[10:29:0017 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:29:0017 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:29:0017 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:29:0017 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:29:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:29:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:29:0017 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:29:0017 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:29:0017-[DBG]-Testing new format template.
+[X86-64]-10:29:0017-[PRD]-Switching to log-level: DBG
+[X86-64]-10:29:0017-[DBG]-DEBUG log-output.
+[X86-64]-10:29:0017-[TST]-TEST log-output.
+[X86-64]-10:29:0017-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0017-[PRD]-Switching to log-level: TST
+[X86-64]-10:29:0017-[TST]-TEST log-output.
+[X86-64]-10:29:0017-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0017-[PRD]-Switching to log-level: PRD
+[X86-64]-10:29:0017-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0022-[TST]-I've slept for 5 seconds.
+[10:29:0034 / 31.01.2016]-[DBG]-First custom-log output
+[10:29:0034 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:29:0034 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:29:0034 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:29:0034 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:29:0034 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[10:29:0034 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:29:0034 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[10:29:0034 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:29:0034-[DBG]-Testing new format template.
+[X86-64]-10:29:0034-[PRD]-Switching to log-level: DBG
+[X86-64]-10:29:0034-[DBG]-DEBUG log-output.
+[X86-64]-10:29:0034-[TST]-TEST log-output.
+[X86-64]-10:29:0034-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0034-[PRD]-Switching to log-level: TST
+[X86-64]-10:29:0034-[TST]-TEST log-output.
+[X86-64]-10:29:0034-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0034-[PRD]-Switching to log-level: PRD
+[X86-64]-10:29:0034-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0039-[TST]-I've slept for 5 seconds.
+[10:29:0046 / 31.01.2016]-[DBG]-First custom-log output
+[10:29:0046 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:29:0046 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:29:0046 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:29:0046 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:29:0046 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:29:0046 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:29:0046 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:29:0046 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:29:0046-[DBG]-Testing new format template.
+[X86-64]-10:29:0046-[PRD]-Switching to log-level: DBG
+[X86-64]-10:29:0046-[DBG]-DEBUG log-output.
+[X86-64]-10:29:0046-[TST]-TEST log-output.
+[X86-64]-10:29:0046-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0046-[PRD]-Switching to log-level: TST
+[X86-64]-10:29:0046-[TST]-TEST log-output.
+[X86-64]-10:29:0046-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0046-[PRD]-Switching to log-level: PRD
+[X86-64]-10:29:0046-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0051-[TST]-I've slept for 5 seconds.
+[10:29:0057 / 31.01.2016]-[DBG]-First custom-log output
+[10:29:0057 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:29:0057 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:29:0057 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:29:0057 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:29:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:29:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0030 s
+[10:29:0057 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0030 s
+[10:29:0057 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:29:0057-[DBG]-Testing new format template.
+[X86-64]-10:29:0057-[PRD]-Switching to log-level: DBG
+[X86-64]-10:29:0057-[DBG]-DEBUG log-output.
+[X86-64]-10:29:0057-[TST]-TEST log-output.
+[X86-64]-10:29:0057-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0057-[PRD]-Switching to log-level: TST
+[X86-64]-10:29:0057-[TST]-TEST log-output.
+[X86-64]-10:29:0057-[PRD]-PRODUCTION log-output.
+[X86-64]-10:29:0057-[PRD]-Switching to log-level: PRD
+[X86-64]-10:29:0057-[PRD]-PRODUCTION log-output.
+[X86-64]-10:30:0002-[TST]-I've slept for 5 seconds.
+[10:30:0006 / 31.01.2016]-[DBG]-First custom-log output
+[10:30:0006 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:30:0006 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:30:0006 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:30:0006 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:30:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:30:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[10:30:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:30:0006 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:30:0006-[DBG]-Testing new format template.
+[X86-64]-10:30:0006-[PRD]-Switching to log-level: DBG
+[X86-64]-10:30:0006-[DBG]-DEBUG log-output.
+[X86-64]-10:30:0006-[TST]-TEST log-output.
+[X86-64]-10:30:0006-[PRD]-PRODUCTION log-output.
+[X86-64]-10:30:0006-[PRD]-Switching to log-level: TST
+[X86-64]-10:30:0006-[TST]-TEST log-output.
+[X86-64]-10:30:0006-[PRD]-PRODUCTION log-output.
+[X86-64]-10:30:0006-[PRD]-Switching to log-level: PRD
+[X86-64]-10:30:0006-[PRD]-PRODUCTION log-output.
+[X86-64]-10:30:0011-[TST]-I've slept for 5 seconds.
+[10:32:0000 / 31.01.2016]-[DBG]-First custom-log output
+[10:32:0000 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:32:0000 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:32:0000 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:32:0000 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:32:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[10:32:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:32:0000 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[10:32:0000 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:32:0000-[DBG]-Testing new format template.
+[X86-64]-10:32:0000-[PRD]-Switching to log-level: DBG
+[X86-64]-10:32:0000-[DBG]-DEBUG log-output.
+[X86-64]-10:32:0000-[TST]-TEST log-output.
+[X86-64]-10:32:0000-[PRD]-PRODUCTION log-output.
+[X86-64]-10:32:0000-[PRD]-Switching to log-level: TST
+[X86-64]-10:32:0000-[TST]-TEST log-output.
+[X86-64]-10:32:0000-[PRD]-PRODUCTION log-output.
+[X86-64]-10:32:0000-[PRD]-Switching to log-level: PRD
+[X86-64]-10:32:0000-[PRD]-PRODUCTION log-output.
+[X86-64]-10:32:0005-[TST]-I've slept for 5 seconds.
+[10:33:0006 / 31.01.2016]-[DBG]-First custom-log output
+[10:33:0006 / 31.01.2016]-[DBG]-Second custom log output with format values:666.
+[10:33:0006 / 31.01.2016]-[PRD]-Async-out! Warning...
+[10:33:0006 / 31.01.2016]-[DBG]-Async-out! Debug...
+[10:33:0006 / 31.01.2016]-[TST]-I'm going to sleep...
+[10:33:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[10:33:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0020 s
+[10:33:0006 / 31.01.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0030 s
+[10:33:0006 / 31.01.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-10:33:0006-[DBG]-Testing new format template.
+[X86-64]-10:33:0006-[PRD]-Switching to log-level: DBG
+[X86-64]-10:33:0006-[DBG]-DEBUG log-output.
+[X86-64]-10:33:0006-[TST]-INFORMATION log-output.
+[X86-64]-10:33:0006-[PRD]-WARNING log-output.
+[X86-64]-10:33:0006-[PRD]-Switching to log-level: TST
+[X86-64]-10:33:0006-[TST]-INFORMATION log-output.
+[X86-64]-10:33:0006-[PRD]-WARNING log-output.
+[X86-64]-10:33:0006-[PRD]-Switching to log-level: PRD
+[X86-64]-10:33:0006-[PRD]-WARNING log-output.
+[X86-64]-10:33:0011-[TST]-I've slept for 5 seconds.

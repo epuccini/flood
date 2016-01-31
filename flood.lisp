@@ -363,14 +363,14 @@ the 'room' function."
 	(out logger :dbg (format-with-list log-fmt-msg fmt-args))))
 
 
-(defmacro with-function-log (logger level msg &rest body)
+(defmacro with-function-log (logger msg &rest body)
   "Log function trace and show result and timing. No formatting."
   (let ((real-base (get-internal-real-time)) ; store current times
 		(run-base (get-internal-run-time)))
 	(multiple-value-bind 
 		  (time-real-time time-run-time) (time-fn real-base run-base)
 		`(out ,logger
-			  ,level 
+			  ':dbg
 			  (format nil 
 					  (concatenate 'string ,msg " ~A = ~{~A ~} ~%"
 								   "Execution in real-time ~,4f s "
@@ -432,8 +432,6 @@ into configured logger, if any."
 ;;
 ;; Default logging functions
 ;;
-;(setf *default-logger* (reset-logger))
-
 (defun wrn (fmt-msg &rest args)
   (out *default-logger* :prd (format-with-list fmt-msg args)))
 

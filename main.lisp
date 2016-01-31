@@ -38,13 +38,13 @@
 	(cdbg lg "Second custom log output with format values:~A." 666)
 
 	;; just append '°' for marking as async
-	°(wrn  "Async-out! Warning...")
-	°(dbg  "Async-out! Debug...")
+	°(cwrn lg "Async-out! Warning...")
+	°(cdbg lg "Async-out! Debug...")
 
 	;; also for use with expressions
-	°(progn (wrn "I'm going to sleep...") 
+	°(progn (cinf lg "I'm going to sleep...") 
 			(sleep 5)
-			(inf "I've slept for ~D seconds." 5))
+			(cinf lg "I've slept for ~D seconds." 5))
 
 	;; trace a function and ouput to combined-loggers.
 	(trace-fn 'squares lg "Trace fn ")
@@ -58,7 +58,7 @@
 	(untrace-fn 'squares)
 
 	;; log a function body
-	(with-function-log lg :dbg "Log function:"
+	(with-function-log lg "Log function:"
 					   (mapcar (lambda (x) (* x x)) 
 							   (append '(1 2 3 4 5) '(4 3 2 1))))
 
@@ -70,39 +70,39 @@
 	(setq lg (make-logger :writers (list #'error-writer  #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
-	;; First output with custom template
+	;; First output with 
 	(cdbg lg "Testing new format template.")
 
 	;; We are testing log-levels now:
 	;; set logging level to 
 	(cwrn lg "Switching to log-level: ~A" 
 		 (set-log-level :dbg))
-	(out lg :dbg "DEBUG log-output.")
-	(out lg :tst "TEST log-output.")
-	(out lg :prd "PRODUCTION log-output.")
+	(cdbg lg "DEBUG log-output.")
+	(cinf lg "INFORMATION log-output.")
+	(cwrn lg "WARNING log-output.")
 
 	;; set logging level to TEST
 	(cwrn lg "Switching to log-level: ~A" 
 		 (set-log-level :tst))
-	(out lg :dbg "DEBUG log-output.")
-	(out lg :tst "TEST log-output.")
-	(out lg :prd "PRODUCTION log-output.")
+	(cdbg lg "DEBUG log-output.")
+	(cinf lg "INFORMATION log-output.")
+	(cwrn lg "WARNING log-output.")
 
 	;; set logging level to PRODUCTION
 	(cwrn lg "Switching to log-level: ~A" 
 		 (set-log-level :prd))
-	(out lg :dbg "DEBUG log-output.")
-	(out lg :tst "TEST log-output.")
-	(out lg :prd "PRODUCTION log-output.")
+	(cdbg lg "DEBUG log-output.")
+	(cinf lg "INFORMATION log-output.")
+	(cwrn lg "WARNING log-output.")
 
 	;; set log-level debug
-	(set-log-level :dbg)
+	(set-log-level :dbg)))
 
 	;; set new loggers
-	(let ((stack-depth 4))
+;	(let ((stack-depth 4))
 		  ;; log stack trace with depth 4
-		  (stack-out lg stack-depth 
-					 "Stack-trace depth ~D:~%" stack-depth))
+;		  (stack-out lg stack-depth 
+;					 "Stack-trace depth ~D:~%" stack-depth))
 		  
 	;; Output memory usage
-	(mem lg "Memory output:~%")))
+;	(mem lg "Memory output:~%")))
