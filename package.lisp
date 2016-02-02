@@ -27,19 +27,24 @@
    #:error-writer
    #:ascii-formatter
    #:set-log-level
-   #:set-logger
+   #:set-default-logger
    #:set-configuration-filepath
    #:make-date-time-string
    #:log-level-p
    #:out
    #:get-log-level
-   #:with-function-log
+   #:fn-log
+   #:ctrace-fn
    #:trace-fn
    #:untrace-fn
-   #:stack-out
+   #:stack
+   #:cstack
    #:wrn
    #:inf
    #:dbg
+   #:cwrn
+   #:cinf
+   #:cdbg
    #:enable-async-syntax
    #:disable-async-syntax
    #:async-prefix

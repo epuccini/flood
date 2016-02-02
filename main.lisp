@@ -24,36 +24,26 @@
 (defun main ()
   ;; Start with default logger. Configured with conf/init.conf
   (wrn  "Hello log! Warning...")
+  (inf  "Hello log! Information...")
   (dbg  "Hello log! Debug...")
 
-  ;; just append '°' for marking as async
-  °(wrn "Async-out! Warning...")
-  °(dbg "Async-out! Debug...")
-
-  ;; also for use with expressions
-  °(progn (inf "I'm going to sleep...") 
-		  (sleep 1)
-		  (inf "Zzzzzzz...")
-		  (sleep 1)
-		  (inf "Zzzzzzz...")
-		  (sleep 1)
-		  (inf "Zzzzzzz...")
-		  (sleep 1)
-		  (inf "I've slept for ~D seconds." 5))
-
-  ;; init custom logger with writer and formatter 
+  ;; init logger with writer and formatter 
   (let ((lg (make-bare-logger 
 			 :writers (list #'standard-writer #'file-writer)
 			 :formatter #'ascii-formatter)))
+
+	;; Set default logger
+	(set-default-logger lg)
 	(terpri)
+
 	;; simple log output
-	(dbg lg "First custom-log output")
+	(dbg "First custom-log output")
 
 	;; simple log output formatted
-	(dbg lg "Second custom log output with format values: ~A" 666)
+	(dbg "Second custom log output with format values: " 666 " inbetween " 999)
 
 	;; trace a function and ouput to combined-loggers.
-	(trace-fn 'squares lg "Trace fn ")
+	(trace-fn 'squares "Trace fn ")
 
 	;; trigger tracing
 	(squares 2)
@@ -64,7 +54,7 @@
 	(untrace-fn 'squares)
 
 	;; log a function body
-	(with-function-log lg "Log function:"
+	(fn-log :dbg "Log function:"
 					   (mapcar (lambda (x) (* x x)) 
 							   (append '(1 2 3 4 5) '(4 3 2 1))))
 
@@ -72,43 +62,62 @@
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
 	
-	;; create a new logger
+	;; create a custom logger
 	(setq lg (make-logger :writers (list #'error-writer  #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 	;; First output with 
-	(dbg lg "Testing new format template.")
+	(cdbg lg "Testing new format template.")
 
 	;; We are testing log-levels now:
 	;; set logging level to 
-	(wrn lg "Switching to log-level: ~A" 
+	(cwrn lg "Switching to log-level: " 
 		 (set-log-level :dbg))
-	(dbg lg "DEBUG log-output.")
-	(inf lg "INFORMATION log-output.")
-	(wrn lg "WARNING log-output.")
+	(cdbg lg "DEBUG log-output.")
+	(cinf lg "INFORMATION log-output.")
+	(cwrn lg "WARNING log-output.")
 
 	;; set logging level to TEST
-	(wrn lg "Switching to log-level: ~A" 
+	(cwrn lg "Switching to log-level: " 
 		 (set-log-level :tst))
-	(dbg lg "DEBUG log-output.")
-	(inf lg "INFORMATION log-output.")
-	(wrn lg "WARNING log-output.")
+	(cdbg lg "DEBUG log-output.")
+	(cinf lg "INFORMATION log-output.")
+	(cwrn lg "WARNING log-output.")
 
 	;; set logging level to PRODUCTION
-	(wrn lg "Switching to log-level: ~A" 
+	(cwrn lg "Switching to log-level: " 
 		 (set-log-level :prd))
-	(dbg lg "DEBUG log-output.")
-	(inf lg "INFORMATION log-output.")
-	(wrn lg "WARNING log-output.")
+	(cdbg lg "DEBUG log-output.")
+	(cinf lg "INFORMATION log-output.")
+	(cwrn lg "WARNING log-output.")
 
 	;; set log-level debug
 	(set-log-level :dbg)
 
+	;; Back to default logger
+
+	;; just append '°' for marking as async
+	°(dbg "Async-out! Debug...")
+	°(inf "Async-out! Information...")
+	°(wrn "Async-out! Warning...")
+	
+	;; also for use with expressions
+	°(progn (inf "I'm going to sleep...") 
+			(sleep 1)
+			(inf "Zzzzzzz...")
+			(sleep 1)
+			(inf "Zzzzzzz...")
+			(sleep 1)
+			(inf "Zzzzzzz...")
+			(sleep 1)
+			(inf "I've slept for " 3 " seconds."))
+	
 	;; set new loggers
 	(let ((stack-depth 4))
 		  ;; log stack trace with depth 4
-		  (stack-out lg stack-depth 
-					 "Stack-trace depth ~D:~%" stack-depth))
-		  
+		  (stack :dbg stack-depth 
+					 "Stack-trace depth: " stack-depth "~%"))
+	  
 	;; Output memory usage
-	(mem lg "Memory output:~%")))
+	(fn-log :dbg "Memory output:" (room))
+))

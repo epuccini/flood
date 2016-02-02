@@ -150,6 +150,9 @@ then use atomic operation"
 		   (pop *history*))) ; pop the first entry
     (set-history (append *history* (list entry)))))
  
+(defun set-default-logger (logger)
+  "Set default formatter, writer and templates."
+  (setq *default-logger* logger))
  
 ;;
 ;; Writers
@@ -215,6 +218,21 @@ takes a list as parameter."
   (eval
    `(format nil ,fmt-msg ,@args)))
 
+(defun collect-args (args)
+  "Create a string out of format-strings
+and lambda-lists inbetween."
+  (let ((message "")
+		(arg-list '()))
+	(mapc (lambda (arg)
+			(cond ((stringp arg)
+				   (setq message (concatenate 'string
+											  message arg)))
+				  ((not (stringp arg))
+				   (progn
+					 (setq message (concatenate 'string 
+												message "~A"))
+					 (push arg arg-list))))) args)
+	(format-with-list message arg-list)))
 
 ;;
 ;;  Template
@@ -259,12 +277,13 @@ or mixed. They will be replaced by corresponding values."
 ;; Formatter
 ;;
 (defun ascii-formatter (writers template level fmt-msg args)
-"Just output simple ascii strings within templates."
-  (dolist (writer writers)
-    (funcall writer
-			 (format nil 
-					 (expand-entry-template template level fmt-msg) 
-					 args))))
+  "Just output simple ascii strings within templates."
+  (let ((message (format nil 
+						 (expand-entry-template template level fmt-msg) 
+						 args)))
+	(append-to-history message)
+	(dolist (writer writers)
+	  (funcall writer message))))
  
 
 (defun html-formatter (writers template level fmt-msg args)
@@ -290,11 +309,19 @@ or mixed. They will be replaced by corresponding values."
 ;;
 (defun make-logger (&key writers formatter template)
   "A logger consists of writers and formatter and
-templates for log-message and -entry."
+templates for log-message and -entry. A custom logger,
+is dynamically created and returned with the object."
   (make-logger-type :writers writers
 					:template template
 					:formatter formatter))
 
+
+(defun make-bare-logger (&key writers formatter)
+  "Create and init default logger."
+  (make-logger :writers writers
+			   :formatter formatter
+			   :template (getf *global-config* :ENTRY_TEMPLATE)))
+  
 (defun reset-logger ()
   "Create and init logger from config-file."
   (progn
@@ -307,13 +334,6 @@ templates for log-message and -entry."
 							 (find-symbol
 							 (string-upcase 
 							  (getf *global-config* :FORMATTER))))
-				 :template (getf *global-config* :ENTRY_TEMPLATE))))
-  
-(defun make-bare-logger (&key writers formatter)
-  "Create and init logger."
-  (progn
-	(make-logger :writers writers
-				 :formatter formatter
 				 :template (getf *global-config* :ENTRY_TEMPLATE))))
   
 
@@ -334,8 +354,9 @@ templates for log-message and -entry."
 
 
 (defun out (logger level fmt-msg &rest args)
-  "Call formatter with writer and message-template."
-  (append-to-history (format-with-list fmt-msg args)) ;; history
+  "Call formatter with writer and message-template.
+Save history"
+  ;(append-to-history (format-with-list fmt-msg args)) ;; history
   (cond ((log-level-p level) ;; log-level fine
 		 (funcall (logger-type-formatter logger)
 				  (logger-type-writers logger)
@@ -393,21 +414,78 @@ the 'room' function."
   (with-output-to-string (*standard-output*) (room)))
 
 
-(defun mem (logger fmt-msg &rest fmt-args)
-  "Log memory usage by executing the 'room' function."
-  (let* ((mem-string (make-memory-usage-string))
-		 (log-fmt-msg (concatenate 'string fmt-msg mem-string)))
-	(out logger :dbg (format-with-list log-fmt-msg fmt-args))))
+
+;; 
+;; Load config and setup default logger
+;;
+(setf *global-config* (load-config *global-config-file*))
+(setf *default-logger* (reset-logger))
 
 
-(defmacro with-function-log (logger msg &rest body)
-  "Log function trace and show result and timing. No formatting."
+;;
+;; Default logger
+;;
+
+(defun wrn (&rest args)
+  "Write warning-type message to default-configured logger. 
+Arguments are strings or function-calls."
+  (out *default-logger* :prd (collect-args args)))
+
+(defun inf (&rest args)
+  "Log information-type message to default-configured logger. 
+Arguments are strings or function-calls."
+  (out *default-logger* :tst (collect-args args)))
+
+(defun dbg (&rest args)
+  "Log debug-type message to default-configured logger. 
+Arguments are strings or function-calls."
+  (out *default-logger* :dbg (collect-args args)))
+
+;; Custom logger
+
+(defun cwrn (logger &rest args)
+  "Write a warning-type log to custom-logger because 
+no logger is given."
+  (out logger :prd (collect-args args)))
+
+(defun cinf (logger &rest args)
+  "Write an information-type log to custom-logger because 
+no logger is given."
+  (out logger :tst (collect-args args)))
+
+(defun cdbg (logger &rest args)
+  "Write a debug-type log to custom-logger because 
+no logger is given."
+  (out logger :dbg (collect-args args)))
+
+(defun cstack (logger level stack-depth &rest args)
+  "Use swank to log a stack-trace."
+  (let ((trace ""))
+	(let* ((msg-lst (remove-if #'null
+							   (swank-backend:call-with-debugging-environment
+								(lambda () (swank:backtrace 0 (+ stack-depth 2))))))
+		   (stack-msg (progn
+						(mapcar (lambda (msg)
+								  (setf trace (concatenate 'string 
+														   trace 
+														   (format nil "~{~A ~}~%" msg))))
+							  msg-lst) trace))
+		   (user-msg (format nil (collect-args args)))
+		   (log-msg (concatenate 'string user-msg stack-msg))) 
+	  (out logger level log-msg nil))))
+
+(defun stack (level stack-depth fmt-msg &rest args)
+  "Use swank to log a stack-trace."
+  (cstack *default-logger* level stack-depth (format-with-list fmt-msg args)))
+
+(defmacro fn-log (level msg &rest body)
+  "Log function show result and timing. No formatting."
   (let ((real-base (get-internal-real-time)) ; store current times
 		(run-base (get-internal-run-time)))
 	(multiple-value-bind 
 		  (time-real-time time-run-time) (time-fn real-base run-base)
-		`(out ,logger
-			  ':dbg
+		`(out *default-logger*
+			  ,level
 			  (format nil 
 					  (concatenate 'string ,msg " ~A = ~{~A ~} ~%"
 								   "Execution in real-time ~,4f s "
@@ -417,9 +495,8 @@ the 'room' function."
 					  ,time-real-time
 					  ,time-run-time)))))
 
-(defun trace-fn (fn-name logger fmt-msg &rest args)
-  "Traces a function and outputs its results and execution-time.
-into configured logger, if any."
+(defun ctrace-fn (logger fn-name fmt-msg &rest args)
+  "Traces a function and log its results and its execution-time."
   (let* ((real-base (get-internal-real-time)) ; store current times
 		 (run-base (get-internal-run-time)) 
 		 (old-fn (symbol-function 
@@ -441,73 +518,14 @@ into configured logger, if any."
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
 
+(defun trace-fn (fn-name fmt-msg &rest args)
+  (ctrace-fn *default-logger* fn-name (format-with-list fmt-msg args)))
 
 (defun untrace-fn (fn-name)
   "Set function in fn-name to their old version in *trace-store*"
   (setf (symbol-function (find-symbol (string-upcase fn-name))) 
 		(gethash fn-name *trace-store*))
   (remhash fn-name *trace-store*))
-
-
-(defun stack-out (logger stack-depth fmt-msg &rest args)
-  "Use swank to log a stack-trace."
-  (let ((trace ""))
-	(let* ((msg-lst (remove-if #'null
-							   (swank-backend:call-with-debugging-environment
-								(lambda () (swank:backtrace 0 (+ stack-depth 2))))))
-		   (stack-msg (progn
-						(mapcar (lambda (msg)
-								  (setf trace (concatenate 'string 
-														   trace 
-														   (format nil "~{~A ~}~%" msg))))
-							  msg-lst) trace))
-		   (user-msg (format-with-list fmt-msg args))
-		   (log-msg (concatenate 'string user-msg stack-msg))) 
-	  (out logger :dbg log-msg nil))))
-
-
-;; 
-;; Load config and setup default logger
-;;
-(setf *global-config* (load-config *global-config-file*))
-(setf *default-logger* (reset-logger))
-
-
-;;
-;; Default logging methods / generics
-;;
-(defgeneric wrn (first-arg &rest args)) ;; First arg is a logger or fmt-msg
-(defgeneric inf (first-arg &rest args))
-(defgeneric dbg (first-arg &rest args))
-
-(defmethod wrn ((fmt-msg string) &rest args)
-  "Write a warning-type log to default-logger because 
-no logger is given - the first argument a format-string."
-  (out *default-logger* :prd (format-with-list fmt-msg args)))
-
-(defmethod wrn ((logger logger-type) &rest args)
-  "Writes a warning-type log with given logger 'logger'."
-  (out logger :prd (format-with-list (car args) (cdr args))))
-
-
-(defmethod inf ((fmt-msg string) &rest args)
-  "Write an information-type log to default-logger because 
-no logger is given - the first argument a format-string."
-  (out *default-logger* :tst (format-with-list fmt-msg args)))
-
-(defmethod inf ((logger logger-type) &rest args)
-  "Writes an information-type log with given logger 'logger'."
-  (out logger :tst (format-with-list (car args) (cdr args))))
-
-
-(defmethod dbg ((fmt-msg string) &rest args)
-  "Write a debug-type log to default-logger because 
-no logger is given - the first argument a format-string."
-  (out *default-logger* :dbg (format-with-list fmt-msg args)))
-
-(defmethod dbg ((logger logger-type) &rest args)
-  "Writes a dfebug-type log with given logger 'logger'."
-  (out logger :dbg (format-with-list (car args) (cdr args))))
 
 ;;
 ;; Async operations
