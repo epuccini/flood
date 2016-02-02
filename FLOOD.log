@@ -4310,3 +4310,1054 @@ Execution in real-time 0.0000 s and run-time 0.0000 s.
 [18:46:54 / 02.02.2016]-[TST]-Zzzzzzz...
 [18:46:55 / 02.02.2016]-[TST]-Zzzzzzz...
 [18:46:56 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[18:47:52 / 02.02.2016]-[DBG]-First custom-log output
+[18:47:52 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[18:47:52 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[18:47:52 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[18:47:52 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[18:47:52 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-18:47:52-[DBG]-Testing new format template.
+[X86-64]-18:47:52-[PRD]-Switching to log-level: DBG
+[X86-64]-18:47:52-[DBG]-DEBUG log-output.
+[X86-64]-18:47:52-[TST]-INFORMATION log-output.
+[X86-64]-18:47:52-[PRD]-WARNING log-output.
+[X86-64]-18:47:52-[PRD]-Switching to log-level: TST
+[X86-64]-18:47:52-[TST]-INFORMATION log-output.
+[X86-64]-18:47:52-[PRD]-WARNING log-output.
+[X86-64]-18:47:52-[PRD]-Switching to log-level: PRD
+[X86-64]-18:47:52-[PRD]-WARNING log-output.
+[18:47:52 / 02.02.2016]-[DBG]-Async-out! Debug...
+[18:47:52 / 02.02.2016]-[TST]-Async-out! Information...
+[18:47:52 / 02.02.2016]-[PRD]-Async-out! Warning...
+[18:47:52 / 02.02.2016]-[TST]-I'm going to sleep...
+[18:47:52 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100729357B}>) 
+
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+
+2 (MAIN) (RESTARTABLE T) 
+
+3 (RUN) (RESTARTABLE T) 
+
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+
+[18:47:53 / 02.02.2016]-[DBG]-Memory output: (ROOM) =  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[18:47:53 / 02.02.2016]-[TST]-Zzzzzzz...
+[18:47:54 / 02.02.2016]-[TST]-Zzzzzzz...
+[18:47:55 / 02.02.2016]-[TST]-Zzzzzzz...
+[18:47:56 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[18:48:07 / 02.02.2016]-[DBG]-First custom-log output
+[18:48:07 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[18:48:07 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[18:48:07 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[18:48:07 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0010 s
+[18:48:07 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-18:48:07-[DBG]-Testing new format template.
+[X86-64]-18:48:07-[PRD]-Switching to log-level: DBG
+[X86-64]-18:48:07-[DBG]-DEBUG log-output.
+[X86-64]-18:48:07-[TST]-INFORMATION log-output.
+[X86-64]-18:48:07-[PRD]-WARNING log-output.
+[X86-64]-18:48:07-[PRD]-Switching to log-level: TST
+[X86-64]-18:48:07-[TST]-INFORMATION log-output.
+[X86-64]-18:48:07-[PRD]-WARNING log-output.
+[X86-64]-18:48:07-[PRD]-Switching to log-level: PRD
+[X86-64]-18:48:07-[PRD]-WARNING log-output.
+[18:48:07 / 02.02.2016]-[DBG]-Async-out! Debug...
+[18:48:07 / 02.02.2016]-[TST]-Async-out! Information...
+[18:48:07 / 02.02.2016]-[PRD]-Async-out! Warning...
+[18:48:07 / 02.02.2016]-[TST]-I'm going to sleep...
+[18:48:07 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100B03EC0B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[18:48:07 / 02.02.2016]-[DBG]-Memory output: (ROOM) =  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[18:48:08 / 02.02.2016]-[TST]-Zzzzzzz...
+[18:48:09 / 02.02.2016]-[TST]-Zzzzzzz...
+[18:48:10 / 02.02.2016]-[TST]-Zzzzzzz...
+[18:48:11 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:48:59 / 02.02.2016]-[DBG]-First custom-log output
+[19:48:59 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:48:59 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:48:59 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[19:48:59 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0020 s
+[19:48:59 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:48:59-[DBG]-Testing new format template.
+[X86-64]-19:48:59-[PRD]-Switching to log-level: DBG
+[X86-64]-19:48:59-[DBG]-DEBUG log-output.
+[X86-64]-19:48:59-[TST]-INFORMATION log-output.
+[X86-64]-19:48:59-[PRD]-WARNING log-output.
+[X86-64]-19:48:59-[PRD]-Switching to log-level: TST
+[X86-64]-19:48:59-[TST]-INFORMATION log-output.
+[X86-64]-19:48:59-[PRD]-WARNING log-output.
+[X86-64]-19:48:59-[PRD]-Switching to log-level: PRD
+[X86-64]-19:48:59-[PRD]-WARNING log-output.
+[19:48:59 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:48:59 / 02.02.2016]-[TST]-Async-out! Information...
+[19:48:59 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:48:59 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:48:59 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100FED4FDB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:49:00 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:49:01 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:49:02 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:49:03 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:49:41 / 02.02.2016]-[DBG]-First custom-log output
+[19:49:41 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:49:41 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:49:41 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[19:49:41 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[19:49:41 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:49:41-[DBG]-Testing new format template.
+[X86-64]-19:49:41-[PRD]-Switching to log-level: DBG
+[X86-64]-19:49:41-[DBG]-DEBUG log-output.
+[X86-64]-19:49:41-[TST]-INFORMATION log-output.
+[X86-64]-19:49:41-[PRD]-WARNING log-output.
+[X86-64]-19:49:41-[PRD]-Switching to log-level: TST
+[X86-64]-19:49:41-[TST]-INFORMATION log-output.
+[X86-64]-19:49:41-[PRD]-WARNING log-output.
+[X86-64]-19:49:41-[PRD]-Switching to log-level: PRD
+[X86-64]-19:49:41-[PRD]-WARNING log-output.
+[19:49:41 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:49:41 / 02.02.2016]-[TST]-Async-out! Information...
+[19:49:41 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:49:41 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:49:41 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {1006AAEF9B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:49:42 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:49:43 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:49:44 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:49:45 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:50:11 / 02.02.2016]-[DBG]-First custom-log output
+[19:50:11 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:50:11 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:50:11 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:50:11 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:50:11 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:50:11-[DBG]-Testing new format template.
+[X86-64]-19:50:11-[PRD]-Switching to log-level: DBG
+[X86-64]-19:50:11-[DBG]-DEBUG log-output.
+[X86-64]-19:50:11-[TST]-INFORMATION log-output.
+[X86-64]-19:50:11-[PRD]-WARNING log-output.
+[X86-64]-19:50:11-[PRD]-Switching to log-level: TST
+[X86-64]-19:50:11-[TST]-INFORMATION log-output.
+[X86-64]-19:50:11-[PRD]-WARNING log-output.
+[X86-64]-19:50:11-[PRD]-Switching to log-level: PRD
+[X86-64]-19:50:11-[PRD]-WARNING log-output.
+[19:50:11 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:50:11 / 02.02.2016]-[TST]-Async-out! Information...
+[19:50:11 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:50:11 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:50:11 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100A9B4B8B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:50:12 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:50:13 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:50:14 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:50:15 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:51:30 / 02.02.2016]-[DBG]-First custom-log output
+[19:51:30 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:51:30 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:51:30 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[19:51:30 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[19:51:30 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:51:30-[DBG]-Testing new format template.
+[X86-64]-19:51:30-[PRD]-Switching to log-level: DBG
+[X86-64]-19:51:30-[DBG]-DEBUG log-output.
+[X86-64]-19:51:30-[TST]-INFORMATION log-output.
+[X86-64]-19:51:30-[PRD]-WARNING log-output.
+[X86-64]-19:51:30-[PRD]-Switching to log-level: TST
+[X86-64]-19:51:30-[TST]-INFORMATION log-output.
+[X86-64]-19:51:30-[PRD]-WARNING log-output.
+[X86-64]-19:51:30-[PRD]-Switching to log-level: PRD
+[X86-64]-19:51:30-[PRD]-WARNING log-output.
+[19:51:30 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:51:30 / 02.02.2016]-[TST]-Async-out! Information...
+[19:51:30 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:51:30 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:51:30 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100EE0319B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:51:31 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:51:32 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:51:33 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:51:34 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:51:50 / 02.02.2016]-[DBG]-First custom-log output
+[19:51:50 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:51:50 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:51:50 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:51:50 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[19:51:50 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:51:50-[DBG]-Testing new format template.
+[X86-64]-19:51:50-[PRD]-Switching to log-level: DBG
+[X86-64]-19:51:50-[DBG]-DEBUG log-output.
+[X86-64]-19:51:50-[TST]-INFORMATION log-output.
+[X86-64]-19:51:50-[PRD]-WARNING log-output.
+[X86-64]-19:51:50-[PRD]-Switching to log-level: TST
+[X86-64]-19:51:50-[TST]-INFORMATION log-output.
+[X86-64]-19:51:50-[PRD]-WARNING log-output.
+[X86-64]-19:51:50-[PRD]-Switching to log-level: PRD
+[X86-64]-19:51:50-[PRD]-WARNING log-output.
+[19:51:50 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:51:50 / 02.02.2016]-[TST]-Async-out! Information...
+[19:51:50 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:51:50 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:51:50 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {10059B2DFB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:51:51 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:51:52 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:51:53 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:51:54 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:52:05 / 02.02.2016]-[DBG]-First custom-log output
+[19:52:05 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:52:05 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:52:05 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[19:52:05 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[19:52:05 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:52:05-[DBG]-Testing new format template.
+[X86-64]-19:52:05-[PRD]-Switching to log-level: DBG
+[X86-64]-19:52:05-[DBG]-DEBUG log-output.
+[X86-64]-19:52:05-[TST]-INFORMATION log-output.
+[X86-64]-19:52:05-[PRD]-WARNING log-output.
+[X86-64]-19:52:05-[PRD]-Switching to log-level: TST
+[X86-64]-19:52:05-[TST]-INFORMATION log-output.
+[X86-64]-19:52:05-[PRD]-WARNING log-output.
+[X86-64]-19:52:05-[PRD]-Switching to log-level: PRD
+[X86-64]-19:52:05-[PRD]-WARNING log-output.
+[19:52:05 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:52:05 / 02.02.2016]-[TST]-Async-out! Information...
+[19:52:05 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:52:05 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:52:05 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100977F9FB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:52:06 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:52:07 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:52:08 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:52:09 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:53:30 / 02.02.2016]-[DBG]-First custom-log output
+[19:53:30 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:53:30 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:53:30 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:53:30 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[19:53:30 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:53:30-[DBG]-Testing new format template.
+[X86-64]-19:53:30-[PRD]-Switching to log-level: DBG
+[X86-64]-19:53:30-[DBG]-DEBUG log-output.
+[X86-64]-19:53:30-[TST]-INFORMATION log-output.
+[X86-64]-19:53:30-[PRD]-WARNING log-output.
+[X86-64]-19:53:30-[PRD]-Switching to log-level: TST
+[X86-64]-19:53:30-[TST]-INFORMATION log-output.
+[X86-64]-19:53:30-[PRD]-WARNING log-output.
+[X86-64]-19:53:30-[PRD]-Switching to log-level: PRD
+[X86-64]-19:53:30-[PRD]-WARNING log-output.
+[19:53:30 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:53:30 / 02.02.2016]-[TST]-Async-out! Information...
+[19:53:30 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:53:30 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:53:30 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100DC59E2B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:53:31 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:53:32 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:53:33 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:53:34 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:53:45 / 02.02.2016]-[DBG]-First custom-log output
+[19:53:45 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:53:45 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:53:45 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[19:53:45 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0020 s and run-time 0.0020 s
+[19:53:45 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:53:45-[DBG]-Testing new format template.
+[X86-64]-19:53:45-[PRD]-Switching to log-level: DBG
+[X86-64]-19:53:45-[DBG]-DEBUG log-output.
+[X86-64]-19:53:45-[TST]-INFORMATION log-output.
+[X86-64]-19:53:45-[PRD]-WARNING log-output.
+[X86-64]-19:53:45-[PRD]-Switching to log-level: TST
+[X86-64]-19:53:45-[TST]-INFORMATION log-output.
+[X86-64]-19:53:45-[PRD]-WARNING log-output.
+[X86-64]-19:53:45-[PRD]-Switching to log-level: PRD
+[X86-64]-19:53:45-[PRD]-WARNING log-output.
+[19:53:45 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:53:45 / 02.02.2016]-[TST]-Async-out! Information...
+[19:53:45 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:53:45 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:53:45 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {1011E4BADB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:53:46 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:53:47 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:53:48 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:53:49 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:54:46 / 02.02.2016]-[DBG]-First custom-log output
+[19:54:46 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:54:46 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:54:46 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[19:54:46 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[19:54:46 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:54:46-[DBG]-Testing new format template.
+[X86-64]-19:54:46-[PRD]-Switching to log-level: DBG
+[X86-64]-19:54:46-[DBG]-DEBUG log-output.
+[X86-64]-19:54:46-[TST]-INFORMATION log-output.
+[X86-64]-19:54:46-[PRD]-WARNING log-output.
+[X86-64]-19:54:46-[PRD]-Switching to log-level: TST
+[X86-64]-19:54:46-[TST]-INFORMATION log-output.
+[X86-64]-19:54:46-[PRD]-WARNING log-output.
+[X86-64]-19:54:46-[PRD]-Switching to log-level: PRD
+[X86-64]-19:54:46-[PRD]-WARNING log-output.
+[19:54:46 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:54:46 / 02.02.2016]-[TST]-Async-out! Information...
+[19:54:46 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:54:46 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:54:46 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {10089827DB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:54:47 / 02.02.2016]-[DBG]-Memory output:Dynamic space usage is:   160,416,272 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,336 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  33,395,088 bytes for   393,067 instance objects.
+  32,386,208 bytes for 2,024,138 cons objects.
+  22,320,080 bytes for   234,363 simple-vector objects.
+  20,590,992 bytes for    28,645 code objects.
+  20,165,872 bytes for   141,455 simple-character-string objects.
+  31,696,432 bytes for   604,741 other objects.
+  160,554,672 bytes for 3,426,409 dynamic objects (space total.)
+
+[19:54:47 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:54:48 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:54:49 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:54:50 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[19:55:33 / 02.02.2016]-[DBG]-First custom-log output
+[19:55:33 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[19:55:33 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[19:55:33 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0050 s and run-time 0.0030 s
+[19:55:33 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0050 s and run-time 0.0030 s
+[19:55:33 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-19:55:33-[DBG]-Testing new format template.
+[X86-64]-19:55:33-[PRD]-Switching to log-level: DBG
+[X86-64]-19:55:33-[DBG]-DEBUG log-output.
+[X86-64]-19:55:33-[TST]-INFORMATION log-output.
+[X86-64]-19:55:33-[PRD]-WARNING log-output.
+[X86-64]-19:55:33-[PRD]-Switching to log-level: TST
+[X86-64]-19:55:33-[TST]-INFORMATION log-output.
+[X86-64]-19:55:33-[PRD]-WARNING log-output.
+[X86-64]-19:55:33-[PRD]-Switching to log-level: PRD
+[X86-64]-19:55:33-[PRD]-WARNING log-output.
+[19:55:33 / 02.02.2016]-[DBG]-Async-out! Debug...
+[19:55:33 / 02.02.2016]-[TST]-Async-out! Information...
+[19:55:33 / 02.02.2016]-[PRD]-Async-out! Warning...
+[19:55:33 / 02.02.2016]-[TST]-I'm going to sleep...
+[19:55:33 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100CAD8D1B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[19:55:33 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   226,201,136 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,336 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  51,574,448 bytes for   597,458 instance objects.
+  43,528,112 bytes for 2,720,507 cons objects.
+  32,803,024 bytes for   227,659 simple-character-string objects.
+  27,029,376 bytes for   270,122 simple-vector objects.
+  20,654,896 bytes for    28,752 code objects.
+  50,698,304 bytes for 1,017,751 other objects.
+  226,288,160 bytes for 4,862,249 dynamic objects (space total.)
+
+[19:55:34 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:55:35 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:55:36 / 02.02.2016]-[TST]-Zzzzzzz...
+[19:55:37 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:00:29 / 02.02.2016]-[DBG]-First custom-log output
+[20:00:29 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:00:29 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:00:29 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[20:00:29 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[20:00:29 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:00:29-[DBG]-Testing new format template.
+[X86-64]-20:00:29-[PRD]-Switching to log-level: DBG
+[X86-64]-20:00:29-[DBG]-DEBUG log-output.
+[X86-64]-20:00:29-[TST]-INFORMATION log-output.
+[X86-64]-20:00:29-[PRD]-WARNING log-output.
+[X86-64]-20:00:29-[PRD]-Switching to log-level: TST
+[X86-64]-20:00:29-[TST]-INFORMATION log-output.
+[X86-64]-20:00:29-[PRD]-WARNING log-output.
+[X86-64]-20:00:29-[PRD]-Switching to log-level: PRD
+[X86-64]-20:00:29-[PRD]-WARNING log-output.
+[20:00:29 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:00:29 / 02.02.2016]-[TST]-Async-out! Information...
+[20:00:29 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:00:29 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:00:29 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {1011594B8B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:00:30 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   298,931,584 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  71,268,576 bytes for   824,667 instance objects.
+  56,488,416 bytes for 3,530,526 cons objects.
+  47,936,688 bytes for   323,539 simple-character-string objects.
+  31,880,192 bytes for   306,688 simple-vector objects.
+  20,720,816 bytes for    28,862 code objects.
+  15,401,600 bytes for    31,881 simple-array-unsigned-fixnum objects.
+  55,354,512 bytes for 1,430,899 other objects.
+  299,050,800 bytes for 6,477,062 dynamic objects (space total.)
+
+[20:00:30 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:00:31 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:00:32 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:00:33 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:01:00 / 02.02.2016]-[DBG]-First custom-log output
+[20:01:00 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:01:00 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:01:00 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[20:01:00 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:01:00 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:01:00-[DBG]-Testing new format template.
+[X86-64]-20:01:00-[PRD]-Switching to log-level: DBG
+[X86-64]-20:01:00-[DBG]-DEBUG log-output.
+[X86-64]-20:01:00-[TST]-INFORMATION log-output.
+[X86-64]-20:01:00-[PRD]-WARNING log-output.
+[X86-64]-20:01:00-[PRD]-Switching to log-level: TST
+[X86-64]-20:01:00-[TST]-INFORMATION log-output.
+[X86-64]-20:01:00-[PRD]-WARNING log-output.
+[X86-64]-20:01:00-[PRD]-Switching to log-level: PRD
+[X86-64]-20:01:00-[PRD]-WARNING log-output.
+[20:01:00 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:01:00 / 02.02.2016]-[TST]-Async-out! Information...
+[20:01:00 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:01:00 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:01:00 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {1008020F7B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:01:01 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   150,464,416 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  31,067,584 bytes for   366,997 instance objects.
+  30,469,600 bytes for 1,904,350 cons objects.
+  21,798,592 bytes for   231,293 simple-vector objects.
+  20,585,216 bytes for    28,643 code objects.
+  17,974,016 bytes for   125,872 simple-character-string objects.
+  28,653,056 bytes for   549,640 other objects.
+  150,548,064 bytes for 3,206,795 dynamic objects (space total.)
+
+[20:01:01 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:01:02 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:01:03 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:01:04 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:01:24 / 02.02.2016]-[DBG]-First custom-log output
+[20:01:24 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:01:24 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:01:24 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:01:24 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:01:24 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:01:24-[DBG]-Testing new format template.
+[X86-64]-20:01:24-[PRD]-Switching to log-level: DBG
+[X86-64]-20:01:24-[DBG]-DEBUG log-output.
+[X86-64]-20:01:24-[TST]-INFORMATION log-output.
+[X86-64]-20:01:24-[PRD]-WARNING log-output.
+[X86-64]-20:01:24-[PRD]-Switching to log-level: TST
+[X86-64]-20:01:24-[TST]-INFORMATION log-output.
+[X86-64]-20:01:24-[PRD]-WARNING log-output.
+[X86-64]-20:01:24-[PRD]-Switching to log-level: PRD
+[X86-64]-20:01:24-[PRD]-WARNING log-output.
+[20:01:24 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:01:24 / 02.02.2016]-[TST]-Async-out! Information...
+[20:01:24 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:01:24 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:01:24 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100C1CF73B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:01:24 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   218,018,176 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  49,676,176 bytes for   575,613 instance objects.
+  41,793,728 bytes for 2,612,108 cons objects.
+  31,309,328 bytes for   212,459 simple-character-string objects.
+  26,667,568 bytes for   267,662 simple-vector objects.
+  20,651,136 bytes for    28,753 code objects.
+  48,001,168 bytes for   973,944 other objects.
+  218,099,104 bytes for 4,670,539 dynamic objects (space total.)
+
+[20:01:25 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:01:26 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:01:27 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:01:28 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:03:05 / 02.02.2016]-[DBG]-First custom-log output
+[20:03:05 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:03:05 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:03:05 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:03:05 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:03:05 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:03:05-[DBG]-Testing new format template.
+[X86-64]-20:03:05-[PRD]-Switching to log-level: DBG
+[X86-64]-20:03:05-[DBG]-DEBUG log-output.
+[X86-64]-20:03:05-[TST]-INFORMATION log-output.
+[X86-64]-20:03:05-[PRD]-WARNING log-output.
+[X86-64]-20:03:05-[PRD]-Switching to log-level: TST
+[X86-64]-20:03:05-[TST]-INFORMATION log-output.
+[X86-64]-20:03:05-[PRD]-WARNING log-output.
+[X86-64]-20:03:05-[PRD]-Switching to log-level: PRD
+[X86-64]-20:03:05-[PRD]-WARNING log-output.
+[20:03:05 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:03:05 / 02.02.2016]-[TST]-Async-out! Information...
+[20:03:05 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:03:05 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:03:05 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {10108E0C7B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:03:06 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   285,966,592 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  68,521,328 bytes for   788,621 instance objects.
+  53,443,072 bytes for 3,340,192 cons objects.
+  44,452,656 bytes for   300,187 simple-character-string objects.
+  31,484,400 bytes for   303,777 simple-vector objects.
+  20,717,120 bytes for    28,863 code objects.
+  14,321,456 bytes for    29,996 simple-array-unsigned-fixnum objects.
+  53,094,384 bytes for 1,369,918 other objects.
+  286,034,416 bytes for 6,161,554 dynamic objects (space total.)
+
+[20:03:06 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:03:07 / 02.02.2016]-[DBG]-
+[20:03:07 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:03:08 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:03:09 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:04:02 / 02.02.2016]-[DBG]-First custom-log output
+[20:04:02 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:04:02 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:04:02 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0010 s
+[20:04:02 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:04:02 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:04:02-[DBG]-Testing new format template.
+[X86-64]-20:04:02-[PRD]-Switching to log-level: DBG
+[X86-64]-20:04:02-[DBG]-DEBUG log-output.
+[X86-64]-20:04:02-[TST]-INFORMATION log-output.
+[X86-64]-20:04:02-[PRD]-WARNING log-output.
+[X86-64]-20:04:02-[PRD]-Switching to log-level: TST
+[X86-64]-20:04:02-[TST]-INFORMATION log-output.
+[X86-64]-20:04:02-[PRD]-WARNING log-output.
+[X86-64]-20:04:02-[PRD]-Switching to log-level: PRD
+[X86-64]-20:04:02-[PRD]-WARNING log-output.
+[20:04:02 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:04:02 / 02.02.2016]-[TST]-Async-out! Information...
+[20:04:02 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:04:02 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:04:02 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {1007A6CA5B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:04:02 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   146,433,744 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  30,620,432 bytes for   361,664 instance objects.
+  30,393,568 bytes for 1,899,598 cons objects.
+  21,959,936 bytes for   234,507 simple-vector objects.
+  20,645,648 bytes for    28,730 code objects.
+  16,176,848 bytes for   109,450 simple-character-string objects.
+  26,715,024 bytes for   521,725 other objects.
+  146,511,456 bytes for 3,155,674 dynamic objects (space total.)
+
+[20:04:03 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:04:03 / 02.02.2016]-[DBG]-
+[20:04:04 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:04:05 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:04:06 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:06:29 / 02.02.2016]-[DBG]-First custom-log output
+[20:06:29 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:06:29 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:06:29 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[20:06:29 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[20:06:29 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:06:29-[DBG]-Testing new format template.
+[X86-64]-20:06:29-[PRD]-Switching to log-level: DBG
+[X86-64]-20:06:29-[DBG]-DEBUG log-output.
+[X86-64]-20:06:29-[TST]-INFORMATION log-output.
+[X86-64]-20:06:29-[PRD]-WARNING log-output.
+[X86-64]-20:06:29-[PRD]-Switching to log-level: TST
+[X86-64]-20:06:29-[TST]-INFORMATION log-output.
+[X86-64]-20:06:29-[PRD]-WARNING log-output.
+[X86-64]-20:06:29-[PRD]-Switching to log-level: PRD
+[X86-64]-20:06:29-[PRD]-WARNING log-output.
+[20:06:29 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:06:29 / 02.02.2016]-[TST]-Async-out! Information...
+[20:06:29 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:06:29 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:06:29 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100D00A50B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:06:29 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   231,118,832 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  50,585,392 bytes for   593,347 instance objects.
+  45,374,480 bytes for 2,835,905 cons objects.
+  38,816,656 bytes for   227,867 simple-character-string objects.
+  27,135,664 bytes for   273,330 simple-vector objects.
+  20,754,944 bytes for    28,916 code objects.
+  48,589,744 bytes for   985,456 other objects.
+  231,256,880 bytes for 4,944,821 dynamic objects (space total.)
+
+[20:06:30 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:06:30 / 02.02.2016]-[DBG]-
+[20:06:31 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:06:32 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:06:33 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:07:47 / 02.02.2016]-[DBG]-
+[20:14:57 / 02.02.2016]-[DBG]-First custom-log output
+[20:14:57 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:14:57 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:14:57 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:14:57 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:14:57 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:14:57-[DBG]-Testing new format template.
+[X86-64]-20:14:57-[PRD]-Switching to log-level: DBG
+[X86-64]-20:14:57-[DBG]-DEBUG log-output.
+[X86-64]-20:14:57-[TST]-INFORMATION log-output.
+[X86-64]-20:14:57-[PRD]-WARNING log-output.
+[X86-64]-20:14:57-[PRD]-Switching to log-level: TST
+[X86-64]-20:14:57-[TST]-INFORMATION log-output.
+[X86-64]-20:14:57-[PRD]-WARNING log-output.
+[X86-64]-20:14:57-[PRD]-Switching to log-level: PRD
+[X86-64]-20:14:57-[PRD]-WARNING log-output.
+[20:14:57 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:14:57 / 02.02.2016]-[TST]-Async-out! Information...
+[20:14:57 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:14:57 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:14:57 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100672FEDB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:14:57 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   128,739,328 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  27,755,136 bytes for 1,734,696 cons objects.
+  25,290,256 bytes for   302,266 instance objects.
+  20,677,424 bytes for    28,777 code objects.
+  20,235,872 bytes for   220,971 simple-vector objects.
+  13,913,696 bytes for    92,320 simple-character-string objects.
+  20,960,528 bytes for   378,231 other objects.
+  128,832,912 bytes for 2,757,261 dynamic objects (space total.)
+
+[20:14:58 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:14:58 / 02.02.2016]-[DBG]-24979 ??         1:31.57 /usr/local/sbcl-1.3.1-MT/bin/sbcl --core /usr/local/sbcl-1.3.1-MT/lib/sbcl/sbcl.core
+25173 ??         0:00.01 /bin/sh -c ps  -e | grep sbcl
+25175 ??         0:00.00 grep sbcl
+79719 ??         0:00.00 (sbcl)
+19694 ttys000   57:16.81 /Applications/Emacs.app/Contents/MacOS/Emacs-10.7 -q -l /Users/edward/.emacs-ide-sbcl
+
+[20:14:59 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:15:00 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:15:01 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:16:22 / 02.02.2016]-[DBG]-First custom-log output
+[20:16:22 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:16:22 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:16:22 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0010 s and run-time 0.0000 s
+[20:16:22 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:16:22 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:16:22-[DBG]-Testing new format template.
+[X86-64]-20:16:22-[PRD]-Switching to log-level: DBG
+[X86-64]-20:16:22-[DBG]-DEBUG log-output.
+[X86-64]-20:16:22-[TST]-INFORMATION log-output.
+[X86-64]-20:16:22-[PRD]-WARNING log-output.
+[X86-64]-20:16:22-[PRD]-Switching to log-level: TST
+[X86-64]-20:16:22-[TST]-INFORMATION log-output.
+[X86-64]-20:16:22-[PRD]-WARNING log-output.
+[X86-64]-20:16:22-[PRD]-Switching to log-level: PRD
+[X86-64]-20:16:22-[PRD]-WARNING log-output.
+[20:16:22 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:16:22 / 02.02.2016]-[TST]-Async-out! Information...
+[20:16:22 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:16:22 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:16:22 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100A8917DB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:16:22 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   196,818,576 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  43,993,072 bytes for   513,373 instance objects.
+  39,475,248 bytes for 2,467,203 cons objects.
+  27,155,856 bytes for   182,948 simple-character-string objects.
+  25,052,736 bytes for   257,365 simple-vector objects.
+  20,742,800 bytes for    28,887 code objects.
+  40,544,304 bytes for   803,933 other objects.
+  196,964,016 bytes for 4,253,709 dynamic objects (space total.)
+
+[20:16:23 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:16:23 / 02.02.2016]-[DBG]-Calling shell-command...24979 ??         1:33.60 /usr/local/sbcl-1.3.1-MT/bin/sbcl --core /usr/local/sbcl-1.3.1-MT/lib/sbcl/sbcl.core
+25177 ??         0:00.01 /bin/sh -c ps  -e | grep sbcl
+25179 ??         0:00.00 grep sbcl
+79719 ??         0:00.00 (sbcl)
+19694 ttys000   57:23.23 /Applications/Emacs.app/Contents/MacOS/Emacs-10.7 -q -l /Users/edward/.emacs-ide-sbcl
+
+[20:16:24 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:16:25 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:16:26 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[20:16:41 / 02.02.2016]-[DBG]-First custom-log output
+[20:16:41 / 02.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:16:41 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:16:41 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[20:16:41 / 02.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0010 s and run-time 0.0010 s
+[20:16:41 / 02.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[X86-64]-20:16:41-[DBG]-Testing new format template.
+[X86-64]-20:16:41-[PRD]-Switching to log-level: DBG
+[X86-64]-20:16:41-[DBG]-DEBUG log-output.
+[X86-64]-20:16:41-[TST]-INFORMATION log-output.
+[X86-64]-20:16:41-[PRD]-WARNING log-output.
+[X86-64]-20:16:41-[PRD]-Switching to log-level: TST
+[X86-64]-20:16:41-[TST]-INFORMATION log-output.
+[X86-64]-20:16:41-[PRD]-WARNING log-output.
+[X86-64]-20:16:41-[PRD]-Switching to log-level: PRD
+[X86-64]-20:16:41-[PRD]-WARNING log-output.
+[20:16:41 / 02.02.2016]-[DBG]-Async-out! Debug...
+[20:16:41 / 02.02.2016]-[TST]-Async-out! Information...
+[20:16:41 / 02.02.2016]-[PRD]-Async-out! Warning...
+[20:16:41 / 02.02.2016]-[TST]-I'm going to sleep...
+[20:16:41 / 02.02.2016]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100ED858EB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION STANDARD-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace d.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (RUN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (PROGN (RUN)) #<NULL-LEXENV>) 
+
+[20:16:42 / 02.02.2016]-[DBG]-Memory output:
+Dynamic space usage is:   263,426,656 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        8,408 bytes.
+Binding stack usage is:        1,504 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  62,467,920 bytes for   720,478 instance objects.
+  50,872,272 bytes for 3,179,517 cons objects.
+  39,596,320 bytes for   271,036 simple-character-string objects.
+  29,865,392 bytes for   293,771 simple-vector objects.
+  20,808,176 bytes for    28,997 code objects.
+  59,914,864 bytes for 1,224,402 other objects.
+  263,524,944 bytes for 5,718,201 dynamic objects (space total.)
+
+[20:16:42 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:16:43 / 02.02.2016]-[DBG]-Calling shell-command...
+24979 ??         1:34.62 /usr/local/sbcl-1.3.1-MT/bin/sbcl --core /usr/local/sbcl-1.3.1-MT/lib/sbcl/sbcl.core
+25181 ??         0:00.00 /bin/sh -c ps  -e | grep sbcl
+25183 ??         0:00.00 grep sbcl
+79719 ??         0:00.00 (sbcl)
+19694 ttys000   57:24.43 /Applications/Emacs.app/Contents/MacOS/Emacs-10.7 -q -l /Users/edward/.emacs-ide-sbcl
+
+[20:16:43 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:16:44 / 02.02.2016]-[TST]-Zzzzzzz...
+[20:16:45 / 02.02.2016]-[TST]-I've slept for 3 seconds.

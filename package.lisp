@@ -49,4 +49,7 @@
    #:disable-async-syntax
    #:async-prefix
    #:async-out
-   #:mem))
+   #:mem
+   #:cmem
+   #:sys
+   #:csys))

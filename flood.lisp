@@ -408,10 +408,16 @@ calculated with given start-times."
 			 internal-time-units-per-second))))
   
 
-(defun make-memory-usage-string ()
+(defun make-string-from-output (function)
   "Creates a string containing the output of
 the 'room' function."
-  (with-output-to-string (*standard-output*) (room)))
+  (with-output-to-string (*standard-output*) 
+	(funcall function)))
+
+(defun make-string-from-command (command)
+  "Creates a string containing the output of
+the 'room' function."
+    (trivial-shell:shell-command command))
 
 
 
@@ -527,6 +533,29 @@ no logger is given."
 		(gethash fn-name *trace-store*))
   (remhash fn-name *trace-store*))
 
+(defun mem (level &rest args)
+  "Log memory usage by executing the 'room' function."
+  (let* ((mem-string (make-string-from-output #'room)))
+	(out *default-logger* :dbg (collect-args (append args 
+													 (list mem-string))))))
+
+(defun cmem (logger level &rest args)
+  "Log memory usage by executing the 'room' function."
+  (let* ((mem-string (make-string-from-output #'room)))
+	(out logger :dbg (collect-args (append args 
+										   (list mem-string))))))
+
+(defun sys (level command &rest args)
+  "Log memory usage by executing the 'room' function."
+  (let* ((command-string (make-string-from-command command)))
+	(out *default-logger* :dbg (collect-args (append args 
+													 (list command-string))))))
+
+(defun csys (logger level command &rest args)
+  "Log memory usage by executing the 'room' function."
+  (let* ((command-string (make-string-from-command command)))
+	(out logger :dbg (collect-args (append args 
+										   (list command-string))))))
 ;;
 ;; Async operations
 ;;
