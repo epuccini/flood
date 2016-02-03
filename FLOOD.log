@@ -5361,3 +5361,55 @@ Breakdown for dynamic space:
 [20:16:43 / 02.02.2016]-[TST]-Zzzzzzz...
 [20:16:44 / 02.02.2016]-[TST]-Zzzzzzz...
 [20:16:45 / 02.02.2016]-[TST]-I've slept for 3 seconds.
+[12:03:22 / 03.02.2016]-[DBG]-First custom-log output
+[12:03:22 / 03.02.2016]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[12:03:22 / 03.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 4
+Execution in real-time 0.0000 s and run-time 0.0000 s
+[12:03:22 / 03.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 16
+Execution in real-time 0.0018 s and run-time 0.0017 s
+[12:03:22 / 03.02.2016]-[DBG]-Trace fn #'SQUARES 
+Result: 64
+Execution in real-time 0.0033 s and run-time 0.0032 s
+[12:03:22 / 03.02.2016]-[DBG]-Log function: (MAPCAR (LAMBDA (X) (* X X)) (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 1 4 9 16 25 16 9 4 1  
+Execution in real-time 0.0000 s and run-time 0.0000 s.
+[x86_64]-12:03:22-[DBG]-Testing new format template.
+[x86_64]-12:03:22-[PRD]-Switching to log-level: DBG
+[x86_64]-12:03:22-[DBG]-DEBUG log-output.
+[x86_64]-12:03:22-[TST]-INFORMATION log-output.
+[x86_64]-12:03:22-[PRD]-WARNING log-output.
+[x86_64]-12:03:22-[PRD]-Switching to log-level: TST
+[x86_64]-12:03:22-[TST]-INFORMATION log-output.
+[x86_64]-12:03:22-[PRD]-WARNING log-output.
+[x86_64]-12:03:22-[PRD]-Switching to log-level: PRD
+[x86_64]-12:03:22-[PRD]-WARNING log-output.
+[12:03:22 / 03.02.2016]-[DBG]-Async-out! Debug...
+[12:03:22 / 03.02.2016]-[PRD]-Async-out! Warning...
+[12:03:22 / 03.02.2016]-[TST]-I'm going to sleep...
+[12:03:22 / 03.02.2016]-[TST]-Async-out! Information...
+[12:03:22 / 03.02.2016]-[DBG]-Stack-trace depth: 0 (NIL #<Unknown Arguments>) 
+1 (NIL #<Unknown Arguments>) 
+2 (SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT #<COMPILED-LEXICAL-CLOSURE (:INTERNAL CSTACK) #x30200149ECCF>) 
+3 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<Compiled-function STANDARD-WRITER #x30200137C52F> #<Compiled-function FILE-WRITER #x30200137AD2F>) ..)) :DBG 4 "Stack-trace depth: ") 
+4 (MAIN) 
+5 (RUN) 
+
+[12:03:22 / 03.02.2016]-[DBG]-Memory output:
+Approximately 15,859,712 bytes of memory can be allocated 
+before the next full GC is triggered. 
+
+                   Total Size             Free                 Used
+Lisp Heap:       38141952 (37248K)   15859712 (15488K)   22282240 (21760K)
+Stacks:          17105848 (16705K)   17095096 (16694K)      10752 (10K)
+Static:          19767632 (19304K)          0 (0K)       19767632 (19304K)
+376763.620 MB reserved for heap expansion.
+[12:03:22 / 03.02.2016]-[DBG]-Calling shell-command...
+79719 ??         0:00.00 (sbcl)
+25473 ttys001    0:00.01 /bin/sh -c ps  -e | grep sbcl
+25475 ttys001    0:00.00 grep sbcl
+
+[12:03:23 / 03.02.2016]-[TST]-Zzzzzzz...
+[12:03:24 / 03.02.2016]-[TST]-Zzzzzzz...
+[12:03:25 / 03.02.2016]-[TST]-Zzzzzzz...
+[12:03:26 / 03.02.2016]-[TST]-I've slept for 3 seconds.
