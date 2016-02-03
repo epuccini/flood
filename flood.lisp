@@ -533,28 +533,32 @@ no logger is given."
 		(gethash fn-name *trace-store*))
   (remhash fn-name *trace-store*))
 
-(defun mem (level &rest args)
-  "Log memory usage by executing the 'room' function."
-  (let* ((mem-string (make-string-from-output #'room)))
-	(out *default-logger* :dbg (collect-args (append args 
-													 (list mem-string))))))
+(defun capture (level function &rest args)
+  "Capture function-output which is beeing written to 
+*standard-output* and log the results."
+  (let* ((fn-string (make-string-from-output function)))
+	(out *default-logger* level (collect-args (append args 
+													 (list fn-string))))))
 
-(defun cmem (logger level &rest args)
-  "Log memory usage by executing the 'room' function."
-  (let* ((mem-string (make-string-from-output #'room)))
-	(out logger :dbg (collect-args (append args 
+(defun ccapture (logger level function &rest args)
+  "Capture function-output which is beeing written to 
+*standard-output* and log the results."
+  (let* ((mem-string (make-string-from-output function)))
+	(out logger level (collect-args (append args 
 										   (list mem-string))))))
 
 (defun sys (level command &rest args)
-  "Log memory usage by executing the 'room' function."
+  "Capture the output of executed shell-commands 
+and log everything."
   (let* ((command-string (make-string-from-command command)))
-	(out *default-logger* :dbg (collect-args (append args 
+	(out *default-logger* level (collect-args (append args 
 													 (list command-string))))))
 
 (defun csys (logger level command &rest args)
-  "Log memory usage by executing the 'room' function."
+  "Capture the output of executed shell-commands 
+and log everything."
   (let* ((command-string (make-string-from-command command)))
-	(out logger :dbg (collect-args (append args 
+	(out logger level (collect-args (append args 
 										   (list command-string))))))
 ;;
 ;; Async operations

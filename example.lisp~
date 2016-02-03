@@ -119,7 +119,7 @@
 					 "Stack-trace depth: " stack-depth "~%"))
 	  
 	;; Log memory usage
-	(mem :dbg "Memory output:~%")
+	(room :dbg "Memory output:~%")
 
 	;; Load shell command output
 	(sys :dbg "ps -e | grep sbcl" "Calling shell-command...~%")))
