@@ -28,7 +28,6 @@
    #:ascii-formatter
    #:set-log-level
    #:set-default-logger
-   #:set-configuration-filepath
    #:make-date-time-string
    #:log-level-p
    #:out
