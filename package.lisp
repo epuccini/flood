@@ -8,8 +8,10 @@
 
 (in-package :cl-user)
 
+(require 'async-syntax)
+
 (defpackage :flood
-  (:use #:cl)
+  (:use #:cl #:async-syntax)
   (:export
    #:*history*
    #:*default-logger*

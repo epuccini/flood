@@ -560,28 +560,5 @@ and log everything."
   (let* ((command-string (make-string-from-command command)))
 	(out logger level (collect-args (append args 
 										   (list command-string))))))
-;;
-;; Async operations
-;;
-(defun async-prefix (stream char)
-  "Reader-macro function for 'async-' substitution."
-  (declare (ignore char))
-  `(bordeaux-threads:make-thread (lambda () ,(read stream t nil t)) 
-								 :name "async-thread"))
-
-(defmacro enable-async-syntax ()
-  "Enable special-character '°' syntax."
-  `(eval-when (:load-toplevel :compile-toplevel :execute)
-      (push *readtable* *previous-readtables*)
-      (setq *readtable* (copy-readtable))
-      (set-macro-character #\° 'async-prefix)))
-  
-(defmacro disable-async-syntax ()
-  "Disable special-character '°' syntax."
-  `(eval-when (:load-toplevel :compile-toplevel :execute)
-     (setq *readtable* (pop *previous-readtables*))))
-
-
-
  
   
