@@ -8,10 +8,8 @@
 
 (in-package :cl-user)
 
-(require 'async-syntax)
-
 (defpackage :flood
-  (:use #:cl #:async-syntax)
+  (:use #:cl)
   (:export
    #:*history*
    #:*default-logger*
@@ -46,9 +44,6 @@
    #:cwrn
    #:cinf
    #:cdbg
-   #:enable-async-syntax
-   #:disable-async-syntax
-   #:async-prefix
    #:async-out
    #:capture
    #:ccapture

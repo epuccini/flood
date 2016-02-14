@@ -11,12 +11,11 @@
 ; -------------------------------------------------------------
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
+  (use-package :async-syntax)
   (use-package :flood))
-
 
 ;; Non-blocking
 (enable-async-syntax)
-
 
 (defun squares (x)
   (* x x))

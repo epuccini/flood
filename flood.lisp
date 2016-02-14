@@ -17,7 +17,6 @@
 ;;
 ;; Constants and vars
 ;;
-(defvar *previous-readtables* '())
 (defvar *global-log-level* :dbg)
 (defvar *global-config-file* #P"conf/init.conf")
 (defvar *global-config* nil)
@@ -417,7 +416,7 @@ the 'room' function."
 (defun make-string-from-command (command)
   "Creates a string containing the output of
 the 'room' function."
-    (trivial-shell:shell-command command))
+    (uiop:run-program command :output :string))
 
 
 
