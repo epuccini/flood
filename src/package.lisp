@@ -33,6 +33,7 @@
    #:out
    #:get-log-level
    #:fn-log
+   #:cfn-log
    #:ctrace-fn
    #:trace-fn
    #:untrace-fn

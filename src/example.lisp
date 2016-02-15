@@ -11,12 +11,12 @@
 ; -------------------------------------------------------------
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
+  (require :async-syntax)
+  (use-package :async-syntax)
   (use-package :flood))
-
 
 ;; Non-blocking
 (enable-async-syntax)
-
 
 (defun squares (x)
   (* x x))
@@ -119,7 +119,7 @@
 					 "Stack-trace depth: " stack-depth "~%"))
 	  
 	;; Log memory usage
-	(room :dbg "Memory output:~%")
+	(capture :dbg #'room "Memory output:~%")
 
 	;; Load shell command output
 	(sys :dbg "ps -e | grep sbcl" "Calling shell-command...~%")))
