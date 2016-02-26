@@ -9,10 +9,13 @@
 (in-package :cl-user)
 
 (defpackage :flood
-  (:use #:cl)
+  (:use #:cl #:bordeaux-threads)
   (:export
    #:*history*
    #:*default-logger*
+   #:*terpri*
+   #:start-log-server
+   #:stop-log-server
    #:get-history
    #:history
    #:set-history

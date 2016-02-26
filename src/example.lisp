@@ -62,8 +62,11 @@
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
 	
+	;; start upd-server
+	(start-log-server)
+
 	;; create a custom logger
-	(setq lg (make-logger :writers (list #'error-writer  #'file-writer)
+	(setq lg (make-logger :writers (list #'error-writer #'file-writer #'socket-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 	;; First output with 
@@ -122,4 +125,7 @@
 	(capture :dbg #'room "Memory output:~%")
 
 	;; Load shell command output
-	(sys :dbg "ps -e | grep sbcl" "Calling shell-command...~%")))
+	(sys :dbg "ps -e | grep sbcl" "Calling shell-command...~%")
+
+	;; turn off udp-server
+	(stop-log-server)))

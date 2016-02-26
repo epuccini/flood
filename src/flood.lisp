@@ -21,9 +21,14 @@
 (defvar *global-config-file* #P"../conf/flood.conf")
 (defvar *global-config* nil)
 (defvar *trace-store* (make-hash-table :test 'equal)) ; All trace-functions go in 
-										              ; this hash-table
+										             ; this hash-table
+(defvar *server-socket* nil)
+(defvar *backup-buffer* "")
+(defvar *backup-message* "")
+
 (defvar *history* '())
 (defvar *default-logger* nil)
+(defvar *terpri* "~%")
 
 (defvar *day-names*
     '("Monday" "Tuesday" "Wednesday"
@@ -99,17 +104,17 @@ backup-location."
 ;; history
 ;; 
 (defun ta-get-history ()
-  (let ((mutex (bordeaux-threads:make-lock)))
-	(bordeaux-threads:acquire-lock mutex)
+  (let ((mutex (make-lock)))
+	(acquire-lock mutex)
 	(prog1 *history*
-	  (bordeaux-threads:release-lock mutex))))
+	  (release-lock mutex))))
 
 (defun get-history ()
   "Get history. If in async-thread,
 then use atomic operation."
-  (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
+  (cond ((equal (current-thread) "async-thread") ; async thread?
 		 (ta-get-history))
-		((not (equal (bordeaux-threads:current-thread) "async-thread")) ; not async thread?
+		((not (equal (current-thread) "async-thread")) ; not async thread?
 		 *history*)))
 
 (defun history ()
@@ -118,31 +123,31 @@ then use atomic operation."
   nil)
 
 (defun ta-set-history (value)
-  (let ((mutex (bordeaux-threads:make-lock)))
-	(bordeaux-threads:acquire-lock mutex)
+  (let ((mutex (make-lock)))
+	(acquire-lock mutex)
 	(setq *history* value)
-	(bordeaux-threads:release-lock mutex)))
+	(release-lock mutex)))
 
 (defun set-history (value)
   "Set history with value. If in async thread,
 then use atomic operation"
-  (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
+  (cond ((equal (current-thread) "async-thread") ; async thread?
 		 (ta-set-history value)))
   (setf *history* value))
 
 (defun ta-append-to-history (value)
-  (let ((mutex (bordeaux-threads:make-lock))
+  (let ((mutex (make-lock))
 		(size (list-length *history*))) ; get size of history
 	(progn
-	  (bordeaux-threads:acquire-lock mutex)
+	  (acquire-lock mutex)
 	  (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
 			 (pop *history*))) ; pop the first entry
 	  (setq *history* (append *history* (list value)))
-	  (bordeaux-threads:release-lock mutex))))
+	  (release-lock mutex))))
  
 (defun append-to-history (entry)
   "Append an entry to history."
-  (cond ((equal (bordeaux-threads:current-thread) "async-thread") ; async thread?
+  (cond ((equal (current-thread) "async-thread") ; async thread?
 		 (ta-append-to-history entry)))
   (let ((size (list-length *history*))) ; get size of history
     (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
@@ -201,13 +206,20 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 (defun email-writer (message)
   (print "Not implemented yet!")
   (print message))
- 
 
 (defun socket-writer (message)
-  (print "Not implemented yet!")
-  (print message))
-
-
+  "Send message to udp-server."
+  (let* ((server-ip (getf *global-config* :SERVER_IP))
+		 (server-port (getf *global-config* :SERVER_PORT))
+		 (buffer (concatenate 'string "[SOCKET]-" message))
+		 (datagram-socket (usocket:socket-connect server-ip
+												  server-port
+												  :protocol :datagram
+												  :timeout 10
+												  :element-type :character)))
+	(usocket:socket-send datagram-socket
+						 buffer
+						 (length buffer))))
 ;;
 ;; Utility
 ;;
@@ -283,6 +295,15 @@ or mixed. They will be replaced by corresponding values."
 	(append-to-history message)
 	(dolist (writer writers)
 	  (funcall writer message))))
+ 
+(defun one-to-one-formatter (writers template level fmt-msg args)
+  "Just output simple ascii strings, plain. Without template."
+  (let ((message (format nil 
+						 (expand-entry-template template level fmt-msg) 
+						 args)))
+	(append-to-history message)
+	(dolist (writer writers)
+	  (funcall writer (format-with-list fmt-msg args)))))
  
 
 (defun html-formatter (writers template level fmt-msg args)
@@ -560,4 +581,42 @@ and log everything."
 	(out logger level (collect-args (append args 
 										   (list command-string))))))
  
-  
+(defun udp-handler (buffer)
+  "Custom socket handler handles input streams."
+  (declare (type (simple-array (unsigned-byte 8) *) buffer))
+  (let ((message (map 'string (lambda (x) (code-char x)) buffer))
+		(mutex (make-lock)))
+	(progn
+	  (acquire-lock mutex)	
+	  (if (not (equalp message *backup-message*))
+		  (funcall 
+		   #'one-to-one-formatter
+		   (logger-type-writers *default-logger*)
+		   (logger-type-template *default-logger*)
+		   :dbg
+		   message
+		   '()))
+	  (setf *backup-message* message)
+	  (release-lock mutex))))
+
+(defun start-log-server ()
+  "Start upd-server for handling network sent log entries."
+  (let ((server-ip (getf *global-config* :SERVER_IP))
+		(server-port (getf *global-config* :SERVER_PORT)))
+	(make-thread 
+	 #'(lambda ()
+		 (print "Server startup...")
+		 (setf *server-socket*
+			   (usocket:socket-server server-ip
+									  server-port
+									  'udp-handler
+									  nil
+									  :protocol :datagram
+									  :timeout 10
+									  :max-buffer-size 1024
+									  :multi-threading t))))))
+
+(defun stop-log-server ()
+  "Stop udp-server and reset.")
+;  (usocket:socket-close *server-socket*))
+
