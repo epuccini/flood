@@ -207,6 +207,11 @@ the file if it exceeds LOG_MAX_SIZE in KB."
   (print "Not implemented yet!")
   (print message))
 
+#-sbcl
+(defun socket-writer (message)
+  "Dummy...")
+
+#+sbcl
 (defun socket-writer (message)
   "Send message to udp-server."
   (let* ((server-ip (getf *global-config* :SERVER_IP))
@@ -580,7 +585,8 @@ and log everything."
   (let* ((command-string (make-string-from-command command)))
 	(out logger level (collect-args (append args 
 										   (list command-string))))))
- 
+
+#+sbcl
 (defun udp-handler (buffer)
   "Custom socket handler handles input streams."
   (declare (type (simple-array (unsigned-byte 8) *) buffer))
@@ -599,6 +605,12 @@ and log everything."
 	  (setf *backup-message* message)
 	  (release-lock mutex))))
 
+ 
+#-sbcl
+(defun start-log-server ()
+  "Dummy...")
+
+#+sbcl
 (defun start-log-server ()
   "Start upd-server for handling network sent log entries."
   (let ((local-ip (getf *global-config* :LOCAL_IP))
@@ -616,6 +628,11 @@ and log everything."
 									  :max-buffer-size 1024
 									  :multi-threading t))))))
 
+#-sbcl
+(defun stop-log-server ()
+  "Dummy...")
+
+#+sbcl
 (defun stop-log-server ()
   "Stop udp-server and reset.")
 ;  (usocket:socket-close *server-socket*))
