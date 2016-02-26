@@ -207,12 +207,12 @@ the file if it exceeds LOG_MAX_SIZE in KB."
   (print "Not implemented yet!")
   (print message))
 
-#-sbcl
+#-(or sbcl ccl)
 (defun socket-writer (message)
   "Dummy..."
   (format *error-output* "Sockets are not for your lisp..."))
 
-#+sbcl
+#+(or sbcl ccl)
 (defun socket-writer (message)
   "Send message to udp-server."
   (let* ((server-ip (getf *global-config* :SERVER_IP))
@@ -607,12 +607,12 @@ and log everything."
 	  (release-lock mutex))))
 
  
-#-sbcl
+#-(or sbcl ccl)
 (defun start-log-server ()
   "Dummy..."
   (format *error-output* "Sockets are not for your lisp..."))
 
-#+sbcl
+#+(or sbcl ccl)
 (defun start-log-server ()
   "Start upd-server for handling network sent log entries."
   (let ((local-ip (getf *global-config* :LOCAL_IP))
@@ -630,12 +630,12 @@ and log everything."
 									  :max-buffer-size 1024
 									  :multi-threading t))))))
 
-#-sbcl
+#-(or sbcl ccl)
 (defun stop-log-server ()
   "Dummy..."
   (format *error-output* "Sockets are not for your lisp..."))
 
-#+sbcl
+#+(or sbcl ccl)
 (defun stop-log-server ()
   "Stop udp-server and reset.")
 ;  (usocket:socket-close *server-socket*))
