@@ -209,7 +209,8 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 
 #-sbcl
 (defun socket-writer (message)
-  "Dummy...")
+  "Dummy..."
+  (format *error-output* "Sockets are not for your lisp..."))
 
 #+sbcl
 (defun socket-writer (message)
@@ -608,7 +609,8 @@ and log everything."
  
 #-sbcl
 (defun start-log-server ()
-  "Dummy...")
+  "Dummy..."
+  (format *error-output* "Sockets are not for your lisp..."))
 
 #+sbcl
 (defun start-log-server ()
@@ -630,7 +632,8 @@ and log everything."
 
 #-sbcl
 (defun stop-log-server ()
-  "Dummy...")
+  "Dummy..."
+  (format *error-output* "Sockets are not for your lisp..."))
 
 #+sbcl
 (defun stop-log-server ()
