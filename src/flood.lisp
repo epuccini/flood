@@ -210,10 +210,10 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 (defun socket-writer (message)
   "Send message to udp-server."
   (let* ((server-ip (getf *global-config* :SERVER_IP))
-		 (server-port (getf *global-config* :SERVER_PORT))
+		 (port (getf *global-config* :PORT))
 		 (buffer (concatenate 'string "[SOCKET]>>" message))
 		 (datagram-socket (usocket:socket-connect server-ip
-												  server-port
+												  port
 												  :protocol :datagram
 												  :timeout 10
 												  :element-type :character)))
@@ -601,14 +601,14 @@ and log everything."
 
 (defun start-log-server ()
   "Start upd-server for handling network sent log entries."
-  (let ((server-ip (getf *global-config* :SERVER_IP))
-		(server-port (getf *global-config* :SERVER_PORT)))
+  (let ((local-ip (getf *global-config* :LOCAL_IP))
+		(port (getf *global-config* :PORT)))
 	(make-thread 
 	 #'(lambda ()
 		 (print "Server startup...")
 		 (setf *server-socket*
-			   (usocket:socket-server server-ip
-									  server-port
+			   (usocket:socket-server local-ip
+									  port
 									  'udp-handler
 									  nil
 									  :protocol :datagram
