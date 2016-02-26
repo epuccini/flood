@@ -29,7 +29,7 @@
 
   ;; init logger with writer and formatter 
   (let ((lg (make-bare-logger 
-			 :writers (list #'standard-writer #'file-writer)
+			 :writers (list #'error-writer #'file-writer)
 			 :formatter #'ascii-formatter)))
 
 	;; Set default logger

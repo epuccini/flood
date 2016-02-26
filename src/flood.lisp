@@ -211,7 +211,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
   "Send message to udp-server."
   (let* ((server-ip (getf *global-config* :SERVER_IP))
 		 (server-port (getf *global-config* :SERVER_PORT))
-		 (buffer (concatenate 'string "[SOCKET]-" message))
+		 (buffer (concatenate 'string "[SOCKET]>>" message))
 		 (datagram-socket (usocket:socket-connect server-ip
 												  server-port
 												  :protocol :datagram
