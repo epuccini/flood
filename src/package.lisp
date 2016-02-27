@@ -35,8 +35,8 @@
    #:log-level-p
    #:out
    #:get-log-level
-   #:fn-log
-   #:cfn-log
+   #:exp-log
+   #:cexp-log
    #:ctrace-fn
    #:trace-fn
    #:untrace-fn

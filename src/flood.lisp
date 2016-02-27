@@ -41,6 +41,34 @@
 ;;
 ;; Time and strings
 ;;
+(defstruct (times (:conc-name t-))
+  (run 0 :type rational)
+  (real 0 :type rational))
+
+(defun start-watch ()
+  (let ((start-times (make-times)))
+	;; setup start-time
+	(setf (t-run start-times) 
+		  (/ (get-internal-real-time) internal-time-units-per-second))
+	(setf (t-real start-times) 
+		  (/ (get-internal-real-time) internal-time-units-per-second))
+	start-times))
+
+(defun stop-watch (start-times)
+  (let ((stop-times (make-times))
+		(diff-times (make-times)))
+	;; measure stop-times
+	(setf (t-run stop-times) 
+		  (/ (get-internal-real-time) internal-time-units-per-second))
+	(setf (t-real stop-times) 
+		  (/ (get-internal-real-time) internal-time-units-per-second))
+	;; calcualte difference = elapsed time
+	(setf (t-run diff-times)
+		  (- (t-run stop-times) (t-run start-times)))
+	(setf (t-real diff-times)
+		  (- (t-real stop-times) (t-real start-times)))
+	diff-times))
+
 (defun make-day-string ()
   "As it says: creates a day string from current date."
   (multiple-value-bind 
@@ -215,17 +243,21 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 #+(or sbcl ccl)
 (defun socket-writer (message)
   "Send message to udp-server."
-  (let* ((server-ip (getf *global-config* :SERVER_IP))
-		 (port (getf *global-config* :PORT))
-		 (buffer (concatenate 'string "[SOCKET]>>" message))
-		 (datagram-socket (usocket:socket-connect server-ip
-												  port
-												  :protocol :datagram
-												  :timeout 10
-												  :element-type :character)))
-	(usocket:socket-send datagram-socket
-						 buffer
-						 (length buffer))))
+  (handler-case
+	  (let* ((server-ip (getf *global-config* :SERVER_IP))
+			 (port (getf *global-config* :PORT))
+			 (buffer (concatenate 'string "[SOCKET]>>" message))
+			 (datagram-socket (usocket:socket-connect server-ip
+													  port
+													  :protocol :datagram
+													  :timeout 10
+													  :element-type :character)))
+		(usocket:socket-send datagram-socket
+							 buffer
+							 (length buffer)))
+	(error (condition)
+	  (write-line (format nil "Error in 'socket-writer'. ~A~%"
+										 condition) *error-output*))))
 ;;
 ;; Utility
 ;;
@@ -424,16 +456,6 @@ Save history"
 or relative paths. Side effects."
   (setq *global-config-file* filepath))
 
-
-(defun time-fn (real-base run-base)
-  "Returns an array of two time values
-calculated with given start-times."
-  (values (float (/ (- (get-internal-real-time) real-base)
-			  internal-time-units-per-second))
-		  (float (/ (- (get-internal-run-time) run-base)
-			 internal-time-units-per-second))))
-  
-
 (defun make-string-from-output (function)
   "Creates a string containing the output of
 the 'room' function."
@@ -444,8 +466,6 @@ the 'room' function."
   "Creates a string containing the output of
 the 'room' function."
     (uiop:run-program command :output :string))
-
-
 
 ;; 
 ;; Load config and setup default logger
@@ -510,42 +530,42 @@ no logger is given."
   "Use swank to log a stack-trace."
   (cstack *default-logger* level stack-depth (format-with-list fmt-msg args)))
 
-(defmacro fn-log (level msg &rest body)
-  "Log function show result and timing. No formatting."
-  (let ((real-base (get-internal-real-time)) ; store current times
-		(run-base (get-internal-run-time)))
-	(multiple-value-bind 
-		  (time-real-time time-run-time) (time-fn real-base run-base)
-		`(out *default-logger*
-			  ,level
-			  (format nil 
-					  (concatenate 'string ,msg " ~A = ~{~A ~} ~%"
-								   "Execution in real-time ~,4f s "
-								   "and run-time ~,4f s.") 
-					  ',@body 
-					  ,@body
-					  ,time-real-time
-					  ,time-run-time)))))
+(defun cexp-log (logger level msg body)
+  "Log with custom logger expression and show result and 
+timing. No formatting."
+  (let ((local-time (start-watch)))
+	(out logger
+		  level
+		  (format nil 
+				  (concatenate 'string msg " ~A = ~{~A ~} ~%"
+							   "Execution in real-time ~,9f s "
+							   "and run-time ~,9f s.") 
+				  body
+				  (eval body)
+				  (t-real (stop-watch local-time))
+				  (t-run (stop-watch local-time))))))
+
+(defun exp-log (level msg body)
+  "Log expression and show result and timing. No formatting."
+  (cexp-log *default-logger* level msg body))
 
 (defun ctrace-fn (logger fn-name fmt-msg &rest args)
   "Traces a function and log its results and its execution-time."
-  (let* ((real-base (get-internal-real-time)) ; store current times
-		 (run-base (get-internal-run-time)) 
-		 (old-fn (symbol-function 
+  (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
-				   (let* ((result-msg (format nil "#'~A ~%Result: ~A~%" fn-name
+				   (let* ((local-time (start-watch))
+						  (result-msg (format nil "#'~A ~%Result: ~A~%" fn-name
 											  (apply old-fn fn-args)))
-						  (user-msg (format-with-list fmt-msg args)))
-					 (multiple-value-bind 
-						   (time-real-time time-run-time) (time-fn real-base run-base)
-					   (let* ((time-msg 
-							   (format nil 
-									   "Execution in real-time ~,4f s and run-time ~,4f s" 
-									   time-real-time time-run-time))
-							  (log-msg (concatenate 'string 
-													user-msg result-msg time-msg)))
-					 (out logger :dbg log-msg))))))) ;; log function msg
+						  (exec-time (stop-watch local-time))
+						  (user-msg (format-with-list fmt-msg args))
+						  (time-run-time (t-run exec-time))
+						  (time-real-time (t-real exec-time))
+						  (time-msg (format nil 
+										 "Execution in real-time ~,9f s and run-time ~,9f s" 
+											time-real-time time-run-time))
+						  (log-msg (concatenate 'string user-msg result-msg time-msg)))
+					 (out logger :dbg log-msg))))) ;; log function msg
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
     (setf (symbol-function 
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
@@ -619,16 +639,21 @@ and log everything."
 		(port (getf *global-config* :PORT)))
 	(make-thread 
 	 #'(lambda ()
-		 (print "Server startup...")
-		 (setf *server-socket*
-			   (usocket:socket-server local-ip
-									  port
-									  'udp-handler
-									  nil
-									  :protocol :datagram
-									  :timeout 10
-									  :max-buffer-size 1024
-									  :multi-threading t))))))
+		 (handler-case
+			 (progn
+			   (print "Server startup...")
+			   (setf *server-socket*
+					 (usocket:socket-server local-ip
+											port
+											'udp-handler
+											nil
+											:protocol :datagram
+											:timeout 10
+											:max-buffer-size 1024
+											:multi-threading t)))
+		   (error (condition)
+			 (write-line (format nil "Error in 'start-log-server. ~A~%"
+								 condition) *error-output*)))))))
 
 #-(or sbcl ccl)
 (defun stop-log-server ()

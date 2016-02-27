@@ -11,15 +11,19 @@
 ; -------------------------------------------------------------
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
-  (require :async-syntax)
+  (require 'async-syntax)
   (use-package :async-syntax)
   (use-package :flood))
+
 
 ;; Non-blocking
 (enable-async-syntax)
 
 (defun squares (x)
-  (* x x))
+  "Demo function"
+  (let ((result 0))
+	(loop for cnt from 0 to 100000 do
+		 (setf result (+ result (* cnt x))))))
 
 (defun main ()
   ;; Start with default logger. Configured with conf/init.conf
@@ -54,8 +58,8 @@
 	(untrace-fn 'squares)
 
 	;; log a function body
-	(fn-log :dbg "Log function:"
-					   (mapcar (lambda (x) (* x x)) 
+	(exp-log :dbg "Log expression:"
+					   '(mapcar (lambda (x) (squares x)) 
 							   (append '(1 2 3 4 5) '(4 3 2 1))))
 
 	;; setup new format string (in clisp there is a problem with
@@ -125,7 +129,7 @@
 	(capture :dbg #'room "Memory output:~%")
 
 	;; Load shell command output
-	(sys :dbg "ps -e | grep sbcl" "Calling shell-command...~%")
+	(sys :dbg "ps -e | grep sbcl" "Calling shell-command and log output...~%")
 
 	;; turn off udp-server
 	(stop-log-server)))
