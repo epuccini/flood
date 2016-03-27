@@ -51,5 +51,6 @@
    #:async-out
    #:capture
    #:ccapture
+   #:make-string-from-output
    #:sys
    #:csys))

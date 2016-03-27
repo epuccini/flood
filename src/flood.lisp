@@ -538,8 +538,8 @@ timing. No formatting."
 		  level
 		  (format nil 
 				  (concatenate 'string msg " ~A = ~{~A ~} ~%"
-							   "Execution in real-time ~,9f s "
-							   "and run-time ~,9f s.") 
+							   "Execution in real-time ~,3f s "
+							   "and run-time ~,3f s.") 
 				  body
 				  (eval body)
 				  (t-real (stop-watch local-time))
@@ -562,7 +562,7 @@ timing. No formatting."
 						  (time-run-time (t-run exec-time))
 						  (time-real-time (t-real exec-time))
 						  (time-msg (format nil 
-										 "Execution in real-time ~,9f s and run-time ~,9f s" 
+										 "Execution in real-time ~,3f s and run-time ~,3f s" 
 											time-real-time time-run-time))
 						  (log-msg (concatenate 'string user-msg result-msg time-msg)))
 					 (out logger :dbg log-msg))))) ;; log function msg
