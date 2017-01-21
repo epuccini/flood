@@ -10696,3 +10696,221 @@ Breakdown for dynamic space:
 [16:09:21 / 27.02.2016]-[TST]-Zzzzzzz...
 [16:09:22 / 27.02.2016]-[TST]-Zzzzzzz...
 [16:09:23 / 27.02.2016]-[TST]-I've slept for 3 seconds.
+[17:51:16 / 21.01.2017]-[DBG]-First custom-log output
+[17:51:16 / 21.01.2017]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[17:51:16 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.000 s and run-time 0.000 s
+[17:51:16 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:51:16 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:51:16 / 21.01.2017]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = NIL NIL NIL NIL NIL NIL NIL NIL NIL  
+Execution in real-time 0.007 s and run-time 0.007 s.
+[X86-64]-17:51:16-[DBG]-Testing new format template.
+[X86-64]-17:51:16-[PRD]-Switching to log-level: DBG
+[X86-64]-17:51:16-[DBG]-DEBUG log-output.
+[X86-64]-17:51:16-[TST]-INFORMATION log-output.
+[X86-64]-17:51:16-[PRD]-WARNING log-output.
+[X86-64]-17:51:16-[PRD]-Switching to log-level: TST
+[X86-64]-17:51:16-[TST]-INFORMATION log-output.
+[X86-64]-17:51:16-[PRD]-WARNING log-output.
+[X86-64]-17:51:16-[PRD]-Switching to log-level: PRD
+[X86-64]-17:51:16-[PRD]-WARNING log-output.
+[17:51:16 / 21.01.2017]-[DBG]-Async-out! Debug...
+[17:51:16 / 21.01.2017]-[TST]-Async-out! Information...
+[17:51:16 / 21.01.2017]-[PRD]-Async-out! Warning...
+[17:51:16 / 21.01.2017]-[TST]-I'm going to sleep...
+[SOCKET]>>[X86-64]-17:51:16-[DBG]-Testing new format template.
+[SOCKET]>>[X86-64]-17:51:16-[PRD]-Switching to log-level: DBG
+[SOCKET]>>[X86-64]-17:51:16-[DBG]-DEBUG log-output.
+[SOCKET]>>[X86-64]-17:51:16-[TST]-INFORMATION log-output.
+[SOCKET]>>[X86-64]-17:51:16-[PRD]-WARNING log-output.
+[SOCKET]>>[X86-64]-17:51:16-[PRD]-Switching to log-level: TST
+[SOCKET]>>[X86-64]-17:51:16-[TST]-INFORMATION log-output.
+[SOCKET]>>[X86-64]-17:51:16-[PRD]-WARNING log-output.
+[SOCKET]>>[X86-64]-17:51:16-[PRD]-Switching to log-level: PRD
+[SOCKET]>>[X86-64]-17:51:16-[PRD]-WARNING log-output.
+[17:51:16 / 21.01.2017]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {1003D50BAB}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION ERROR-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace dept.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (RUN) (RESTARTABLE T) 
+4 (SB-INT:SIMPLE-EVAL-IN-LEXENV (SPIN) #<NULL-LEXENV>) 
+5 (SB-INT:SIMPLE-EVAL-IN-LEXENV (EVAL-WHEN (:LOAD-TOPLEVEL :COMPILE-TOPLEVEL :EXECUTE) "Executed at compile time. Does load and compile ..) 
+
+[17:51:16 / 21.01.2017]-[DBG]-Memory output:
+Dynamic space usage is:   109,590,736 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        5,376 bytes.
+Binding stack usage is:        1,168 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  21,738,224 bytes for 1,358,639 cons objects.
+  20,037,120 bytes for    28,112 code objects.
+  19,600,576 bytes for   233,334 instance objects.
+  18,664,304 bytes for   195,261 simple-vector objects.
+  10,916,624 bytes for    84,698 simple-character-string objects.
+  18,664,928 bytes for   329,724 other objects.
+  109,621,776 bytes for 2,229,768 dynamic objects (space total.)
+
+[17:51:16 / 21.01.2017]-[DBG]-Calling shell-command and log output...
+37690 ??        91:51.94 /usr/local/sbcl-1.3.1-MT/bin/sbcl --core /usr/local/sbcl-1.3.1-MT/lib/sbcl/sbcl.core
+47078 ttys003    0:00.02 rlwrap -c -p RED sbcl
+47079 ttys004    0:03.31 sbcl
+47080 ttys004    0:00.01 /bin/sh -c ps -e | grep sbcl
+47082 ttys004    0:00.00 grep sbcl
+
+[17:51:17 / 21.01.2017]-[TST]-Zzzzzzz...
+[17:51:18 / 21.01.2017]-[TST]-Zzzzzzz...
+[17:51:19 / 21.01.2017]-[TST]-Zzzzzzz...
+[17:51:20 / 21.01.2017]-[TST]-I've slept for 3 seconds.
+[17:57:07 / 21.01.2017]-[DBG]-First custom-log output
+[17:57:07 / 21.01.2017]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[17:57:07 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:57:07 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:57:07 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:57:07 / 21.01.2017]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = NIL NIL NIL NIL NIL NIL NIL NIL NIL  
+Execution in real-time 0.006 s and run-time 0.006 s.
+[X86-64]-17:57:07-[DBG]-Testing new format template.
+[X86-64]-17:57:07-[PRD]-Switching to log-level: DBG
+[X86-64]-17:57:07-[DBG]-DEBUG log-output.
+[X86-64]-17:57:07-[TST]-INFORMATION log-output.
+[X86-64]-17:57:07-[PRD]-WARNING log-output.
+[X86-64]-17:57:07-[PRD]-Switching to log-level: TST
+[X86-64]-17:57:07-[TST]-INFORMATION log-output.
+[X86-64]-17:57:07-[PRD]-WARNING log-output.
+[X86-64]-17:57:07-[PRD]-Switching to log-level: PRD
+[X86-64]-17:57:07-[PRD]-WARNING log-output.
+[17:57:07 / 21.01.2017]-[DBG]-Async-out! Debug...
+[17:57:07 / 21.01.2017]-[TST]-Async-out! Information...
+[17:57:07 / 21.01.2017]-[PRD]-Async-out! Warning...
+[17:57:07 / 21.01.2017]-[TST]-I'm going to sleep...
+[SOCKET]>>[X86-64]-17:57:07-[DBG]-Testing new format template.
+[SOCKET]>>[X86-64]-17:57:07-[PRD]-Switching to log-level: DBG
+[SOCKET]>>[X86-64]-17:57:07-[DBG]-DEBUG log-output.
+[SOCKET]>>[X86-64]-17:57:07-[TST]-INFORMATION log-output.
+[SOCKET]>>[X86-64]-17:57:07-[PRD]-WARNING log-output.
+[SOCKET]>>[X86-64]-17:57:07-[PRD]-Switching to log-level: TST
+[SOCKET]>>[X86-64]-17:57:07-[TST]-INFORMATION log-output.
+[SOCKET]>>[X86-64]-17:57:07-[PRD]-WARNING log-output.
+[SOCKET]>>[X86-64]-17:57:07-[PRD]-Switching to log-level: PRD
+[SOCKET]>>[X86-64]-17:57:07-[PRD]-WARNING log-output.
+[17:57:07 / 21.01.2017]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100D17B20B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION ERROR-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace dept.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 (SB-INT:SIMPLE-EVAL-IN-LEXENV (MAIN) #<NULL-LEXENV>) 
+4 (EVAL (MAIN)) 
+5 (INTERACTIVE-EVAL (MAIN) :EVAL NIL) 
+
+[17:57:08 / 21.01.2017]-[DBG]-Memory output:
+Dynamic space usage is:   239,639,616 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        2,512 bytes.
+Binding stack usage is:          816 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  57,750,384 bytes for 3,609,399 cons objects.
+  44,969,712 bytes for   521,123 instance objects.
+  39,831,408 bytes for   286,278 simple-vector objects.
+  26,544,000 bytes for   210,310 simple-character-string objects.
+  21,596,032 bytes for    31,692 code objects.
+  48,948,080 bytes for 1,032,143 other objects.
+  239,639,616 bytes for 5,690,945 dynamic objects (space total.)
+
+[17:57:08 / 21.01.2017]-[DBG]-Calling shell-command and log output...
+37690 ??        92:01.31 /usr/local/sbcl-1.3.1-MT/bin/sbcl --core /usr/local/sbcl-1.3.1-MT/lib/sbcl/sbcl.core
+47164 ttys003    0:00.02 rlwrap -c -p RED sbcl
+47165 ttys004    0:03.14 sbcl
+47166 ttys004    0:00.01 /bin/sh -c ps -e | grep sbcl
+47168 ttys004    0:00.00 grep sbcl
+
+[17:57:08 / 21.01.2017]-[TST]-Zzzzzzz...
+[17:57:09 / 21.01.2017]-[TST]-Zzzzzzz...
+[17:57:10 / 21.01.2017]-[TST]-Zzzzzzz...
+[17:57:11 / 21.01.2017]-[TST]-I've slept for 3 seconds.
+[17:58:26 / 21.01.2017]-[DBG]-First custom-log output
+[17:58:26 / 21.01.2017]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[17:58:26 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:58:26 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:58:26 / 21.01.2017]-[DBG]-Trace fn #'SQUARES 
+Result: NIL
+Execution in real-time 0.001 s and run-time 0.001 s
+[17:58:26 / 21.01.2017]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = NIL NIL NIL NIL NIL NIL NIL NIL NIL  
+Execution in real-time 0.006 s and run-time 0.006 s.
+[X86-64]-17:58:26-[DBG]-Testing new format template.
+[X86-64]-17:58:26-[PRD]-Switching to log-level: DBG
+[X86-64]-17:58:26-[DBG]-DEBUG log-output.
+[X86-64]-17:58:26-[TST]-INFORMATION log-output.
+[X86-64]-17:58:26-[PRD]-WARNING log-output.
+[X86-64]-17:58:26-[PRD]-Switching to log-level: TST
+[X86-64]-17:58:26-[TST]-INFORMATION log-output.
+[X86-64]-17:58:26-[PRD]-WARNING log-output.
+[X86-64]-17:58:26-[PRD]-Switching to log-level: PRD
+[X86-64]-17:58:26-[PRD]-WARNING log-output.
+[17:58:26 / 21.01.2017]-[DBG]-Async-out! Debug...
+[17:58:26 / 21.01.2017]-[TST]-Async-out! Information...
+[17:58:26 / 21.01.2017]-[PRD]-Async-out! Warning...
+[17:58:26 / 21.01.2017]-[TST]-I'm going to sleep...
+[SOCKET]>>[X86-64]-17:58:26-[DBG]-Testing new format template.
+[SOCKET]>>[X86-64]-17:58:26-[PRD]-Switching to log-level: DBG
+[SOCKET]>>[X86-64]-17:58:26-[DBG]-DEBUG log-output.
+[SOCKET]>>[X86-64]-17:58:26-[TST]-INFORMATION log-output.
+[SOCKET]>>[X86-64]-17:58:26-[PRD]-WARNING log-output.
+[SOCKET]>>[X86-64]-17:58:26-[PRD]-Switching to log-level: TST
+[SOCKET]>>[X86-64]-17:58:26-[TST]-INFORMATION log-output.
+[SOCKET]>>[X86-64]-17:58:26-[PRD]-WARNING log-output.
+[SOCKET]>>[X86-64]-17:58:26-[PRD]-Switching to log-level: PRD
+[SOCKET]>>[X86-64]-17:58:26-[PRD]-WARNING log-output.
+[17:58:26 / 21.01.2017]-[DBG]-Stack-trace depth: 0 ((FLET SWANK/BACKEND:CALL-WITH-DEBUGGING-ENVIRONMENT :IN "/Users/edward/quicklisp/dists/quicklisp/software/slime-2.14/swank/sbcl.lisp") #<CLOSURE (LAMBDA NIL :IN CSTACK) {100585B23B}>) 
+1 (CSTACK #S(FLOOD::LOGGER-TYPE :WRITERS (#<FUNCTION ERROR-WRITER> #<FUNCTION FILE-WRITER>) :FORMATTER #<FUNCTION ASCII-FORMATTER> :TEMPLATE "[$TIME / $DATE]-[$LEVEL]-$MESSAGE") :DBG 4 "Stack-trace dept.. (RESTARTABLE
+                                                                                                                                                                                                              T) 
+2 (MAIN) (RESTARTABLE T) 
+3 ((FLET #:WITHOUT-INTERRUPTS-BODY-82 :IN SAVE-LISP-AND-DIE)) 
+4 ((LABELS SB-IMPL::RESTART-LISP :IN SAVE-LISP-AND-DIE)) 
+
+[17:58:26 / 21.01.2017]-[DBG]-Memory output:
+Dynamic space usage is:   96,375,792 bytes.
+Read-only space usage is:      4,976 bytes.
+Static space usage is:         3,936 bytes.
+Control stack usage is:        1,200 bytes.
+Binding stack usage is:          224 bytes.
+Control and binding stack usage is for the current thread only.
+Garbage collection is currently enabled.
+
+Breakdown for dynamic space:
+  19,995,952 bytes for    27,985 code objects.
+  17,755,248 bytes for 1,109,703 cons objects.
+  17,685,888 bytes for   187,844 simple-vector objects.
+  17,673,216 bytes for   209,734 instance objects.
+   7,312,400 bytes for    55,845 simple-character-string objects.
+  15,953,088 bytes for   286,995 other objects.
+  96,375,792 bytes for 1,878,106 dynamic objects (space total.)
+
+[17:58:26 / 21.01.2017]-[DBG]-Calling shell-command and log output...
+37690 ??        92:02.92 /usr/local/sbcl-1.3.1-MT/bin/sbcl --core /usr/local/sbcl-1.3.1-MT/lib/sbcl/sbcl.core
+47179 ttys003    0:00.01 /bin/sh -c ps -e | grep sbcl
+47181 ttys003    0:00.00 grep sbcl
+
