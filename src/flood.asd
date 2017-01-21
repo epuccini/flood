@@ -13,6 +13,7 @@
   :version "0.1"
   :author "Edward Puccini epuccini@gmx.de"
   :license "LGPL"
-  :depends-on ( "trivial-features" "bordeaux-threads" "cl-ppcre" "swank" "usocket")
+  :depends-on ( "trivial-features" "bordeaux-threads" "cl-ppcre" "swank" "usocket"
+				"async-syntax")
   :components (( :file "package" )
 			   ( :file "flood" :depends-on ( "package" ))))

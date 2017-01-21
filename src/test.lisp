@@ -9,7 +9,7 @@
 ; -------------------------------------------------------------
 
 (defpackage :flood-test 
-  (:use #:cl #:flood #:crash))
+  (:use #:cl #:flood)) ;; #:crash))
 
 (in-package :flood-test)
 
@@ -17,6 +17,6 @@
   )
 
 (defun flood-test::test-all ()
-  (test-make-datetime-strings -nil))
+  (test-make-datetime-strings))
 
 (test-all)

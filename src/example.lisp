@@ -46,7 +46,8 @@
 	;; simple log output formatted
 	(dbg "Second custom log output with format values: " 666 " inbetween " 999)
 
-	;; trace a function and ouput to combined-loggers.
+	;; trace demo function 'squares' and send ouput to 
+	;; error-writer and file-writer. Use ascii-formatter.
 	(trace-fn 'squares "Trace fn ")
 
 	;; trigger tracing
@@ -66,10 +67,10 @@
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
 	
-	;; start upd-server
+	;; start upd-server to try the socket-writer
 	(start-log-server)
 
-	;; create a custom logger
+	;; create a custom logger with a socket-writer and a new template-string
 	(setq lg (make-logger :writers (list #'error-writer #'file-writer #'socket-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))

@@ -36,38 +36,6 @@
       "Sunday"))
 
 (defstruct logger-type  writers formatter template)
- 
-
-;;
-;; Time and strings
-;;
-(defstruct (times (:conc-name t-))
-  (run 0 :type rational)
-  (real 0 :type rational))
-
-(defun start-watch ()
-  (let ((start-times (make-times)))
-	;; setup start-time
-	(setf (t-run start-times) 
-		  (/ (get-internal-real-time) internal-time-units-per-second))
-	(setf (t-real start-times) 
-		  (/ (get-internal-real-time) internal-time-units-per-second))
-	start-times))
-
-(defun stop-watch (start-times)
-  (let ((stop-times (make-times))
-		(diff-times (make-times)))
-	;; measure stop-times
-	(setf (t-run stop-times) 
-		  (/ (get-internal-real-time) internal-time-units-per-second))
-	(setf (t-real stop-times) 
-		  (/ (get-internal-real-time) internal-time-units-per-second))
-	;; calcualte difference = elapsed time
-	(setf (t-run diff-times)
-		  (- (t-run stop-times) (t-run start-times)))
-	(setf (t-real diff-times)
-		  (- (t-real stop-times) (t-real start-times)))
-	diff-times))
 
 (defun make-day-string ()
   "As it says: creates a day string from current date."
@@ -132,6 +100,7 @@ backup-location."
 ;; history
 ;; 
 (defun ta-get-history ()
+  "Thread safe getting history"
   (let ((mutex (make-lock)))
 	(acquire-lock mutex)
 	(prog1 *history*
@@ -164,6 +133,7 @@ then use atomic operation"
   (setf *history* value))
 
 (defun ta-append-to-history (value)
+  "Thread safe append to history."
   (let ((mutex (make-lock))
 		(size (list-length *history*))) ; get size of history
 	(progn
@@ -412,7 +382,7 @@ is dynamically created and returned with the object."
 
 
 (defun out (logger level fmt-msg &rest args)
-  "Call formatter with writer and message-template.
+  "Call formatter with writer and use message-template.
 Save history"
   ;(append-to-history (format-with-list fmt-msg args)) ;; history
   (cond ((log-level-p level) ;; log-level fine
@@ -453,12 +423,11 @@ Save history"
 
 (defun set-configuration-filepath (filepath)
   "Set configuration filepath with absolute
-or relative paths. Side effects."
+or relative paths. !SIDE-EFFECTS!."
   (setq *global-config-file* filepath))
 
-(defun make-string-from-output (function)
-  "Creates a string containing the output of
-the 'room' function."
+(defun function-output-to-string (function)
+  "Capture function output and return string."
   (with-output-to-string (*standard-output*) 
 	(funcall function)))
 
@@ -475,43 +444,43 @@ the 'room' function."
 
 
 ;;
-;; Default logger
+;; Default logger implementation
 ;;
 
 (defun wrn (&rest args)
-  "Write warning-type message to default-configured logger. 
+  "Default-logger: Write warning-type message to default-configured logger. 
 Arguments are strings or function-calls."
   (out *default-logger* :prd (collect-args args)))
 
 (defun inf (&rest args)
-  "Log information-type message to default-configured logger. 
+  "Default-logger: Log information-type message to default-configured logger. 
 Arguments are strings or function-calls."
   (out *default-logger* :tst (collect-args args)))
 
 (defun dbg (&rest args)
-  "Log debug-type message to default-configured logger. 
+  "Default-logger: Log debug-type message to default-configured logger. 
 Arguments are strings or function-calls."
   (out *default-logger* :dbg (collect-args args)))
 
 ;; Custom logger
 
 (defun cwrn (logger &rest args)
-  "Write a warning-type log to custom-logger because 
+  "Custom-logger: Write a warning-type log to custom-logger because 
 no logger is given."
   (out logger :prd (collect-args args)))
 
 (defun cinf (logger &rest args)
-  "Write an information-type log to custom-logger because 
+  "Custom-logger: write an information-type log to custom-logger because 
 no logger is given."
   (out logger :tst (collect-args args)))
 
 (defun cdbg (logger &rest args)
-  "Write a debug-type log to custom-logger because 
+  "Custom-logger: write a debug-type log to custom-logger because 
 no logger is given."
   (out logger :dbg (collect-args args)))
 
 (defun cstack (logger level stack-depth &rest args)
-  "Use swank to log a stack-trace."
+  "Custom-logger: use swank to log a stack-trace."
   (let ((trace ""))
 	(let* ((msg-lst (remove-if #'null
 							   (swank-backend:call-with-debugging-environment
@@ -527,11 +496,11 @@ no logger is given."
 	  (out logger level log-msg nil))))
 
 (defun stack (level stack-depth fmt-msg &rest args)
-  "Use swank to log a stack-trace."
+  "Default-logger: Use swank to log a stack-trace."
   (cstack *default-logger* level stack-depth (format-with-list fmt-msg args)))
 
 (defun cexp-log (logger level msg body)
-  "Log with custom logger expression and show result and 
+  "Custom-logger: Log with custom logger expression and show result and 
 timing. No formatting."
   (let ((local-time (start-watch)))
 	(out logger
@@ -550,7 +519,7 @@ timing. No formatting."
   (cexp-log *default-logger* level msg body))
 
 (defun ctrace-fn (logger fn-name fmt-msg &rest args)
-  "Traces a function and log its results and its execution-time."
+  "Custom-Logger: traces a function and log its results and its execution-time."
   (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
@@ -571,6 +540,7 @@ timing. No formatting."
 		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
 
 (defun trace-fn (fn-name fmt-msg &rest args)
+  "Default-logger: trace a function and log its result and execution-time."
   (ctrace-fn *default-logger* fn-name (format-with-list fmt-msg args)))
 
 (defun untrace-fn (fn-name)
@@ -580,28 +550,28 @@ timing. No formatting."
   (remhash fn-name *trace-store*))
 
 (defun capture (level function &rest args)
-  "Capture function-output which is beeing written to 
+  "Default-Logger: capture function-output which is beeing written to 
 *standard-output* and log the results."
-  (let* ((fn-string (make-string-from-output function)))
+  (let* ((fn-string (function-output-to-string function)))
 	(out *default-logger* level (collect-args (append args 
 													 (list fn-string))))))
 
 (defun ccapture (logger level function &rest args)
-  "Capture function-output which is beeing written to 
+  "Custom-logger: capture function-output which is beeing written to 
 *standard-output* and log the results."
-  (let* ((mem-string (make-string-from-output function)))
+  (let* ((mem-string (function-output-to-string function)))
 	(out logger level (collect-args (append args 
 										   (list mem-string))))))
 
 (defun sys (level command &rest args)
-  "Capture the output of executed shell-commands 
+  "Default-logger: capture the output of executed shell-commands 
 and log everything."
   (let* ((command-string (make-string-from-command command)))
 	(out *default-logger* level (collect-args (append args 
 													 (list command-string))))))
 
 (defun csys (logger level command &rest args)
-  "Capture the output of executed shell-commands 
+  "Custom-logger: Capture the output of executed shell-commands 
 and log everything."
   (let* ((command-string (make-string-from-command command)))
 	(out logger level (collect-args (append args 
