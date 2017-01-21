@@ -26,6 +26,10 @@
 		 (setf result (+ result (* cnt x))))))
 
 (defun main ()
+  (terpri)
+  (princ "START logging")
+  (terpri)
+
   ;; Start with default logger. Configured with conf/init.conf
   (wrn  "Hello log! Warning...")
   (inf  "Hello log! Information...")
@@ -38,7 +42,6 @@
 
 	;; Set default logger
 	(set-default-logger lg)
-	(terpri)
 
 	;; simple log output
 	(dbg "First custom-log output")
@@ -67,11 +70,20 @@
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
 	
+	;; -------------------------------------------------------
+	;; Attention! If you like to test the socke-writer feature
+	;; you have to quickload the USOCKET library and uncomment
+	;; #'socket-writer line and the starting and stopping 
+	;; of the log-server:
+
 	;; start upd-server to try the socket-writer
-	(start-log-server)
+	; #+(or sbcl ccl)
+	; (start-log-server)
 
 	;; create a custom logger with a socket-writer and a new template-string
-	(setq lg (make-logger :writers (list #'error-writer #'file-writer #'socket-writer)
+	(setq lg (make-logger :writers (list #'error-writer 
+	;;									 #'socket-writer
+										 #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 	;; First output with 
@@ -105,10 +117,12 @@
 	;; Back to default logger
 
 	;; just append '°' for marking as async
-	°(dbg "Async-out! Debug...")
-	°(inf "Async-out! Information...")
-	°(wrn "Async-out! Warning...")
+	(async (dbg "Async-out! Debug..."))
+	(async (inf "Async-out! Information..."))
+	(async (wrn "Async-out! Warning..."))
 	
+	;; or prefix with the small circle 
+	;; to call an expression as a thread
 	;; also for use with expressions
 	°(progn (inf "I'm going to sleep...") 
 			(sleep 1)
@@ -133,4 +147,7 @@
 	(sys :dbg "ps -e | grep sbcl" "Calling shell-command and log output...~%")
 
 	;; turn off udp-server
-	(stop-log-server)))
+	;; #+(or sbcl ccl)
+	;; (stop-log-server)
+
+	(princ "STOP logging!")))
