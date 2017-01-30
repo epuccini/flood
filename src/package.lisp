@@ -40,18 +40,19 @@
    #:logger-p
    #:out
    #:capture
-   #:ccapture
+   #:capture-ext
    #:exp-log
-   #:cexp-log
+   #:exp-ext-log
    #:trace-fn
-   #:ctrace-fn
+   #:trace-ext-fn
+   #:trace-fn
    #:untrace-fn
    #:stack
-   #:cstack
+   #:stack-ext
    #:wrn
    #:inf
    #:dbg
    #:sys
-   #:csys
+   #:sys-ext
    #:async-out
    #:make-string-from-output))

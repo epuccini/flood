@@ -482,9 +482,9 @@ Otherwise use *default-logger* and put arg1 to args."
 
 (defun stack (level stack-depth &rest args)
   "Use swank to log a stack-trace."
-  (cstack *default-logger* level stack-depth (collect-args args)))
+  (stack-ext *default-logger* level stack-depth (collect-args args)))
 
-(defun cstack (logger level stack-depth &rest args)
+(defun stack-ext (logger level stack-depth &rest args)
   "Use swank to log a stack-trace."
   (let ((trace ""))
 	(let* ((msg-lst (remove-if #'null
@@ -503,9 +503,9 @@ Otherwise use *default-logger* and put arg1 to args."
 (defun exp-log (level msg body)
   "Log with custom logger expression and show result and 
 timing. No formatting."
-  (cexp-log *default-logger* level msg body))
+  (exp-ext-log *default-logger* level msg body))
 
-(defun cexp-log (logger level msg body)
+(defun exp-ext-log (logger level msg body)
   "Log with custom logger expression and show result and 
 timing. No formatting."
   (let ((local-time (start-watch)))
@@ -521,10 +521,11 @@ timing. No formatting."
 
 (defun trace-fn (fn-name fmt-msg &rest args)
   "Traces a function and log its results and its execution-time."
-  (ctrace-fn *default-logger* fn-name fmt-msg (collect-args args)))
+  (trace-ext-fn *default-logger* fn-name fmt-msg (collect-args args)))
 
-(defun ctrace-fn (logger fn-name fmt-msg &rest args)
-  "Traces a function and log its results and its execution-time."
+(defun trace-ext-fn (logger fn-name fmt-msg &rest args)
+  "Traces a function and log its results and its execution-time.
+ Use custom logger."
   (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
@@ -553,22 +554,22 @@ timing. No formatting."
 (defun capture (level function &rest args)
   "Capture function-output which is beeing written to 
 *standard-output* and log the results."
-  (ccapture *default-logger* level function (collect-args args)))
+  (capture-ext *default-logger* level function (collect-args args)))
 
-(defun ccapture (logger level function &rest args)
+(defun capture-ext (logger level function &rest args)
   "Capture function-output which is beeing written to 
-*standard-output* and log the results."
+*standard-output* and log the results. Use custom logger"
   (let* ((mem-string (function-output-to-string function)))
 	  (out logger level (collect-args (append args (list mem-string))))))
 
 (defun sys (level command &rest args)
-  "Custom-logger: Capture the output of executed shell-commands 
+  "Capture the output of executed shell-commands 
 and log everything."
-  (csys *default-logger* level command (collect-args args)))
+  (sys-ext *default-logger* level command (collect-args args)))
 
-(defun csys (logger level command &rest args)
-  "Custom-logger: Capture the output of executed shell-commands 
-and log everything."
+(defun sys-ext (logger level command &rest args)
+  "Capture the output of executed shell-commands 
+and log everything. Use custom logger."
   (let* ((command-string (make-string-from-command command)))
 	(out logger level (collect-args (append args (list command-string))))))
 

@@ -30,22 +30,32 @@
   (princ "START logging")
   (terpri)
 
+  ;;
   ;; Start with default logger. Configured with conf/init.conf
+  ;; Three simple function make up the core logging facility
+  ;;
   (wrn "Hello log! Warning...")
   (inf "Hello log! Information...")
   (dbg "Hello log! Debug...")
 
-  ;; init logger with writer and formatter 
+  ;;
+  ;; init a custom-logger with writer- and formatter-types
+  ;; 
+  ;; available writer: standard-, error-, file-, socket-, email-writer
+  ;; available formatter: ascii-, html-, xml-, one-to-one-formatter
+  ;;
   (let ((lg (make-bare-logger 
 			 :writers (list #'error-writer #'file-writer)
 			 :formatter #'ascii-formatter)))
 
-	;; Set default logger
+	;; Set default logger with new created logger
 	(set-default-logger lg)
 
 	;; simple log output
-	(wrn lg "First default-log output 2+4=" (+ 2 4))
+	;; to default logger
 	(wrn "First custom-log output")
+	;; custom logger
+	(wrn lg "First default-log output 2+4=" (+ 2 4))
 
 	;; simple log output formatted
 	(dbg lg "Second custom log output with format values: " 666 " inbetween " 999)
