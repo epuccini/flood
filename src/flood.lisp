@@ -443,83 +443,88 @@ the 'room' function."
 (setf *default-logger* (reset-logger))
 
 
-;;
-;; Default logger implementation
-;;
+(defmacro list-args (&rest args)
+  "List args as string"
+  `(progn
+	 ,@(loop for arg in args collect arg)))
 
-(defun wrn (&rest args)
-  "Default-logger: Write warning-type message to default-configured logger. 
-Arguments are strings or function-calls."
-  (out *default-logger* :prd (collect-args args)))
+(defun logger-p (object)
+"Check if variable holds a object object."
+  (let* ((logger-type-string (format nil "~A" (type-of object))))
+	(string= logger-type-string "LOGGER-TYPE")))
 
-(defun inf (&rest args)
-  "Default-logger: Log information-type message to default-configured logger. 
-Arguments are strings or function-calls."
-  (out *default-logger* :tst (collect-args args)))
+(defun check-logger (obj args)
+  "Check if object is a logger, if not append 
+object to args and return new args and default logger."
+  (cond ((not (logger-p obj))
+		 (progn
+		   (push obj args)
+		   (setq obj *default-logger*))))
+  (values obj args))
 
-(defun dbg (&rest args)
-  "Default-logger: Log debug-type message to default-configured logger. 
-Arguments are strings or function-calls."
-  (out *default-logger* :dbg (collect-args args)))
+(defun wrn (arg1 &rest args)
+  "Warning-log funection at prd-level with custom-logger if arg1 is a logger. 
+Otherwise use *default-logger* and put arg1 to args."
+  (multiple-value-bind (logger args) (check-logger arg1 args)
+	  (out logger :prd (collect-args args))))
 
-;; Custom logger
+(defun inf (arg1 &rest args)
+  "Information-log function at prd-level with custom-logger if arg1 is a logger. 
+Otherwise use *default-logger* and put arg1 to args."
+  (multiple-value-bind (logger args) (check-logger arg1 args)
+	  (out logger :tst (collect-args args))))
 
-(defun cwrn (logger &rest args)
-  "Custom-logger: Write a warning-type log to custom-logger because 
-no logger is given."
-  (out logger :prd (collect-args args)))
+(defun dbg (arg1 &rest args)
+  "Debug-log function at prd-level with custom-logger if arg1 is a logger. Otherwise use
+*default-logger* and put arg1 to args."
+  (multiple-value-bind (logger args) (check-logger arg1 args)
+	  (out logger :dbg (collect-args args))))
 
-(defun cinf (logger &rest args)
-  "Custom-logger: write an information-type log to custom-logger because 
-no logger is given."
-  (out logger :tst (collect-args args)))
-
-(defun cdbg (logger &rest args)
-  "Custom-logger: write a debug-type log to custom-logger because 
-no logger is given."
-  (out logger :dbg (collect-args args)))
+(defun stack (level stack-depth &rest args)
+  "Use swank to log a stack-trace."
+  (cstack *default-logger* level stack-depth (collect-args args)))
 
 (defun cstack (logger level stack-depth &rest args)
-  "Custom-logger: use swank to log a stack-trace."
+  "Use swank to log a stack-trace."
   (let ((trace ""))
 	(let* ((msg-lst (remove-if #'null
 							   (swank-backend:call-with-debugging-environment
 								(lambda () (swank:backtrace 0 (+ stack-depth 2))))))
-		   (stack-msg (progn
-						(mapcar (lambda (msg)
-								  (setf trace (concatenate 'string 
-														   trace 
-														   (format nil "~{~A ~}~%" msg))))
-							  msg-lst) trace))
+		   (stack-msg 
+			(progn
+			  (mapcar (lambda (msg)
+						(setf trace (concatenate 'string trace 
+												   (format nil "~{~A ~}~%" msg))))
+					  msg-lst) trace))
 		   (user-msg (format nil (collect-args args)))
-		   (log-msg (concatenate 'string user-msg stack-msg))) 
+		   (log-msg (concatenate 'string user-msg stack-msg)))
 	  (out logger level log-msg nil))))
 
-(defun stack (level stack-depth fmt-msg &rest args)
-  "Default-logger: Use swank to log a stack-trace."
-  (cstack *default-logger* level stack-depth (format-with-list fmt-msg args)))
-
-(defun cexp-log (logger level msg body)
-  "Custom-logger: Log with custom logger expression and show result and 
-timing. No formatting."
-  (let ((local-time (start-watch)))
-	(out logger
-		  level
-		  (format nil 
-				  (concatenate 'string msg " ~A = ~{~A ~} ~%"
-							   "Execution in real-time ~,3f s "
-							   "and run-time ~,3f s.") 
-				  body
-				  (eval body)
-				  (t-real (stop-watch local-time))
-				  (t-run (stop-watch local-time))))))
-
 (defun exp-log (level msg body)
-  "Log expression and show result and timing. No formatting."
+  "Log with custom logger expression and show result and 
+timing. No formatting."
   (cexp-log *default-logger* level msg body))
 
+(defun cexp-log (logger level msg body)
+  "Log with custom logger expression and show result and 
+timing. No formatting."
+  (let ((local-time (start-watch)))
+	(out logger level
+		 (format nil 
+				 (concatenate 'string msg " ~A = ~{~A ~} ~%"
+							  "Execution in real-time ~,3f s "
+							  "and run-time ~,3f s.") 
+				 body
+				 (eval body)
+				 (t-real (stop-watch local-time))
+				 (t-run (stop-watch local-time))))))
+
+(defun trace-fn (fn-name fmt-msg &rest args)
+  "Traces a function and log its results and its execution-time."
+  (ctrace-fn *default-logger* fn-name fmt-msg (collect-args args)))
+
 (defun ctrace-fn (logger fn-name fmt-msg &rest args)
-  "Custom-Logger: traces a function and log its results and its execution-time."
+  "Traces a function and log its results and its execution-time."
   (let* ((old-fn (symbol-function 
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
@@ -530,18 +535,14 @@ timing. No formatting."
 						  (user-msg (format-with-list fmt-msg args))
 						  (time-run-time (t-run exec-time))
 						  (time-real-time (t-real exec-time))
-						  (time-msg (format nil 
-										 "Execution in real-time ~,3f s and run-time ~,3f s" 
-											time-real-time time-run-time))
+						  (time-msg 
+						   (format nil "Execution in real-time ~,3f s and run-time ~,3f s" 
+									 time-real-time time-run-time))
 						  (log-msg (concatenate 'string user-msg result-msg time-msg)))
 					 (out logger :dbg log-msg))))) ;; log function msg
 	(setf (gethash fn-name *trace-store*) old-fn) ;; store old function via hashes
-    (setf (symbol-function 
-		   (find-symbol (string-upcase fn-name))) new-fn))) ;; set new function
-
-(defun trace-fn (fn-name fmt-msg &rest args)
-  "Default-logger: trace a function and log its result and execution-time."
-  (ctrace-fn *default-logger* fn-name (format-with-list fmt-msg args)))
+	  (setf (symbol-function 
+			 (find-symbol (string-upcase fn-name))) new-fn))) ; set new function
 
 (defun untrace-fn (fn-name)
   "Set function in fn-name to their old version in *trace-store*"
@@ -550,32 +551,26 @@ timing. No formatting."
   (remhash fn-name *trace-store*))
 
 (defun capture (level function &rest args)
-  "Default-Logger: capture function-output which is beeing written to 
+  "Capture function-output which is beeing written to 
 *standard-output* and log the results."
-  (let* ((fn-string (function-output-to-string function)))
-	(out *default-logger* level (collect-args (append args 
-													 (list fn-string))))))
+  (ccapture *default-logger* level function (collect-args args)))
 
 (defun ccapture (logger level function &rest args)
-  "Custom-logger: capture function-output which is beeing written to 
+  "Capture function-output which is beeing written to 
 *standard-output* and log the results."
   (let* ((mem-string (function-output-to-string function)))
-	(out logger level (collect-args (append args 
-										   (list mem-string))))))
+	  (out logger level (collect-args (append args (list mem-string))))))
 
 (defun sys (level command &rest args)
-  "Default-logger: capture the output of executed shell-commands 
+  "Custom-logger: Capture the output of executed shell-commands 
 and log everything."
-  (let* ((command-string (make-string-from-command command)))
-	(out *default-logger* level (collect-args (append args 
-													 (list command-string))))))
+  (csys *default-logger* level command (collect-args args)))
 
 (defun csys (logger level command &rest args)
   "Custom-logger: Capture the output of executed shell-commands 
 and log everything."
   (let* ((command-string (make-string-from-command command)))
-	(out logger level (collect-args (append args 
-										   (list command-string))))))
+	(out logger level (collect-args (append args (list command-string))))))
 
 #+sbcl
 (defun udp-handler (buffer)

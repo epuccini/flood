@@ -36,24 +36,22 @@
    #:set-default-logger
    #:make-date-time-string
    #:log-level-p
-   #:out
    #:get-log-level
+   #:logger-p
+   #:out
+   #:capture
+   #:ccapture
    #:exp-log
    #:cexp-log
-   #:ctrace-fn
    #:trace-fn
+   #:ctrace-fn
    #:untrace-fn
    #:stack
    #:cstack
    #:wrn
    #:inf
    #:dbg
-   #:cwrn
-   #:cinf
-   #:cdbg
-   #:async-out
-   #:capture
-   #:ccapture
-   #:make-string-from-output
    #:sys
-   #:csys))
+   #:csys
+   #:async-out
+   #:make-string-from-output))

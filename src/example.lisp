@@ -1,14 +1,14 @@
-; -------------------------------------------------------------
-; Edward Alan Puccini 16.01.2016
-; -------------------------------------------------------------
-; Flood logging library make and loader
-; -------------------------------------------------------------
-; file: main.lisp 
-; -------------------------------------------------------------
-; main - example application
-; -------------------------------------------------------------
-; Requirements: 
-; -------------------------------------------------------------
+;;; -------------------------------------------------------------
+;;; Edward Alan Puccini 16.01.2016
+;;; -------------------------------------------------------------
+;;; Flood logging library make and loader
+;;; -------------------------------------------------------------
+;;; file: main.lisp 
+;;; -------------------------------------------------------------
+;;; main - example application
+;;; -------------------------------------------------------------
+;;; Requirements: 
+;;; -------------------------------------------------------------
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
   (require 'async-syntax)
@@ -16,11 +16,11 @@
   (use-package :flood))
 
 
-;; Non-blocking
-(enable-async-syntax)
-
+;;
+;; demo function
+;;
 (defun squares (x)
-  "Demo function"
+  "Multiply 10000 times."
   (let ((result 0))
 	(loop for cnt from 0 to 100000 do
 		 (setf result (+ result (* cnt x))))))
@@ -31,9 +31,9 @@
   (terpri)
 
   ;; Start with default logger. Configured with conf/init.conf
-  (wrn  "Hello log! Warning...")
-  (inf  "Hello log! Information...")
-  (dbg  "Hello log! Debug...")
+  (wrn "Hello log! Warning...")
+  (inf "Hello log! Information...")
+  (dbg "Hello log! Debug...")
 
   ;; init logger with writer and formatter 
   (let ((lg (make-bare-logger 
@@ -44,10 +44,11 @@
 	(set-default-logger lg)
 
 	;; simple log output
-	(dbg "First custom-log output")
+	(wrn lg "First default-log output 2+4=" (+ 2 4))
+	(wrn "First custom-log output")
 
 	;; simple log output formatted
-	(dbg "Second custom log output with format values: " 666 " inbetween " 999)
+	(dbg lg "Second custom log output with format values: " 666 " inbetween " 999)
 
 	;; trace demo function 'squares' and send ouput to 
 	;; error-writer and file-writer. Use ascii-formatter.
@@ -87,44 +88,46 @@
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 	;; First output with 
-	(cdbg lg "Testing new format template.")
+	(dbg lg "Testing new format template.")
 
 	;; We are testing log-levels now:
 	;; set logging level to 
-	(cwrn lg "Switching to log-level: " 
-		 (set-log-level :dbg))
-	(cdbg lg "DEBUG log-output.")
-	(cinf lg "INFORMATION log-output.")
-	(cwrn lg "WARNING log-output.")
+	(wrn lg "Switching to log-level: " (set-log-level :dbg))
+	(dbg lg "DEBUG log-output.")
+	(inf lg "INFORMATION log-output.")
+	(wrn lg "WARNING log-output.")
 
 	;; set logging level to TEST
-	(cwrn lg "Switching to log-level: " 
-		 (set-log-level :tst))
-	(cdbg lg "DEBUG log-output.")
-	(cinf lg "INFORMATION log-output.")
-	(cwrn lg "WARNING log-output.")
+	(wrn lg "Switching to log-level: " (set-log-level :tst))
+	(dbg lg "DEBUG log-output.")
+	(inf lg "INFORMATION log-output.")
+	(wrn lg "WARNING log-output.")
 
 	;; set logging level to PRODUCTION
-	(cwrn lg "Switching to log-level: " 
-		 (set-log-level :prd))
-	(cdbg lg "DEBUG log-output.")
-	(cinf lg "INFORMATION log-output.")
-	(cwrn lg "WARNING log-output.")
+	(wrn lg "Switching to log-level: " (set-log-level :prd))
+	(dbg lg "DEBUG log-output.")
+	(inf lg "INFORMATION log-output.")
+	(wrn lg "WARNING log-output.")
 
 	;; set log-level debug
 	(set-log-level :dbg)
 
 	;; Back to default logger
 
-	;; just append '°' for marking as async
-	(async (dbg "Async-out! Debug..."))
-	(async (inf "Async-out! Information..."))
-	(async (wrn "Async-out! Warning..."))
+	;; test multithreaded
+	(async 
+	 (progn
+	   (dbg "Async-out thread A! Debug...")
+	   (inf "Async-out thread A! Information...")
+	   (wrn "Async-out thread A! Warning...")))
+	(async 
+	 (progn
+	   (dbg "Async-out thread B! Debug...")
+	   (inf "Async-out thread B! Information...")
+	   (wrn "Async-out thread B! Warning...")))
 	
-	;; or prefix with the small circle 
-	;; to call an expression as a thread
-	;; also for use with expressions
-	°(progn (inf "I'm going to sleep...") 
+	(async 
+	 (progn (inf "I'm going to sleep...") 
 			(sleep 1)
 			(inf "Zzzzzzz...")
 			(sleep 1)
@@ -132,7 +135,7 @@
 			(sleep 1)
 			(inf "Zzzzzzz...")
 			(sleep 1)
-			(inf "I've slept for " 3 " seconds."))
+			(inf "I've slept for " 3 " seconds.")))
 	
 	;; set new loggers
 	(let ((stack-depth 4))
