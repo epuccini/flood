@@ -530,7 +530,9 @@ timing. No formatting."
 				  (find-symbol (string-upcase fn-name))))
 		 (new-fn (lambda (&rest fn-args) 
 				   (let* ((local-time (start-watch))
-						  (result-msg (format nil "#'~A ~%Result: ~A~%" fn-name
+						  (result-msg (format nil 
+											  "#'~A ~%Result: ~A~%" 
+											  fn-name
 											  (apply old-fn fn-args)))
 						  (exec-time (stop-watch local-time))
 						  (user-msg (format-with-list fmt-msg args))

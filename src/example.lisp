@@ -20,10 +20,11 @@
 ;; demo function
 ;;
 (defun squares (x)
-  "Multiply 10000 times."
+  "Multiply 100 times."
   (let ((result 0))
-	(loop for cnt from 0 to 100000 do
-		 (setf result (+ result (* cnt x))))))
+	(loop for cnt from 0 to 99 do
+		 (setf result (+ result (* x x))))
+	result))
 
 (defun main ()
   (terpri)
