@@ -89,12 +89,12 @@
 	;; of the log-server:
 
 	;; start upd-server to try the socket-writer
-	; #+(or sbcl ccl)
-	; (start-log-server)
+	;; #+(or sbcl ccl)
+	;; (start-log-server)
 
 	;; create a custom logger with a socket-writer and a new template-string
 	(setq lg (make-logger :writers (list #'error-writer 
-	;;									 #'socket-writer
+										 #'socket-writer
 										 #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
@@ -122,7 +122,8 @@
 
 	;; set log-level debug
 	(set-log-level :dbg)
-
+	(dbg lg "Back to default loger")
+	
 	;; Back to default logger
 
 	;; test multithreaded
@@ -151,17 +152,17 @@
 	;; set new loggers
 	(let ((stack-depth 4))
 		  ;; log stack trace with depth 4
-		  (stack :dbg stack-depth 
+		  (stack :inf stack-depth 
 					 "Stack-trace depth: " stack-depth "~%"))
 	  
 	;; Log memory usage
-	(capture :dbg #'room "Memory output:~%")
+	(capture :inf #'room "Memory output:~%")
 
 	;; Load shell command output
-	(sys :dbg "ps -e | grep sbcl" "Calling shell-command and log output...~%")
+	(sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%")
 
 	;; turn off udp-server
-	;; #+(or sbcl ccl)
+	;;#+(or sbcl ccl)
 	;; (stop-log-server)
 
 	(princ "STOP logging!")))

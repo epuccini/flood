@@ -13,6 +13,7 @@
 ;;
 (require 'bordeaux-threads)
 (require 'cl-ppcre)
+(require 'usocket-server)
 
 ;;
 ;; Constants and vars
@@ -46,7 +47,7 @@
 	(let ((fmt (format nil "~A" (nth day-of-week *day-names*))))
 	  fmt)))
 
-(defun make-datetime-strings ()
+(defun make-datetime-string ()
   "As it says: makes one date and a time string from current date and time."
   (multiple-value-bind 
 		(second minute hour day month year day-of-week dst-p tz)
@@ -263,7 +264,7 @@ $DATE $TIME $LEVEL $MESSAGE $MACHINE-INSTANCE $MACHINE-TYPE
 $SOFTWARE-VERSION $SOFTWARE-TYPE and can be used seperatly
 or mixed. They will be replaced by corresponding values."
   (let ((format-string template))
-	(multiple-value-bind (date-fmt time-fmt) (make-datetime-strings)
+	(multiple-value-bind (date-fmt time-fmt) (make-datetime-string)
 	  (setf format-string 
 			(cl-ppcre:regex-replace-all 
 			 "\\$DATE" format-string date-fmt))
@@ -610,15 +611,13 @@ and log everything. Use custom logger."
 		 (handler-case
 			 (progn
 			   (print "Server startup...")
-			   (setf *server-socket*
-					 (usocket:socket-server local-ip
-											port
-											'udp-handler
-											nil
-											:protocol :datagram
-											:timeout 10
-											:max-buffer-size 1024
-											:multi-threading t)))
+			   (usocket:socket-server local-ip
+									  port
+									  'udp-handler
+									  nil
+									  :protocol :datagram
+									  :timeout 10
+									  :max-buffer-size 1024))
 		   (error (condition)
 			 (write-line (format nil "Error in 'start-log-server. ~A~%"
 								 condition) *error-output*)))))))
@@ -630,6 +629,6 @@ and log everything. Use custom logger."
 
 #+(or sbcl ccl)
 (defun stop-log-server ()
-  "Stop udp-server and reset.")
-;  (usocket:socket-close *server-socket*))
+  "Stop udp-server and reset."
+  (usocket:socket-close *server-socket*))
 

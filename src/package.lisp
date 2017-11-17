@@ -17,6 +17,7 @@
    #:*history*
    #:*default-logger*
    #:*terpri*
+   #:*server-socket*
    #:start-log-server
    #:stop-log-server
    #:get-history
@@ -34,7 +35,7 @@
    #:ascii-formatter
    #:set-log-level
    #:set-default-logger
-   #:make-date-time-string
+   #:make-datetime-string
    #:log-level-p
    #:get-log-level
    #:logger-p
