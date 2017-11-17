@@ -23,7 +23,7 @@
 (defvar *global-config* nil)
 (defvar *trace-store* (make-hash-table :test 'equal)) ; All trace-functions go in 
 										             ; this hash-table
-(defvar *server-socket* nil)
+(defvar *server-thread* nil)
 (defvar *backup-buffer* "")
 (defvar *backup-message* "")
 
@@ -606,21 +606,22 @@ and log everything. Use custom logger."
   "Start upd-server for handling network sent log entries."
   (let ((local-ip (getf *global-config* :LOCAL_IP))
 		(port (getf *global-config* :PORT)))
-	(make-thread 
-	 #'(lambda ()
-		 (handler-case
-			 (progn
-			   (print "Server startup...")
-			   (usocket:socket-server local-ip
-									  port
-									  'udp-handler
-									  nil
-									  :protocol :datagram
-									  :timeout 10
-									  :max-buffer-size 1024))
-		   (error (condition)
-			 (write-line (format nil "Error in 'start-log-server. ~A~%"
-								 condition) *error-output*)))))))
+	(setf *server-thread*
+		  (make-thread 
+		   #'(lambda ()
+			   (handler-case
+				   (progn
+					 (print "Server startup...")
+					 (usocket:socket-server local-ip
+											port
+											'udp-handler
+											nil
+											:protocol :datagram
+											:timeout 10
+											:max-buffer-size 1024))
+				 (error (condition)
+				   (write-line (format nil "Error in 'start-log-server. ~A~%"
+									   condition) *error-output*))))))))
 
 #-(or sbcl ccl)
 (defun stop-log-server ()
@@ -630,5 +631,5 @@ and log everything. Use custom logger."
 #+(or sbcl ccl)
 (defun stop-log-server ()
   "Stop udp-server and reset."
-  (usocket:socket-close *server-socket*))
+  (destroy-thread *server-thread*))
 

@@ -88,13 +88,14 @@
 	;; #'socket-writer line and the starting and stopping 
 	;; of the log-server:
 
-	;; start upd-server to try the socket-writer
-	;; #+(or sbcl ccl)
+	;; start upd-server only if you want to behave as server
+	;;#+(or sbcl ccl)
 	;; (start-log-server)
 
 	;; create a custom logger with a socket-writer and a new template-string
+	;; uncomment socket-writer only if you want to behave as client
 	(setq lg (make-logger :writers (list #'error-writer 
-										 #'socket-writer
+;;										 #'socket-writer
 										 #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
@@ -161,7 +162,7 @@
 	;; Load shell command output
 	(sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%")
 
-	;; turn off udp-server
+	;; turn off udp-server by killing thread - no socket-logging works
 	;;#+(or sbcl ccl)
 	;; (stop-log-server)
 
