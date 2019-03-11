@@ -60,7 +60,7 @@
     (capture :inf #'room "Memory output:~%")
 
     ;; Load shell command output
-    (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%")
+    (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%"))
 
   
 
