@@ -60,7 +60,9 @@
   
 
 
- The configuration library can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/".
+ The configuration library can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/".<br><br>
+ 
+ License is based on GNU LESSER GENERAL PUBLIC LICENSE.<br>
  
  
  
