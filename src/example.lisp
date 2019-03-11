@@ -32,7 +32,7 @@
   (terpri)
 
   ;;
-  ;; Start with default logger. Configured with conf/init.conf
+  ;; Start with default logger. Configured with conf/flood.conf
   ;; Three simple function make up the core logging facility
   ;;
   (wrn "Hello log! Warning...")
@@ -78,6 +78,22 @@
 					   '(mapcar (lambda (x) (squares x)) 
 							   (append '(1 2 3 4 5) '(4 3 2 1))))
 
+	;; clear history - we dont want the first logs in our html file
+	(set-history '(""))
+	
+	;; create a custom logger with a socket-writer and a new template-string
+	;; uncomment socket-writer only if you want to behave as client
+	(setq lg (make-logger :writers (list #'htmlfile-writer)
+										;#'email-writer)
+						  :formatter #'html-formatter
+						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
+	
+	;; First output with email - not successfully tested
+	(wrn lg "Switching to log-level: " (set-log-level :dbg))
+	(dbg lg "Testing new format template.")
+	(inf lg "Testing new format template.")
+	(wrn lg "Testing new format template.")
+
 	;; setup new format string (in clisp there is a problem with
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
@@ -91,17 +107,6 @@
 	;; start upd-server only if you want to behave as server
 	;;#+(or sbcl ccl)
 	;; (start-log-server)
-
-	;; create a custom logger with a socket-writer and a new template-string
-	;; uncomment socket-writer only if you want to behave as client
-;;	(setq lg (make-logger :writers (list #'error-writer 
-;;										 #'socket-writer
-;;										 #'file-writer
-;;										 #'email-writer)
-;;						  :formatter #'ascii-formatter
-;;						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
-	;; First output with email - not successfully tested
-;;	(dbg lg "Testing new format template.")
 
 	(setq lg (make-logger :writers (list #'error-writer 
 ;;										 #'socket-writer

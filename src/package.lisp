@@ -15,10 +15,10 @@
   ;;
   (:export
    #:*history*
-   #:*global-config*
    #:*default-logger*
    #:*terpri*
    #:*server-socket*
+   #:*global-config*
    #:start-log-server
    #:stop-log-server
    #:get-history
@@ -29,12 +29,15 @@
    #:make-bare-logger
    #:make-logger
    #:file-writer
+   #:htmlfile-writer
    #:standard-writer
    #:socket-writer 
    #:rotating-log-writer
    #:error-writer
    #:email-writer
    #:ascii-formatter
+   #:html-formatter
+   #:xml-formatter
    #:set-log-level
    #:set-default-logger
    #:make-datetime-string

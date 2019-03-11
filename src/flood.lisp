@@ -201,6 +201,26 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 			(write-line (format nil "Error in 'file-writer' ~A" condition) 
 						*error-output*)))))))
 
+(defun htmlfile-writer (message)
+  "Write to file. Apppend or create file."
+  (let* ((filename (concatenate 'string 
+								(getf *global-config* :HTML_FILE_NAME) ".html")))
+
+	(check-file-size filename)
+	(handler-case 
+	    (with-open-file (stream filename :direction :output)
+		  (write-line message stream))
+	  ;; if file exists already then append to file
+	  (error ()
+		(handler-case
+			(with-open-file (stream filename 
+									:direction :output
+									:if-exists :append)
+			  (write-line message stream))
+		  (error (condition)
+			(write-line (format nil "Error in 'file-writer' ~A" condition) 
+						*error-output*)))))))
+
 (defun email-writer (message)
   (cl-smtp:send-email (getf *global-config* :SMTP_HOST)
 					  (getf *global-config* :EMAIL_FROM)
@@ -324,12 +344,17 @@ or mixed. They will be replaced by corresponding values."
  
 
 (defun html-formatter (writers template level fmt-msg args)
-  (print "Not implemented yet!")
-  (print writers)
-  (print template)
-  (print level)
-  (print fmt-msg)
-  (print args))
+  (let* ((message (format nil 
+						  (expand-entry-template template level fmt-msg) 
+						  args))
+		 (html-template (getf flood:*global-config* :HTML_TEMPLATE)))
+	(append-to-history message)
+	(dolist (writer writers)
+	  (funcall writer
+			   (cl-ppcre:regex-replace-all
+				"\\$BODY"
+				html-template
+				message)))))
  
 
 (defun xml-formatter (writers template level fmt-msg args)
