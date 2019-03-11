@@ -62,10 +62,67 @@
     ;; Load shell command output
     (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%"))
 
-  
+These are the API functions and vars:
+
+	(defpackage :flood
+	  (:use #:cl #:bordeaux-threads #:async-syntax)
+	  ;;
+	  ;; All Flood library functions
+	  ;;
+	  (:export
+	   #:*history*
+	   #:*global-config*
+	   #:*default-logger*
+	   #:*terpri*
+	   #:*server-socket*
+	   #:start-log-server
+	   #:stop-log-server
+	   #:get-history
+	   #:history
+	   #:set-history
+	   #:append-to-history
+	   #:async-prefix
+	   #:make-bare-logger
+	   #:make-logger
+	   #:file-writer
+	   #:standard-writer
+	   #:socket-writer 
+	   #:rotating-log-writer
+	   #:error-writer
+	   #:ascii-formatter
+	   #:set-log-level
+	   #:set-default-logger
+	   #:make-datetime-string
+	   #:log-level-p
+	   #:get-log-level
+	   #:logger-p
+	   #:out
+	   #:capture
+	   #:capture-ext
+	   #:exp-log
+	   #:exp-ext-log
+	   #:trace-fn
+	   #:trace-ext-fn
+	   #:trace-fn
+	   #:untrace-fn
+	   #:stack
+	   #:stack-ext
+	   #:wrn
+	   #:inf
+	   #:dbg
+	   #:sys
+	   #:sys-ext
+	   #:async-out
+	   #:copy-file
+	   #:move-file
+	   #:backup-file
+	   #:file-size
+	   #:make-string-from-output
+	   #:make-day-string))
 
 
- The configuration library can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/".<br><br>
+
+ The configuration file can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/" or "bin/" when you compiled a program.<br><br>
  
  License is based on GNU LESSER GENERAL PUBLIC LICENSE.<br>
  
