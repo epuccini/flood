@@ -56,5 +56,9 @@
    #:sys
    #:sys-ext
    #:async-out
+   #:copy-file
+   #:move-file
+   #:backup-file
+   #:file-size
    #:make-string-from-output
    #:make-day-string))
