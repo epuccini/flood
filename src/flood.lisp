@@ -13,7 +13,7 @@
 ;;
 (require 'bordeaux-threads)
 (require 'cl-ppcre)
-(require 'usocket-server)
+(require 'usocket)
 
 ;;
 ;; Constants and vars
