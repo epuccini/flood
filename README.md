@@ -13,13 +13,13 @@
  
  Try the following:<br><br>
  
-  ;;<br>
-  ;; Start with default logger. Configured with conf/flood.conf<br>
-  ;; Three simple function make up the core logging facility<br><br>
-  ;;
-  (wrn "Hello log! Warning...")<br>
-  (inf "Hello log! Information...")<br>
-  (dbg "Hello log! Debug...")<br><br>
+	;;<br>
+	;; Start with default logger. Configured with conf/flood.conf<br>
+	;; Three simple function make up the core logging facility<br><br>
+	;;
+	(wrn "Hello log! Warning...")<br>
+	(inf "Hello log! Information...")<br>
+	(dbg "Hello log! Debug...")<br><br>
 
 	;; trace demo function 'squares' and send ouput to <br>
 	;; error-writer and file-writer. Use ascii-formatter.<br>
