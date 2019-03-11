@@ -15,6 +15,7 @@
   ;;
   (:export
    #:*history*
+   #:*global-config*
    #:*default-logger*
    #:*terpri*
    #:*server-socket*
