@@ -3004,3 +3004,18 @@ Execution in real-time 0.001 s and run-time 0.001 s.
 [20:50:21 / 11.03.2019]-[TST]-Zzzzzzz...
 [20:50:22 / 11.03.2019]-[TST]-Zzzzzzz...
 [20:50:23 / 11.03.2019]-[TST]-I've slept for 3 seconds.
+[20:57:04 / 11.03.2019]-[PRD]-First custom-log output
+[20:57:04 / 11.03.2019]-[PRD]-First default-log output 2+4=6
+[20:57:04 / 11.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[20:57:04 / 11.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[20:57:04 / 11.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[20:57:04 / 11.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[20:57:04 / 11.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.001 s and run-time 0.001 s.

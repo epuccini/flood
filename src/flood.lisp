@@ -654,13 +654,13 @@ and log everything. Use custom logger."
 			   (handler-case
 				   (progn
 					 (print "Server startup...")
-					 (usocket:socket-server local-ip
-											port
-											'udp-handler
-											nil
-											:protocol :datagram
-											:timeout 10
-											:max-buffer-size 1024))
+					 (usocket:socket-listen local-ip
+											port))
+											;'udp-handler
+											;nil
+											;:protocol :datagram
+											;:timeout 10
+											;:max-buffer-size 1024))
 				 (error (condition)
 				   (write-line (format nil "Error in 'start-log-server. ~A~%"
 									   condition) *error-output*))))))))
