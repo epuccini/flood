@@ -123,3 +123,40 @@ Execution in real-time 0.000 s and run-time 0.000 s.
 [16:11:20 / 25.11.2018]-[TST]-Zzzzzzz...
 [16:11:21 / 25.11.2018]-[TST]-Zzzzzzz...
 [16:11:22 / 25.11.2018]-[TST]-I've slept for 3 seconds.
+[12:06:23 / 11.03.2019]-[PRD]-First custom-log output
+[12:06:23 / 11.03.2019]-[PRD]-First default-log output 2+4=6
+[12:06:23 / 11.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[12:06:23 / 11.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[12:06:23 / 11.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[12:06:23 / 11.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[12:06:23 / 11.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.001 s and run-time 0.001 s.
+[X86-64]-12:06:23-[DBG]-Testing new format template.
+[X86-64]-12:06:23-[PRD]-Switching to log-level: DBG
+[X86-64]-12:06:23-[DBG]-DEBUG log-output.
+[X86-64]-12:06:23-[TST]-INFORMATION log-output.
+[X86-64]-12:06:23-[PRD]-WARNING log-output.
+[X86-64]-12:06:23-[PRD]-Switching to log-level: TST
+[X86-64]-12:06:23-[TST]-INFORMATION log-output.
+[X86-64]-12:06:23-[PRD]-WARNING log-output.
+[X86-64]-12:06:23-[PRD]-Switching to log-level: PRD
+[X86-64]-12:06:23-[PRD]-WARNING log-output.
+[X86-64]-12:06:23-[DBG]-Back to default loger
+[12:06:23 / 11.03.2019]-[TST]-I'm going to sleep...
+[12:06:23 / 11.03.2019]-[DBG]-Async-out thread B! Debug...
+[12:06:23 / 11.03.2019]-[DBG]-Async-out thread A! Debug...
+[12:06:23 / 11.03.2019]-[TST]-Async-out thread A! Information...
+[12:06:23 / 11.03.2019]-[TST]-Async-out thread B! Information...
+[12:06:23 / 11.03.2019]-[PRD]-Async-out thread A! Warning...
+[12:06:23 / 11.03.2019]-[PRD]-Async-out thread B! Warning...
+[12:06:24 / 11.03.2019]-[TST]-Zzzzzzz...
+[12:06:25 / 11.03.2019]-[TST]-Zzzzzzz...
+[12:06:26 / 11.03.2019]-[TST]-Zzzzzzz...
+[12:06:27 / 11.03.2019]-[TST]-I've slept for 3 seconds.
