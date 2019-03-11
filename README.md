@@ -17,9 +17,14 @@
 	;; Start with default logger. Configured with conf/flood.conf<br>
 	;; Three simple function make up the core logging facility<br><br>
 	;;
-	(wrn "Hello log! Warning...")
-	(inf "Hello log! Information...")
-	(dbg "Hello log! Debug...")
+	(let ((name "Edward")
+	      (level 3))
+	;;
+	;; just type variables into the places you want them to be
+	;;
+	(wrn "Hello " name "! Warning-level: " level)
+	(inf "Hello " name "! Warning-level: " level)
+	(dbg "Hello " name "! Warning-level: " level)
 
 	;; trace demo function 'squares' and send ouput to 
 	;; error-writer and file-writer. Use ascii-formatter.
