@@ -37,13 +37,13 @@
  	;; create a custom logger with a socket-writer and a new template-string
 	;; uncomment socket-writer only if you want to behave as client
 	(setq lg (make-logger :writers (list 
-					 #'error-writer <br>
-					 #'socket-writer<br>
-					 #'file-writer)<br>
+					 #'error-writer 
+					 #'socket-writer
+					 #'file-writer)
 					  :formatter #'ascii-formatter<br>
-					  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))<br><br>
+					  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
               
-    ;; First output with <br>
+    ;; First output with
     (dbg lg "Testing new format template.")
 
     ;; stack-trace
