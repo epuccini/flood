@@ -32,6 +32,7 @@
    #:socket-writer 
    #:rotating-log-writer
    #:error-writer
+   #:email-writer
    #:ascii-formatter
    #:set-log-level
    #:set-default-logger

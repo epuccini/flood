@@ -201,10 +201,18 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 			(write-line (format nil "Error in 'file-writer' ~A" condition) 
 						*error-output*)))))))
 
- 
 (defun email-writer (message)
-  (print "Not implemented yet!")
-  (print message))
+  (cl-smtp:send-email (getf *global-config* :SMTP_HOST)
+					  (getf *global-config* :EMAIL_FROM)
+					  (getf *global-config* :EMAIL_TO)
+					  "flood-emailer"
+					  (format nil "~A~A~%"
+							  (getf *global-config* :EMAIL_TEMPLATE)
+							  message)
+					  :port (getf *global-config* :EMAIL_PORT)
+					  :authentication '(:login (getf *global-config* :EMAIL_USER)
+										(getf *global-config* :EMAIL_PASWORD))
+					  :ssl (getf *global-config* :EMAIL_SSL)))
 
 #-(or sbcl ccl)
 (defun socket-writer (message)

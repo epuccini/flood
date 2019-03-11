@@ -94,13 +94,20 @@
 
 	;; create a custom logger with a socket-writer and a new template-string
 	;; uncomment socket-writer only if you want to behave as client
+;;	(setq lg (make-logger :writers (list #'error-writer 
+;;										 #'socket-writer
+;;										 #'file-writer
+;;										 #'email-writer)
+;;						  :formatter #'ascii-formatter
+;;						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
+	;; First output with email - not successfully tested
+;;	(dbg lg "Testing new format template.")
+
 	(setq lg (make-logger :writers (list #'error-writer 
 ;;										 #'socket-writer
 										 #'file-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
-	;; First output with 
-	(dbg lg "Testing new format template.")
 
 	;; We are testing log-levels now:
 	;; set logging level to 
