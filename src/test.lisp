@@ -23,9 +23,17 @@
 		  (res2 (if (= (length time) 8) t nil)))
 	  (and res1 res2))))
 
+(defun flood-test::test-make-day-string ()
+  (let ((str (make-day-string)))
+	(if (> (length str) 0) t)))
+
+(defun flood-test::test-copy-file ()
+  )
+
 (defun flood-test::main ()
   (test (test-case "flood library"
 				   (test-case "flood utility functions"
-					 '(test-make-datetime-string)))))
+					 '(test-make-datetime-string)
+					 '(test-make-day-string)))))
 
 (flood-test:main)

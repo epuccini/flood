@@ -49,3 +49,77 @@ Execution in real-time 0.001 s and run-time 0.001 s.
 [14:08:28 / 17.11.2017]-[TST]-Zzzzzzz...
 [14:08:29 / 17.11.2017]-[TST]-Zzzzzzz...
 [14:08:30 / 17.11.2017]-[TST]-I've slept for 3 seconds.
+[16:10:30 / 25.11.2018]-[PRD]-First custom-log output
+[16:10:30 / 25.11.2018]-[PRD]-First default-log output 2+4=6
+[16:10:30 / 25.11.2018]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[16:10:30 / 25.11.2018]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[16:10:30 / 25.11.2018]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[16:10:30 / 25.11.2018]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[16:10:30 / 25.11.2018]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.001 s and run-time 0.001 s.
+[X86-64]-16:10:30-[DBG]-Testing new format template.
+[X86-64]-16:10:30-[PRD]-Switching to log-level: DBG
+[X86-64]-16:10:30-[DBG]-DEBUG log-output.
+[X86-64]-16:10:30-[TST]-INFORMATION log-output.
+[X86-64]-16:10:30-[PRD]-WARNING log-output.
+[X86-64]-16:10:30-[PRD]-Switching to log-level: TST
+[X86-64]-16:10:30-[TST]-INFORMATION log-output.
+[X86-64]-16:10:30-[PRD]-WARNING log-output.
+[X86-64]-16:10:30-[PRD]-Switching to log-level: PRD
+[X86-64]-16:10:30-[PRD]-WARNING log-output.
+[X86-64]-16:10:30-[DBG]-Back to default loger
+[16:10:30 / 25.11.2018]-[DBG]-Async-out thread B! Debug...
+[16:10:30 / 25.11.2018]-[TST]-I'm going to sleep...
+[16:10:30 / 25.11.2018]-[DBG]-Async-out thread A! Debug...
+[16:10:30 / 25.11.2018]-[TST]-Async-out thread B! Information...
+[16:10:30 / 25.11.2018]-[TST]-Async-out thread A! Information...
+[16:10:30 / 25.11.2018]-[PRD]-Async-out thread A! Warning...
+[16:10:30 / 25.11.2018]-[PRD]-Async-out thread B! Warning...
+[16:10:31 / 25.11.2018]-[TST]-Zzzzzzz...
+[16:10:32 / 25.11.2018]-[TST]-Zzzzzzz...
+[16:10:33 / 25.11.2018]-[TST]-Zzzzzzz...
+[16:10:34 / 25.11.2018]-[TST]-I've slept for 3 seconds.
+[16:11:18 / 25.11.2018]-[PRD]-First custom-log output
+[16:11:18 / 25.11.2018]-[PRD]-First default-log output 2+4=6
+[16:11:18 / 25.11.2018]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[16:11:18 / 25.11.2018]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[16:11:18 / 25.11.2018]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[16:11:18 / 25.11.2018]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[16:11:18 / 25.11.2018]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.000 s and run-time 0.000 s.
+[X86-64]-16:11:18-[DBG]-Testing new format template.
+[X86-64]-16:11:18-[PRD]-Switching to log-level: DBG
+[X86-64]-16:11:18-[DBG]-DEBUG log-output.
+[X86-64]-16:11:18-[TST]-INFORMATION log-output.
+[X86-64]-16:11:18-[PRD]-WARNING log-output.
+[X86-64]-16:11:18-[PRD]-Switching to log-level: TST
+[X86-64]-16:11:18-[TST]-INFORMATION log-output.
+[X86-64]-16:11:18-[PRD]-WARNING log-output.
+[X86-64]-16:11:18-[PRD]-Switching to log-level: PRD
+[X86-64]-16:11:18-[PRD]-WARNING log-output.
+[X86-64]-16:11:18-[DBG]-Back to default loger
+[16:11:18 / 25.11.2018]-[TST]-I'm going to sleep...
+[16:11:18 / 25.11.2018]-[DBG]-Async-out thread A! Debug...
+[16:11:18 / 25.11.2018]-[DBG]-Async-out thread B! Debug...
+[16:11:18 / 25.11.2018]-[TST]-Async-out thread A! Information...
+[16:11:18 / 25.11.2018]-[TST]-Async-out thread B! Information...
+[16:11:18 / 25.11.2018]-[PRD]-Async-out thread B! Warning...
+[16:11:18 / 25.11.2018]-[PRD]-Async-out thread A! Warning...
+[16:11:19 / 25.11.2018]-[TST]-Zzzzzzz...
+[16:11:20 / 25.11.2018]-[TST]-Zzzzzzz...
+[16:11:21 / 25.11.2018]-[TST]-Zzzzzzz...
+[16:11:22 / 25.11.2018]-[TST]-I've slept for 3 seconds.

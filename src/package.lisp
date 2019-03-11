@@ -56,4 +56,5 @@
    #:sys
    #:sys-ext
    #:async-out
-   #:make-string-from-output))
+   #:make-string-from-output
+   #:make-day-string))
