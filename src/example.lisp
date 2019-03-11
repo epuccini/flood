@@ -78,6 +78,7 @@
 					   '(mapcar (lambda (x) (squares x)) 
 							   (append '(1 2 3 4 5) '(4 3 2 1))))
 
+	
 	;; clear history - we dont want the first logs in our html file
 	(set-history '(""))
 	

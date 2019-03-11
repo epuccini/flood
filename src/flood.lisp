@@ -209,6 +209,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 	(check-file-size filename)
 	(handler-case 
 	    (with-open-file (stream filename :direction :output)
+		  (write-line "<link rel='stylesheet' type='text/css' href='../conf/styles.css' media='screen' />" stream)
 		  (write-line message stream))
 	  ;; if file exists already then append to file
 	  (error ()
