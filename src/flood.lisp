@@ -14,7 +14,9 @@
 (require 'bordeaux-threads)
 (require 'cl-ppcre)
 (require 'usocket)
+(require 'cl-who)
 
+(use-package :cl-who)
 ;;
 ;; Constants and vars
 ;;
@@ -209,7 +211,13 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 	(check-file-size filename)
 	(handler-case 
 	    (with-open-file (stream filename :direction :output)
-		  (write-line "<link rel='stylesheet' type='text/css' href='../conf/styles.css' media='screen' />" stream)
+		  (write-line 
+		   (with-output-to-string (s) 
+			 (cl-who:with-html-output (s)
+			   (:link :rel "stylesheet"
+					  :type "text/css"
+					  :href "../conf/styles.css")
+			   (:head (:title "Flood html-log")))) stream)
 		  (write-line message stream))
 	  ;; if file exists already then append to file
 	  (error ()

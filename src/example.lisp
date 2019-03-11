@@ -95,6 +95,8 @@
 	(inf lg "Testing new format template.")
 	(wrn lg "Testing new format template.")
 
+	;; get history with: (get-history)
+	
 	;; setup new format string (in clisp there is a problem with
 	;; software-type and -version. They return values, but they are
 	;; mixed with data from a different source)"
