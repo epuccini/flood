@@ -17,6 +17,8 @@
 (require 'cl-who)
 
 (use-package :cl-who)
+
+
 ;;
 ;; Constants and vars
 ;;
@@ -46,8 +48,8 @@
 		(second minute hour day month year day-of-week dst-p tz)
 	  (get-decoded-time)
 	(declare (ignore hour minute second day month year dst-p tz))
-	(let ((fmt (format nil "~A" (nth day-of-week *day-names*))))
-	  fmt)))
+	(let ((frmt (format nil "~A" (nth day-of-week *day-names*))))
+	  frmt)))
 
 (defun make-datetime-string ()
   "As it says: makes one date and a time string from current date and time."
@@ -218,6 +220,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 					  :type "text/css"
 					  :href "../conf/styles.css")
 			   (:head (:title "Flood html-log")))) stream)
+		  (write-line "<body>" stream)
 		  (write-line message stream))
 	  ;; if file exists already then append to file
 	  (error ()
@@ -229,6 +232,20 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 		  (error (condition)
 			(write-line (format nil "Error in 'file-writer' ~A" condition) 
 						*error-output*)))))))
+
+(defun finalize-html ()
+  "Close html-dile with body tag."
+  (let* ((filename (concatenate 'string 
+								(getf *global-config* :HTML_FILE_NAME) ".html")))
+
+	(handler-case 
+	    (with-open-file (stream filename
+								:direction :output
+								:if-exists :append)
+		  (write-line "</body>" stream))
+  		  (error (condition)
+				 (write-line (format nil "Error in 'file-writer' ~A" condition) 
+							 *error-output*)))))
 
 (defun email-writer (message)
   (cl-smtp:send-email (getf *global-config* :SMTP_HOST)
@@ -656,11 +673,6 @@ and log everything. Use custom logger."
 					 (print "Server startup...")
 					 (usocket:socket-listen local-ip
 											port))
-											;'udp-handler
-											;nil
-											;:protocol :datagram
-											;:timeout 10
-											;:max-buffer-size 1024))
 				 (error (condition)
 				   (write-line (format nil "Error in 'start-log-server. ~A~%"
 									   condition) *error-output*))))))))

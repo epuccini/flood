@@ -3019,3 +3019,222 @@ Execution in real-time 0.000 s and run-time 0.000 s
 [20:57:04 / 11.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
                         (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
 Execution in real-time 0.001 s and run-time 0.001 s.
+[07:06:16 / 12.03.2019]-[PRD]-First custom-log output
+[07:06:16 / 12.03.2019]-[PRD]-First default-log output 2+4=6
+[07:06:16 / 12.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[07:06:16 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:06:16 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:06:16 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:06:16 / 12.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.001 s and run-time 0.001 s.
+[X86-64]-07:06:16-[PRD]-Switching to log-level: DBG
+[X86-64]-07:06:16-[DBG]-DEBUG log-output.
+[X86-64]-07:06:16-[TST]-INFORMATION log-output.
+[X86-64]-07:06:16-[PRD]-WARNING log-output.
+[X86-64]-07:06:16-[PRD]-Switching to log-level: TST
+[X86-64]-07:06:16-[TST]-INFORMATION log-output.
+[X86-64]-07:06:16-[PRD]-WARNING log-output.
+[X86-64]-07:06:16-[PRD]-Switching to log-level: PRD
+[X86-64]-07:06:16-[PRD]-WARNING log-output.
+[X86-64]-07:06:16-[DBG]-Back to default loger
+[07:06:16 / 12.03.2019]-[DBG]-Async-out thread B! Debug...
+[07:06:16 / 12.03.2019]-[TST]-I'm going to sleep...
+[07:06:16 / 12.03.2019]-[DBG]-Async-out thread A! Debug...
+[07:06:16 / 12.03.2019]-[TST]-Async-out thread B! Information...
+[07:06:16 / 12.03.2019]-[TST]-Async-out thread A! Information...
+[07:06:16 / 12.03.2019]-[PRD]-Async-out thread B! Warning...
+[07:06:16 / 12.03.2019]-[PRD]-Async-out thread A! Warning...
+[07:06:17 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:06:18 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:06:19 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:06:20 / 12.03.2019]-[TST]-I've slept for 3 seconds.
+[07:07:32 / 12.03.2019]-[PRD]-First custom-log output
+[07:07:32 / 12.03.2019]-[PRD]-First default-log output 2+4=6
+[07:07:32 / 12.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[07:07:32 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:07:32 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:07:32 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:07:32 / 12.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.001 s and run-time 0.001 s.
+[X86-64]-07:07:32-[PRD]-Switching to log-level: DBG
+[X86-64]-07:07:32-[DBG]-DEBUG log-output.
+[X86-64]-07:07:32-[TST]-INFORMATION log-output.
+[X86-64]-07:07:32-[PRD]-WARNING log-output.
+[X86-64]-07:07:32-[PRD]-Switching to log-level: TST
+[X86-64]-07:07:32-[TST]-INFORMATION log-output.
+[X86-64]-07:07:32-[PRD]-WARNING log-output.
+[X86-64]-07:07:32-[PRD]-Switching to log-level: PRD
+[X86-64]-07:07:32-[PRD]-WARNING log-output.
+[X86-64]-07:07:32-[DBG]-Back to default loger
+[07:07:32 / 12.03.2019]-[DBG]-Async-out thread B! Debug...
+[07:07:32 / 12.03.2019]-[TST]-I'm going to sleep...
+[07:07:32 / 12.03.2019]-[DBG]-Async-out thread A! Debug...
+[07:07:32 / 12.03.2019]-[TST]-Async-out thread B! Information...
+[07:07:32 / 12.03.2019]-[TST]-Async-out thread A! Information...
+[07:07:32 / 12.03.2019]-[PRD]-Async-out thread B! Warning...
+[07:07:32 / 12.03.2019]-[PRD]-Async-out thread A! Warning...
+[07:07:33 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:07:34 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:07:35 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:07:36 / 12.03.2019]-[TST]-I've slept for 3 seconds.
+[07:08:03 / 12.03.2019]-[PRD]-Hello log! Warning...
+[07:08:03 / 12.03.2019]-[TST]-Hello log! Information...
+[07:08:03 / 12.03.2019]-[DBG]-Hello log! Debug...
+[07:08:03 / 12.03.2019]-[PRD]-First custom-log output
+[07:08:03 / 12.03.2019]-[PRD]-First default-log output 2+4=6
+[07:08:03 / 12.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[07:08:03 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:08:03 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:08:03 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:08:03 / 12.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.000 s and run-time 0.000 s.
+[X86-64]-07:08:03-[PRD]-Switching to log-level: DBG
+[X86-64]-07:08:03-[DBG]-DEBUG log-output.
+[X86-64]-07:08:03-[TST]-INFORMATION log-output.
+[X86-64]-07:08:03-[PRD]-WARNING log-output.
+[X86-64]-07:08:03-[PRD]-Switching to log-level: TST
+[X86-64]-07:08:03-[TST]-INFORMATION log-output.
+[X86-64]-07:08:03-[PRD]-WARNING log-output.
+[X86-64]-07:08:03-[PRD]-Switching to log-level: PRD
+[X86-64]-07:08:03-[PRD]-WARNING log-output.
+[X86-64]-07:08:03-[DBG]-Back to default loger
+[07:08:03 / 12.03.2019]-[DBG]-Async-out thread A! Debug...
+[07:08:03 / 12.03.2019]-[DBG]-Async-out thread B! Debug...
+[07:08:03 / 12.03.2019]-[TST]-I'm going to sleep...
+[07:08:03 / 12.03.2019]-[TST]-Async-out thread A! Information...
+[07:08:03 / 12.03.2019]-[TST]-Async-out thread B! Information...
+[07:08:03 / 12.03.2019]-[PRD]-Async-out thread A! Warning...
+[07:08:03 / 12.03.2019]-[PRD]-Async-out thread B! Warning...
+[07:08:04 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:08:05 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:08:06 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:08:07 / 12.03.2019]-[TST]-I've slept for 3 seconds.
+[07:09:10 / 12.03.2019]-[PRD]-First custom-log output
+[07:09:10 / 12.03.2019]-[PRD]-First default-log output 2+4=6
+[07:09:10 / 12.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[07:09:10 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:09:10 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:09:10 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:09:10 / 12.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.000 s and run-time 0.000 s.
+[X86-64]-07:09:10-[PRD]-Switching to log-level: DBG
+[X86-64]-07:09:10-[DBG]-DEBUG log-output.
+[X86-64]-07:09:10-[TST]-INFORMATION log-output.
+[X86-64]-07:09:10-[PRD]-WARNING log-output.
+[X86-64]-07:09:10-[PRD]-Switching to log-level: TST
+[X86-64]-07:09:10-[TST]-INFORMATION log-output.
+[X86-64]-07:09:10-[PRD]-WARNING log-output.
+[X86-64]-07:09:10-[PRD]-Switching to log-level: PRD
+[X86-64]-07:09:10-[PRD]-WARNING log-output.
+[X86-64]-07:09:10-[DBG]-Back to default loger
+[07:09:10 / 12.03.2019]-[DBG]-Async-out thread A! Debug...
+[07:09:10 / 12.03.2019]-[DBG]-Async-out thread B! Debug...
+[07:09:10 / 12.03.2019]-[TST]-I'm going to sleep...
+[07:09:10 / 12.03.2019]-[TST]-Async-out thread A! Information...
+[07:09:10 / 12.03.2019]-[TST]-Async-out thread B! Information...
+[07:09:10 / 12.03.2019]-[PRD]-Async-out thread A! Warning...
+[07:09:10 / 12.03.2019]-[PRD]-Async-out thread B! Warning...
+[07:09:11 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:09:12 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:09:13 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:09:14 / 12.03.2019]-[TST]-I've slept for 3 seconds.
+[07:09:52 / 12.03.2019]-[PRD]-First custom-log output
+[07:09:52 / 12.03.2019]-[PRD]-First default-log output 2+4=6
+[07:09:52 / 12.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[07:09:52 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:09:52 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:09:52 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:09:52 / 12.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.000 s and run-time 0.000 s.
+[X86-64]-07:09:52-[PRD]-Switching to log-level: DBG
+[X86-64]-07:09:52-[DBG]-DEBUG log-output.
+[X86-64]-07:09:52-[TST]-INFORMATION log-output.
+[X86-64]-07:09:52-[PRD]-WARNING log-output.
+[X86-64]-07:09:52-[PRD]-Switching to log-level: TST
+[X86-64]-07:09:52-[TST]-INFORMATION log-output.
+[X86-64]-07:09:52-[PRD]-WARNING log-output.
+[X86-64]-07:09:52-[PRD]-Switching to log-level: PRD
+[X86-64]-07:09:52-[PRD]-WARNING log-output.
+[X86-64]-07:09:52-[DBG]-Back to default loger
+[07:09:52 / 12.03.2019]-[DBG]-Async-out thread A! Debug...
+[07:09:52 / 12.03.2019]-[TST]-I'm going to sleep...
+[07:09:52 / 12.03.2019]-[DBG]-Async-out thread B! Debug...
+[07:09:52 / 12.03.2019]-[TST]-Async-out thread A! Information...
+[07:09:52 / 12.03.2019]-[TST]-Async-out thread B! Information...
+[07:09:52 / 12.03.2019]-[PRD]-Async-out thread A! Warning...
+[07:09:52 / 12.03.2019]-[PRD]-Async-out thread B! Warning...
+[07:09:53 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:09:54 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:09:55 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:09:56 / 12.03.2019]-[TST]-I've slept for 3 seconds.
+[07:24:40 / 12.03.2019]-[PRD]-First custom-log output
+[07:24:40 / 12.03.2019]-[PRD]-First default-log output 2+4=6
+[07:24:40 / 12.03.2019]-[DBG]-Second custom log output with format values: 999 inbetween 666
+[07:24:40 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:24:40 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 1600
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:24:40 / 12.03.2019]-[DBG]-Trace fn #'SQUARES 
+Result: 6400
+Execution in real-time 0.000 s and run-time 0.000 s
+[07:24:40 / 12.03.2019]-[DBG]-Log expression: (MAPCAR (LAMBDA (X) (SQUARES X))
+                        (APPEND '(1 2 3 4 5) '(4 3 2 1))) = 100 400 900 1600 2500 1600 900 400 100  
+Execution in real-time 0.000 s and run-time 0.000 s.
+[X86-64]-07:24:40-[PRD]-Switching to log-level: DBG
+[X86-64]-07:24:40-[DBG]-DEBUG log-output.
+[X86-64]-07:24:40-[TST]-INFORMATION log-output.
+[X86-64]-07:24:40-[PRD]-WARNING log-output.
+[X86-64]-07:24:40-[PRD]-Switching to log-level: TST
+[X86-64]-07:24:40-[TST]-INFORMATION log-output.
+[X86-64]-07:24:40-[PRD]-WARNING log-output.
+[X86-64]-07:24:40-[PRD]-Switching to log-level: PRD
+[X86-64]-07:24:40-[PRD]-WARNING log-output.
+[X86-64]-07:24:40-[DBG]-Back to default loger
+[07:24:40 / 12.03.2019]-[TST]-I'm going to sleep...
+[07:24:40 / 12.03.2019]-[DBG]-Async-out thread A! Debug...
+[07:24:40 / 12.03.2019]-[DBG]-Async-out thread B! Debug...
+[07:24:40 / 12.03.2019]-[TST]-Async-out thread B! Information...
+[07:24:40 / 12.03.2019]-[TST]-Async-out thread A! Information...
+[07:24:40 / 12.03.2019]-[PRD]-Async-out thread B! Warning...
+[07:24:40 / 12.03.2019]-[PRD]-Async-out thread A! Warning...
+[07:24:41 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:24:42 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:24:43 / 12.03.2019]-[TST]-Zzzzzzz...
+[07:24:44 / 12.03.2019]-[TST]-I've slept for 3 seconds.

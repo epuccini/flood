@@ -38,6 +38,7 @@
    #:ascii-formatter
    #:html-formatter
    #:xml-formatter
+   #:finalize-html
    #:set-log-level
    #:set-default-logger
    #:make-datetime-string

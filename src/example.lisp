@@ -95,6 +95,9 @@
 	(inf lg "Testing new format template.")
 	(wrn lg "Testing new format template.")
 
+	;; close file
+	(finalize-html)
+	
 	;; get history with: (get-history)
 	
 	;; setup new format string (in clisp there is a problem with
