@@ -64,7 +64,7 @@
 ;;
 ;; File access
 ;;
-(defun copy-file (from to)
+(defun copy-file-from-to (from to)
   "From is a filepath and to is a filepath.
 Binary copy of file is made."
   (with-open-file (in from :direction :input)
@@ -76,9 +76,9 @@ Binary copy of file is made."
          while line do
            (write-line line out)))))
  
-(defun move-file (from to)
+(defun move-file-from-to (from to)
   "Copy file from to and delete from."
-  (copy-file from to)
+  (copy-file-from-to from to)
   (delete-file from))
  
 (defun backup-file (from)
@@ -91,7 +91,7 @@ backup-location."
 							 "_"
 							 (make-day-string)
 							 ".log.bak")))
-		(move-file from to))
+		(move-file-from-to from to))
 	(error (condition)
 	  (write-line (format nil "Error in 'backup-file' ~A" condition)
 				  common-lisp:*error-output*))))
@@ -405,7 +405,7 @@ is dynamically created and returned with the object."
 
 
 (defun make-bare-logger (&key writers formatter)
-  "Create and init default logger."
+  "Create and init default logger. Template from config-file."
   (make-logger :writers writers
 			   :formatter formatter
 			   :template (getf *global-config* :ENTRY_TEMPLATE)))

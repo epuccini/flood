@@ -62,8 +62,8 @@
    #:sys
    #:sys-ext
    #:async-out
-   #:copy-file
-   #:move-file
+   #:copy-file-from-to
+   #:move-file-from-to
    #:backup-file
    #:file-size
    #:make-string-from-output
