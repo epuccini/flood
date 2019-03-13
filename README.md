@@ -1,6 +1,7 @@
  <h1>flood - comfortable tiny logging library for common lisp</h1><br><br>
  
  This library needs "async-syntax" threading support library and "crash" testing support library with "flood" in your asdf-loadpath. Dependencies are "usocket", "cl", "swank", "cl-smtp", "cl-who", "async-syntax" (with "bordeaux-threads", "cffi", "lparallel"), and for testing "crash" (with "optima", "cl-ppcre", "trivial-features"). <br><br>
+ This library is thread safe and enables you to log in threads.<br><br>
  To load and use this library, cd into the "src/" directory, start your lisp (testet on sbcl, ecl, ccl)
  and execute:<br><br>
  
@@ -133,10 +134,10 @@ The following writers are available:
 	   
 The following formatters are available:
 
-	   ascii-formatter - plain ascii format within template
-	   one-to-one-formatter - plain ascii format without template
-	   html-formatter - html-format
-           xml-formatter - xml-format (to be implemented)
+	ascii-formatter - plain ascii format within template
+	one-to-one-formatter - plain ascii format without templatE
+	html-formatter - html-format
+ 	xml-formatter - xml-format (to be implemented)
 	   
  The configuration file can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/" or "bin/" when you compiled a program.<br><br>
  
