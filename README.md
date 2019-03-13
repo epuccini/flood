@@ -120,8 +120,24 @@ These are the API functions and vars:
 	   #:make-string-from-output
 	   #:make-day-string))
 
+The following writers are available: 
 
+	   file-writer - writes file with name in configuration specified
+	   standard-writer - writes log output to stdout
+	   error-writer - writes log output to stderr
+	   socket-writer - writes log to host in configuration specified 
+	   rotating-log-writer - writes a logfile with day-string in logfilename
+	   email-writer - writes every log entry as email (not successfully tested yet. Still pain in cl-smtp)
+	   html-writer - writes into html file in configuration specified
+	   xml-writer - writes to xml file in configuration specified (to be implemented)
+	   
+The following formatters are available:
 
+	   #:ascii-formatter - plain ascii format within template
+	   #:one-to-one-formatter - plain ascii format without template
+	   #:html-formatter - html-format
+           #:xml-formatter - xml-format (to be implemented)
+	   
  The configuration file can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/" or "bin/" when you compiled a program.<br><br>
  
  License is based on GNU LESSER GENERAL PUBLIC LICENSE.<br>
