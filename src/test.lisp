@@ -28,11 +28,11 @@
 	(if (> (length str) 0) t)))
 
 (define-test-case test-copy-file nil "Test if file is copied successfully"
-  (flood:copy-file "flood.log" "flood.log.bak")
+  (flood:copy-file-from-to "flood.log" "flood.log.bak")
   (probe-file "flood.log.bak"))
 
 (define-test-case test-move-file nil "Test if file is moved successfully"
-  (flood:move-file "flood.log.bak" "flood.log.bak2")
+  (flood:move-file-from-to "flood.log.bak" "flood.log.bak2")
   (probe-file "flood.log.bak2"))
 
 (define-test-case test-file-size nil "Test if file size is read successfully"
@@ -48,6 +48,43 @@
 	(flood:backup-file "flood.log.bak2")
 	(probe-file to)))
 
+(define-test-case test-set-history nil "Test if history is set right"
+  (flood:set-history '())
+  (not (get-history)))
+
+(define-test-case test-write-log nil "Test if log entries are written"
+  (wrn "Test " 1)
+  (dbg "Test " 2)
+  (inf "Test " 3)
+  t)
+
+(define-test-case test-get-history nil "Test if history is written"
+  (let* ((content (flood:get-history))
+		 (size (length content)))
+    (= size 3)))
+
+(define-test-case test-append-to-history nil "Test if append to history is fine"
+  (flood:append-to-history "TEST")
+  (= (length (flood:get-history)) 4))
+
+(define-test-case test-file-writer nil "Test if file writer writes file"
+  (let ((lg (flood:make-bare-logger :writers (list #'file-writer)
+									:formatter #'ascii-formatter))
+		(to (concatenate 'string 
+						 (getf flood:*global-config* :LOG_FILE_NAME)
+						 ".log")))
+	(wrn lg "Test")
+	(probe-file to)))
+
+(define-test-case test-html-writer nil "Test if htmlfile writer writes htmlfile"
+  (let ((lg (flood:make-bare-logger :writers (list #'htmlfile-writer)
+									:formatter #'ascii-formatter))
+		(to (concatenate 'string 
+						 (getf flood:*global-config* :HTML_FILE_NAME)
+						 ".log")))
+	(wrn lg "Test")
+	(probe-file to)))
+
 (defun flood-test::main ()
   (test (test-case "flood library"
 				   (test-case "flood utility functions"
@@ -56,6 +93,13 @@
 					 '(test-copy-file)
 					 '(test-move-file)
 					 '(test-file-size)
-					 '(test-backup-file)))))
+					 '(test-backup-file))
+				   (test-case "flood logging functions"
+					 '(test-set-history)
+					 '(test-write-log)
+					 '(test-get-history)
+					 '(test-append-to-history)
+					 '(test-file-writer)
+					 '(test-html-writer)))))
 
 (flood-test:main)
