@@ -17,6 +17,11 @@
 
 (in-package :flood-test)
 
+(defvar *lg* (flood:make-logger :writers (list #'htmlfile-writer
+											   #'file-writer)
+						  :formatter #'html-formatter
+						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
+
 (define-test-case test-make-datetime-string nil "Make a datetime string"
   (multiple-value-bind (date time) (flood:make-datetime-string)
 	(let ((res1 (if (= (length date) 10) t nil))
@@ -28,45 +33,58 @@
 	(if (> (length str) 0) t)))
 
 (define-test-case test-copy-file nil "Test if file is copied successfully"
-  (wrn "Test entry")
-  (flood:copy-file-from-to "flood.log" "flood.log.bak")
-  (probe-file "flood.log.bak"))
+  (flood:dbg *lg* "Test entry")
+  (flood:copy-file-from-to
+   (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME)
+				".log")
+   (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME) ".log.bak"))
+  (probe-file (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME) ".log.bak")))
 
 (define-test-case test-move-file nil "Test if file is moved successfully"
-  (flood:move-file-from-to "flood.log.bak" "flood.log.bak2")
-  (probe-file "flood.log.bak2"))
+  (flood:move-file-from-to
+   (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME)
+				".log.bak")
+   (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME)
+				".log.bak2"))
+  (probe-file (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME)
+				".log.bak2")))
 
 (define-test-case test-file-size nil "Test if file size is read successfully"
-  (flood:file-size "flood.log"))
+  (flood:dbg *lg* "Test entry")
+  (flood:file-size
+   (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME)
+				".log")))
 
 (define-test-case test-backup-file nil "Test if backup of file is successful"
-  (let ((to (concatenate 'string 
-						 (getf flood:*global-config* :BACKUP_LOCATION)
-						 (getf flood:*global-config* :LOG_FILE_NAME) 
-						 "_"
-						 (flood:make-day-string)
-						 ".log.bak")))
-	(flood:backup-file "flood.log.bak2")
-	(probe-file to)))
+  (flood:backup-file
+   (concatenate 'string
+				(getf flood:*global-config* :LOG_FILE_NAME) ".log.bak2")))
 
 (define-test-case test-set-history nil "Test if history is set right"
   (flood:set-history '())
   (not (get-history)))
 
 (define-test-case test-write-log nil "Test if log entries are written"
-  (wrn "Test " 1)
-  (dbg "Test " 2)
-  (inf "Test " 3)
+  (flood:wrn "Test " 1)
+  (flood:dbg "Test " 2)
+  (flood:inf "Test " 3)
   t)
 
 (define-test-case test-get-history nil "Test if history is written"
   (let* ((content (flood:get-history))
 		 (size (length content)))
-    (= size 3)))
+    (>= size 3)))
 
 (define-test-case test-append-to-history nil "Test if append to history is fine"
   (flood:append-to-history "TEST")
-  (= (length (flood:get-history)) 4))
+  (>= (length (flood:get-history)) 4))
 
 (define-test-case test-file-writer nil "Test if file writer writes file"
   (let ((lg (flood:make-bare-logger :writers (list #'file-writer)
@@ -82,7 +100,7 @@
 									:formatter #'ascii-formatter))
 		(to (concatenate 'string 
 						 (getf flood:*global-config* :HTML_FILE_NAME)
-						 ".log")))
+						 ".html")))
 	(wrn lg "Test")
 	(probe-file to)))
 
@@ -91,9 +109,9 @@
 				   (test-case "flood utility functions"
 					 '(test-make-datetime-string)
 					 '(test-make-day-string)
+					 '(test-file-size)
 					 '(test-copy-file)
 					 '(test-move-file)
-					 '(test-file-size)
 					 '(test-backup-file))
 				   (test-case "flood logging functions"
 					 '(test-set-history)

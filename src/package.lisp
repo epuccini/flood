@@ -9,7 +9,7 @@
 (in-package :cl-user)
 
 (defpackage :flood
-  (:use #:cl #:bordeaux-threads)
+  (:use #:cl #:bordeaux-threads #:async-syntax)
   ;;
   ;; All Flood library functions
   ;;
@@ -72,5 +72,6 @@
    #:move-file-from-to
    #:backup-file
    #:file-size
+   #:check-file-size
    #:make-string-from-output
    #:make-day-string))
