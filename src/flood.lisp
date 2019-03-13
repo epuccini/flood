@@ -190,6 +190,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
   (let* ((filename (concatenate 'string 
 								(getf *global-config* :LOG_FILE_NAME)
 								"_" (make-day-string)
+								"_" (make-datetime-string)
 								".log")))
 
 	(check-file-size filename)
