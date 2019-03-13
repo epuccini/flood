@@ -123,14 +123,14 @@ These are the API functions and vars:
 
 The following writers are available: 
 
-	   file-writer - writes file with name in configuration specified
-	   standard-writer - writes log output to stdout
-	   error-writer - writes log output to stderr
-	   socket-writer - writes log to host in configuration specified 
-	   rotating-log-writer - writes a logfile with day-string in logfilename
-	   email-writer - writes every log entry as email (not successfully tested yet. Still pain in cl-smtp)
-	   html-writer - writes into html file in configuration specified
-	   xml-writer - writes to xml file in configuration specified (to be implemented)
+	file-writer - writes file with name in configuration specified
+	standard-writer - writes log output to stdout
+	error-writer - writes log output to stderr
+	socket-writer - writes log to host in configuration specified 
+	rotating-log-writer - writes a logfile with day-string in logfilename
+	email-writer - writes every log entry as email (not successfully tested yet. Still pain in cl-smtp)
+	html-writer - writes into html file in configuration specified
+	xml-writer - writes to xml file in configuration specified (to be implemented)
 	   
 The following formatters are available:
 
