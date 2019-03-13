@@ -133,10 +133,10 @@ The following writers are available:
 	   
 The following formatters are available:
 
-	   #:ascii-formatter - plain ascii format within template
-	   #:one-to-one-formatter - plain ascii format without template
-	   #:html-formatter - html-format
-           #:xml-formatter - xml-format (to be implemented)
+	   ascii-formatter - plain ascii format within template
+	   one-to-one-formatter - plain ascii format without template
+	   html-formatter - html-format
+           xml-formatter - xml-format (to be implemented)
 	   
  The configuration file can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/" or "bin/" when you compiled a program.<br><br>
  
