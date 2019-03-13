@@ -185,6 +185,28 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 				  *error-output*))))
 
 
+(defun rotating-log-writer (message)
+  "Write to file. Apppend or create file."
+  (let* ((filename (concatenate 'string 
+								(getf *global-config* :LOG_FILE_NAME)
+								"_" (make-day-string)
+								".log")))
+
+	(check-file-size filename)
+	(handler-case 
+	    (with-open-file (stream filename :direction :output)
+		  (write-line message stream))
+	  ;; if file exists already then append to file
+	  (error ()
+		(handler-case
+			(with-open-file (stream filename 
+									:direction :output
+									:if-exists :append)
+			  (write-line message stream))
+		  (error (condition)
+			(write-line (format nil "Error in 'file-writer' ~A" condition) 
+						*error-output*)))))))
+
 (defun file-writer (message)
   "Write to file. Apppend or create file."
   (let* ((filename (concatenate 'string 

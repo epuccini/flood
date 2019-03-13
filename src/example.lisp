@@ -116,7 +116,7 @@
 
 	(setq lg (make-logger :writers (list #'error-writer 
 ;;										 #'socket-writer
-										 #'file-writer)
+										 #'rotating-log-writer)
 						  :formatter #'ascii-formatter
 						  :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 
