@@ -9,7 +9,7 @@
 (in-package :cl-user)
 
 (defpackage :flood
-  (:use #:cl #:bordeaux-threads #:async-syntax)
+  (:use #:cl #:bordeaux-threads)
   ;;
   ;; All Flood library functions
   ;;
@@ -19,6 +19,12 @@
    #:*terpri*
    #:*server-socket*
    #:*global-config*
+   #:start-watch
+   #:stop-watch
+   #:async
+   #:async-prefix
+   #:set-kernel
+   #:get-cores
    #:start-log-server
    #:stop-log-server
    #:get-history

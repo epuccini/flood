@@ -28,6 +28,7 @@
 	(if (> (length str) 0) t)))
 
 (define-test-case test-copy-file nil "Test if file is copied successfully"
+  (wrn "Test entry")
   (flood:copy-file-from-to "flood.log" "flood.log.bak")
   (probe-file "flood.log.bak"))
 
