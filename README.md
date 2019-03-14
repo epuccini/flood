@@ -138,7 +138,18 @@ The following formatters are available:
 	one-to-one-formatter - plain ascii format without templatE
 	html-formatter - html-format
  	xml-formatter - xml-format (to be implemented)
-	   
+	 
+These are available template parameter:
+ "\\$DATE" format-string date-fmt))
+	  $TIME			;; current time and date
+	  $LEVEL		;; log level
+	  $MACHINE-INSTANCE	;; machine name
+	  $MACHINE-TYPE		;; current platform
+	  $MACHINE-VERSION	;; version string
+	  $SOFTWARE-TYPE	;; operating system 
+	  $SOFTWARE-VERSION	;; operating system version
+	  $MESSAGE"		;; the log message itself
+	  
  The configuration file can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/" or "bin/" when you compiled a program.<br><br>
  
  License is based on GNU LESSER GENERAL PUBLIC LICENSE.<br>
