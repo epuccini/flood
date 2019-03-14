@@ -1,6 +1,7 @@
 
 
 
+
  ; -------------------------------------------------------------
 ; Edward Alan Puccini 7.03.2016
 ; -------------------------------------------------------------
@@ -73,7 +74,9 @@
    (concatenate 'string
 				(getf flood:*global-config* :LOG_FILE_NAME) ".log"))
   (probe-file (concatenate 'string
-                                (getf flood:*global-config* :LOG_FILE_NAME) ".log")))
+				(getf flood:*global-config* :BACKUP_LOCATION)
+                                (getf flood:*global-config* :LOG_FILE_NAME) 
+				".log.bak")))
 
 (define-test-case test-set-history nil "Test if history is set right"
   (flood:set-history '())

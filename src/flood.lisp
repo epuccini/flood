@@ -88,9 +88,9 @@ Binary copy of file is made."
 backup-location."
   (handler-case
 	  (let ((to (concatenate 'string 
-							 (getf *global-config* :BACKUP_LOCATION)
-							 (getf *global-config* :LOG_FILE_NAME) 
-							 ".log.bak")))
+				 (getf *global-config* :BACKUP_LOCATION)
+				 (getf *global-config* :LOG_FILE_NAME) 
+				 ".log.bak")))
 	    (if (probe-file from) 
 		(copy-file-from-to from to)))
 	(error (condition)
