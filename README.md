@@ -139,17 +139,17 @@ The following formatters are available:
 	html-formatter - html-format
  	xml-formatter - xml-format (to be implemented)
 	 
-These are available template parameter:
-		  $DATE			;; current date
-		  $TIME			;; current time 
-		  $LEVEL		;; log level
-		  $MACHINE-INSTANCE	;; machine name
-		  $MACHINE-TYPE		;; current platform
-		  $MACHINE-VERSION	;; version string
-		  $SOFTWARE-TYPE	;; operating system 
-		  $SOFTWARE-VERSION	;; operating system version
-		  $MESSAGE"		;; the log message itself
-	  
+These are available template parameter:<br>
+	  $DATE			;; current date<br>
+	  $TIME			;; current time <br>
+	  $LEVEL		;; log level<br>
+	  $MACHINE-INSTANCE	;; machine name<br>
+	  $MACHINE-TYPE		;; current platform<br>
+	  $MACHINE-VERSION	;; version string<br>
+	  $SOFTWARE-TYPE	;; operating system <br>
+	  $SOFTWARE-VERSION	;; operating system version<br>
+	  $MESSAGE"		;; the log message itself<br>
+	  <br>
  The configuration file can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/" or "bin/" when you compiled a program.<br><br>
  
  License is based on GNU LESSER GENERAL PUBLIC LICENSE.<br>
