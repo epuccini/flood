@@ -1,3 +1,6 @@
+
+
+
  ; -------------------------------------------------------------
 ; Edward Alan Puccini 7.03.2016
 ; -------------------------------------------------------------
@@ -30,7 +33,7 @@
 
 (define-test-case test-make-day-string nil "Make a day string"
   (let ((str (make-day-string)))
-	(if (> (length str) 0) t)))
+	(> (length str) 0)))
 
 (define-test-case test-copy-file nil "Test if file is copied successfully"
   (flood:dbg *lg* "Test entry")
@@ -57,25 +60,31 @@
 
 (define-test-case test-file-size nil "Test if file size is read successfully"
   (flood:dbg *lg* "Test entry")
-  (flood:file-size
-   (concatenate 'string
-				(getf flood:*global-config* :LOG_FILE_NAME)
-				".log")))
+  (let ((size 
+	 (flood:file-size
+	  (concatenate 'string
+		       (getf flood:*global-config* :LOG_FILE_NAME)
+		       ".log"))))
+    size))
 
 (define-test-case test-backup-file nil "Test if backup of file is successful"
+  (flood:dbg *lg* "Test entry")
   (flood:backup-file
    (concatenate 'string
-				(getf flood:*global-config* :LOG_FILE_NAME) ".log.bak2")))
+				(getf flood:*global-config* :LOG_FILE_NAME) ".log"))
+  (probe-file (concatenate 'string
+                                (getf flood:*global-config* :LOG_FILE_NAME) ".log")))
 
 (define-test-case test-set-history nil "Test if history is set right"
   (flood:set-history '())
-  (not (get-history)))
+  (not (flood:get-history)))
 
 (define-test-case test-write-log nil "Test if log entries are written"
   (flood:wrn "Test " 1)
   (flood:dbg "Test " 2)
   (flood:inf "Test " 3)
-  t)
+  (probe-file (concatenate 'string
+                                (getf flood:*global-config* :LOG_FILE_NAME) ".log")))
 
 (define-test-case test-get-history nil "Test if history is written"
   (let* ((content (flood:get-history))

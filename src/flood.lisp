@@ -78,8 +78,10 @@ Binary copy of file is made."
  
 (defun move-file-from-to (from to)
   "Copy file from to and delete from."
-  (copy-file-from-to from to)
-  (delete-file from))
+  (if (probe-file from)
+      (progn
+	(copy-file-from-to from to)
+	(delete-file from))))
  
 (defun backup-file (from)
   "Create backup-filename and move file to 
@@ -88,10 +90,9 @@ backup-location."
 	  (let ((to (concatenate 'string 
 							 (getf *global-config* :BACKUP_LOCATION)
 							 (getf *global-config* :LOG_FILE_NAME) 
-							 "_"
-							 (make-day-string)
 							 ".log.bak")))
-		(move-file-from-to from to))
+	    (if (probe-file from) 
+		(copy-file-from-to from to)))
 	(error (condition)
 	  (write-line (format nil "Error in 'backup-file' ~A" condition)
 				  common-lisp:*error-output*))))
@@ -176,10 +177,11 @@ then use atomic operation"
   "Checks the size of a given file and backup
 the file if it exceeds LOG_MAX_SIZE in KB."
   (handler-case
+   (if (probe-file filename)
 	  (let ((filesize (file-size filename)))
 		;; check if log exceeds maximum size
 		(cond ((> filesize (* 1024 (getf *global-config* :LOG_MAX_SIZE)))
-			   (backup-file filename))))
+			   (backup-file filename)))))
 	(error (condition)
 	  (write-line (format nil "Error in 'check-file-size' ~A" condition) 
 				  *error-output*))))

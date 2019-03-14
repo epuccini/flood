@@ -9,7 +9,7 @@
 (in-package :cl-user)
 
 (defpackage :flood
-  (:use #:cl #:bordeaux-threads #:async-syntax)
+  (:use #:cl #:bordeaux-threads #:cl-who #:async-syntax)
   ;;
   ;; All Flood library functions
   ;;
