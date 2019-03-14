@@ -140,8 +140,8 @@ The following formatters are available:
  	xml-formatter - xml-format (to be implemented)
 	 
 These are available template parameter:
- "\\$DATE" format-string date-fmt))
-	  $TIME			;; current time and date
+	  $DATE			;; current date
+	  $TIME			;; current time 
 	  $LEVEL		;; log level
 	  $MACHINE-INSTANCE	;; machine name
 	  $MACHINE-TYPE		;; current platform
