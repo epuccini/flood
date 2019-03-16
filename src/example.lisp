@@ -81,21 +81,32 @@
     
     ;; clear history - we dont want the first logs in our html file
     (set-history '(""))
-    
+
+  
     ;; create a custom logger with a socket-writer and a new template-string
+    (setq lg (make-bare-logger :writers (list #'xmlfile-writer)
+                               :formatter #'xml-formatter))
+    
+    (wrn lg "Switching to log-level: " (set-log-level :dbg))
+    (dbg lg "Testing new xml-writer/-formatter.")
+    (inf lg "Testing new xml-writer/-formatter.")
+    (wrn lg "Testing new xml-writer/-formatter.")
+
+    (finalize-xml)
+    
     ;; uncomment socket-writer only if you want to behave as client
+
     (setq lg (make-logger :writers (list #'htmlfile-writer)
                                         ;#'email-writer)
                           :formatter #'html-formatter
                           :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
     
-    ;; First output with email - not successfully tested
     (wrn lg "Switching to log-level: " (set-log-level :dbg))
-    (dbg lg "Testing new format template.")
-    (inf lg "Testing new format template.")
-    (wrn lg "Testing new format template.")
+    (dbg lg "Testing new html-writer/-formatter.")
+    (inf lg "Testing new html-writer/-formatter.")
+    (wrn lg "Testing new html-writer/-formatter.")
 
-    ;; close file
+    ;; close file - write close body-tag
     (finalize-html)
     
     ;; get history with: (get-history)

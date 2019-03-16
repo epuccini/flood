@@ -206,7 +206,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
                                     :if-exists :append)
               (write-line message stream))
           (error (condition)
-            (write-line (format nil "Error in 'file-writer' ~A" condition) 
+            (write-line (format nil "Error in 'rotating-log-writer' ~A" condition) 
                         *error-output*)))))))
 
 (defun file-writer (message)
@@ -232,7 +232,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 (defun htmlfile-writer (message)
   "Write to file. Apppend or create file."
   (let* ((filename (concatenate 'string 
-                                (getf *global-config* :HTML_FILE_NAME) ".html")))
+                                (getf *global-config* :LOG_FILE_NAME) ".html")))
 
     (check-file-size filename)
     (handler-case 
@@ -254,20 +254,55 @@ the file if it exceeds LOG_MAX_SIZE in KB."
                                     :if-exists :append)
               (write-line message stream))
           (error (condition)
-            (write-line (format nil "Error in 'file-writer' ~A" condition) 
+            (write-line (format nil "Error in 'htmlfile-writer' ~A" condition) 
+                        *error-output*)))))))
+
+(defun xmlfile-writer (message)
+  "Write to file. Apppend or create file."
+  (let* ((filename (concatenate 'string 
+                                (getf *global-config* :LOG_FILE_NAME) ".xml")))
+
+    (check-file-size filename)
+    (handler-case 
+        (with-open-file (stream filename :direction :output)
+          (write-line "<?xml version='1.0' encoding='ISO-8859-1'?>" stream)
+          (write-line "<log>" stream)
+          (write-line message stream))
+      ;; if file exists already then append to file
+      (error ()
+        (handler-case
+            (with-open-file (stream filename 
+                                    :direction :output
+                                    :if-exists :append)
+              (write-line message stream))
+          (error (condition)
+            (write-line (format nil "Error in 'xmlfile-writer' ~A" condition) 
                         *error-output*)))))))
 
 (defun finalize-html ()
   "Close html-dile with body tag."
   (let* ((filename (concatenate 'string 
-                                (getf *global-config* :HTML_FILE_NAME) ".html")))
+                                (getf *global-config* :LOG_FILE_NAME) ".html")))
     (handler-case 
         (with-open-file (stream filename
                                 :direction :output
                                 :if-exists :append)
           (write-line "</body>" stream))
             (error (condition)
-                 (write-line (format nil "Error in 'file-writer' ~A" condition) 
+              (write-line (format nil "Error in 'finalize-html' ~A" condition) 
+                             *error-output*)))))
+
+(defun finalize-xml ()
+  "Close html-dile with body tag."
+  (let* ((filename (concatenate 'string 
+                                (getf *global-config* :LOG_FILE_NAME) ".xml")))
+    (handler-case 
+        (with-open-file (stream filename
+                                :direction :output
+                                :if-exists :append)
+          (write-line "</log>" stream))
+            (error (condition)
+              (write-line (format nil "Error in 'finalize-xml' ~A" condition) 
                              *error-output*)))))
 
 (defun email-writer (message)
@@ -400,19 +435,21 @@ or mixed. They will be replaced by corresponding values."
     (append-to-history message)
     (dolist (writer writers)
       (funcall writer
-               (cl-ppcre:regex-replace-all
-                "\\$BODY"
-                html-template
-                message)))))
+               (expand-entry-template
+                html-template level message)))))
  
 
 (defun xml-formatter (writers template level fmt-msg args)
-  (print "Not implemented yet!")
-  (print writers)
-  (print template)
-  (print level)
-  (print fmt-msg)
-  (print args))
+  (let* ((message (format nil 
+                          (expand-entry-template template level fmt-msg) 
+                          args))
+         (xml-template (getf flood:*global-config* :XML_TEMPLATE)))
+    (append-to-history message)
+    (dolist (writer writers)
+      (funcall writer
+               (expand-entry-template
+                xml-template level message)))))
+ 
 
 
 ;;
@@ -429,9 +466,9 @@ is dynamically created and returned with the object."
 
 (defun make-bare-logger (&key writers formatter)
   "Create and init default logger. Template from config-file."
-  (make-logger :writers writers
-               :formatter formatter
-               :template (getf *global-config* :ENTRY_TEMPLATE)))
+  (make-logger-type :writers writers
+                    :formatter formatter
+                    :template (getf *global-config* :ENTRY_TEMPLATE)))
   
 (defun reset-logger ()
   "Create and init logger from config-file."
