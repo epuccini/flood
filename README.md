@@ -63,6 +63,7 @@
     ;; Load shell command output
     (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%"))
 
+<h1>API</h1>
 These are the API functions and vars:
 
 	(defpackage :flood
