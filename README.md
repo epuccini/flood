@@ -133,7 +133,7 @@ The following writers are available:
 	rotating-log-writer - writes a logfile with day-string in logfilename
 	email-writer - writes every log entry as email (not successfully tested yet. Still pain in cl-smtp)
 	html-writer - writes into html file in configuration specified
-	xml-writer - writes to xml file in configuration specified (to be implemented)
+	xml-writer - writes to xml file in configuration specified 
 	  
 <h1>Formatter</h1>
 The following formatters are available:
@@ -141,7 +141,7 @@ The following formatters are available:
 	ascii-formatter - plain ascii format within template
 	one-to-one-formatter - plain ascii format without templatE
 	html-formatter - html-format
- 	xml-formatter - xml-format (to be implemented)
+ 	xml-formatter - xml-format 
 
 <h1>Template parameter</h1>
 These are available template parameter:<br>
