@@ -60,6 +60,16 @@
           (time-fmt (format nil "~2,'0d:~2,'0d:~2,'0d" hour minute second)))
       (values date-fmt time-fmt))))
 
+(defun make-datetime-string-for-file ()
+  "As it says: makes one date and a time string from current date and time."
+  (multiple-value-bind 
+        (second minute hour day month year day-of-week dst-p tz)
+      (get-decoded-time)
+    (declare (ignore day-of-week dst-p tz))
+    (let ((date-fmt (format nil "~2,'0d.~2,'0d.~2,'0d" day month year))
+          (time-fmt (format nil "~2,'0d_~2,'0d_~2,'0d" hour minute second)))
+      (values date-fmt time-fmt))))
+
 ;;
 ;; File access
 ;;
@@ -188,12 +198,12 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 
 (defun rotating-log-writer (message)
   "Write to file. Apppend or create file."
-  (let* ((filename (concatenate 'string 
-                                (getf *global-config* :LOG_FILE_NAME)
-                                "_" (make-day-string)
-                                "_" (make-datetime-string)
-                                ".log")))
-
+  (multiple-value-bind (date-fmt) (make-datetime-string-for-file)
+    (let* ((filename (concatenate 'string 
+                                  (getf *global-config* :LOG_FILE_NAME)
+                                  "_" (make-day-string)
+                                  "_" date-fmt
+                                  ".log")))
     (check-file-size filename)
     (handler-case 
         (with-open-file (stream filename :direction :output)
@@ -207,7 +217,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
               (write-line message stream))
           (error (condition)
             (write-line (format nil "Error in 'rotating-log-writer' ~A" condition) 
-                        *error-output*)))))))
+                        *error-output*))))))))
 
 (defun file-writer (message)
   "Write to file. Apppend or create file."
@@ -281,29 +291,45 @@ the file if it exceeds LOG_MAX_SIZE in KB."
 
 (defun finalize-html ()
   "Close html-dile with body tag."
-  (let* ((filename (concatenate 'string 
-                                (getf *global-config* :LOG_FILE_NAME) ".html")))
-    (handler-case 
-        (with-open-file (stream filename
-                                :direction :output
-                                :if-exists :append)
-          (write-line "</body>" stream))
-            (error (condition)
-              (write-line (format nil "Error in 'finalize-html' ~A" condition) 
-                             *error-output*)))))
+  (multiple-value-bind (date-fmt time-fmt) (make-datetime-string-for-file)
+    (let* ((filename (concatenate 'string 
+                                  (getf *global-config* :LOG_FILE_NAME) ".html")))
+      (handler-case
+          (progn
+            (with-open-file (stream filename
+                                    :direction :output
+                                    :if-exists :append)
+              (write-line "</body>" stream))
+            (move-file-from-to filename
+                               (concatenate 'string
+                                          (getf *global-config* :LOG_FILE_NAME)
+                                          "_" date-fmt
+                                          "_" time-fmt
+                                          ".html")))
+      (error (condition)
+        (write-line (format nil "Error in 'finalize-html' ~A" condition) 
+                    *error-output*))))))
 
 (defun finalize-xml ()
   "Close html-dile with body tag."
-  (let* ((filename (concatenate 'string 
-                                (getf *global-config* :LOG_FILE_NAME) ".xml")))
-    (handler-case 
-        (with-open-file (stream filename
-                                :direction :output
-                                :if-exists :append)
-          (write-line "</log>" stream))
-            (error (condition)
-              (write-line (format nil "Error in 'finalize-xml' ~A" condition) 
-                             *error-output*)))))
+  (multiple-value-bind (date-fmt time-fmt) (make-datetime-string-for-file)
+    (let* ((filename (concatenate 'string 
+                                  (getf *global-config* :LOG_FILE_NAME) ".xml")))
+      (handler-case
+          (progn
+            (with-open-file (stream filename
+                                    :direction :output
+                                    :if-exists :append)
+              (write-line "</log>" stream))
+            (move-file-from-to filename
+                               (concatenate 'string
+                                            (getf *global-config* :LOG_FILE_NAME)
+                                            "_" date-fmt
+                                            "_" time-fmt
+                                          ".xml")))
+        (error (condition)
+          (write-line (format nil "Error in 'finalize-xml' ~A" condition) 
+                      *error-output*))))))
 
 (defun email-writer (message)
   (cl-smtp:send-email (getf *global-config* :SMTP_HOST)

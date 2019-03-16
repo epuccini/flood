@@ -103,14 +103,6 @@
     (wrn lg "Test")
     (probe-file to)))
 
-(define-test-case test-html-writer nil "Test if htmlfile writer writes htmlfile"
-  (let ((lg (flood:make-bare-logger :writers (list #'htmlfile-writer)
-                                    :formatter #'ascii-formatter))
-        (to (concatenate 'string 
-                         (getf flood:*global-config* :HTML_FILE_NAME)
-                         ".html")))
-    (wrn lg "Test")
-    (probe-file to)))
 
 (defun flood-test::main ()
   (test (test-case "flood library"
@@ -126,7 +118,6 @@
                      '(test-write-log)
                      '(test-get-history)
                      '(test-append-to-history)
-                     '(test-file-writer)
-                     '(test-html-writer)))))
+                     '(test-file-writer)))))
 
 (flood-test:main)
