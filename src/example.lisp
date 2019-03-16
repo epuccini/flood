@@ -92,6 +92,7 @@
     (inf lg "Testing new xml-writer/-formatter.")
     (wrn lg "Testing new xml-writer/-formatter.")
 
+    ;; write close tag and rename file into unique filename
     (finalize-xml)
     
     ;; uncomment socket-writer only if you want to behave as client
@@ -106,7 +107,7 @@
     (inf lg "Testing new html-writer/-formatter.")
     (wrn lg "Testing new html-writer/-formatter.")
 
-    ;; close file - write close body-tag
+    ;; write close tag and rename file into unique filename
     (finalize-html)
     
     ;; get history with: (get-history)
