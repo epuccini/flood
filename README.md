@@ -3,7 +3,7 @@
  This library needs "async-syntax" threading support library and "crash" testing support library with "flood" in your asdf-loadpath. Dependencies are "usocket", "cl", "swank", "cl-smtp", "cl-who", "async-syntax" (with "bordeaux-threads", "cffi", "lparallel"), and for testing "crash" (with "optima", "cl-ppcre", "trivial-features"). <br><br>
  This library is thread safe and enables you to log in threads.<br><br>
  To load and use this library, cd into the "src/" directory, start your lisp (testet on sbcl, ecl, ccl)
- and execute:<br><br>
+ and execute:
  
 	 (asdf:load-system :flood)
  
@@ -15,8 +15,8 @@
  Try the following:<br><br>
  
 	;;
-	;; Start with default logger. Configured with conf/flood.conf<br>
-	;; Three simple function make up the core logging facility<br><br>
+	;; Start with default logger. Configured with conf/flood.conf
+	;; Three simple function make up the core logging facility
 	;;
 	(let ((name "Edward")
 	      (level 3))
@@ -121,6 +121,7 @@ These are the API functions and vars:
 	   #:make-string-from-output
 	   #:make-day-string))
 
+<h1>Writer</h1>
 The following writers are available: 
 
 	file-writer - writes file with name in configuration specified
@@ -131,14 +132,16 @@ The following writers are available:
 	email-writer - writes every log entry as email (not successfully tested yet. Still pain in cl-smtp)
 	html-writer - writes into html file in configuration specified
 	xml-writer - writes to xml file in configuration specified (to be implemented)
-	   
+	  
+<h1>Formatter</h1>
 The following formatters are available:
 
 	ascii-formatter - plain ascii format within template
 	one-to-one-formatter - plain ascii format without templatE
 	html-formatter - html-format
  	xml-formatter - xml-format (to be implemented)
-	 
+
+<h1>Template parameter</h1>
 These are available template parameter:<br>
 	  $DATE			;; current date<br>
 	  $TIME			;; current time <br>
