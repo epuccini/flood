@@ -36,6 +36,7 @@
    #:make-logger
    #:file-writer
    #:htmlfile-writer
+   #:xmlfile-writer
    #:standard-writer
    #:socket-writer 
    #:rotating-log-writer
@@ -45,6 +46,7 @@
    #:html-formatter
    #:xml-formatter
    #:finalize-html
+   #:finalize-xml
    #:set-log-level
    #:set-default-logger
    #:make-datetime-string
