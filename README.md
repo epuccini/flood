@@ -1,6 +1,6 @@
  <h1>flood - powerful, leightweight logging library for common lisp</h1><br><br>
  
- This library needs "async-syntax" threading support library and "crash" testing support library with "flood" in your asdf-loadpath. Dependencies are "usocket", "cl", "swank", "cl-smtp", "cl-who", "async-syntax" (with "bordeaux-threads", "cffi", "lparallel"), and for testing "crash" (with "optima", "cl-ppcre", "trivial-features"). <br><br>
+ Dependencies are "usocket", "cl", "swank", "cl-smtp", "cl-who", bordeaux-threads", "cffi", "lparallel" and for testing "optima", "cl-ppcre" and "trivial-features". <br><br>
  This library is thread safe and enables you to log in threads.<br><br>
  To load and use this library, cd into the "src/" directory, start your lisp (testet on sbcl, ecl, ccl)
  and execute:
