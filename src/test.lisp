@@ -7,18 +7,9 @@
 ; -------------------------------------------------------------
 ; test - testing application
 ; -------------------------------------------------------------
-(require 'crash)
+(in-package :flood)
 
-(defpackage :flood-test 
-  (:use #:cl #:flood #:crash)
-  (:export
-   #:main
-   #:test-all))
-
-(in-package :flood-test)
-
-(defvar *lg* (flood:make-logger :writers (list #'htmlfile-writer
-                                               #'file-writer)
+(defvar *lg* (flood:make-logger :writers (list #'file-writer)
                           :formatter #'html-formatter
                           :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
 
@@ -104,7 +95,7 @@
     (probe-file to)))
 
 
-(defun flood-test::main ()
+(defun flood::main ()
   (test (test-case "flood library"
                    (test-case "flood utility functions"
                      '(test-make-datetime-string)
@@ -120,4 +111,4 @@
                      '(test-append-to-history)
                      '(test-file-writer)))))
 
-(flood-test:main)
+(flood:main)

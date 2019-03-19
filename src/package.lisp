@@ -9,7 +9,7 @@
 (in-package :cl-user)
 
 (defpackage :flood
-  (:use #:cl #:bordeaux-threads #:cl-who #:async-syntax)
+  (:use #:cl #:bordeaux-threads #:cl-who)
   ;;
   ;; All Flood library functions
   ;;
@@ -76,4 +76,24 @@
    #:file-size
    #:check-file-size
    #:make-string-from-output
-   #:make-day-string))
+   #:make-day-string
+;; crash
+   #:report-result
+   #:define-test-case
+   #:test
+   #:test-case
+;; async-syntax
+   #:async
+   #:times
+   #:start-watch
+   #:stop-watch
+   #:t-run
+   #:t-real
+   #:enable-async-syntax
+   #:disable-async-syntax
+   #:set-kernel
+   #:environment-feature-p
+   #:get-cores
+   #:async-table
+   #:*thread-id*
+   #:main))

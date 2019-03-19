@@ -11,8 +11,6 @@
 ;;; -------------------------------------------------------------
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
-  (require 'async-syntax)
-  (use-package :async-syntax)
   (use-package :flood))
 
 
