@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<log>
+<logging-line level='PRD'>
+     <date>11:28:20 / 21.03.2019</date>
+    <message>[11:28:20 / 21.03.2019]-[PRD]-Switching to log-level: DBG</message>
+</logging-line>
+<logging-line level='DBG'>
+     <date>11:28:20 / 21.03.2019</date>
+    <message>[11:28:20 / 21.03.2019]-[DBG]-Testing new xml-writer/-formatter.</message>
+</logging-line>
+<logging-line level='TST'>
+     <date>11:28:20 / 21.03.2019</date>
+    <message>[11:28:20 / 21.03.2019]-[TST]-Testing new xml-writer/-formatter.</message>
+</logging-line>
+<logging-line level='PRD'>
+     <date>11:28:20 / 21.03.2019</date>
+    <message>[11:28:20 / 21.03.2019]-[PRD]-Testing new xml-writer/-formatter.</message>
+</logging-line>
+</log>

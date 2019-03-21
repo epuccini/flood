@@ -79,7 +79,7 @@ desired size."
 #+windows
 (defun get-cores ()
   "Get number of cores on windows."
-  (let ((cores (subseq (uiop:run-program "echo %NUMBER_OF_PROCESSORS%" :output :string))))
+  (let ((cores (subseq (uiop:run-program "echo %NUMBER_OF_PROCESSORS%" :output :string) 0 1)))
     (parse-integer cores)))
 
 (defmacro async-table (&rest args)

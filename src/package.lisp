@@ -96,4 +96,4 @@
    #:get-cores
    #:async-table
    #:*thread-id*
-   #:main))
+   ))

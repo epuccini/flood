@@ -1,0 +1,10 @@
+[X86-64]-11:28:20-[PRD]-Switching to log-level: DBG
+[X86-64]-11:28:20-[DBG]-DEBUG log-output.
+[X86-64]-11:28:20-[TST]-INFORMATION log-output.
+[X86-64]-11:28:20-[PRD]-WARNING log-output.
+[X86-64]-11:28:20-[PRD]-Switching to log-level: TST
+[X86-64]-11:28:20-[TST]-INFORMATION log-output.
+[X86-64]-11:28:20-[PRD]-WARNING log-output.
+[X86-64]-11:28:20-[PRD]-Switching to log-level: PRD
+[X86-64]-11:28:20-[PRD]-WARNING log-output.
+[X86-64]-11:28:20-[DBG]-Back to default loger
