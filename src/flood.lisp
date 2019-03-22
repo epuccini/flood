@@ -518,13 +518,13 @@ is dynamically created and returned with the object."
         ((and (equal level :dbg) (equal *global-log-level* :tst)) nil)
         ((and (equal level :dbg) (equal *global-log-level* :prd)) nil)
 
-        ((and (equal level :tst) (equal *global-log-level* :dbg)) t)
-        ((and (equal level :tst) (equal *global-log-level* :tst)) t)
-        ((and (equal level :tst) (equal *global-log-level* :prd)) nil)
+        ((and (equal level :inf) (equal *global-log-level* :dbg)) t)
+        ((and (equal level :inf) (equal *global-log-level* :tst)) t)
+        ((and (equal level :inf) (equal *global-log-level* :prd)) nil)
 
-        ((and (equal level :prd) (equal *global-log-level* :dbg)) t)
-        ((and (equal level :prd) (equal *global-log-level* :tst)) t)
-        ((and (equal level :prd) (equal *global-log-level* :prd)) t)))
+        ((and (equal level :wrn) (equal *global-log-level* :dbg)) t)
+        ((and (equal level :wrn) (equal *global-log-level* :tst)) t)
+        ((and (equal level :wrn) (equal *global-log-level* :prd)) t)))
 
 
 (defun out (logger level fmt-msg &rest args)
@@ -612,13 +612,13 @@ object to args and return new args and default logger."
   "Warning-log funection at prd-level with custom-logger if arg1 is a logger. 
 Otherwise use *default-logger* and put arg1 to args."
   (multiple-value-bind (logger args) (check-logger arg1 args)
-      (out logger :prd (collect-args args))))
+      (out logger :wrn (collect-args args))))
 
 (defun inf (arg1 &rest args)
   "Information-log function at prd-level with custom-logger if arg1 is a logger. 
 Otherwise use *default-logger* and put arg1 to args."
   (multiple-value-bind (logger args) (check-logger arg1 args)
-      (out logger :tst (collect-args args))))
+      (out logger :inf (collect-args args))))
 
 (defun dbg (arg1 &rest args)
   "Debug-log function at prd-level with custom-logger if arg1 is a logger. Otherwise use
