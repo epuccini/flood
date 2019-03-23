@@ -19,6 +19,7 @@
    #:*terpri*
    #:*server-socket*
    #:*global-config*
+   #:*global-log-level*
    #:start-watch
    #:stop-watch
    #:async

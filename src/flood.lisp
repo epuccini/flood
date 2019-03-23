@@ -515,12 +515,12 @@ is dynamically created and returned with the object."
   "Evaluate loglevel and return true or false."
   (cond ((equal level *global-log-level*) t)
         ((and (equal level :dbg) (equal *global-log-level* :dbg)) t)
-        ((and (equal level :dbg) (equal *global-log-level* :tst)) nil)
+        ((and (equal level :dbg) (equal *global-log-level* :tst)) t)
         ((and (equal level :dbg) (equal *global-log-level* :prd)) nil)
 
         ((and (equal level :inf) (equal *global-log-level* :dbg)) t)
         ((and (equal level :inf) (equal *global-log-level* :tst)) t)
-        ((and (equal level :inf) (equal *global-log-level* :prd)) nil)
+        ((and (equal level :inf) (equal *global-log-level* :prd)) t)
 
         ((and (equal level :wrn) (equal *global-log-level* :dbg)) t)
         ((and (equal level :wrn) (equal *global-log-level* :tst)) t)
@@ -739,7 +739,6 @@ and log everything. Use custom logger."
            '()))
       (setf *backup-message* message)
       (release-lock mutex))))
-
  
 #-(or sbcl ccl)
 (defun start-log-server ()
