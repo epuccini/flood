@@ -351,7 +351,7 @@ the file if it exceeds LOG_MAX_SIZE in KB."
                               message)
                       :port (getf *global-config* :EMAIL_PORT)
                       :authentication '(:login (getf *global-config* :EMAIL_USER)
-                                        (getf *global-config* :EMAIL_PASWORD))
+                                        (getf *global-config* :EMAIL_PASSWORD))
                       :ssl (getf *global-config* :EMAIL_SSL)))
 
 #-(or sbcl ccl)

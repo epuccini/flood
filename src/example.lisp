@@ -95,8 +95,8 @@
     
     ;; uncomment socket-writer only if you want to behave as client
 
-    (setq lg (make-logger :writers (list #'htmlfile-writer)
-                                        ;#'email-writer)
+    (setq lg (make-logger :writers (list #'htmlfile-writer
+                                        #'email-writer)
                           :formatter #'html-formatter
                           :template "[$MACHINE-TYPE]-$TIME-[$LEVEL]-$MESSAGE"))
     
