@@ -64,6 +64,15 @@
     ;; Load shell command output
     (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%"))
 
+<h1>History and filter</h1>
+
+		;; get history content
+		(get-history)
+		
+		;; fiter by expression
+		;; filter all warnings
+		(filter "WRN")
+		
 <h1>API</h1>
 These are the API functions and vars:
 
