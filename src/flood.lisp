@@ -1,4 +1,5 @@
-; -------------------------------------------------------------
+
+                                        ; -------------------------------------------------------------
 ; Edward Alan Puccini 16.01.2016
 ; -------------------------------------------------------------
 ; Flood library
@@ -341,18 +342,18 @@ the file if it exceeds LOG_MAX_SIZE in KB."
           (write-line (format nil "Error in 'finalize-xml' ~A" condition) 
                       *error-output*))))))
 
-(defun email-writer (message)
-  (cl-smtp:send-email (getf *global-config* :SMTP_HOST)
-                      (getf *global-config* :EMAIL_FROM)
-                      (getf *global-config* :EMAIL_TO)
-                      "flood-emailer"
-                      (format nil "~A~A~%"
-                              (getf *global-config* :EMAIL_TEMPLATE)
-                              message)
-                      :port (getf *global-config* :EMAIL_PORT)
-                      :authentication '(:login (getf *global-config* :EMAIL_USER)
-                                        (getf *global-config* :EMAIL_PASSWORD))
-                      :ssl (getf *global-config* :EMAIL_SSL)))
+(defun email-writer (message))
+;  (cl-smtp:send-email (getf *global-config* :SMTP_HOST)
+;                      (getf *global-config* :EMAIL_FROM)
+;                      (getf *global-config* :EMAIL_TO)
+;                      "flood-emailer"
+;                      (format nil "~A~A~%"
+;                              (getf *global-config* :EMAIL_TEMPLATE)
+;                              message)
+;                      :port (getf *global-config* :EMAIL_PORT)
+;                      :authentication '(:login (getf *global-config* :EMAIL_USER)
+;                                        (getf *global-config* :EMAIL_PASSWORD))
+;                      :ssl (getf *global-config* :EMAIL_SSL)))
 
 #-(or sbcl ccl)
 (defun socket-writer (message)

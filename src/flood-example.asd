@@ -14,7 +14,7 @@
   :author "Edward Puccini epuccini@gmx.de"
   :license "LGPL"
   :depends-on ( "trivial-features" "bordeaux-threads" "cl-ppcre" "swank"
-				   "usocket" "cl-smtp" "cl-who" "lparallel")
+				   "cl-who" "lparallel") ;; "cl-smtp" "usocket" 
   :components (( :file "package" )
 	       ( :file "async-syntax" :depends-on ( "package" ))
 	       ( :file "flood" :depends-on ( "async-syntax" ))

@@ -95,7 +95,7 @@
     (probe-file to)))
 
 
-(defun flood::main ()
+(defun main ()
   (test (test-case "flood library"
                    (test-case "flood utility functions"
                      '(test-make-datetime-string)
@@ -111,4 +111,4 @@
                      '(test-append-to-history)
                      '(test-file-writer)))))
 
-(flood:main)
+(main)
