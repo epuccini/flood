@@ -190,6 +190,9 @@
     ;; Load shell command output
     (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%")
 
+    ;; output all warning logs
+    (filter "WRN")
+
     ;; turn off udp-server by killing thread - no socket-logging works
     ;;#+(or sbcl ccl)
     ;; (stop-log-server)

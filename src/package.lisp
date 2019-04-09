@@ -20,6 +20,7 @@
    #:*server-socket*
    #:*global-config*
    #:*global-log-level*
+   #:filter
    #:start-watch
    #:stop-watch
    #:async

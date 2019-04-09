@@ -113,7 +113,8 @@ backup-location."
 
 ;;
 ;; history
-;; 
+;;
+
 (defun ta-get-history ()
   "Thread safe getting history"
   (let ((mutex (make-lock)))
@@ -170,7 +171,16 @@ then use atomic operation"
 (defun set-default-logger (logger)
   "Set default formatter, writer and templates."
   (setq *default-logger* logger))
- 
+
+;;
+;; Filter all Entries by regexpression exp
+;;
+(defun filter (exp)
+  "Filter history by regexp. Returns a list of entries"
+  (remove-if-not #'(lambda (set)
+                     (cl-ppcre:scan exp set))
+                 (get-history)))
+
 ;;
 ;; Writers
 ;;
