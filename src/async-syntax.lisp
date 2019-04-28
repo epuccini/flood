@@ -86,3 +86,6 @@ desired size."
   "Create a table of threads."
   `(progn
      ,@(loop for arg in args collect (async-fn arg))))
+
+(defmacro current-async-thread-p ()
+  `(cl-ppcre:scan "async-thread" (format nil "~A" (current-thread))))

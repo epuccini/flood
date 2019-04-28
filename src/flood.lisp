@@ -126,9 +126,9 @@ backup-location."
 (defun get-history ()
   "Get history. If in async-thread,
 then use atomic operation."
-  (cond ((cl-ppcre:scan "async-thread" (format nil "~A" (current-thread))) 
+  (cond ((current-async-thread-p)
          (ta-get-history))
-        ((not (cl-ppcre:scan "async-thread" (format nil "~A" (current-thread)))) 
+        ((not (current-async-thread-p)) 
          *history*)))
 
 (defun ta-filter (word)
@@ -143,9 +143,9 @@ then use atomic operation."
 (defun filter (word)
   "Get history and filter by word. If in async-thread,
 then use atomic operation."
-  (cond ((cl-ppcre:scan "async-thread" (format nil "~A" (current-thread)))
+  (cond ((current-async-thread-p)
          (ta-filter word))
-        ((not (equal "async-thread" (format nil "~A" (current-thread))))
+        ((not (current-async-thread-p))
          (remove-if-not #'(lambda (entry)
                             (cl-ppcre:scan word entry)) *history*))))
 
@@ -164,7 +164,7 @@ then use atomic operation."
 (defun set-history (value)
   "Set history with value. If in async thread,
 then use atomic operation"
-  (cond ((equal (current-thread) "async-thread") ; async thread?
+  (cond ((current-async-thread-p) ; async thread?
          (ta-set-history value)))
   (setf *history* value))
 
@@ -181,7 +181,7 @@ then use atomic operation"
  
 (defun append-to-history (entry)
   "Append an entry to history."
-  (cond ((equal (current-thread) "async-thread") ; async thread?
+  (cond ((current-async-thread-p) ; async thread?
          (ta-append-to-history entry)))
   (let ((size (list-length *history*))) ; get size of history
     (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
