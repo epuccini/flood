@@ -172,7 +172,7 @@ These are available template parameter:<br>
 	
 	;; filter all warning logs - you can use regular expressions for the scan command in cl-ppcre
 	(filter "WRN")
-	<br>
+	
 	
 	
  The configuration file can be found in the "conf/" directory. flood looks for "../conf" when you start at "src/" or "bin/" when you compiled a program.<br><br>
