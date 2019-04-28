@@ -126,10 +126,29 @@ backup-location."
 (defun get-history ()
   "Get history. If in async-thread,
 then use atomic operation."
-  (cond ((equal (current-thread) "async-thread") ; async thread?
+  (cond ((cl-ppcre:scan "async-thread" (format nil "~A" (current-thread))) 
          (ta-get-history))
-        ((not (equal (current-thread) "async-thread")) ; not async thread?
+        ((not (cl-ppcre:scan "async-thread" (format nil "~A" (current-thread)))) 
          *history*)))
+
+(defun ta-filter (word)
+  "Get history entry and filter by word."
+  (let ((mutex (make-lock)))
+    (acquire-lock mutex)
+    (prog1
+        (remove-if-not #'(lambda (entry)
+                           (cl-ppcre:scan word entry)) *history*))
+    (release-lock mutex)))
+
+(defun filter (word)
+  "Get history and filter by word. If in async-thread,
+then use atomic operation."
+  (cond ((cl-ppcre:scan "async-thread" (format nil "~A" (current-thread)))
+         (ta-filter word))
+        ((not (equal "async-thread" (format nil "~A" (current-thread))))
+         (remove-if-not #'(lambda (entry)
+                            (cl-ppcre:scan word entry)) *history*))))
+
 
 (defun history ()
   "Print list of logging entries."
@@ -172,15 +191,6 @@ then use atomic operation"
 (defun set-default-logger (logger)
   "Set default formatter, writer and templates."
   (setq *default-logger* logger))
-
-;;
-;; Filter all Entries by regexpression exp
-;;
-(defun filter (exp)
-  "Filter history by regexp. Returns a list of entries"
-  (remove-if-not #'(lambda (set)
-                     (cl-ppcre:scan exp set))
-                 (get-history)))
 
 ;;
 ;; Writers
