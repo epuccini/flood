@@ -21,6 +21,7 @@
    #:*global-config*
    #:*global-log-level*
    #:filter
+   #:current-async-thread-p
    #:start-watch
    #:stop-watch
    #:async
