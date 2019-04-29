@@ -31,7 +31,7 @@
    #:start-log-server
    #:stop-log-server
    #:get-history
-   #:history
+   #:print-history
    #:set-history
    #:append-to-history
    #:async-prefix

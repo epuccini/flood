@@ -112,82 +112,55 @@ backup-location."
   (with-open-file (stream filepath)
     (file-length stream)))
 
+
+(defmacro with-locking (&rest body)
+  "Thread safe getting history"
+  `(cond ((current-async-thread-p)
+          (let ((mutex (make-lock)))
+            (acquire-lock mutex)
+            (prog1
+                ,@body
+              (release-lock mutex))))
+         ((not (current-async-thread-p))
+          (progn
+            ,@body))))
+
 ;;
 ;; history
 ;;
-
-(defun ta-get-history ()
-  "Thread safe getting history"
-  (let ((mutex (make-lock)))
-    (acquire-lock mutex)
-    (prog1 *history*
-      (release-lock mutex))))
-
 (defun get-history ()
   "Get history. If in async-thread,
 then use atomic operation."
-  (cond ((current-async-thread-p)
-         (ta-get-history))
-        ((not (current-async-thread-p)) 
-         *history*)))
-
-(defun ta-filter (word)
-  "Get history entry and filter by word."
-  (let ((mutex (make-lock)))
-    (acquire-lock mutex)
-    (prog1
-        (remove-if-not #'(lambda (entry)
-                           (cl-ppcre:scan word entry)) *history*))
-    (release-lock mutex)))
+  (with-locking
+      *history*))
 
 (defun filter (word)
   "Get history and filter by word. If in async-thread,
 then use atomic operation."
-  (cond ((current-async-thread-p)
-         (ta-filter word))
-        ((not (current-async-thread-p))
-         (remove-if-not #'(lambda (entry)
-                            (cl-ppcre:scan word entry)) *history*))))
+  (with-locking
+      (remove-if-not #'(lambda (entry)
+                         (cl-ppcre:scan word entry)) *history*)))
 
-
-(defun history ()
+(defun print-history ()
   "Print list of logging entries."
-  (mapc #'print (get-history))
-  nil)
-
-(defun ta-set-history (value)
-  (let ((mutex (make-lock)))
-    (acquire-lock mutex)
-    (setq *history* value)
-    (release-lock mutex)))
+  (with-locking
+      (mapc #'print *history*)))
 
 (defun set-history (value)
   "Set history with value. If in async thread,
 then use atomic operation"
-  (cond ((current-async-thread-p) ; async thread?
-         (ta-set-history value)))
-  (setf *history* value))
+  (with-locking
+      (setf *history* value)))
 
-(defun ta-append-to-history (value)
+(defun append-to-history (value)
   "Thread safe append to history."
-  (let ((mutex (make-lock))
-        (size (list-length *history*))) ; get size of history
-    (progn
-      (acquire-lock mutex)
-      (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
-             (pop *history*))) ; pop the first entry
-      (setq *history* (append *history* (list value)))
-      (release-lock mutex))))
- 
-(defun append-to-history (entry)
-  "Append an entry to history."
-  (cond ((current-async-thread-p) ; async thread?
-         (ta-append-to-history entry)))
-  (let ((size (list-length *history*))) ; get size of history
-    (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES));  check if we are over size 
-           (pop *history*))) ; pop the first entry
-    (set-history (append *history* (list entry)))))
- 
+  (with-locking
+      (let ((size (list-length *history*))) ; get size of history
+        (progn
+          (cond ((>= size (getf *global-config* :HISTORY_MAX_LINES))
+                 (pop *history*))) ; pop the first entry
+          (setq *history* (append *history* (list value)))))))
+         
 (defun set-default-logger (logger)
   "Set default formatter, writer and templates."
   (setq *default-logger* logger))
@@ -551,14 +524,14 @@ is dynamically created and returned with the object."
 (defun out (logger level fmt-msg &rest args)
   "Call formatter with writer and use message-template.
 Save history"
-  ;(append-to-history (format-with-list fmt-msg args)) ;; history
-  (cond ((log-level-p level) ;; log-level fine
-         (funcall (logger-type-formatter logger)
-                  (logger-type-writers logger)
-                  (logger-type-template logger)
-                  level
-                  fmt-msg
-                  args))))
+  (with-locking
+      (cond ((log-level-p level) ;; log-level fine
+             (funcall (logger-type-formatter logger)
+                      (logger-type-writers logger)
+                      (logger-type-template logger)
+                      level
+                      fmt-msg
+                      args)))))
 
 
 (defun get-log-level ()
