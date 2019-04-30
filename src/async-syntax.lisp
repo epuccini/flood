@@ -38,10 +38,13 @@
           (- (t-real stop-times) (t-real start-times)))
     diff-times))
 
-(defmacro async (function)
+(defmacro async (&rest body)
   "Call function in a named thread."
-  `(bordeaux-threads:make-thread (lambda () ,function)
-                                :name (format nil "async-thread-~D" (inc-thread-id))))
+  `(bordeaux-threads:make-thread (lambda ()
+                                   (progn
+                                     ,@body))
+                                 :name (format nil "async-thread-~D"
+                                               (inc-thread-id))))
 
 (defun async-fn (function)
   "Call function in a named thread."

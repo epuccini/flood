@@ -13,7 +13,6 @@
 (eval-when (:load-toplevel :compile-toplevel :execute)
   (use-package :flood))
 
-
 ;;
 ;; demo function
 ;;
@@ -168,15 +167,15 @@
        (wrn "Async-out thread B! Warning...")))
     
     (async 
-     (progn (inf "I'm going to sleep...") 
-            (sleep 1)
-            (inf "Zzzzzzz...")
-            (sleep 1)
-            (inf "Zzzzzzz...")
-            (sleep 1)
-            (inf "Zzzzzzz...")
-            (sleep 1)
-            (inf "I've slept for " 3 " seconds.")))
+     (inf "I'm going to sleep...") 
+     (sleep 1)
+     (inf "Zzzzzzz...")
+     (sleep 1)
+     (inf "Zzzzzzz...")
+     (sleep 1)
+     (inf "Zzzzzzz...")
+     (sleep 1)
+     (inf "I've slept for " 3 " seconds."))
     
     ;; set new loggers
     (let ((stack-depth 4))
@@ -193,8 +192,14 @@
     ;; turn off udp-server by killing thread - no socket-logging works
     ;;#+(or sbcl ccl)
     ;; (stop-log-server)
+    ;; (princ "STOP logging!"))
 
-    (princ "STOP logging!"))
-
-  ;; output all warning logs
-  (filter "WRN"))
+    ;; output all warning logs after 5 seconds
+    (async
+     (sleep 5)
+     (princ "Filter all warnings, result:")
+     (terpri)
+     (mapcar #'(lambda (line)
+                 (princ line)
+                 (terpri))
+          (filter "WRN")))))
