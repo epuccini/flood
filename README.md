@@ -63,15 +63,7 @@
 
     ;; Load shell command output
     (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%"))
-
-<h1>History and filter</h1>
-
-		;; get history content
-		(get-history)
-		
-		;; fiter by expression
-		;; filter all warnings
-		(filter "WRN")
+    
 		
 <h1>API</h1>
 These are the API functions and vars:
@@ -165,7 +157,7 @@ These are available template parameter:<br>
 	  $MESSAGE"		;; the log message itself<br>
 	  <br>
 	  
-<h1>You can get the history all logs and filter it:</h1>
+<h1>You can get the history of all logs and filter it:</h1>
 
 	;; get history
 	(get-history)
