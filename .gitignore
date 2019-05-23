@@ -1,0 +1,13 @@
+.DS_Store
+*.fas
+*.fasl
+*.lx64fsl
+*~
+#*
+lx64fsl
+*.blend
+*.glm
+*.bin
+#test.clj#
+*.clj
+*.bak
