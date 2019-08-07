@@ -187,6 +187,7 @@
     (capture :inf #'room "Memory output:~%")
 
     ;; Load shell command output
+    #-windows
     (sys :inf "ps -e | grep sbcl" "Calling shell-command and log output...~%")
 
     ;; turn off udp-server by killing thread - no socket-logging works
