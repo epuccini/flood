@@ -376,6 +376,11 @@ and lambda-lists inbetween."
             (cond ((stringp arg)
                    (setq message (concatenate 'string
                                               message arg)))
+                  ((equal (type-of arg) 'cons)
+                   (progn
+                     (setq message (concatenate 'string 
+                                                message "~{~A ~}"))
+                     (push `(quote ,arg) arg-list)))
                   ((not (stringp arg))
                    (progn
                      (setq message (concatenate 'string 
