@@ -381,6 +381,11 @@ and lambda-lists inbetween."
                      (setq message (concatenate 'string 
                                                 message "~{~A ~}"))
                      (push `(quote ,arg) arg-list)))
+                  ((equal (type-of arg) 'simple-vector)
+                   (progn
+                     (setq message (concatenate 'string 
+                                                message "~{~A ~}"))
+                     (push `(quote ,arg) arg-list)))
                   ((not (stringp arg))
                    (progn
                      (setq message (concatenate 'string 
