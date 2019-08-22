@@ -391,7 +391,7 @@ and lambda-lists inbetween."
                      (setq message (concatenate 'string 
                                                 message "~A"))
                      (push arg arg-list))))) args)
-    (format-with-list message arg-list)))
+    (format-with-list message (reverse arg-list))))
 
 ;;
 ;;  Template
