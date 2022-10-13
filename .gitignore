@@ -11,3 +11,4 @@ lx64fsl
 #test.clj#
 *.clj
 *.bak
+.gitignore
